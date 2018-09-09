@@ -8,8 +8,9 @@ import {
   TrackPartialLap,
   RaceParticipant,
   RaceParticipantTrackActivity,
-  RaceParticipantTrackActivityState
-} from '../models/';
+  RaceParticipantTrackActivityState,
+  TimingSocketEvent
+} from '../model/';
 
 // dummy data
 import {
@@ -17,31 +18,24 @@ import {
   RACE_PARTICIPANTS
 } from './dummy-data';
 
-const TRACK_ACTIVITY_DELAY = 3000; // time to track
+const TRACK_ACTIVITY_DELAY = 5000; // time to track
 const TRACK_ACTIVITY_SECTORS = 4;
 // const PARTIALS_TIMES = [9802, 23233, 31718, 20435]; // Real lap time
-const PARTIALS_TIMES = [1000, 1000, 1000, 1000]; // Fast lap time
-const PARTICIPANTS = 6; // <= 6
-// const PARTICIPANTS = 1;
-
-export enum Event {
-  go_to_track = 'go to track',
-  go_to_pit = 'go to pit',
-  partial_lap_time = 'partial lap time',
-  lap_time = 'lap time'
-}
+const PARTIALS_TIMES = [3000, 3000, 3000, 3000]; // Fast lap time
+const PARTICIPANTS = 7; // <= 7
+const LOG = false;
 
 export class TimingDummy {
   private io: SocketIO.Server;
   private trackActivity: TrackActivity = TRACK_ACTIVITY;
   private participants: RaceParticipant[] = lodash.clone(RACE_PARTICIPANTS);
+  private timeouts: any[] = [];
 
   constructor(io: SocketIO.Server) {
     this.io = io;
   }
 
   start() {
-
     for (let participantIndex = 0; participantIndex < PARTICIPANTS; participantIndex++) {
       setTimeout(
         () => {
@@ -50,6 +44,14 @@ export class TimingDummy {
         lodash.random(0, TRACK_ACTIVITY_DELAY)
       );
     }
+  }
+
+  stop() {
+    this.timeouts.forEach((timeoutId: any) => {
+      clearTimeout(timeoutId);
+    });
+
+    this.timeouts = [];
   }
 
   // private methods
@@ -104,9 +106,9 @@ export class TimingDummy {
       data.best_lap = lap;
     }
 
-    this.io.emit(Event.go_to_track, data);
-    console.log('Event: ' + Event.go_to_track);
-    console.log(
+    this.io.emit(TimingSocketEvent.GO_TO_TRACK, data);
+    this.log('Event: ' + TimingSocketEvent.GO_TO_TRACK);
+    this.log(
       '-> #' + data.race_participant.number + ' - ' + data.race_participant.driver.name
     );
 
@@ -118,9 +120,9 @@ export class TimingDummy {
     // Logic
     data.state = RaceParticipantTrackActivityState.on_pit;
 
-    this.io.emit(Event.go_to_pit, data);
-    console.log('Event: ' + Event.go_to_pit);
-    console.log(
+    this.io.emit(TimingSocketEvent.GO_TO_PIT, data);
+    this.log('Event: ' + TimingSocketEvent.GO_TO_PIT);
+    this.log(
       '-> #' + data.race_participant.number + ' - ' + data.race_participant.driver.name
     );
 
@@ -158,11 +160,11 @@ export class TimingDummy {
     
     const lastPartial = currentSector === TRACK_ACTIVITY_SECTORS;
 
-    setTimeout(
+    let timeoutId = setTimeout(
       () => {
-        this.io.emit(Event.partial_lap_time, data);
-        console.log('Event: ' + Event.partial_lap_time);
-        console.log(
+        this.io.emit(TimingSocketEvent.PARTIAL_LAP_TIME, data);
+        this.log('Event: ' + TimingSocketEvent.PARTIAL_LAP_TIME);
+        this.log(
           '-> Sector: ' + partialLap.sector + ' | Time: ' + partialLap.time
         );
 
@@ -174,6 +176,8 @@ export class TimingDummy {
       },
       partialLapTime
     );
+
+    this.timeouts.push(timeoutId);
   }
 
   private emitLapTime(data: RaceParticipantTrackActivity): void {
@@ -182,9 +186,9 @@ export class TimingDummy {
     data.last_lap.time = this.extractLapTime(data.last_lap.partials);
     data.best_lap = !data.best_lap.time || data.last_lap.time < data.best_lap.time ? data.last_lap : data.best_lap;
 
-    this.io.emit(Event.lap_time, data);
-    console.log('Event: ' + Event.lap_time);
-    console.log(
+    this.io.emit(TimingSocketEvent.LAP_TIME, data);
+    this.log('Event: ' + TimingSocketEvent.LAP_TIME);
+    this.log(
       '-> Lap count: ' + data.laps_count + ' | Time: ' + data.last_lap.time
     );
   }
@@ -198,5 +202,13 @@ export class TimingDummy {
     });
   
     return lapTime;
+  }
+
+  private log(text: string) {
+    if (!LOG) {
+      return;
+    }
+
+    console.log(text);
   }
 }

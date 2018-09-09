@@ -1,11 +1,15 @@
+// angular
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
+// modules
+import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { TimingModule } from './timing/timing.module';
-import { SharedModule } from './shared/shared.module';
+
+// components
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -15,8 +19,8 @@ import { SharedModule } from './shared/shared.module';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    TimingModule,
-    SharedModule
+    CoreModule,
+    TimingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

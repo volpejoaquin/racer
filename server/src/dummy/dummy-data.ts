@@ -8,7 +8,7 @@ import {
   RaceWeekend,
   TrackActivity,
   RaceParticipant
-} from '../models/';
+} from '../model/';
 
 export const CAR_CATEGORY: CarCategory = {
   name: 'Formula 1',

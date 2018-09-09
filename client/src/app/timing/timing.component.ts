@@ -1,10 +1,19 @@
+// angular
 import { Component, OnInit } from '@angular/core';
+
+// libs
 import * as lodash from 'lodash';
 
-import { Event } from './shared/model/event';
-import { SocketService } from './shared/services/socket.service';
+// services
+import { SocketService } from '../core/service';
 
-import { RaceParticipantTrackActivity, TrackLap } from './../../../../server/src/models/track-activity.model';
+// models
+import {
+  RaceParticipantTrackActivity,
+  SocketEvent,
+  BasicSocketEvent,
+  TimingSocketEvent
+} from '../shared/model/';
 
 @Component({
   selector: 'tcc-timing',
@@ -63,44 +72,44 @@ export class TimingComponent implements OnInit {
     this.socketService.initSocket();
 
 
-    this.socketService.onEvent(Event.CONNECT)
+    this.socketService.onEvent(BasicSocketEvent.CONNECT)
       .subscribe((data: any) => {
-        this.onEvent(Event.CONNECT, data);
+        this.onEvent(BasicSocketEvent.CONNECT, data);
       });
 
-    this.socketService.onEvent(Event.DISCONNECT)
+    this.socketService.onEvent(BasicSocketEvent.DISCONNECT)
       .subscribe((data: any) => {
-        this.onEvent(Event.DISCONNECT, data);
+        this.onEvent(BasicSocketEvent.DISCONNECT, data);
       });
 
-    this.socketService.onEvent(Event.GO_TO_TRACK)
+    this.socketService.onEvent(TimingSocketEvent.GO_TO_TRACK)
       .subscribe((data: any) => {
-        this.onEvent(Event.GO_TO_TRACK, data);
+        this.onEvent(TimingSocketEvent.GO_TO_TRACK, data);
       });
 
-    this.socketService.onEvent(Event.GO_TO_PIT)
+    this.socketService.onEvent(TimingSocketEvent.GO_TO_PIT)
       .subscribe((data: any) => {
-        this.onEvent(Event.GO_TO_PIT, data);
+        this.onEvent(TimingSocketEvent.GO_TO_PIT, data);
       });
 
-    this.socketService.onEvent(Event.PARTIAL_LAP_TIME)
+    this.socketService.onEvent(TimingSocketEvent.PARTIAL_LAP_TIME)
       .subscribe((data: any) => {
-        this.onEvent(Event.PARTIAL_LAP_TIME, data);
+        this.onEvent(TimingSocketEvent.PARTIAL_LAP_TIME, data);
       });
 
-    this.socketService.onEvent(Event.LAP_TIME)
+    this.socketService.onEvent(TimingSocketEvent.LAP_TIME)
       .subscribe((data: any) => {
-        this.onEvent(Event.LAP_TIME, data);
+        this.onEvent(TimingSocketEvent.LAP_TIME, data);
       });
   }
 
-  private onEvent(event: Event, data: any) {
+  private onEvent(event: SocketEvent, data: any) {
 
     switch (event) {
-      case Event.CONNECT:
+      case BasicSocketEvent.CONNECT:
         console.log('Event: connected', data);
         break;
-      case Event.DISCONNECT:
+      case BasicSocketEvent.DISCONNECT:
         console.log('Event: disconnected', data);
         break;
       default:
