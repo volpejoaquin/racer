@@ -1,4 +1,4 @@
-import { ChatServer } from './chat-server';
+import { TimingServer } from './timing-server';
 
-let app = new ChatServer().getApp();
+let app = new TimingServer().getApp();
 export { app };

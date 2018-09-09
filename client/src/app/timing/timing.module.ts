@@ -3,20 +3,22 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../shared/material/material.module';
+import { SharedModule } from '../shared/shared.module';
 
-import { ChatComponent } from './chat.component';
+import { TimingComponent } from './timing.component';
 import { SocketService } from './shared/services/socket.service';
-import { DialogUserComponent } from './dialog-user/dialog-user.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    SharedModule
   ],
-  declarations: [ChatComponent, DialogUserComponent],
-  providers: [SocketService],
-  entryComponents: [DialogUserComponent]
+  declarations: [
+    TimingComponent
+  ],
+  providers: [SocketService]
 })
-export class ChatModule { }
+export class TimingModule { }
