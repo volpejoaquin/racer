@@ -4,7 +4,7 @@ import * as lodash from 'lodash';
 import { Event } from './shared/model/event';
 import { SocketService } from './shared/services/socket.service';
 
-import { RaceParticipantTrackActivity } from './../../../../server/src/models/track-activity.model';
+import { RaceParticipantTrackActivity, TrackLap } from './../../../../server/src/models/track-activity.model';
 
 @Component({
   selector: 'tcc-timing',
@@ -13,17 +13,38 @@ import { RaceParticipantTrackActivity } from './../../../../server/src/models/tr
 })
 export class TimingComponent implements OnInit {
   rows: any[] = [];
+  bestLap: any = {
+    time: 9802 + 23233 + 31718 + 20435,
+    ref_lap: true,
+    partials: [
+      {
+        time: 9802,
+        sector: 1
+      },
+      {
+        time: 23233,
+        sector: 2
+      },
+      {
+        time: 31718,
+        sector: 3
+      },
+      {
+        time: 20435,
+        sector: 4
+      }
+    ]
+  };
   ioConnection: any;
 
   constructor(private socketService: SocketService) { }
 
   ngOnInit(): void {
-    this.initModel();
     this.initIoConnection();
   }
 
   calculateGap(index: number, row: RaceParticipantTrackActivity) {
-    if (index === 1 || !this.rows || this.rows.length === 0 || !row.best_lap) {
+    if (index === 1 || !this.bestLap) {
       return '';
     }
     // Calculate gap
@@ -31,14 +52,11 @@ export class TimingComponent implements OnInit {
   }
 
   calculateInterval(index: number, row: RaceParticipantTrackActivity) {
-    if (index === 1 || !this.rows || this.rows.length === 0 || !row.best_lap) {
+    if (index === 1 || !this.bestLap) {
       return '';
     }
     // Calculate interval
     return row.best_lap.time - this.rows[index - 2].best_lap.time;
-  }
-
-  private initModel(): void {
   }
 
   private initIoConnection(): void {
@@ -88,16 +106,22 @@ export class TimingComponent implements OnInit {
       default:
         console.log('Event: ' + event, data);
 
-        const currentObject = lodash.find(this.rows, (value) => {
+        const currentObjectIndex = lodash.findIndex(this.rows, (value) => {
           return value.race_participant.number === data.race_participant.number;
         });
 
-        if (!!currentObject) {
-          lodash.assign(currentObject, data);
+        if (currentObjectIndex >= 0) {
+          this.rows[currentObjectIndex] = data;
         } else {
           this.rows.push(data);
         }
         break;
+    }
+
+    this.rows = lodash.orderBy(this.rows, 'best_lap.time');
+
+    if (this.rows[0] && this.rows[0].best_lap && this.rows[0].best_lap.time) {
+      this.bestLap = this.rows[0].best_lap;
     }
   }
 }

@@ -46,7 +46,7 @@
             <th scope="col">LAPS</th>
             <th scope="col">TIME</th>
             <th scope="col">GAP</th>
-            <th scope="col">INT</th>
+            <th scope="col" class="d-none">INT</th>
             <th scope="col" class="column_partial-lap-time">S1</th>
             <th scope="col" class="column_partial-lap-time">S2</th>
             <th scope="col" class="column_partial-lap-time">S3</th>
@@ -54,24 +54,62 @@
             <th scope="col">LAP TIME</th>
             <th scope="col">DIFF</th>
           </tr>
-          <!-- <tr>
+          <tr>
             <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
             <th scope="col"></th>
+            <th scope="col" class="d-none"></th>
             <th scope="col"></th>
-            <th scope="col" colspan="2" class="font-weight-normal text-secondary">44 HAMILTON LEWIS</th>
-            <th scope="col" class="font-weight-bold text-white">9.540</th>
-            <th scope="col" class="font-weight-bold text-white">31.450</th>
-            <th scope="col" class="font-weight-bold text-white">22.340</th>
-            <th scope="col" class="font-weight-bold text-white">25.440</th>
-            <th scope="col" class="font-weight-bold text-white">1:25.350</th>
-          </tr> -->
+            <th scope="col"></th>
+            <th scope="col" class="column_partial-lap-time">
+              <div *ngIf="bestLap?.partials[0]">
+                <span class="align-middle font-weight-normal" [class.text-white]="!bestLap.ref_lap" [class.text-muted]="bestLap.ref_lap">
+                  {{ bestLap.partials[0].time | partialLapTime  }}
+                </span>
+                <span class="align-middle badge badge-success invisible">0</span>
+              </div>
+            </th>
+            <th scope="col" class="column_partial-lap-time">
+              <div *ngIf="bestLap?.partials[1]">
+                <span class="align-middle font-weight-normal" [class.text-white]="!bestLap.ref_lap" [class.text-muted]="bestLap.ref_lap">
+                  {{ bestLap.partials[1].time | partialLapTime  }}
+                </span>
+                <span class="align-middle badge badge-success invisible">0</span>
+              </div>
+            </th>
+            <th scope="col" class="column_partial-lap-time">
+              <div *ngIf="bestLap?.partials[2]">
+                <span class="align-middle font-weight-normal" [class.text-white]="!bestLap.ref_lap" [class.text-muted]="bestLap.ref_lap">
+                  {{ bestLap.partials[2].time | partialLapTime  }}
+                </span>
+                <span class="align-middle badge badge-success invisible">0</span>
+              </div>
+            </th>
+            <th scope="col" class="column_partial-lap-time">
+              <div *ngIf="bestLap?.partials[3]">
+                <span class="align-middle font-weight-normal" [class.text-white]="!bestLap.ref_lap" [class.text-muted]="bestLap.ref_lap">
+                  {{ bestLap.partials[3].time | partialLapTime  }}
+                </span>
+                <span class="align-middle badge badge-success invisible">0</span>
+              </div>
+            </th>
+            <th scope="col">
+              <span class="font-weight-normal" [class.text-white]="!bestLap.ref_lap" [class.text-muted]="bestLap.ref_lap">
+                {{ bestLap?.time | lapTime  }}
+              </span>
+            </th>
+            <th scope="col" class="text-left" [class.invisible]="!bestLap">
+              <small class="font-weight-normal text-secondary" *ngIf="!bestLap.ref_lap">BEST LAP</small>
+              <small class="font-weight-normal text-muted" *ngIf="bestLap.ref_lap">REF LAP</small>
+            </th>
+          </tr>
         </thead>
         <tbody>
           <tr *ngFor="let row of rows; let rowIndex = index;">
             <td>
-              {{ rowIndex + 1 }}
+              <span *ngIf="row.best_lap.time">{{ rowIndex + 1 }}</span>
+              <span *ngIf="row.laps_count === 0">-</span>
             </td>
             <td>
               {{ row.race_participant.number }}
@@ -88,7 +126,7 @@
             <td>
               {{ calculateGap(rowIndex + 1, row) | partialLapTime }}
             </td>
-            <td>
+            <td class="d-none">
               {{ calculateInterval(rowIndex + 1, row) | partialLapTime }}
             </td>
             <td class="column_partial-lap-time">
@@ -104,7 +142,7 @@
                 <span class="align-middle font-weight-normal text-white">
                   {{ row.last_lap?.partials[1]?.time | partialLapTime  }}
                 </span>
-                <span class="align-middle badge badge-danger invisible">+ 0.050</span>
+                <span class="align-middle badge badge-danger invisible">0</span>
               </div>
             </td>
             <td class="column_partial-lap-time">
@@ -112,7 +150,7 @@
                 <span class="align-middle font-weight-normal text-white">
                   {{ row.last_lap?.partials[2]?.time | partialLapTime  }}
                 </span>
-                <span class="align-middle badge badge-danger invisible">+ 0.100</span>
+                <span class="align-middle badge badge-danger invisible">0</span>
               </div>
             </td>
             <td class="column_partial-lap-time">

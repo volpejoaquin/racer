@@ -99,5 +99,47 @@ export const RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     number: 3,
     championship: CHAMPIONSHIP
+  },
+  {
+    team: {
+      name: 'TEAM'
+    },
+    car: {
+      name: 'CAR NAME'
+    },
+    driver: {
+      name: 'RAIKKONEN',
+      last_name: 'KIMI'
+    },
+    number: 7,
+    championship: CHAMPIONSHIP
+  },
+  {
+    team: {
+      name: 'TEAM'
+    },
+    car: {
+      name: 'CAR NAME'
+    },
+    driver: {
+      name: 'BOTTAS',
+      last_name: 'VALTTERI'
+    },
+    number: 77,
+    championship: CHAMPIONSHIP
+  },
+  {
+    team: {
+      name: 'TEAM'
+    },
+    car: {
+      name: 'CAR NAME'
+    },
+    driver: {
+      name: 'VERSTAPEN',
+      last_name: 'MAX'
+    },
+    number: 33,
+    championship: CHAMPIONSHIP
   }
 ];
