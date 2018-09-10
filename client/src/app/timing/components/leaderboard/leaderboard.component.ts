@@ -12,8 +12,13 @@ import {
   RaceParticipantTrackActivity,
   SocketEvent,
   BasicSocketEvent,
-  TimingSocketEvent
+  TimingSocketEvent,
+  TrackLap,
+  TrackPartialLap
 } from '../../../shared/model/';
+
+// dummy data
+import { REF_LAP } from '../../../shared/dummy/';
 
 @Component({
   selector: 'racer-leaderboard',
@@ -21,29 +26,8 @@ import {
   styleUrls: ['./leaderboard.component.css']
 })
 export class LeaderboardComponent implements OnInit {
-  rows: any[] = [];
-  bestLap: any = {
-    time: 9802 + 23233 + 31718 + 20435,
-    ref_lap: true,
-    partials: [
-      {
-        time: 9802,
-        sector: 1
-      },
-      {
-        time: 23233,
-        sector: 2
-      },
-      {
-        time: 31718,
-        sector: 3
-      },
-      {
-        time: 20435,
-        sector: 4
-      }
-    ]
-  };
+  rows: RaceParticipantTrackActivity[] = [];
+  bestLap: TrackLap = REF_LAP;
   ioConnection: any;
 
   constructor(private socketService: SocketService) { }
@@ -57,7 +41,7 @@ export class LeaderboardComponent implements OnInit {
       return '';
     }
     // Calculate gap
-    return row.best_lap.time - this.rows[0].best_lap.time;
+    return row.best_lap.time - this.bestLap.time;
   }
 
   calculateInterval(index: number, row: RaceParticipantTrackActivity) {
@@ -66,6 +50,27 @@ export class LeaderboardComponent implements OnInit {
     }
     // Calculate interval
     return row.best_lap.time - this.rows[index - 2].best_lap.time;
+  }
+
+  calculateGapCurrentLap(index: number, row: RaceParticipantTrackActivity) {
+    if (
+      !this.bestLap ||
+      !row.last_lap ||
+      !row.last_lap.partials ||
+      row.last_lap.partials.length === 0
+    ) {
+      return 0;
+    }
+    let current_lap_time = 0,
+      best_partial_time = 0;
+
+    row.last_lap.partials.forEach((partial: TrackPartialLap, partialIndex: number) => {
+      current_lap_time += partial.time;
+      best_partial_time += this.bestLap.partials[partialIndex].time;
+    });
+
+    // Calculate gap
+    return current_lap_time - best_partial_time;
   }
 
   private initIoConnection(): void {
@@ -107,13 +112,13 @@ export class LeaderboardComponent implements OnInit {
 
     switch (event) {
       case BasicSocketEvent.CONNECT:
-        console.log('Event: connected', data);
+        // console.log('Event: connected', data);
         break;
       case BasicSocketEvent.DISCONNECT:
-        console.log('Event: disconnected', data);
+        // console.log('Event: disconnected', data);
         break;
       default:
-        console.log('Event: ' + event, data);
+        // console.log('Event: ' + event, data);
 
         const currentObjectIndex = lodash.findIndex(this.rows, (value) => {
           return value.race_participant.number === data.race_participant.number;

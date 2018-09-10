@@ -1,10 +1,13 @@
-import { Pipe } from '@angular/core';
+// angular
+import { Pipe, PipeTransform } from '@angular/core';
+
+// libs
 import * as moment from 'moment';
 
 @Pipe({
   name: 'lapTime'
 })
-export class LapTimePipe {
+export class LapTimePipe implements PipeTransform {
   transform(time: number, args: string): string {
     if (!time || time === 0) {
       return '';

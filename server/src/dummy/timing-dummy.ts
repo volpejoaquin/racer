@@ -15,14 +15,15 @@ import {
 // dummy data
 import {
   TRACK_ACTIVITY,
-  RACE_PARTICIPANTS
+  RACE_PARTICIPANTS,
+  TRACK_ACTIVITY_DELAY,
+  TRACK_ACTIVITY_SECTORS,
+  REF_LAP_PARTIALS,
+  PARTICIPANTS,
+  LAP_PARTIALS_ESTIMATED_ERROR_MIN,
+  LAP_PARTIALS_ESTIMATED_ERROR_MAX
 } from './dummy-data';
 
-const TRACK_ACTIVITY_DELAY = 5000; // time to track
-const TRACK_ACTIVITY_SECTORS = 4;
-// const PARTIALS_TIMES = [9802, 23233, 31718, 20435]; // Real lap time
-const PARTIALS_TIMES = [3000, 3000, 3000, 3000]; // Fast lap time
-const PARTICIPANTS = 7; // <= 7
 const LOG = false;
 
 export class TimingDummy {
@@ -95,6 +96,7 @@ export class TimingDummy {
     // Add new lap
     const lap: TrackLap = {
       time: null,
+      ref_lap: false,
       partials: []
     };
     
@@ -138,6 +140,7 @@ export class TimingDummy {
       // Add new lap
       const lap: TrackLap = {
         time: null,
+        ref_lap: false,
         partials: []
       };
       
@@ -148,9 +151,9 @@ export class TimingDummy {
     }
     
     // Generate partial lap time
-    let partialLapTime = PARTIALS_TIMES[currentSector > 0 ? currentSector - 1 : 0];
+    let partialLapTime = REF_LAP_PARTIALS[currentSector > 0 ? currentSector - 1 : 0];
     // Add some error
-    partialLapTime += lodash.random(-500, 2000);
+    partialLapTime += lodash.random(LAP_PARTIALS_ESTIMATED_ERROR_MIN, LAP_PARTIALS_ESTIMATED_ERROR_MAX);
 
     const partialLap: TrackPartialLap = {
       time: partialLapTime,

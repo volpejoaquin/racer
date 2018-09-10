@@ -39,6 +39,7 @@ export interface RaceParticipantTrackActivity {
 export interface TrackLap {
   // Simple
   time: number;
+  ref_lap: boolean;
   // Relationships
   partials: TrackPartialLap[];
 }
