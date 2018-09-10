@@ -111,13 +111,13 @@
     "directive-selector": [
       true,
       "attribute",
-      "tcc",
+      "racer",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
-      "tcc",
+      "racer",
       "kebab-case"
     ],
     "use-input-property-decorator": true,

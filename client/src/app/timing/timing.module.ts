@@ -4,22 +4,20 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // modules
-import { MaterialModule } from '../shared/material/material.module';
 import { SharedModule } from '../shared/shared.module';
 
 // components
-import { TimingComponent } from './timing.component';
+import { TIMING_COMPONENTS } from './components/';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule,
     SharedModule
   ],
   declarations: [
-    TimingComponent
+    ...TIMING_COMPONENTS
   ]
 })
 export class TimingModule { }

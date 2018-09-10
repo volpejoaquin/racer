@@ -1,0 +1,141 @@
+<div class="row no-gutters bg-dark">
+  <div class="col-12">
+    <div class="table-responsive">
+      <table class="table table-dark"> <!-- table-striped -->
+        <thead>
+          <tr>
+            <th scope="col">POS</th>
+            <th scope="col">CAR</th>
+            <th scope="col">NAME</th>
+            <th scope="col">LAPS</th>
+            <th scope="col">TIME</th>
+            <th scope="col">GAP</th>
+            <th scope="col" class="d-none">INT</th>
+            <th scope="col" class="column_partial-lap-time">S1</th>
+            <th scope="col" class="column_partial-lap-time">S2</th>
+            <th scope="col" class="column_partial-lap-time">S3</th>
+            <th scope="col" class="column_partial-lap-time">S4</th>
+            <th scope="col">LAP TIME</th>
+            <th scope="col">DIFF</th>
+          </tr>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col" class="d-none"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col" class="column_partial-lap-time">
+              <div *ngIf="bestLap?.partials[0]">
+                <span class="align-middle font-weight-normal" [class.text-white]="!bestLap.ref_lap" [class.text-muted]="bestLap.ref_lap">
+                  {{ bestLap.partials[0].time | partialLapTime  }}
+                </span>
+                <span class="align-middle badge badge-success invisible">0</span>
+              </div>
+            </th>
+            <th scope="col" class="column_partial-lap-time">
+              <div *ngIf="bestLap?.partials[1]">
+                <span class="align-middle font-weight-normal" [class.text-white]="!bestLap.ref_lap" [class.text-muted]="bestLap.ref_lap">
+                  {{ bestLap.partials[1].time | partialLapTime  }}
+                </span>
+                <span class="align-middle badge badge-success invisible">0</span>
+              </div>
+            </th>
+            <th scope="col" class="column_partial-lap-time">
+              <div *ngIf="bestLap?.partials[2]">
+                <span class="align-middle font-weight-normal" [class.text-white]="!bestLap.ref_lap" [class.text-muted]="bestLap.ref_lap">
+                  {{ bestLap.partials[2].time | partialLapTime  }}
+                </span>
+                <span class="align-middle badge badge-success invisible">0</span>
+              </div>
+            </th>
+            <th scope="col" class="column_partial-lap-time">
+              <div *ngIf="bestLap?.partials[3]">
+                <span class="align-middle font-weight-normal" [class.text-white]="!bestLap.ref_lap" [class.text-muted]="bestLap.ref_lap">
+                  {{ bestLap.partials[3].time | partialLapTime  }}
+                </span>
+                <span class="align-middle badge badge-success invisible">0</span>
+              </div>
+            </th>
+            <th scope="col">
+              <span class="font-weight-normal" [class.text-white]="!bestLap.ref_lap" [class.text-muted]="bestLap.ref_lap">
+                {{ bestLap?.time | lapTime  }}
+              </span>
+            </th>
+            <th scope="col" class="text-left" [class.invisible]="!bestLap">
+              <small class="font-weight-normal text-secondary" *ngIf="!bestLap.ref_lap">BEST LAP</small>
+              <small class="font-weight-normal text-muted" *ngIf="bestLap.ref_lap">REF LAP</small>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let row of rows; let rowIndex = index;">
+            <td>
+              <span *ngIf="row.best_lap.time">{{ rowIndex + 1 }}</span>
+              <span *ngIf="row.laps_count === 0">-</span>
+            </td>
+            <td>
+              {{ row.race_participant.number }}
+            </td>
+            <td>
+              {{ row.race_participant.driver.last_name }} {{ row.race_participant.driver.name }}
+            </td>
+            <td>
+              {{ row.laps_count }}
+            </td>
+            <td>
+              {{ row.best_lap?.time | lapTime }}
+            </td>
+            <td>
+              {{ calculateGap(rowIndex + 1, row) | partialLapTime }}
+            </td>
+            <td class="d-none">
+              {{ calculateInterval(rowIndex + 1, row) | partialLapTime }}
+            </td>
+            <td class="column_partial-lap-time">
+              <div *ngIf="row.last_lap?.partials[0]">
+                <span class="align-middle font-weight-normal text-white">
+                  {{ row.last_lap?.partials[0]?.time | partialLapTime  }}
+                </span>
+                <span class="align-middle badge badge-success invisible">0</span>
+              </div>
+            </td>
+            <td class="column_partial-lap-time">
+              <div *ngIf="row.last_lap?.partials[1]">
+                <span class="align-middle font-weight-normal text-white">
+                  {{ row.last_lap?.partials[1]?.time | partialLapTime  }}
+                </span>
+                <span class="align-middle badge badge-danger invisible">0</span>
+              </div>
+            </td>
+            <td class="column_partial-lap-time">
+              <div *ngIf="row.last_lap?.partials[2]">
+                <span class="align-middle font-weight-normal text-white">
+                  {{ row.last_lap?.partials[2]?.time | partialLapTime  }}
+                </span>
+                <span class="align-middle badge badge-danger invisible">0</span>
+              </div>
+            </td>
+            <td class="column_partial-lap-time">
+              <div *ngIf="row.last_lap?.partials[3]">
+                <span class="align-middle font-weight-normal text-white">
+                  {{ row.last_lap?.partials[3]?.time | partialLapTime  }}
+                </span>
+                <span class="align-middle badge badge-success invisible">0</span>
+              </div>
+            </td>
+            <td>
+              <span class="text-white">
+                {{ row.last_lap?.time | lapTime  }}
+              </span>
+            </td>
+            <td>
+              <span class="align-middle badge badge-danger p-2 invisible">+ 0.150</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

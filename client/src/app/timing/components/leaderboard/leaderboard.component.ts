@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import * as lodash from 'lodash';
 
 // services
-import { SocketService } from '../core/service';
+import { SocketService } from '../../../core/service';
 
 // models
 import {
@@ -13,14 +13,14 @@ import {
   SocketEvent,
   BasicSocketEvent,
   TimingSocketEvent
-} from '../shared/model/';
+} from '../../../shared/model/';
 
 @Component({
-  selector: 'tcc-timing',
-  templateUrl: './timing.component.html',
-  styleUrls: ['./timing.component.css']
+  selector: 'racer-leaderboard',
+  templateUrl: './leaderboard.component.html',
+  styleUrls: ['./leaderboard.component.css']
 })
-export class TimingComponent implements OnInit {
+export class LeaderboardComponent implements OnInit {
   rows: any[] = [];
   bestLap: any = {
     time: 9802 + 23233 + 31718 + 20435,
