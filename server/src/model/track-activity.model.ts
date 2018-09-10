@@ -3,12 +3,20 @@ import {
   RaceParticipant
 } from './index';
 
+export enum TrackActivityState {
+  waiting = 'waiting',
+  started = 'started',
+  caution = 'caution',
+  stopped = 'stopped'
+}
+
 export interface TrackActivity {
   // Simple
   name: string;
   short_name: string;
   date: string;
   duration: number; // In seconds
+  state: TrackActivityState;
   // Optionals
   // Relationships
   race_weekend?: RaceWeekend;

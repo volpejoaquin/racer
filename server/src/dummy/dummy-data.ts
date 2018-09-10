@@ -7,6 +7,7 @@ import {
   Championship,
   RaceWeekend,
   TrackActivity,
+  TrackActivityState,
   TrackLap,
   RaceParticipant
 } from '../model/';
@@ -48,10 +49,11 @@ export const RACE_WEEKEND: RaceWeekend = {
   circuit_variant: CIRCUIT_VARIANT,
   track_activities: [
     {
-      name: 'Practice N1',
+      name: 'Practice 1',
       short_name: 'P1',
       date: '2018-10-12T14:00:00Z',
-      duration: 12000000
+      duration: 12000000,
+      state: TrackActivityState.waiting
     }
   ]
 };
