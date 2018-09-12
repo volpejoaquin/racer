@@ -9,7 +9,9 @@ import {
   RaceParticipant,
   RaceParticipantTrackActivity,
   RaceParticipantTrackActivityState,
-  TimingSocketEvent
+  TrackActivitySocketEvent,
+  TimingSocketEvent,
+  TrackActivityState
 } from '../model/';
 
 // dummy data
@@ -24,7 +26,7 @@ import {
   LAP_PARTIALS_ESTIMATED_ERROR_MAX
 } from './dummy-data';
 
-const LOG = false;
+const LOG = true;
 
 export class TimingDummy {
   private io: SocketIO.Server;
@@ -37,17 +39,34 @@ export class TimingDummy {
   }
 
   start() {
-    for (let participantIndex = 0; participantIndex < PARTICIPANTS; participantIndex++) {
-      setTimeout(
-        () => {
-          this.startTrackActivity(participantIndex);
-        },
-        lodash.random(0, TRACK_ACTIVITY_DELAY)
-      );
-    }
+    setTimeout(
+      () => {
+        this.startTrackActivity();
+      },
+      5000
+    );
+
+    setTimeout(
+      () => {
+        this.cautionTrackActivity();
+      },
+      60000
+    );
+
+    setTimeout(
+      () => {
+        this.stopTrackActivity();
+      },
+      120000
+    );
   }
 
   stop() {
+    this.clearTimeouts();
+  }
+
+  // private methods
+  private clearTimeouts() {
     this.timeouts.forEach((timeoutId: any) => {
       clearTimeout(timeoutId);
     });
@@ -55,8 +74,62 @@ export class TimingDummy {
     this.timeouts = [];
   }
 
-  // private methods
-  private startTrackActivity(participantIndex: number) {
+  private startTrackActivity() {
+    this.trackActivity.state = TrackActivityState.started;
+
+    this.io.emit(TrackActivitySocketEvent.STARTED, this.trackActivity);
+    this.log('Event: ' + TrackActivitySocketEvent.STARTED);
+    this.log(this.trackActivity.name);
+
+    setTimeout(
+      () => {
+        this.simulateTimes();
+      },
+      1000
+    );
+  }
+
+  private cautionTrackActivity() {
+    this.trackActivity.state = TrackActivityState.caution;
+
+    this.io.emit(TrackActivitySocketEvent.CAUTION, this.trackActivity);
+    this.log('Event: ' + TrackActivitySocketEvent.CAUTION);
+    this.log(this.trackActivity.name);
+
+    setTimeout(
+      () => {
+        this.trackActivity.state = TrackActivityState.started;
+
+        this.io.emit(TrackActivitySocketEvent.STARTED, this.trackActivity);
+        this.log('Event: ' + TrackActivitySocketEvent.STARTED);
+        this.log(this.trackActivity.name);
+      },
+      10000
+    );
+  }
+
+  private stopTrackActivity() {
+    this.trackActivity.state = TrackActivityState.stopped;
+
+    this.io.emit(TrackActivitySocketEvent.STOPPED, this.trackActivity);
+    this.log('Event: ' + TrackActivitySocketEvent.STOPPED);
+    this.log(this.trackActivity.name);
+
+    this.clearTimeouts();
+  }
+
+  private simulateTimes() {
+    for (let participantIndex = 0; participantIndex < PARTICIPANTS; participantIndex++) {
+      setTimeout(
+        () => {
+          this.startTimes(participantIndex);
+        },
+        lodash.random(0, TRACK_ACTIVITY_DELAY)
+      );
+    }
+  }
+
+  private startTimes(participantIndex: number) {
     const participant: RaceParticipant = this.participants[participantIndex];
 
     const data: RaceParticipantTrackActivity = {

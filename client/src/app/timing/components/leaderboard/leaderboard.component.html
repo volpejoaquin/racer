@@ -1,5 +1,3 @@
-<racer-track-activity-state></racer-track-activity-state>
-
 <div class="row no-gutters">
   <div class="col-12">
     <div class="table-responsive">
@@ -52,54 +50,54 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let row of rows; let rowIndex = index;">
+          <tr *ngFor="let trackActivity of trackActivities; let trackActivityIndex = index;">
             <td>
-              <span *ngIf="row.best_lap.time">{{ rowIndex + 1 }}</span>
-              <span *ngIf="row.laps_count === 0">-</span>
+              <span *ngIf="trackActivity.best_lap.time">{{ trackActivityIndex + 1 }}</span>
+              <span *ngIf="trackActivity.laps_count === 0">-</span>
             </td>
             <td>
-              {{ row.race_participant.number }}
+              {{ trackActivity.race_participant.number }}
             </td>
             <td>
-              {{ row.race_participant.driver.last_name }} {{ row.race_participant.driver.name }}
+              {{ trackActivity.race_participant.driver.last_name }} {{ trackActivity.race_participant.driver.name }}
             </td>
             <td>
-              {{ row.laps_count }}
+              {{ trackActivity.laps_count }}
             </td>
             <td>
-              {{ row.best_lap?.time | lapTime }}
+              {{ trackActivity.best_lap?.time | lapTime }}
             </td>
             <td>
-              <span *ngIf="calculateGap(rowIndex + 1, row) > 0">{{ calculateGap(rowIndex + 1, row) | partialLapTime }}</span>
+              <span *ngIf="calculateGap(trackActivityIndex + 1, trackActivity) > 0">{{ calculateGap(trackActivityIndex + 1, trackActivity) | partialLapTime }}</span>
             </td>
             <td class="d-none">
-              <span *ngIf="calculateInterval(rowIndex + 1, row) > 0">{{ calculateInterval(rowIndex + 1, row) | partialLapTime }}</span>
+              <span *ngIf="calculateInterval(trackActivityIndex + 1, trackActivity) > 0">{{ calculateInterval(trackActivityIndex + 1, trackActivity) | partialLapTime }}</span>
             </td>
             <td class="column_partial-lap-time">
-              <racer-partial-lap-time [partial]="row.last_lap?.partials[0]" [bestPartial]="row.best_lap?.partials[0]" [polePartial]="bestLap?.partials[0]" [isRefLap]="false"></racer-partial-lap-time>
+              <racer-partial-lap-time [partial]="trackActivity.last_lap?.partials[0]" [bestPartial]="trackActivity.best_lap?.partials[0]" [polePartial]="bestLap?.partials[0]" [isRefLap]="false"></racer-partial-lap-time>
             </td>
             <td class="column_partial-lap-time">
-              <racer-partial-lap-time [partial]="row.last_lap?.partials[1]" [bestPartial]="row.best_lap?.partials[1]" [polePartial]="bestLap?.partials[1]" [isRefLap]="false"></racer-partial-lap-time>
+              <racer-partial-lap-time [partial]="trackActivity.last_lap?.partials[1]" [bestPartial]="trackActivity.best_lap?.partials[1]" [polePartial]="bestLap?.partials[1]" [isRefLap]="false"></racer-partial-lap-time>
             </td>
             <td class="column_partial-lap-time">
-              <racer-partial-lap-time [partial]="row.last_lap?.partials[2]" [bestPartial]="row.best_lap?.partials[2]" [polePartial]="bestLap?.partials[2]" [isRefLap]="false"></racer-partial-lap-time>
+              <racer-partial-lap-time [partial]="trackActivity.last_lap?.partials[2]" [bestPartial]="trackActivity.best_lap?.partials[2]" [polePartial]="bestLap?.partials[2]" [isRefLap]="false"></racer-partial-lap-time>
             </td>
             <td class="column_partial-lap-time">
-              <racer-partial-lap-time [partial]="row.last_lap?.partials[3]" [bestPartial]="row.best_lap?.partials[3]" [polePartial]="bestLap?.partials[3]" [isRefLap]="false"></racer-partial-lap-time>
+              <racer-partial-lap-time [partial]="trackActivity.last_lap?.partials[3]" [bestPartial]="trackActivity.best_lap?.partials[3]" [polePartial]="bestLap?.partials[3]" [isRefLap]="false"></racer-partial-lap-time>
             </td>
             <td>
               <span class="text-white">
-                {{ row.last_lap?.time | lapTime  }}
+                {{ trackActivity.last_lap?.time | lapTime  }}
               </span>
             </td>
             <td>
               <span 
                 class="align-middle badge p-2"
-                [class.badge-success]="calculateGapCurrentLap(rowIndex + 1, row) < 0"
-                [class.badge-secondary]="calculateGapCurrentLap(rowIndex + 1, row) >= 0"
-                *ngIf="calculateGapCurrentLap(rowIndex + 1, row) !== 0"
+                [class.badge-success]="calculateGapCurrentLap(trackActivityIndex + 1, trackActivity) < 0"
+                [class.badge-secondary]="calculateGapCurrentLap(trackActivityIndex + 1, trackActivity) >= 0"
+                *ngIf="calculateGapCurrentLap(trackActivityIndex + 1, trackActivity) !== 0"
                 >
-                {{ calculateGapCurrentLap(rowIndex + 1, row) | partialLapTime:true }}
+                {{ calculateGapCurrentLap(trackActivityIndex + 1, trackActivity) | partialLapTime:true }}
               </span>
             </td>
           </tr>

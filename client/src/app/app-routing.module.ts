@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // components
-import { LeaderboardComponent } from './timing/components';
+import { TimingHomeComponent } from './timing/components';
 
 const routes: Routes = [
   {
-    path: '', component: LeaderboardComponent
+    path: '', component: TimingHomeComponent
   }
 ];
 

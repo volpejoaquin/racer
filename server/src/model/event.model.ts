@@ -3,6 +3,12 @@ export enum BasicSocketEvent {
   DISCONNECT = 'disconnect'
 }
 
+export enum TrackActivitySocketEvent {
+  STARTED = 'started',
+  CAUTION = 'caution',
+  STOPPED = 'stopped'
+}
+
 export enum TimingSocketEvent {
   GO_TO_TRACK = 'go to track',
   GO_TO_PIT = 'go to pit',
@@ -10,4 +16,4 @@ export enum TimingSocketEvent {
   LAP_TIME = 'lap time'
 }
 
-export type SocketEvent = BasicSocketEvent | TimingSocketEvent;
+export type SocketEvent = BasicSocketEvent | TrackActivitySocketEvent | TimingSocketEvent;

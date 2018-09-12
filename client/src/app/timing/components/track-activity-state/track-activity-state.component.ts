@@ -1,8 +1,9 @@
 // angular
-import { Component } from '@angular/core';
-
-// libs
-import * as moment from 'moment';
+import { Component, Input, OnChanges } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { interval } from 'rxjs/observable/interval';
+import { of } from 'rxjs/observable/of';
+import { map, take } from 'rxjs/operators';
 
 // models
 import {
@@ -10,17 +11,51 @@ import {
   TrackActivityState
 } from '../../../shared/model';
 
-// dummy daata
-import { TRACK_ACTIVITY } from '../../../shared/dummy';
-
 @Component({
   selector: 'racer-track-activity-state',
   templateUrl: './track-activity-state.component.html',
   styleUrls: ['./track-activity-state.component.css']
 })
-export class TrackActivityStateComponent {
-  trackActivity: TrackActivity = TRACK_ACTIVITY;
+export class TrackActivityStateComponent implements OnChanges {
+  @Input() trackActivity: TrackActivity;
+  durationTime$: Observable<number>;
   trackActivityStates = TrackActivityState;
 
-  constructor() { }
+  private timerDurationStarted = false;
+
+  constructor() {
+  }
+
+  ngOnChanges() {
+    // Check track activity duration
+    if (this.trackActivity && this.trackActivity.duration) {
+      if (this.trackActivity.state === TrackActivityState.started ||
+        this.trackActivity.state === TrackActivityState.caution) {
+
+          if (!this.timerDurationStarted) {
+            this.start(this.trackActivity.duration);
+          }
+
+      } else {
+        if (this.timerDurationStarted) {
+          this.stop();
+        }
+      }
+    }
+  }
+
+  // private methods
+  private start(duration) {
+    this.timerDurationStarted = true;
+
+    this.durationTime$ = interval(1000).pipe(
+      take(duration),
+      map((v: number) => ( duration - 1) - v )
+    );
+  }
+
+  private stop() {
+    this.timerDurationStarted = false;
+    this.durationTime$ = null;
+  }
 }
