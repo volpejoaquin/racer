@@ -68,6 +68,11 @@ export class TimingHomeComponent implements OnInit {
         this.onEvent(TrackActivitySocketEvent.STOPPED, data);
       });
 
+    this.socketService.onEvent(TrackActivitySocketEvent.FINISHED)
+      .subscribe((data: any) => {
+        this.onEvent(TrackActivitySocketEvent.STOPPED, data);
+      });
+
     this.socketService.onEvent(TimingSocketEvent.GO_TO_TRACK)
       .subscribe((data: any) => {
         this.onEvent(TimingSocketEvent.GO_TO_TRACK, data);
@@ -103,6 +108,7 @@ export class TimingHomeComponent implements OnInit {
       case TrackActivitySocketEvent.STARTED:
       case TrackActivitySocketEvent.CAUTION:
       case TrackActivitySocketEvent.STOPPED:
+      case TrackActivitySocketEvent.FINISHED:
         this.trackActivity = data;
         break;
       default:

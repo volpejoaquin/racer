@@ -43,6 +43,13 @@ export class TimingDummy {
     setTimeout(
       () => {
         this.startTrackActivity();
+
+        setTimeout(
+          () => {
+            this.finishTrackActivity();
+          },
+          this.trackActivity.duration
+        );
       },
       5000
     );
@@ -118,6 +125,16 @@ export class TimingDummy {
 
     this.io.emit(TrackActivitySocketEvent.STOPPED, this.trackActivity);
     this.log('Event: ' + TrackActivitySocketEvent.STOPPED);
+    this.log(this.trackActivity.name);
+
+    this.clearTimeouts();
+  }
+
+  private finishTrackActivity() {
+    this.trackActivity.state = TrackActivityState.finished;
+
+    this.io.emit(TrackActivitySocketEvent.FINISHED, this.trackActivity);
+    this.log('Event: ' + TrackActivitySocketEvent.FINISHED);
     this.log(this.trackActivity.name);
 
     this.clearTimeouts();

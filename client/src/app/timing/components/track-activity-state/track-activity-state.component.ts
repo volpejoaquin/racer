@@ -44,13 +44,17 @@ export class TrackActivityStateComponent implements OnChanges {
     }
   }
 
+  isDurationRunning() {
+    return !!this.durationTime$;
+  }
+
   // private methods
   private start(duration) {
     this.timerDurationStarted = true;
 
     this.durationTime$ = interval(1000).pipe(
       take(duration),
-      map((v: number) => duration - v )
+      map((v: number) => duration - (v * 1000) )
     );
   }
 

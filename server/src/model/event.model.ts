@@ -6,7 +6,8 @@ export enum BasicSocketEvent {
 export enum TrackActivitySocketEvent {
   STARTED = 'started',
   CAUTION = 'caution',
-  STOPPED = 'stopped'
+  STOPPED = 'stopped',
+  FINISHED = 'finished'
 }
 
 export enum TimingSocketEvent {

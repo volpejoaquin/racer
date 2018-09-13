@@ -7,7 +7,8 @@ export enum TrackActivityState {
   waiting = 'waiting',
   started = 'started',
   caution = 'caution',
-  stopped = 'stopped'
+  stopped = 'stopped',
+  finished = 'finished'
 }
 
 export interface TrackActivity {
