@@ -2,13 +2,17 @@
 
 /* TODO: REVIEW STYLES */
 .column_partial-lap-time {
-  /* min-width: 160px; */
+  min-width: 100px;
   text-align: center;
 }
 
 .column_lap-time {
-  /* min-width: 160px; */
+  min-width: 100px;
   text-align: center;
+}
+
+.column_small {
+  width: 20px;
 }
 
 .badge-secondary {
