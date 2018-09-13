@@ -9,6 +9,7 @@ import { SocketService } from '../../../core/service';
 
 // models
 import {
+  TrackLap,
   TrackActivity,
   RaceParticipantTrackActivity,
   SocketEvent,
@@ -18,7 +19,10 @@ import {
 } from '../../../shared/model/';
 
 // dummy data
-import { TRACK_ACTIVITY } from '../../../shared/dummy';
+import {
+  TRACK_ACTIVITY,
+  REF_LAP
+} from '../../../shared/dummy';
 
 @Component({
   selector: 'racer-timing-home',
@@ -28,6 +32,7 @@ import { TRACK_ACTIVITY } from '../../../shared/dummy';
 export class TimingHomeComponent implements OnInit {
   trackActivity: TrackActivity = TRACK_ACTIVITY;
   trackActivities: RaceParticipantTrackActivity[] = [];
+  bestLap: TrackLap = REF_LAP;
 
   constructor(private socketService: SocketService) { }
 
@@ -114,6 +119,12 @@ export class TimingHomeComponent implements OnInit {
         }
 
         this.trackActivities = lodash.orderBy(this.trackActivities, 'best_lap.time');
+
+        // Set best lap
+        if (this.trackActivities && this.trackActivities.length > 0 &&
+          this.trackActivities[0].best_lap && this.trackActivities[0].best_lap.time) {
+          this.bestLap = this.trackActivities[0].best_lap;
+        }
         break;
     }
   }

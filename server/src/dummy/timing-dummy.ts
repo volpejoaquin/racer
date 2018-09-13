@@ -27,6 +27,7 @@ import {
 } from './dummy-data';
 
 const LOG = true;
+const DISABLE_TRACK_STATE_CHANGES = true;
 
 export class TimingDummy {
   private io: SocketIO.Server;
@@ -45,6 +46,10 @@ export class TimingDummy {
       },
       5000
     );
+
+    if (DISABLE_TRACK_STATE_CHANGES) {
+      return;
+    }
 
     setTimeout(
       () => {

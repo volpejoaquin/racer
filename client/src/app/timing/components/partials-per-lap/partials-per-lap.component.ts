@@ -9,29 +9,15 @@ import {
 } from '../../../shared/model/';
 
 @Component({
-  selector: 'racer-leaderboard',
-  templateUrl: './leaderboard.component.html',
-  styleUrls: ['./leaderboard.component.css']
+  selector: 'racer-partials-per-lap',
+  templateUrl: './partials-per-lap.component.html',
+  styleUrls: ['./partials-per-lap.component.css']
 })
-export class LeaderboardComponent {
-  @Input() trackActivities: RaceParticipantTrackActivity[];
+export class PartialPerLapComponent {
+  @Input() trackActivity: RaceParticipantTrackActivity;
   @Input() bestLap: TrackLap;
 
-  calculateGap(index: number, row: RaceParticipantTrackActivity) {
-    if (index === 1 || !this.bestLap) {
-      return '';
-    }
-    // Calculate gap
-    return row.best_lap.time - this.bestLap.time;
-  }
-
-  calculateInterval(index: number, row: RaceParticipantTrackActivity) {
-    if (index === 1 || !this.bestLap) {
-      return '';
-    }
-    // Calculate interval
-    return row.best_lap.time - this.trackActivities[index - 2].best_lap.time;
-  }
+  constructor() { }
 
   calculateGapCurrentLap(index: number, row: RaceParticipantTrackActivity) {
     if (

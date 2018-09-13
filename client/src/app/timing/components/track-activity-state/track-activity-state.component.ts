@@ -50,7 +50,7 @@ export class TrackActivityStateComponent implements OnChanges {
 
     this.durationTime$ = interval(1000).pipe(
       take(duration),
-      map((v: number) => ( duration - 1) - v )
+      map((v: number) => duration - v )
     );
   }
 

@@ -8,14 +8,14 @@
         [class.bg-warning]="trackActivity.state === trackActivityStates.caution"
         [class.bg-danger]="trackActivity.state === trackActivityStates.stopped"
       >
-        <div class="card-body text-center">
-          <h1 class="card-title" *ngIf="durationTime$">
+        <div class="card-body text-center" [class.p-0]="!!durationTime$">
+          <h1 class="card-title mb-0" *ngIf="!!durationTime$">
             {{ durationTime$ | async | date:'mm:ss' }}
           </h1>
           <h1 class="card-title" *ngIf="!durationTime$">
             {{ trackActivity.duration | date:'mm:ss' }}
           </h1>
-          <h4 class="text-uppercase" *ngIf="trackActivity.state != trackActivityStates.caution">
+          <h4 class="text-uppercase" *ngIf="trackActivity.state != trackActivityStates.caution && !durationTime$">
             {{ trackActivity.name }} {{ trackActivity.date | date:'shortTime' }}
           </h4>
           <h4 class="text-uppercase" *ngIf="trackActivity.state === trackActivityStates.caution">

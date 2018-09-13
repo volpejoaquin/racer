@@ -16,7 +16,6 @@
             <th scope="col" class="column_partial-lap-time">S3</th>
             <th scope="col" class="column_partial-lap-time">S4</th>
             <th scope="col">LAP TIME</th>
-            <th scope="col">DIFF</th>
           </tr>
           <tr>
             <th scope="col"></th>
@@ -42,10 +41,6 @@
               <span class="font-weight-normal" [class.text-white]="!bestLap.ref_lap" [class.text-muted]="bestLap.ref_lap">
                 {{ bestLap?.time | lapTime  }}
               </span>
-            </th>
-            <th scope="col" class="text-left" [class.invisible]="!bestLap">
-              <small class="font-weight-normal text-secondary" *ngIf="!bestLap.ref_lap">BEST LAP</small>
-              <small class="font-weight-normal text-muted" *ngIf="bestLap.ref_lap">REF LAP</small>
             </th>
           </tr>
         </thead>
@@ -86,16 +81,15 @@
               <racer-partial-lap-time [partial]="trackActivity.last_lap?.partials[3]" [bestPartial]="trackActivity.best_lap?.partials[3]" [polePartial]="bestLap?.partials[3]" [isRefLap]="false"></racer-partial-lap-time>
             </td>
             <td>
-              <span class="text-white">
+              <span class="text-white" *ngIf="trackActivity.last_lap?.time">
                 {{ trackActivity.last_lap?.time | lapTime  }}
               </span>
-            </td>
-            <td>
+  
               <span 
                 class="align-middle badge p-2"
                 [class.badge-success]="calculateGapCurrentLap(trackActivityIndex + 1, trackActivity) < 0"
                 [class.badge-secondary]="calculateGapCurrentLap(trackActivityIndex + 1, trackActivity) >= 0"
-                *ngIf="calculateGapCurrentLap(trackActivityIndex + 1, trackActivity) !== 0"
+                *ngIf="!trackActivity.last_lap?.time && calculateGapCurrentLap(trackActivityIndex + 1, trackActivity) !== 0"
                 >
                 {{ calculateGapCurrentLap(trackActivityIndex + 1, trackActivity) | partialLapTime:true }}
               </span>
