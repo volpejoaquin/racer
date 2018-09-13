@@ -18,8 +18,8 @@ export class LapTimeComponent implements OnChanges {
   @Input() poleLap: TrackLap;
   @Input() isRefLap = false;
 
-  gap = 0;
-  poleGap = 0;
+  gap;
+  poleGap;
 
   constructor() { }
 

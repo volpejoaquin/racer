@@ -17,8 +17,8 @@ export class PartialLapTimeComponent implements OnChanges {
   @Input() polePartial: TrackPartialLap;
   @Input() isRefLap = false;
 
-  gap = 0;
-  poleGap = 0;
+  gap;
+  poleGap;
 
   constructor() { }
 

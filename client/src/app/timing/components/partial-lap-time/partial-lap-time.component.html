@@ -3,7 +3,7 @@
     class="d-block align-middle font-weight-normal"
     [class.text-muted]="isRefLap"
     [class.text-success]="poleGap < 0"
-    [class.text-info]="poleGap > 0 && gap < 0"
+    [class.text-info]="poleGap >= 0 && gap <= 0"
     [class.text-white]="poleGap > 0 && gap >= 0"
   >
     {{ partial.time | partialLapTime  }}
@@ -11,7 +11,7 @@
   <span
     class="align-middle badge"
     [class.badge-success]="poleGap < 0"
-    [class.badge-info]="poleGap > 0 && gap < 0"
+    [class.badge-info]="poleGap >= 0 && gap <= 0"
     [class.badge-secondary]="poleGap > 0 && gap >= 0"
     [class.d-none]="poleGap === 0"
     [class.d-block]="poleGap != 0"
