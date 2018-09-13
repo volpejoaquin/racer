@@ -42,7 +42,7 @@ export const CIRCUIT_VARIANT: CircuitVariant = {
   circuit: CIRCUIT
 };
 
-const trackActivityDuration = 180000, // 12000000
+const trackActivityDuration = 300000, // 12000000
   trackActivityDate = new Date();
 trackActivityDate.setMinutes(0);
 
