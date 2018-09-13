@@ -14,6 +14,7 @@ import {
   styleUrls: ['./partials-per-lap.component.css']
 })
 export class PartialPerLapComponent {
+  @Input() title = '';
   @Input() trackActivity: RaceParticipantTrackActivity;
   @Input() bestLap: TrackLap;
 

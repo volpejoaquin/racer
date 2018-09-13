@@ -1,11 +1,14 @@
 <div class="card bg-transparent border-dark text-white rounded-0" *ngIf="trackActivity">
   <div class="card-body">
     <h5 class="card-title text-uppercase">
-      {{ trackActivity.race_participant.number }} {{ trackActivity.race_participant.driver.last_name }} {{ trackActivity.race_participant.driver.name }}
+      {{ title }}
     </h5>
     <h6 class="card-subtitle mb-2 text-muted text-uppercase">
+      <span class="border-right pr-2 mr-2">
+        {{ trackActivity.race_participant.number }} {{ trackActivity.race_participant.driver.last_name }} {{ trackActivity.race_participant.driver.name }}
+      </span>
       <small [ngPlural]="trackActivity.laps_count">
-        <ng-template ngPluralCase="=0"></ng-template>
+        <ng-template ngPluralCase="=0">first lap</ng-template>
         <ng-template ngPluralCase="=1">{{ trackActivity.laps_count }} lap</ng-template>
         <ng-template ngPluralCase="other">{{ trackActivity.laps_count }} laps</ng-template>
       </small>
@@ -19,14 +22,15 @@
           <th scope="col" class="column_partial-lap-time">S2</th>
           <th scope="col" class="column_partial-lap-time">S3</th>
           <th scope="col" class="column_partial-lap-time">S4</th>
-          <th scope="col">LAP TIME</th>
+          <th scope="col" class="column_lap-time">TIME</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let lap of trackActivity.laps; let lapIndex = index;">
           <td>
-            <i class="fas fa-star" *ngIf="trackActivity.best_lap?.time && lap.time === trackActivity.best_lap?.time"></i>
-            <span>{{ lapIndex + 1 }}</span>
+            <span [class.text-info]="trackActivity.best_lap?.time && lap.time === trackActivity.best_lap?.time">
+              {{ lapIndex + 1 }}
+            </span>
           </td>
           <td class="column_partial-lap-time">
             <racer-partial-lap-time [partial]="lap.partials[0]" [bestPartial]="trackActivity.best_lap?.partials[0]" [polePartial]="bestLap?.partials[0]" [isRefLap]="false"></racer-partial-lap-time>
@@ -40,21 +44,8 @@
           <td class="column_partial-lap-time">
             <racer-partial-lap-time [partial]="lap.partials[3]" [bestPartial]="trackActivity.best_lap?.partials[3]" [polePartial]="bestLap?.partials[3]" [isRefLap]="false"></racer-partial-lap-time>
           </td>
-          <td>
-            <span class="text-white" *ngIf="lap.time">
-              {{ lap.time | lapTime  }}
-            </span>
-
-            <span 
-              class="align-middle badge p-2"
-              [class.badge-success]="calculateGapCurrentLap(trackActivityIndex + 1, trackActivity) < 0"
-              [class.badge-secondary]="calculateGapCurrentLap(trackActivityIndex + 1, trackActivity) >= 0"
-              *ngIf="!lap.time && calculateGapCurrentLap(trackActivityIndex + 1, trackActivity) !== 0"
-              >
-              {{ calculateGapCurrentLap(trackActivityIndex + 1, trackActivity) | partialLapTime:true }}
-            </span>
-          </td>
-          <td>
+          <td class="column_lap-time">
+            <racer-lap-time [lap]="lap" [bestLap]="trackActivity.best_lap" [poleLap]="bestLap" [isRefLap]="false"></racer-lap-time>
           </td>
         </tr>
       </tbody>

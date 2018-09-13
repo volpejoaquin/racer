@@ -5,7 +5,7 @@
         <thead>
           <tr>
             <th scope="col">POS</th>
-            <th scope="col">CAR</th>
+            <th scope="col">#</th>
             <th scope="col">NAME</th>
             <th scope="col">LAPS</th>
             <th scope="col">TIME</th>
@@ -15,7 +15,7 @@
             <th scope="col" class="column_partial-lap-time">S2</th>
             <th scope="col" class="column_partial-lap-time">S3</th>
             <th scope="col" class="column_partial-lap-time">S4</th>
-            <th scope="col">LAP TIME</th>
+            <th scope="col" class="column_lap-time">TIME</th>
           </tr>
           <tr>
             <th scope="col"></th>
@@ -37,10 +37,8 @@
             <th scope="col" class="column_partial-lap-time">
               <racer-partial-lap-time [partial]="bestLap?.partials[3]" [isRefLap]="bestLap.ref_lap"></racer-partial-lap-time>
             </th>
-            <th scope="col">
-              <span class="font-weight-normal" [class.text-white]="!bestLap.ref_lap" [class.text-muted]="bestLap.ref_lap">
-                {{ bestLap?.time | lapTime  }}
-              </span>
+            <th scope="col" class="column_lap-time">
+              <racer-lap-time [lap]="bestLap" [isRefLap]="bestLap.ref_lap"></racer-lap-time>
             </th>
           </tr>
         </thead>
@@ -80,19 +78,8 @@
             <td class="column_partial-lap-time">
               <racer-partial-lap-time [partial]="trackActivity.last_lap?.partials[3]" [bestPartial]="trackActivity.best_lap?.partials[3]" [polePartial]="bestLap?.partials[3]" [isRefLap]="false"></racer-partial-lap-time>
             </td>
-            <td>
-              <span class="text-white" *ngIf="trackActivity.last_lap?.time">
-                {{ trackActivity.last_lap?.time | lapTime  }}
-              </span>
-  
-              <span 
-                class="align-middle badge p-2"
-                [class.badge-success]="calculateGapCurrentLap(trackActivityIndex + 1, trackActivity) < 0"
-                [class.badge-secondary]="calculateGapCurrentLap(trackActivityIndex + 1, trackActivity) >= 0"
-                *ngIf="!trackActivity.last_lap?.time && calculateGapCurrentLap(trackActivityIndex + 1, trackActivity) !== 0"
-                >
-                {{ calculateGapCurrentLap(trackActivityIndex + 1, trackActivity) | partialLapTime:true }}
-              </span>
+            <td class="column_lap-time">
+              <racer-lap-time [lap]="trackActivity.last_lap" [bestLap]="trackActivity.best_lap" [poleLap]="bestLap" [isRefLap]="false"></racer-lap-time>
             </td>
           </tr>
         </tbody>

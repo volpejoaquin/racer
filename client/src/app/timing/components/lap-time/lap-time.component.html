@@ -1,12 +1,13 @@
-<div *ngIf="partial">
+<div *ngIf="lap">
   <span
     class="d-block align-middle font-weight-normal"
     [class.text-muted]="isRefLap"
     [class.text-success]="poleGap < 0"
     [class.text-info]="poleGap > 0 && gap < 0"
     [class.text-white]="poleGap > 0 && gap >= 0"
-  >
-    {{ partial.time | partialLapTime  }}
+    style="min-height: 24px;"
+  > <!-- TODO: REVIEW THIS-->
+    {{ lap.time | lapTime  }}
   </span>
   <span
     class="align-middle badge"

@@ -40,11 +40,11 @@ export class TimingDummy {
   }
 
   start() {
-    setTimeout(
+    this.setTimeout(
       () => {
         this.startTrackActivity();
 
-        setTimeout(
+        this.setTimeout(
           () => {
             this.finishTrackActivity();
           },
@@ -58,14 +58,14 @@ export class TimingDummy {
       return;
     }
 
-    setTimeout(
+    this.setTimeout(
       () => {
         this.cautionTrackActivity();
       },
       60000
     );
 
-    setTimeout(
+    this.setTimeout(
       () => {
         this.stopTrackActivity();
       },
@@ -93,7 +93,7 @@ export class TimingDummy {
     this.log('Event: ' + TrackActivitySocketEvent.STARTED);
     this.log(this.trackActivity.name);
 
-    setTimeout(
+    this.setTimeout(
       () => {
         this.simulateTimes();
       },
@@ -108,7 +108,7 @@ export class TimingDummy {
     this.log('Event: ' + TrackActivitySocketEvent.CAUTION);
     this.log(this.trackActivity.name);
 
-    setTimeout(
+    this.setTimeout(
       () => {
         this.trackActivity.state = TrackActivityState.started;
 
@@ -142,7 +142,7 @@ export class TimingDummy {
 
   private simulateTimes() {
     for (let participantIndex = 0; participantIndex < PARTICIPANTS; participantIndex++) {
-      setTimeout(
+      this.setTimeout(
         () => {
           this.startTimes(participantIndex);
         },
@@ -258,7 +258,7 @@ export class TimingDummy {
     
     const lastPartial = currentSector === TRACK_ACTIVITY_SECTORS;
 
-    let timeoutId = setTimeout(
+    this.setTimeout(
       () => {
         this.io.emit(TimingSocketEvent.PARTIAL_LAP_TIME, data);
         this.log('Event: ' + TimingSocketEvent.PARTIAL_LAP_TIME);
@@ -274,8 +274,6 @@ export class TimingDummy {
       },
       partialLapTime
     );
-
-    this.timeouts.push(timeoutId);
   }
 
   private emitLapTime(data: RaceParticipantTrackActivity): void {
@@ -300,6 +298,14 @@ export class TimingDummy {
     });
   
     return lapTime;
+  }
+
+  private setTimeout(handler: (...args: any[]) => void, timeout: number) {
+    let timeoutId = setTimeout(
+      handler,
+      timeout
+    );
+    this.timeouts.push(timeoutId);
   }
 
   private log(text: string) {

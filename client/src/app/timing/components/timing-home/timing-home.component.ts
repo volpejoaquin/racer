@@ -32,6 +32,7 @@ import {
 export class TimingHomeComponent implements OnInit {
   trackActivity: TrackActivity = TRACK_ACTIVITY;
   trackActivities: RaceParticipantTrackActivity[] = [];
+  bestTrackActivity: RaceParticipantTrackActivity = null;
   bestLap: TrackLap = REF_LAP;
 
   constructor(private socketService: SocketService) { }
@@ -129,6 +130,7 @@ export class TimingHomeComponent implements OnInit {
         // Set best lap
         if (this.trackActivities && this.trackActivities.length > 0 &&
           this.trackActivities[0].best_lap && this.trackActivities[0].best_lap.time) {
+          this.bestTrackActivity = this.trackActivities[0];
           this.bestLap = this.trackActivities[0].best_lap;
         }
         break;
