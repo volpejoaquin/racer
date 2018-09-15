@@ -248,7 +248,9 @@ export class TimingDummy {
     // Generate partial lap time
     let partialLapTime = REF_LAP_PARTIALS[currentSector > 0 ? currentSector - 1 : 0];
     // Add some error
-    partialLapTime += lodash.random(LAP_PARTIALS_ESTIMATED_ERROR_MIN, LAP_PARTIALS_ESTIMATED_ERROR_MAX);
+    const min = LAP_PARTIALS_ESTIMATED_ERROR_MIN[currentSector > 0 ? currentSector - 1 : 0],
+      max = LAP_PARTIALS_ESTIMATED_ERROR_MAX[currentSector > 0 ? currentSector - 1 : 0];
+    partialLapTime += lodash.random(min, max);
 
     const partialLap: TrackPartialLap = {
       time: partialLapTime,

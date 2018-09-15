@@ -1,84 +1,80 @@
-<div class="row no-gutters">
-  <div class="col-12">
-    <div class="table-responsive">
-      <table class="table table-striped table-dark">
-        <thead>
-          <tr>
-            <th scope="col" class="column_small">P</th>
-            <th scope="col"># NAME</th>
-            <th scope="col" class="column_small">L</th>
-            <th scope="col" class="column_lap-time">TIME</th>
-            <th scope="col" class="column_small">GAP</th>
-            <th scope="col" class="d-none column_small">I</th>
-            <th scope="col" class="column_partial-lap-time">S1</th>
-            <th scope="col" class="column_partial-lap-time">S2</th>
-            <th scope="col" class="column_partial-lap-time">S3</th>
-            <th scope="col" class="column_partial-lap-time">S4</th>
-            <th scope="col" class="column_lap-time">TIME</th>
-          </tr>
-          <tr>
-            <th scope="col" class="column_small"></th>
-            <th scope="col"></th>
-            <th scope="col" class="column_small"></th>
-            <th scope="col" class="column_lap-time"></th>
-            <th scope="col"></th>
-            <th scope="col" class="d-none column_small"></th>
-            <th scope="col" class="column_partial-lap-time">
-              <racer-partial-lap-time [partial]="bestLap?.partials[0]" [isRefLap]="bestLap.ref_lap"></racer-partial-lap-time>
-            </th>
-            <th scope="col" class="column_partial-lap-time">
-              <racer-partial-lap-time [partial]="bestLap?.partials[1]" [isRefLap]="bestLap.ref_lap"></racer-partial-lap-time>
-            </th>
-            <th scope="col" class="column_partial-lap-time">
-              <racer-partial-lap-time [partial]="bestLap?.partials[2]" [isRefLap]="bestLap.ref_lap"></racer-partial-lap-time>
-            </th>
-            <th scope="col" class="column_partial-lap-time">
-              <racer-partial-lap-time [partial]="bestLap?.partials[3]" [isRefLap]="bestLap.ref_lap"></racer-partial-lap-time>
-            </th>
-            <th scope="col" class="column_lap-time">
-              <racer-lap-time [lap]="bestLap" [isRefLap]="bestLap.ref_lap"></racer-lap-time>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let trackActivity of trackActivities; let trackActivityIndex = index;">
-            <td class="column_small">
-              <span *ngIf="trackActivity.best_lap.time">{{ trackActivityIndex + 1 }}</span>
-              <span *ngIf="trackActivity.laps_count === 0">-</span>
-            </td>
-            <td class="text-uppercase">
-              {{ trackActivity.race_participant.number }} {{ trackActivity.race_participant.driver.last_name }} {{ trackActivity.race_participant.driver.name }}
-            </td>
-            <td class="column_small">
-              {{ trackActivity.laps_count }}
-            </td>
-            <td class="column_lap-time">
-              {{ trackActivity.best_lap?.time | lapTime }}
-            </td>
-            <td class="column_small">
-              <span *ngIf="calculateGap(trackActivityIndex + 1, trackActivity) > 0">{{ calculateGap(trackActivityIndex + 1, trackActivity) | partialLapTime }}</span>
-            </td>
-            <td class="d-none column_small">
-              <span *ngIf="calculateInterval(trackActivityIndex + 1, trackActivity) > 0">{{ calculateInterval(trackActivityIndex + 1, trackActivity) | partialLapTime }}</span>
-            </td>
-            <td class="column_partial-lap-time">
-              <racer-partial-lap-time [partial]="trackActivity.last_lap?.partials[0]" [bestPartial]="trackActivity.best_lap?.partials[0]" [polePartial]="bestLap?.partials[0]" [isRefLap]="false"></racer-partial-lap-time>
-            </td>
-            <td class="column_partial-lap-time">
-              <racer-partial-lap-time [partial]="trackActivity.last_lap?.partials[1]" [bestPartial]="trackActivity.best_lap?.partials[1]" [polePartial]="bestLap?.partials[1]" [isRefLap]="false"></racer-partial-lap-time>
-            </td>
-            <td class="column_partial-lap-time">
-              <racer-partial-lap-time [partial]="trackActivity.last_lap?.partials[2]" [bestPartial]="trackActivity.best_lap?.partials[2]" [polePartial]="bestLap?.partials[2]" [isRefLap]="false"></racer-partial-lap-time>
-            </td>
-            <td class="column_partial-lap-time">
-              <racer-partial-lap-time [partial]="trackActivity.last_lap?.partials[3]" [bestPartial]="trackActivity.best_lap?.partials[3]" [polePartial]="bestLap?.partials[3]" [isRefLap]="false"></racer-partial-lap-time>
-            </td>
-            <td class="column_lap-time">
-              <racer-lap-time [lap]="trackActivity.last_lap" [bestLap]="trackActivity.best_lap" [poleLap]="bestLap" [isRefLap]="false"></racer-lap-time>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+<div class="table-responsive">
+  <table class="table table-striped table-dark">
+    <thead>
+      <tr>
+        <th scope="col" class="column_small">P</th>
+        <th scope="col"># NAME</th>
+        <th scope="col" class="column_small">L</th>
+        <th scope="col" class="column_lap-time">TIME</th>
+        <th scope="col" class="column_small">GAP</th>
+        <th scope="col" class="d-none column_small">I</th>
+        <th scope="col" class="column_partial-lap-time">S1</th>
+        <th scope="col" class="column_partial-lap-time">S2</th>
+        <th scope="col" class="column_partial-lap-time">S3</th>
+        <th scope="col" class="column_partial-lap-time">S4</th>
+        <th scope="col" class="column_lap-time">TIME</th>
+      </tr>
+      <tr>
+        <th scope="col" class="column_small"></th>
+        <th scope="col"></th>
+        <th scope="col" class="column_small"></th>
+        <th scope="col" class="column_lap-time"></th>
+        <th scope="col" class="column_small"></th>
+        <th scope="col" class="d-none column_small"></th>
+        <th scope="col" class="column_partial-lap-time">
+          <racer-partial-lap-time [partial]="bestLap?.partials[0]" [isRefLap]="bestLap.ref_lap"></racer-partial-lap-time>
+        </th>
+        <th scope="col" class="column_partial-lap-time">
+          <racer-partial-lap-time [partial]="bestLap?.partials[1]" [isRefLap]="bestLap.ref_lap"></racer-partial-lap-time>
+        </th>
+        <th scope="col" class="column_partial-lap-time">
+          <racer-partial-lap-time [partial]="bestLap?.partials[2]" [isRefLap]="bestLap.ref_lap"></racer-partial-lap-time>
+        </th>
+        <th scope="col" class="column_partial-lap-time">
+          <racer-partial-lap-time [partial]="bestLap?.partials[3]" [isRefLap]="bestLap.ref_lap"></racer-partial-lap-time>
+        </th>
+        <th scope="col" class="column_lap-time">
+          <racer-lap-time [lap]="bestLap" [isRefLap]="bestLap.ref_lap"></racer-lap-time>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let trackActivity of trackActivities; let trackActivityIndex = index;">
+        <td class="column_small">
+          <span *ngIf="trackActivity.best_lap.time">{{ trackActivityIndex + 1 }}</span>
+          <span class="text-muted" *ngIf="trackActivity.laps_count === 0">-</span>
+        </td>
+        <td class="text-uppercase">
+          {{ trackActivity.race_participant.number }} {{ trackActivity.race_participant.driver.last_name }} {{ trackActivity.race_participant.driver.name }}
+        </td>
+        <td class="column_small">
+          {{ trackActivity.laps_count }}
+        </td>
+        <td class="column_lap-time">
+          {{ trackActivity.best_lap?.time | lapTime }}
+        </td>
+        <td class="column_small">
+          <span *ngIf="calculateGap(trackActivityIndex + 1, trackActivity) > 0">{{ calculateGap(trackActivityIndex + 1, trackActivity) | partialLapTime }}</span>
+        </td>
+        <td class="d-none column_small">
+          <span *ngIf="calculateInterval(trackActivityIndex + 1, trackActivity) > 0">{{ calculateInterval(trackActivityIndex + 1, trackActivity) | partialLapTime }}</span>
+        </td>
+        <td class="column_partial-lap-time">
+          <racer-partial-lap-time [partial]="trackActivity.last_lap?.partials[0]" [bestPartial]="trackActivity.best_lap?.partials[0]" [polePartial]="bestLap?.partials[0]" [isRefLap]="false"></racer-partial-lap-time>
+        </td>
+        <td class="column_partial-lap-time">
+          <racer-partial-lap-time [partial]="trackActivity.last_lap?.partials[1]" [bestPartial]="trackActivity.best_lap?.partials[1]" [polePartial]="bestLap?.partials[1]" [isRefLap]="false"></racer-partial-lap-time>
+        </td>
+        <td class="column_partial-lap-time">
+          <racer-partial-lap-time [partial]="trackActivity.last_lap?.partials[2]" [bestPartial]="trackActivity.best_lap?.partials[2]" [polePartial]="bestLap?.partials[2]" [isRefLap]="false"></racer-partial-lap-time>
+        </td>
+        <td class="column_partial-lap-time">
+          <racer-partial-lap-time [partial]="trackActivity.last_lap?.partials[3]" [bestPartial]="trackActivity.best_lap?.partials[3]" [polePartial]="bestLap?.partials[3]" [isRefLap]="false"></racer-partial-lap-time>
+        </td>
+        <td class="column_lap-time">
+          <racer-lap-time [lap]="trackActivity.last_lap" [bestLap]="trackActivity.best_lap" [poleLap]="bestLap" [isRefLap]="false"></racer-lap-time>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

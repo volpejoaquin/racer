@@ -5,6 +5,7 @@ import { TrackActivityStateComponent } from './track-activity-state/track-activi
 import { PartialPerLapComponent } from './partials-per-lap/partials-per-lap.component';
 import { LapTimeComponent } from './lap-time/lap-time.component';
 import { BestPartialsLapsComponent } from './best-partials-laps/best-partials-laps.component';
+import { BestPerPartialsComponent } from './best-per-partials/best-per-partials.component';
 
 export const TIMING_COMPONENTS: any[] = [
   TimingHomeComponent,
@@ -13,7 +14,8 @@ export const TIMING_COMPONENTS: any[] = [
   TrackActivityStateComponent,
   PartialPerLapComponent,
   LapTimeComponent,
-  BestPartialsLapsComponent
+  BestPartialsLapsComponent,
+  BestPerPartialsComponent
 ];
 
 export * from './leaderboard/leaderboard.component';
@@ -23,3 +25,4 @@ export * from './timing-home/timing-home.component';
 export * from './partials-per-lap/partials-per-lap.component';
 export * from './lap-time/lap-time.component';
 export * from './best-partials-laps/best-partials-laps.component';
+export * from './best-per-partials/best-per-partials.component';

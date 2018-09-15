@@ -9,20 +9,14 @@
         [class.bg-danger]="trackActivity.state === trackActivityStates.stopped"
         [class.bg-info]="trackActivity.state === trackActivityStates.finished"
       >
-        <div class="card-body text-center" [class.p-0]="isDurationRunning()">
+        <div class="card-body text-center p-0">
           <h1 class="card-title mb-0" *ngIf="isDurationRunning()">
             {{ durationTime$ | async | date:'mm:ss' }}
           </h1>
           <div *ngIf="trackActivity.state == trackActivityStates.waiting">
-            <h1 class="card-title" *ngIf="!isDurationRunning()">
-              {{ trackActivity.duration | date:'mm:ss' }}
-            </h1>
-            <h4 class="text-uppercase" >
-              {{ trackActivity.name }}
-            </h4>
-            <h5 class="text-uppercase">
+            <h1 class="card-title mb-0">
               {{ trackActivity.date | date:'shortTime' }}
-            </h5>
+            </h1>
           </div>
           <h1 class="card-title" *ngIf="trackActivity.state === trackActivityStates.finished">
             FINISHED
