@@ -3,13 +3,14 @@
     <thead>
       <tr>
         <th scope="col" class="column_small">P</th>
-        <th scope="col"># NAME</th>
+        <th scope="col" class="column_small text-right">#</th>
+        <th scope="col">NOMBRE</th>
         <th scope="col" class="column_small">L</th>
         <th scope="col" class="column_partial-lap-time">S1</th>
         <th scope="col" class="column_partial-lap-time">S2</th>
         <th scope="col" class="column_partial-lap-time">S3</th>
         <th scope="col" class="column_partial-lap-time">S4</th>
-        <th scope="col" class="column_lap-time">TIME</th>
+        <th scope="col" class="column_lap-time">TIEMPO</th>
       </tr>
     </thead>
     <tbody>
@@ -18,8 +19,11 @@
           <span *ngIf="trackActivity.best_lap?.time">{{ trackActivityIndex + 1 }}</span>
           <span class="text-muted" *ngIf="trackActivity.laps_count === 0">-</span>
         </td>
+        <td class="text-uppercase text-right">
+          {{ trackActivity.race_participant.number }}
+        </td>
         <td class="text-uppercase">
-          {{ trackActivity.race_participant.number }} {{ trackActivity.race_participant.driver.last_name }} {{ trackActivity.race_participant.driver.name }}
+          {{ trackActivity.race_participant.driver.last_name }} {{ trackActivity.race_participant.driver.name }}
         </td>
         <td>
           <span class="text-muted">-</span>

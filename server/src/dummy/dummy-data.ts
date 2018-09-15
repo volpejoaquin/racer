@@ -151,8 +151,8 @@ export const RACE_PARTICIPANTS: RaceParticipant[] = [
   }
 ];
 
-export const REF_LAP_PARTIALS = [9802, 23233, 31718, 20435]; // Real lap time
-// export const REF_LAP_PARTIALS = [2000, 3000, 4000, 5000]; // Fast lap time
+// export const REF_LAP_PARTIALS = [9802, 23233, 31718, 20435]; // Real lap time
+export const REF_LAP_PARTIALS = [2000, 3000, 4000, 5000]; // Fast lap time
 export const LAP_PARTIALS_ESTIMATED_ERROR_MIN = [-200, -400, -500, -450];
 export const LAP_PARTIALS_ESTIMATED_ERROR_MAX = [200, 400, 500, 450];
 export const REF_LAP: TrackLap = {
