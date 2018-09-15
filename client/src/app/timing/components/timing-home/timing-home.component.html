@@ -8,95 +8,97 @@
 
 <div class="row no-gutters">
   <div class="col-12">
+    <div class="row no-gutters justify-content-center">
+      <div class="col-6">
+        <div class="card bg-transparent border-dark text-white rounded-0" *ngIf="bestLap">
+          <div class="card-body pt-1 pb-0">
+            <h5 class="card-title text-muted text-uppercase">
+              <span *ngIf="!bestLap.ref_lap">Pole position</span>
+              <span *ngIf="bestLap.ref_lap">Ref lap</span>
+            </h5>
+            <h6 class="card-subtitle mb-2 text-white text-uppercase">
+              {{ bestTrackActivity?.race_participant?.number }} {{ bestTrackActivity?.race_participant?.driver.last_name }} {{ bestTrackActivity?.race_participant?.driver.name }}
+            </h6>
+        
+            <table class="table table-striped table-bordered table-dark table-sm">
+              <thead>
+                <tr>
+                  <th scope="col">L</th>
+                  <th scope="col" class="column_partial-lap-time">S1</th>
+                  <th scope="col" class="column_partial-lap-time">S2</th>
+                  <th scope="col" class="column_partial-lap-time">S3</th>
+                  <th scope="col" class="column_partial-lap-time">S4</th>
+                  <th scope="col" class="column_lap-time">TIEMPO</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="text-muted">-</span>
+                  </td>
+                  <td class="column_partial-lap-time">
+                    <racer-partial-lap-time [partial]="bestLap.partials[0]" [isRefLap]="bestLap.ref_lap"></racer-partial-lap-time>
+                  </td>
+                  <td class="column_partial-lap-time">
+                    <racer-partial-lap-time [partial]="bestLap.partials[1]" [isRefLap]="bestLap.ref_lap"></racer-partial-lap-time>
+                  </td>
+                  <td class="column_partial-lap-time">
+                    <racer-partial-lap-time [partial]="bestLap.partials[2]" [isRefLap]="bestLap.ref_lap"></racer-partial-lap-time>
+                  </td>
+                  <td class="column_partial-lap-time">
+                    <racer-partial-lap-time [partial]="bestLap.partials[3]" [isRefLap]="bestLap.ref_lap"></racer-partial-lap-time>
+                  </td>
+                  <td class="column_lap-time">
+                    <racer-lap-time [lap]="bestLap" [isRefLap]="bestLap.ref_lap"></racer-lap-time>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row no-gutters" *ngIf="currentViewNumber === 0">
+  <div class="col-12">
+    <h6 class="m-2 text-muted text-uppercase">Tanda actual</h6>
+
     <racer-leaderboard [trackActivities]="trackActivities" [bestLap]="bestLap"></racer-leaderboard>
   </div>
 </div>
 
-<div class="row justify-content-center"> <!-- TODO: Remove this -->
-  <div class="col-6">
-      <div class="card bg-transparent border-dark text-white rounded-0" *ngIf="bestLap">
-        <div class="card-body">
-          <h5 class="card-title text-muted text-uppercase">
-            Pole position
-          </h5>
-          <h6 class="card-subtitle mb-2 text-white text-uppercase">
-            {{ bestTrackActivity?.race_participant.number }} {{ bestTrackActivity?.race_participant.driver.last_name }} {{ bestTrackActivity?.race_participant.driver.name }}
-          </h6>
-      
-          <table class="table table-striped table-dark table-sm">
-            <thead>
-              <tr>
-                <th scope="col">L</th>
-                <th scope="col" class="column_partial-lap-time">S1</th>
-                <th scope="col" class="column_partial-lap-time">S2</th>
-                <th scope="col" class="column_partial-lap-time">S3</th>
-                <th scope="col" class="column_partial-lap-time">S4</th>
-                <th scope="col" class="column_lap-time">TIEMPO</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <span class="text-muted">-</span>
-                </td>
-                <td class="column_partial-lap-time">
-                  <racer-partial-lap-time [partial]="bestLap.partials[0]" [isRefLap]="bestLap.ref_lap"></racer-partial-lap-time>
-                </td>
-                <td class="column_partial-lap-time">
-                  <racer-partial-lap-time [partial]="bestLap.partials[1]" [isRefLap]="bestLap.ref_lap"></racer-partial-lap-time>
-                </td>
-                <td class="column_partial-lap-time">
-                  <racer-partial-lap-time [partial]="bestLap.partials[2]" [isRefLap]="bestLap.ref_lap"></racer-partial-lap-time>
-                </td>
-                <td class="column_partial-lap-time">
-                  <racer-partial-lap-time [partial]="bestLap.partials[3]" [isRefLap]="bestLap.ref_lap"></racer-partial-lap-time>
-                </td>
-                <td class="column_lap-time">
-                  <racer-lap-time [lap]="bestLap" [isRefLap]="bestLap.ref_lap"></racer-lap-time>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-  </div>
-</div>
-
-<div class="row"> <!-- TODO: Remove this -->
+<div class="row no-gutters" *ngIf="currentViewNumber === 1">
   <div class="col-6" *ngFor="let trackActivity of trackActivities; let trackActivityIndex = index;">
     <racer-partials-per-lap [trackActivity]="trackActivity" [bestLap]="bestLap" [title]="'Position ' + (trackActivityIndex + 1)"></racer-partials-per-lap>
   </div>
 </div>
 
-<div class="row no-gutters">
+<div class="row no-gutters" *ngIf="currentViewNumber === 2">
   <div class="col-12">
-    <div class="card bg-transparent border-dark text-white rounded-0">
-      <div class="card-body">
-        <h6 class="card-subtitle mb-2 text-muted text-uppercase">Partials</h6>
-        
-        <racer-best-partials-laps [trackActivities]="trackActivities" [bestLap]="bestLap"></racer-best-partials-laps>
-      </div>
-    </div>
-  </div>
+    <h6 class="m-2 text-muted text-uppercase">Parciales</h6>
 
+    <racer-best-partials-laps [trackActivities]="trackActivities" [bestLap]="bestLap"></racer-best-partials-laps>
+  </div>
+</div>
+
+<div class="row no-gutters" *ngIf="currentViewNumber === 3">
   <div class="col-12">
-    <div class="card bg-transparent border-dark text-white rounded-0">
-      <div class="card-body">
-        <h6 class="card-subtitle mb-2 text-muted text-uppercase">Best per partials</h6>
-        
-        <div class="row"> <!-- TODO: Remove this -->
-          <div class="col-3">
-            <racer-best-per-partials [trackActivities]="trackActivities" [bestLap]="bestLap" [partialIndex]="0"></racer-best-per-partials>
-          </div>
-          <div class="col-3">
-            <racer-best-per-partials [trackActivities]="trackActivities" [bestLap]="bestLap" [partialIndex]="1"></racer-best-per-partials>
-          </div>
-          <div class="col-3">
-            <racer-best-per-partials [trackActivities]="trackActivities" [bestLap]="bestLap" [partialIndex]="2"></racer-best-per-partials>
-          </div>
-          <div class="col-3">
-            <racer-best-per-partials [trackActivities]="trackActivities" [bestLap]="bestLap" [partialIndex]="3"></racer-best-per-partials>
-          </div>
+    <h6 class="m-2 text-muted text-uppercase">Mejores parciales</h6>
+
+    <div class="row justify-content-center">
+      <div class="col-auto">
+        <racer-best-per-partials [trackActivities]="trackActivities" [bestLap]="bestLap" [partialIndex]="0"></racer-best-per-partials>
+      </div>
+      <div class="col-auto">
+        <racer-best-per-partials [trackActivities]="trackActivities" [bestLap]="bestLap" [partialIndex]="1"></racer-best-per-partials>
+      </div>
+      <div class="col-auto">
+        <racer-best-per-partials [trackActivities]="trackActivities" [bestLap]="bestLap" [partialIndex]="2"></racer-best-per-partials>
+      </div>
+      <div class="col-auto">
+        <racer-best-per-partials [trackActivities]="trackActivities" [bestLap]="bestLap" [partialIndex]="3"></racer-best-per-partials>
       </div>
     </div>
   </div>

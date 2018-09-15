@@ -73,6 +73,10 @@ export class BestPerPartialsComponent implements OnChanges {
   }
 
   getPartial(trackActivity: RaceParticipantTrackActivity) {
+    if (!trackActivity.best_lap) {
+      return;
+    }
+
     let bestPartial = trackActivity.best_lap.partials[this.partialIndex],
       bestPartialTime = bestPartial ? bestPartial.time : 0,
       partial,

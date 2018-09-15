@@ -18,7 +18,7 @@ export class LeaderboardComponent {
   @Input() bestLap: TrackLap;
 
   calculateGap(index: number, row: RaceParticipantTrackActivity) {
-    if (index === 1 || !this.bestLap) {
+    if (index === 1 || !row.best_lap || !this.bestLap ) {
       return '';
     }
     // Calculate gap
@@ -26,7 +26,7 @@ export class LeaderboardComponent {
   }
 
   calculateInterval(index: number, row: RaceParticipantTrackActivity) {
-    if (index === 1 || !this.bestLap) {
+    if (index === 1 || !row.best_lap || !this.bestLap) {
       return '';
     }
     // Calculate interval
@@ -35,8 +35,8 @@ export class LeaderboardComponent {
 
   calculateGapCurrentLap(index: number, row: RaceParticipantTrackActivity) {
     if (
-      !this.bestLap ||
       !row.last_lap ||
+      !this.bestLap ||
       !row.last_lap.partials ||
       row.last_lap.partials.length === 0
     ) {

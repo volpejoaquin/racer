@@ -1,5 +1,5 @@
 // angular
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 // libs
 import * as lodash from 'lodash';
@@ -21,8 +21,13 @@ import {
 // dummy data
 import {
   TRACK_ACTIVITY,
-  REF_LAP
+  REF_LAP,
+  EMPTY_RACE_PARTICIPANT_TRACK_ACTIVITY
 } from '../../../shared/dummy';
+
+const DUMMY_TRACK_ACTIVITYES = [];
+lodash.times(40, () => { DUMMY_TRACK_ACTIVITYES.push(lodash.clone(EMPTY_RACE_PARTICIPANT_TRACK_ACTIVITY)) });
+
 
 @Component({
   selector: 'racer-timing-home',
@@ -31,9 +36,28 @@ import {
 })
 export class TimingHomeComponent implements OnInit {
   trackActivity: TrackActivity = TRACK_ACTIVITY;
-  trackActivities: RaceParticipantTrackActivity[] = [];
+  trackActivities: RaceParticipantTrackActivity[] = DUMMY_TRACK_ACTIVITYES;
   bestTrackActivity: RaceParticipantTrackActivity = null;
   bestLap: TrackLap = REF_LAP;
+
+  currentViewNumber = parseInt(localStorage.getItem('currentViewNumber'), 10) || 0;
+  viewsCount = 4;
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    const keyCode = event.which || event.keyCode;
+
+    switch (keyCode) {
+      case 37:
+        this.currentViewNumber = this.currentViewNumber === 0 ? (this.viewsCount - 1) : ((this.currentViewNumber - 1) % this.viewsCount);
+        break;
+      case 39:
+        this.currentViewNumber = ((this.currentViewNumber + 1) % this.viewsCount);
+        break;
+    }
+
+    localStorage.setItem('currentViewNumber', '' + this.currentViewNumber);
+  }
 
   constructor(private socketService: SocketService) { }
 
@@ -116,7 +140,7 @@ export class TimingHomeComponent implements OnInit {
         // console.log('Event: ' + event, data);
 
         const currentObjectIndex = lodash.findIndex(this.trackActivities, (value) => {
-          return value.race_participant.number === data.race_participant.number;
+          return !value.race_participant || value.race_participant.number === data.race_participant.number;
         });
 
         if (currentObjectIndex >= 0) {

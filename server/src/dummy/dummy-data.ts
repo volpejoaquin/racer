@@ -9,7 +9,9 @@ import {
   TrackActivity,
   TrackActivityState,
   TrackLap,
-  RaceParticipant
+  RaceParticipant,
+  RaceParticipantTrackActivityState,
+  RaceParticipantTrackActivity
 } from '../model/';
 
 export const CAR_CATEGORY: CarCategory = {
@@ -182,3 +184,13 @@ export const PARTICIPANTS = 6; // <= 6
 
 export const TRACK_ACTIVITY_DELAY = 5000; // time to track
 export const TRACK_ACTIVITY_SECTORS = REF_LAP_PARTIALS.length;
+
+export const EMPTY_RACE_PARTICIPANT_TRACK_ACTIVITY: RaceParticipantTrackActivity = {
+  state: RaceParticipantTrackActivityState.on_pit,
+  track_activity: null,
+  race_participant: null,
+  laps: [],
+  laps_count: 0,
+  best_lap: null,
+  last_lap: null
+};

@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* TODO: REVIEW STYLES */
+body {
+  overflow-x: hidden;
+}
+
 .column_partial-lap-time {
   min-width: 100px;
   text-align: center;
@@ -30,3 +34,4 @@
 table tr th {
   color: #6c757d;
 }
+
