@@ -1,8 +1,11 @@
-<h1 class="text-white">Data acquisition</h1>
+<div class="pt-4 bg-dark"></div>
+<div class="layers-wrapper">
+  <div class="layer layer-0">
+    <img class="w-100 h-100" src="assets/files/on-board.png">
+  </div>
+  <svg class="layer layer-1" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 1000 520">
+    <!-- <path d="M150 0 L75 200 L225 200 Z" fill="none" stroke="white" stroke-width="3"/> -->
 
-<div class="base-layer">
-  
+    <circle [attr.cx]="gpsTrackPoint.x + 200" [attr.cy]="gpsTrackPoint.y + 200" r="5" fill="white" *ngFor="let gpsTrackPoint of gpsTrackData"></circle>
+  </svg>
 </div>
-<svg class="">
-
-</svg>

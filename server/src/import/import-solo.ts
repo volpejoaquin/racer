@@ -1,12 +1,14 @@
 // libs
 import * as express from 'express';
 import * as fs from 'fs';
+import * as kml2svg from 'kml2svg';
 
 import * as CsvReadableStream from  'csv-reader';
 
-export class ImportTimes {
+
+export class ImportSolo {
   private app: express.Application;
-  private filename = '';
+  private filePath = '';
 
   constructor() {
     this.createApp();
@@ -24,29 +26,21 @@ export class ImportTimes {
   }
 
   private config(): void {
-    this.filename = process.env.FILE_NAME || '/Users/joaco/Proyectos/angular/racer-server/files/datos-solo.csv';
+    this.filePath = process.env.FILE_NAME || '/Users/joaco/Proyectos/angular/racer-server/files/datos-solo.kml';
   }
 
   private importFile(): void {
     console.log('Importing file...');
     
-    if (!this.filename) {
+    if (!this.filePath) {
       console.log('ERROR: INVALID FILE.');
       return;
     }
 
-    const dummyFile = 'times.json';
+    const dummyFile = 'datos-solo.svg',
+      svgObj = kml2svg(this.filePath);
 
-    var inputStream = fs.createReadStream(this.filename, 'utf8');
- 
-    inputStream
-      .pipe(CsvReadableStream({ parseNumbers: true, parseBooleans: true, trim: true }))
-      .on('data', function (row: any) {
-          console.log('A row arrived: ', row);
-      })
-      .on('end', function (data: any) {
-          console.log('No more rows!');
-      });
+    console.log(svgObj);
 
     console.log('Dummy file created: ' + dummyFile);
   }
