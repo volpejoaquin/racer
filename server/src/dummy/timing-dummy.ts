@@ -1,5 +1,6 @@
 // libs
 import * as lodash from 'lodash';
+import * as socketIo from 'socket.io';
 
 // models
 import {

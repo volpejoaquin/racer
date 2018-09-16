@@ -2,7 +2,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 
 // dummy data
-import { GPS_TRACK_DATA } from './../../../shared/dummy';
+import { SOLO_DATA } from './../../../shared/data';
 
 @Component({
   selector: 'racer-data-acquisition-home',
@@ -11,7 +11,7 @@ import { GPS_TRACK_DATA } from './../../../shared/dummy';
 })
 export class DataAcquisitionComponent implements OnInit {
 
-  gpsTrackData = GPS_TRACK_DATA;
+  gpsTrackData = SOLO_DATA;
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {

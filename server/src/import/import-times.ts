@@ -1,43 +1,30 @@
 // libs
-import * as express from 'express';
 import * as fs from 'fs';
-
 import * as CsvReadableStream from  'csv-reader';
 
-export class ImportTimes {
-  private app: express.Application;
-  private filename = '';
+// models
+import { BaseImporter } from './base-import';
 
-  constructor() {
-    this.createApp();
-    this.config();
+export class TimesImporter extends BaseImporter {
+
+  constructor(filePath: string, destPath: string) {
+    super(filePath, destPath);
+
     this.importFile();
   }
-
-  public getApp(): express.Application {
-    return this.app;
-  }
-
-  // Private methods
-  private createApp(): void {
-    this.app = express();
-  }
-
-  private config(): void {
-    this.filename = process.env.FILE_NAME || '/Users/joaco/Proyectos/angular/racer-server/files/datos-solo.csv';
-  }
-
+  
+  // private methods
   private importFile(): void {
     console.log('Importing file...');
     
-    if (!this.filename) {
+    if (!this.filePath) {
       console.log('ERROR: INVALID FILE.');
       return;
     }
 
     const dummyFile = 'times.json';
 
-    var inputStream = fs.createReadStream(this.filename, 'utf8');
+    var inputStream = fs.createReadStream(this.filePath, 'utf8');
  
     inputStream
       .pipe(CsvReadableStream({ parseNumbers: true, parseBooleans: true, trim: true }))

@@ -1,34 +1,32 @@
 // libs
-import * as express from 'express';
 import * as fs from 'fs';
-import * as kml2svg from 'kml2svg';
+import * as xmlParser from 'xml-js';
+import * as lodash from 'lodash';
 
-import * as CsvReadableStream from  'csv-reader';
+// models
+import { BaseImporter } from './base-import';
 
+const maxLng = 0;
+const maxLat = 0;
+const maxAlt = 0;
+const minLng = 999999;
+const minLat = 999999;
+const minAlt = 999999;
+const scale = 300;
+const correction = 0;
 
-export class ImportSolo {
-  private app: express.Application;
-  private filePath = '';
+export class SoloImporter extends BaseImporter {
 
-  constructor() {
-    this.createApp();
-    this.config();
+  private lookAt = {};
+  private coordinates = [];
+
+  constructor(filePath: string, destPath: string) {
+    super(filePath, destPath);
+
     this.importFile();
   }
-
-  public getApp(): express.Application {
-    return this.app;
-  }
-
-  // Private methods
-  private createApp(): void {
-    this.app = express();
-  }
-
-  private config(): void {
-    this.filePath = process.env.FILE_NAME || '/Users/joaco/Proyectos/angular/racer-server/files/datos-solo.kml';
-  }
-
+  
+  // private methods
   private importFile(): void {
     console.log('Importing file...');
     
@@ -37,11 +35,158 @@ export class ImportSolo {
       return;
     }
 
-    const dummyFile = 'datos-solo.svg',
-      svgObj = kml2svg(this.filePath);
+    const xmlFileContent: any = fs.readFileSync(this.filePath),
+      options = {ignoreComment: true, alwaysChildren: true},
+      result = xmlParser.xml2js(xmlFileContent, options);
 
-    console.log(svgObj);
+    if (result && result.elements) {
+      this.parseElements(result.elements, null);
+    }
 
-    console.log('Dummy file created: ' + dummyFile);
+    console.log('------------------');
+    console.log('File imported !');
+    console.log('Look at:', this.lookAt);
+    console.log('Coordinates count: ' + this.coordinates.length);
+  }
+
+  private parseElements(elements: any, parent: any) {
+    elements.forEach((element: any) => {
+      this.parseElement(element, parent);
+    });
+  }
+
+  private parseElement(element: any, parent: any) {
+    const log = false;
+
+    if (log) {
+      console.log('ELEMENT ----->');
+      if (element.type) {
+        console.log('Type: ' + element.type);
+      }
+      if (element.name) {
+        console.log('Name: ' + element.name);
+      }
+      if (element.text) {
+        console.log('Text: ' + element.text.substring(0, 100) + '...');
+      }
+      console.log('------------>');
+    }
+
+    // Check coordinates
+    if (parent && parent.name === 'coordinates' && element.text) {
+      this.coordinates = this.extractChords(element.text);
+
+      this.saveCoordinates(this.coordinates);
+    }
+    
+    // Check look at
+    if (parent && parent.name === 'LookAt') {
+
+      if (element.elements) {
+        let content = parseFloat(element.elements[0].text);
+        this.lookAt[element.name] = content;
+      }
+    } else {
+      if (element.elements) {
+        this.parseElements(element.elements, element);
+      }
+    }
+  }
+
+  private extractChords(elementText) {
+    const lines = elementText.split('\n');
+    const response = [];
+    let lineString,
+      coords,
+      coordinate;
+
+    lines.forEach((line: any) => {
+      lineString = line.trim();
+      coords = lineString.split(',');
+
+      if (lineString && lineString != '' && coords.length === 3) {
+  
+        coordinate = {
+          x: this.generateChord('x', coords[0]),
+          y: this.generateChord('y', coords[0]),
+          z: this.generateChord('z', coords[0])
+        };
+        
+        response.push(coordinate);
+      }
+    });
+
+    let height = (
+      3963.0 * Math.acos(
+        Math.sin(maxLat/57.2958) * 
+        Math.sin(minLat/57.2958) + Math.cos(maxLat/57.2958) * 
+        Math.cos(minLat/57.2958) * Math.cos(minLng/57.2958 - minLng/57.2958)
+      )
+    );
+    let width = (
+      3963.0 * Math.acos(
+        Math.sin(maxLat/57.2958) *
+        Math.sin(maxLat/57.2958) + Math.cos(maxLat/57.2958) * 
+        Math.cos(maxLat/57.2958) * 
+        Math.cos(maxLng/57.2958 - minLng/57.2958)
+      )
+    );
+    let xdiff = height * 0.025 * scale;
+    let ydiff = width * 0.025 * scale;
+
+    let points = [];
+
+    lines.forEach(function(chords, i){
+      /*if (i < svgChords.length-1) {
+        var d = getDistance(svgChords[i], svgChords[i+1]);
+        var e = getElevation(svgChords[i], svgChords[i+1]);
+        distance += d;
+        elevation += e;
+      }*/
+  
+      var y = (3963.0 * Math.acos(Math.sin(maxLat/57.2958) * Math.sin(chords.lat/57.2958) + Math.cos(maxLat/57.2958) * Math.cos(chords.lat/57.2958) *  Math.cos(minLng/57.2958 - minLng/57.2958)));
+      var x = (3963.0 * Math.acos(Math.sin(maxLat/57.2958) * Math.sin(maxLat/57.2958) + Math.cos(maxLat/57.2958) * Math.cos(maxLat/57.2958) *  Math.cos(chords.lng/57.2958 - minLng/57.2958)));
+      var previousX = (x*scale) + xdiff;
+      var previousY = (y*scale) + ydiff;
+      points.push({
+        y: previousY,
+        x: previousX
+      });
+    });
+
+    return response;
+  }
+
+  private generateChord(label: string, value: any): number {
+    const scale = 100;
+    let offset;
+    let response;
+
+    if (value) {
+      value = parseFloat(value) * scale;
+      
+      if (value < 0) {
+        value *= -1;
+      }
+
+      offset = Math.trunc(value);
+
+      response = value + offset;
+    } else {
+      response = 0;
+    }
+
+    return response;
+  }
+
+  private saveCoordinates(coordinates) {
+    const fileContent = 'export const SOLO_DATA = ' + JSON.stringify(coordinates) + ';';
+
+
+    fs.writeFile(this.destPath, fileContent, (err) => {
+      if (err) throw err;
+  
+      console.log("The file was succesfully saved!");
+  }); 
   }
 }
