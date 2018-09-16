@@ -100,21 +100,21 @@ export class SoloImporter extends BaseImporter {
       coords,
       coordinate;
 
-    lines.forEach((line: any) => {
-      lineString = line.trim();
-      coords = lineString.split(',');
+    // lines.forEach((line: any) => {
+    //   lineString = line.trim();
+    //   coords = lineString.split(',');
 
-      if (lineString && lineString != '' && coords.length === 3) {
+    //   if (lineString && lineString != '' && coords.length === 3) {
   
-        coordinate = {
-          x: this.generateChord('x', coords[0]),
-          y: this.generateChord('y', coords[0]),
-          z: this.generateChord('z', coords[0])
-        };
+    //     coordinate = {
+    //       x: this.generateChord('x', coords[0]),
+    //       y: this.generateChord('y', coords[0]),
+    //       z: this.generateChord('z', coords[0])
+    //     };
         
-        response.push(coordinate);
-      }
-    });
+    //     response.push(coordinate);
+    //   }
+    // });
 
     let height = (
       3963.0 * Math.acos(
@@ -133,24 +133,24 @@ export class SoloImporter extends BaseImporter {
     );
     let xdiff = height * 0.025 * scale;
     let ydiff = width * 0.025 * scale;
+    
+    let x, y, previousX, previousY, lat, lng;
 
-    let points = [];
-
-    lines.forEach(function(chords, i){
-      /*if (i < svgChords.length-1) {
-        var d = getDistance(svgChords[i], svgChords[i+1]);
-        var e = getElevation(svgChords[i], svgChords[i+1]);
-        distance += d;
-        elevation += e;
-      }*/
+    lines.forEach(function(line, i) {
+      coords = lineString.split(',');
+      lat = coords[0];
+      lng = coords[1];
   
-      var y = (3963.0 * Math.acos(Math.sin(maxLat/57.2958) * Math.sin(chords.lat/57.2958) + Math.cos(maxLat/57.2958) * Math.cos(chords.lat/57.2958) *  Math.cos(minLng/57.2958 - minLng/57.2958)));
-      var x = (3963.0 * Math.acos(Math.sin(maxLat/57.2958) * Math.sin(maxLat/57.2958) + Math.cos(maxLat/57.2958) * Math.cos(maxLat/57.2958) *  Math.cos(chords.lng/57.2958 - minLng/57.2958)));
-      var previousX = (x*scale) + xdiff;
-      var previousY = (y*scale) + ydiff;
-      points.push({
+      y = (3963.0 * Math.acos(Math.sin(maxLat/57.2958) * Math.sin(lat/57.2958) + Math.cos(maxLat/57.2958) * Math.cos(lat/57.2958) *  Math.cos(minLng/57.2958 - minLng/57.2958)));
+      x = (3963.0 * Math.acos(Math.sin(maxLat/57.2958) * Math.sin(maxLat/57.2958) + Math.cos(maxLat/57.2958) * Math.cos(maxLat/57.2958) *  Math.cos(lng/57.2958 - minLng/57.2958)));
+
+      previousX = (x*scale) + xdiff;
+      previousY = (y*scale) + ydiff;
+
+      response.push({
         y: previousY,
-        x: previousX
+        x: previousX,
+        z: 0
       });
     });
 
