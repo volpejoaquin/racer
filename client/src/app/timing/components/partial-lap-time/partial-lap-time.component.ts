@@ -9,7 +9,7 @@ import {
 @Component({
   selector: 'racer-partial-lap-time',
   templateUrl: './partial-lap-time.component.html',
-  styleUrls: ['./partial-lap-time.component.css']
+  styleUrls: ['./partial-lap-time.component.scss']
 })
 export class PartialLapTimeComponent implements OnChanges {
   @Input() partial: TrackPartialLap;

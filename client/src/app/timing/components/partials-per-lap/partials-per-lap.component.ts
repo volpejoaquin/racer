@@ -11,7 +11,7 @@ import {
 @Component({
   selector: 'racer-partials-per-lap',
   templateUrl: './partials-per-lap.component.html',
-  styleUrls: ['./partials-per-lap.component.css']
+  styleUrls: ['./partials-per-lap.component.scss']
 })
 export class PartialPerLapComponent {
   @Input() title = '';

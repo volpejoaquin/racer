@@ -11,7 +11,7 @@ import {
 @Component({
   selector: 'racer-leaderboard',
   templateUrl: './leaderboard.component.html',
-  styleUrls: ['./leaderboard.component.css']
+  styleUrls: ['./leaderboard.component.scss']
 })
 export class LeaderboardComponent {
   @Input() trackActivities: RaceParticipantTrackActivity[];

@@ -14,7 +14,7 @@ import {
 @Component({
   selector: 'racer-track-activity-state',
   templateUrl: './track-activity-state.component.html',
-  styleUrls: ['./track-activity-state.component.css']
+  styleUrls: ['./track-activity-state.component.scss']
 })
 export class TrackActivityStateComponent implements OnChanges {
   @Input() trackActivity: TrackActivity;

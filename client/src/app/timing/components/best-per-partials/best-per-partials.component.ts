@@ -14,7 +14,7 @@ import {
 @Component({
   selector: 'racer-best-per-partials',
   templateUrl: './best-per-partials.component.html',
-  styleUrls: ['./best-per-partials.component.css']
+  styleUrls: ['./best-per-partials.component.scss']
 })
 export class BestPerPartialsComponent implements OnChanges {
   @Input() trackActivities: RaceParticipantTrackActivity[];

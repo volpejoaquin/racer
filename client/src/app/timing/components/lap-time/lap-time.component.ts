@@ -10,7 +10,7 @@ import {
 @Component({
   selector: 'racer-lap-time',
   templateUrl: './lap-time.component.html',
-  styleUrls: ['./lap-time.component.css']
+  styleUrls: ['./lap-time.component.scss']
 })
 export class LapTimeComponent implements OnChanges {
   @Input() lap: TrackLap;

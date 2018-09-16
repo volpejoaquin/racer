@@ -32,7 +32,7 @@ lodash.times(40, () => { DUMMY_TRACK_ACTIVITYES.push(lodash.clone(EMPTY_RACE_PAR
 @Component({
   selector: 'racer-timing-home',
   templateUrl: './timing-home.component.html',
-  styleUrls: ['./timing-home.component.css']
+  styleUrls: ['./timing-home.component.scss']
 })
 export class TimingHomeComponent implements OnInit {
   trackActivity: TrackActivity = TRACK_ACTIVITY;

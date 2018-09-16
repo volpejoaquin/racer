@@ -206,7 +206,7 @@ export class TimingDummy {
     this.io.emit(TimingSocketEvent.GO_TO_TRACK, data);
     this.log('Event: ' + TimingSocketEvent.GO_TO_TRACK);
     this.log(
-      '-> #' + data.race_participant?.number + ' - ' + data.race_participant.driver.name
+      '-> #' + data.race_participant.number + ' - ' + data.race_participant.driver.name
     );
 
     this.simulateTrackActivity(data);
@@ -220,7 +220,7 @@ export class TimingDummy {
     this.io.emit(TimingSocketEvent.GO_TO_PIT, data);
     this.log('Event: ' + TimingSocketEvent.GO_TO_PIT);
     this.log(
-      '-> #' + data.race_participant?.number + ' - ' + data.race_participant.driver.name
+      '-> #' + data.race_participant.number + ' - ' + data.race_participant.driver.name
     );
 
     this.simulateTrackActivity(data);

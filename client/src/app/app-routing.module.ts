@@ -4,10 +4,21 @@ import { Routes, RouterModule } from '@angular/router';
 
 // components
 import { TimingHomeComponent } from './timing/components';
+import { DataAcquisitionComponent } from './data-acquisition/components';
 
 const routes: Routes = [
   {
-    path: '', component: TimingHomeComponent
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'data'
+  },
+  {
+    path: 'timing',
+    component: TimingHomeComponent
+  },
+  {
+    path: 'data',
+    component: DataAcquisitionComponent
   }
 ];
 

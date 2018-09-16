@@ -11,7 +11,7 @@ import {
 @Component({
   selector: 'racer-best-partials-laps',
   templateUrl: './best-partials-laps.component.html',
-  styleUrls: ['./best-partials-laps.component.css']
+  styleUrls: ['./best-partials-laps.component.scss']
 })
 export class BestPartialsLapsComponent {
   @Input() trackActivities: RaceParticipantTrackActivity[];
