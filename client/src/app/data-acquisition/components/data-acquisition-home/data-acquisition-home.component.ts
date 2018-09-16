@@ -1,5 +1,5 @@
 // angular
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
 
 // dummy data
 import { SOLO_DATA } from './../../../shared/data';
@@ -10,6 +10,7 @@ import { SOLO_DATA } from './../../../shared/data';
   styleUrls: ['./data-acquisition-home.component.scss']
 })
 export class DataAcquisitionComponent implements OnInit {
+  @ViewChild('gpsRpmLine') gpsRpmLine: ElementRef;
 
   gpsTrackData = SOLO_DATA;
 
@@ -23,5 +24,7 @@ export class DataAcquisitionComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+    console.log(this.gpsRpmLine.nativeElement);
   }
 }

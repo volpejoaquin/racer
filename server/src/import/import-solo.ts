@@ -100,58 +100,20 @@ export class SoloImporter extends BaseImporter {
       coords,
       coordinate;
 
-    // lines.forEach((line: any) => {
-    //   lineString = line.trim();
-    //   coords = lineString.split(',');
-
-    //   if (lineString && lineString != '' && coords.length === 3) {
-  
-    //     coordinate = {
-    //       x: this.generateChord('x', coords[0]),
-    //       y: this.generateChord('y', coords[0]),
-    //       z: this.generateChord('z', coords[0])
-    //     };
-        
-    //     response.push(coordinate);
-    //   }
-    // });
-
-    let height = (
-      3963.0 * Math.acos(
-        Math.sin(maxLat/57.2958) * 
-        Math.sin(minLat/57.2958) + Math.cos(maxLat/57.2958) * 
-        Math.cos(minLat/57.2958) * Math.cos(minLng/57.2958 - minLng/57.2958)
-      )
-    );
-    let width = (
-      3963.0 * Math.acos(
-        Math.sin(maxLat/57.2958) *
-        Math.sin(maxLat/57.2958) + Math.cos(maxLat/57.2958) * 
-        Math.cos(maxLat/57.2958) * 
-        Math.cos(maxLng/57.2958 - minLng/57.2958)
-      )
-    );
-    let xdiff = height * 0.025 * scale;
-    let ydiff = width * 0.025 * scale;
-    
-    let x, y, previousX, previousY, lat, lng;
-
-    lines.forEach(function(line, i) {
+    lines.forEach((line: any) => {
+      lineString = line.trim();
       coords = lineString.split(',');
-      lat = coords[0];
-      lng = coords[1];
+
+      if (lineString && lineString != '' && coords.length === 3) {
   
-      y = (3963.0 * Math.acos(Math.sin(maxLat/57.2958) * Math.sin(lat/57.2958) + Math.cos(maxLat/57.2958) * Math.cos(lat/57.2958) *  Math.cos(minLng/57.2958 - minLng/57.2958)));
-      x = (3963.0 * Math.acos(Math.sin(maxLat/57.2958) * Math.sin(maxLat/57.2958) + Math.cos(maxLat/57.2958) * Math.cos(maxLat/57.2958) *  Math.cos(lng/57.2958 - minLng/57.2958)));
-
-      previousX = (x*scale) + xdiff;
-      previousY = (y*scale) + ydiff;
-
-      response.push({
-        y: previousY,
-        x: previousX,
-        z: 0
-      });
+        coordinate = {
+          x: this.generateChord('x', coords[0]),
+          y: this.generateChord('y', coords[0]),
+          z: this.generateChord('z', coords[0])
+        };
+        
+        response.push(coordinate);
+      }
     });
 
     return response;
@@ -175,6 +137,51 @@ export class SoloImporter extends BaseImporter {
     } else {
       response = 0;
     }
+
+    return response;
+  }
+
+  private test(elementText) {
+    const lines = elementText.split('\n');
+    const response = [];
+    let height = (
+      3963.0 * Math.acos(
+        Math.sin(maxLat/57.2958) * 
+        Math.sin(minLat/57.2958) + Math.cos(maxLat/57.2958) * 
+        Math.cos(minLat/57.2958) * Math.cos(minLng/57.2958 - minLng/57.2958)
+      )
+    );
+    let width = (
+      3963.0 * Math.acos(
+        Math.sin(maxLat/57.2958) *
+        Math.sin(maxLat/57.2958) + Math.cos(maxLat/57.2958) * 
+        Math.cos(maxLat/57.2958) * 
+        Math.cos(maxLng/57.2958 - minLng/57.2958)
+      )
+    );
+    let xdiff = height * 0.025 * scale;
+    let ydiff = width * 0.025 * scale;
+    
+    let x, y, previousX, previousY, lat, lng, lineString, coords;
+
+    lines.forEach(function(line, i) {
+      lineString = line.trim();
+      coords = lineString.split(',');
+      lat = coords[0];
+      lng = coords[1];
+  
+      y = (3963.0 * Math.acos(Math.sin(maxLat/57.2958) * Math.sin(lat/57.2958) + Math.cos(maxLat/57.2958) * Math.cos(lat/57.2958) *  Math.cos(minLng/57.2958 - minLng/57.2958)));
+      x = (3963.0 * Math.acos(Math.sin(maxLat/57.2958) * Math.sin(maxLat/57.2958) + Math.cos(maxLat/57.2958) * Math.cos(maxLat/57.2958) *  Math.cos(lng/57.2958 - minLng/57.2958)));
+
+      previousX = (x*scale) + xdiff;
+      previousY = (y*scale) + ydiff;
+
+      response.push({
+        y: previousY,
+        x: previousX,
+        z: 0
+      });
+    });
 
     return response;
   }
