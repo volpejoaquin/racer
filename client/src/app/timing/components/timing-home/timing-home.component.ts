@@ -28,7 +28,6 @@ import {
 const DUMMY_TRACK_ACTIVITYES = [];
 lodash.times(40, () => { DUMMY_TRACK_ACTIVITYES.push(lodash.clone(EMPTY_RACE_PARTICIPANT_TRACK_ACTIVITY)) });
 
-
 @Component({
   selector: 'racer-timing-home',
   templateUrl: './timing-home.component.html',
