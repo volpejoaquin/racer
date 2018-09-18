@@ -19,6 +19,7 @@ export class DataAcquisitionComponent implements OnInit {
   bestLap: TrackLap = REF_LAP;
   poleLap: TrackLap = REF_LAP;
   gpsTrackData = SOLO_DATA;
+  currentView = 3;
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
