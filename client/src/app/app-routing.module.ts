@@ -10,11 +10,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'data'
-  },
-  {
-    path: 'timing',
-    component: TimingHomeComponent
+    redirectTo: 'timing'
   },
   {
     path: 'data',

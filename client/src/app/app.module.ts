@@ -6,6 +6,7 @@ import { NgModule } from '@angular/core';
 // modules
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
+import { AdminModule } from './admin/admin.module';
 import { TimingModule } from './timing/timing.module';
 import { DataAcquisitionModule } from './data-acquisition/data-acquisition.module';
 
@@ -21,6 +22,7 @@ import { AppComponent } from './app.component';
     BrowserAnimationsModule,
     AppRoutingModule,
     CoreModule,
+    AdminModule,
     TimingModule,
     DataAcquisitionModule
   ],

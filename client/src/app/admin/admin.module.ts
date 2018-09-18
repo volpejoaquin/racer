@@ -5,10 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // modules
 import { SharedModule } from '../shared/shared.module';
-import { TimingRoutingModule } from './timing-routing.module';
+import { AdminRoutingModule } from './admin-routing.module';
 
 // components
-import { TIMING_COMPONENTS } from './components/';
+import { ADMIN_COMPONENTS } from './components/';
 
 @NgModule({
   imports: [
@@ -16,10 +16,10 @@ import { TIMING_COMPONENTS } from './components/';
     FormsModule,
     ReactiveFormsModule,
     SharedModule,
-    TimingRoutingModule
+    AdminRoutingModule
   ],
   declarations: [
-    ...TIMING_COMPONENTS
+    ...ADMIN_COMPONENTS
   ]
 })
-export class TimingModule { }
+export class AdminModule { }
