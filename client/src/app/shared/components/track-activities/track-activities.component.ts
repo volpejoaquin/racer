@@ -18,6 +18,6 @@ export class TrackActivitiesComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges() {
-    console.log('AAA ' + this.trackActivities);
+    // TODO: Scroll to selectedTrackActivity
   }
 }

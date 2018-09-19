@@ -9,62 +9,8 @@
     </li>
   </ul>
 
-  <div class="row">
-    <div class="col-6">
-      <div class="row">
-        <div class="col-12">
-          <div class="linear-box-wrapper">
-            <small class="linear-box-top-text d-block text-muted text-uppercase">Fecha N 8</small>
-
-            <div class="linear-box-content">
-              <span class="d-inline-block text-white">Turismo pista - Campeonato 2018</span>
-              <span class="d-inline-block text-white align-middle rw-car-division-short-name">C3</span>
-            </div>
-          </div>
-        </div>
-        <div class="col-12">
-          <div class="linear-box-wrapper">
-            <small class="linear-box-top-text d-block text-muted text-uppercase">Actividades</small>
-            <small class="linear-box-top-text d-none text-muted text-uppercase">Actividad actual</small>
-    
-            <div class="linear-box-content">
-              <div class="row">
-                <div class="col-11">
-                  <div class="track-activities-wrapper">
-                    <racer-track-activities [trackActivities]="trackActivities" [selectedTrackActivity]="selectedTrackActivity"></racer-track-activities>
-                  </div>
-                </div>
-                <div class="col-1">
-                  <div class="row h-100">
-                    <div class="col align-self-start">
-                      <button type="button" class="btn btn-link p-1">
-                        <i class="fas fa-chevron-up fa-2x text-primary"></i>
-                      </button>
-                    </div>
-                    <div class="col align-self-end">
-                      <button type="button" class="btn btn-link p-1">
-                        <i class="fas fa-chevron-down fa-2x text-primary"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-6">
-      <div class="linear-box-wrapper">
-        <small class="linear-box-top-text d-block text-muted text-uppercase">Olavarria</small>
-
-        <div class="linear-box-content">
-          <span class="d-block text-white">Circuito N 5</span>
-          <img class="img-responsive" src="http://localhost:8080/gpx/olavarria.png" height="300"/>
-        </div>
-      </div>
-    </div>
-  </div>
+  <racer-race-weekend [raceWeekend]="raceWeekend"></racer-race-weekend>
+  
   <div class="row">
     
   </div>

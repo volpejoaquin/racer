@@ -1,0 +1,66 @@
+<div class="row" *ngIf="raceWeekend">
+  <div class="col-6">
+    <div class="row">
+      <div class="col-12">
+        <div class="linear-box-wrapper">
+          <small class="linear-box-top-text d-block text-muted text-uppercase">
+            <i class="fas fa-calendar-alt"></i> {{ raceWeekend.name }}
+          </small>
+
+          <div class="linear-box-content">
+            <span class="d-inline-block text-white">
+              {{ raceWeekend.championship.car_division.car_category.name }}
+              {{ raceWeekend.championship.car_division.name }}
+              - Campeonato {{ raceWeekend.championship.year }}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-12" *ngIf="raceWeekend && raceWeekend.track_activities">
+        <div class="linear-box-wrapper">
+          <small class="linear-box-top-text d-block text-muted text-uppercase">
+            <i class="fas fa-list-ul"></i> Actividades
+          </small>
+  
+          <div class="linear-box-content">
+            <div class="row">
+              <div class="col-11">
+                <div class="track-activities-wrapper">
+                  <racer-track-activities [trackActivities]="raceWeekend.track_activities" [selectedTrackActivity]="selectedTrackActivity"></racer-track-activities>
+                </div>
+              </div>
+              <div class="col-1">
+                <div class="row h-100">
+                  <div class="col align-self-start">
+                    <button type="button" class="btn btn-link p-1">
+                      <i class="fas fa-chevron-up fa-2x text-primary"></i>
+                    </button>
+                  </div>
+                  <div class="col align-self-end">
+                    <button type="button" class="btn btn-link p-1">
+                      <i class="fas fa-chevron-down fa-2x text-primary"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="linear-box-wrapper">
+      <small class="linear-box-top-text d-block text-muted text-uppercase">
+        <i class="fas fa-map-marker-alt"></i> {{ raceWeekend.circuit_variant.circuit.city.name }}
+      </small>
+
+      <div class="linear-box-content">
+        <span class="d-block text-white">{{ raceWeekend.circuit_variant.circuit.name }}</span>
+        <span class="d-block text-white">{{ raceWeekend.circuit_variant.name }}</span>
+        <span class="d-block text-white">{{ raceWeekend.circuit_variant.length }} metros</span>
+        <img class="img-responsive" src="http://localhost:8080/gpx/olavarria.png" height="300"/>
+      </div>
+    </div>
+  </div>
+</div>
