@@ -4,6 +4,16 @@ import {
   TrackActivityState
 } from './../../model/track-activity.model';
 
+export const TRACK_ACTIVITY_SAMPLE: TrackActivity = {
+  name: 'Comunitarias 1 grupo "B"',
+  short_name: 'COM "B"',
+  date: '2018-10-12T00:10:50.000Z',
+  duration: 20,
+  laps: 0,
+  state: TrackActivityState.waiting,
+  race_participants_track_activities: []
+};
+
 export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
   {
     name: 'Comunitarias 1 grupo "B"',

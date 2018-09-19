@@ -1,4 +1,11 @@
+// angular
 import { Component, OnInit } from '@angular/core';
+
+// libs
+import { Store } from '@ngrx/store';
+
+// models
+import { AppState } from './app-state';
 
 @Component({
   selector: 'racer-root',
@@ -7,9 +14,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-  ngOnInit(): void {
+  constructor(private store: Store<AppState>) {
+    console.log(store.source);
   }
 
-  private initModel(): void {
+  ngOnInit(): void {
   }
 }

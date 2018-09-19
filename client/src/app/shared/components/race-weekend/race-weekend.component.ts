@@ -2,9 +2,10 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 // libs
-import * as lodash from 'lodash';
+import { Store } from '@ngrx/store';
 
 // models
+import { AppState } from './../../../app-state';
 import {
   RaceWeekend,
   TrackActivity
@@ -19,7 +20,14 @@ import {
 })
 export class RaceWeekendComponent implements OnInit, OnChanges {
   @Input() raceWeekend: RaceWeekend;
+
   selectedTrackActivity: TrackActivity;
+
+  constructor(store: Store<AppState>) {
+    store.select('selected_track_activity').subscribe((tActivity: TrackActivity) => {
+      this.selectedTrackActivity = tActivity;
+    });
+  }
 
   ngOnInit() {
   }

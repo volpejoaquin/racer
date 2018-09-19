@@ -13,23 +13,21 @@ import {
 // actions
 import { SelectRaceweekend } from './../../../shared/actions/race-weekend.actions';
 
-// dummy data
-import { RACE_WEEKEND_SAMPLE } from '../../../shared/dummy';
-
 @Component({
   selector: 'racer-admin-home',
   templateUrl: './admin-home.component.html',
   styleUrls: ['./admin-home.component.scss']
 })
 export class AdminHomeComponent implements OnInit, OnChanges {
-  raceWeekend: RaceWeekend = RACE_WEEKEND_SAMPLE;
+  raceWeekend: RaceWeekend;
 
-  constructor(private store: Store<AppState>) {
-
+  constructor(store: Store<AppState>) {
+    store.select('selected_race_weekend').subscribe((rWeekend: RaceWeekend) => {
+      this.raceWeekend = rWeekend;
+    });
   }
 
   ngOnInit() {
-    this.store.dispatch(new SelectRaceweekend(null));
   }
 
   ngOnChanges() {

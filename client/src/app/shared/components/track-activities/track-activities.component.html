@@ -1,5 +1,5 @@
 <ul class="list-group">
-  <li class="list-group-item bg-transparent text-white mb-3" *ngFor="let trackActivity of trackActivities">
+  <li class="list-group-item bg-transparent text-white mb-3" *ngFor="let trackActivity of trackActivities" (click)="onSelectTrackActivity(trackActivity)">
     <div class="d-flex justify-content-between align-items-center">
       <span class="text-uppercase" [class.text-info]="trackActivity === selectedTrackActivity">{{ trackActivity.name }}</span>
       <span class="text-uppercase" [class.text-info]="trackActivity === selectedTrackActivity">{{ trackActivity.date | date:'mm:ss' }}</span>

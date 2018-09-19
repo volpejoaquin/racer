@@ -17,7 +17,8 @@ import { DataAcquisitionModule } from './data-acquisition/data-acquisition.modul
 import { AppComponent } from './app.component';
 
 // recuders
-import { selectedRaceWeekedReducer } from './shared/reducers/race-weekend.reducer';
+import { selectedRaceWeekedReducer } from './shared/reducers/selected-race-weekend.reducer';
+import { selectedTrackActivityReducer } from './shared/reducers/selected-track-activity.recuder';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { selectedRaceWeekedReducer } from './shared/reducers/race-weekend.reduce
     TimingModule,
     DataAcquisitionModule,
     StoreModule.forRoot({
-      selected_race_weekend: selectedRaceWeekedReducer
+      selected_race_weekend: selectedRaceWeekedReducer,
+      selected_track_activity: selectedTrackActivityReducer
     })
   ],
   providers: [],
