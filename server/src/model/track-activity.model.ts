@@ -16,7 +16,8 @@ export interface TrackActivity {
   name: string;
   short_name: string;
   date: string;
-  duration: number; // In seconds
+  duration: number; // In minutes
+  laps: number;
   state: TrackActivityState;
   // Optionals
   // Relationships

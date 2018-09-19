@@ -52,6 +52,7 @@ export const TRACK_ACTIVITY: TrackActivity = {
   name: 'Practice 1',
   short_name: 'P1',
   date: trackActivityDate.toISOString(),
+  laps: 0,
   duration: trackActivityDuration,
   state: TrackActivityState.waiting
 };

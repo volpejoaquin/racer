@@ -29,32 +29,10 @@
             <small class="linear-box-top-text d-none text-muted text-uppercase">Actividad actual</small>
     
             <div class="linear-box-content">
-                <ul class="list-group">
-                  <li class="list-group-item bg-transparent text-white mb-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                      <span class="text-uppercase text-info">Entrenamiento grupo "b"</span>
-                      <span class="text-uppercase text-info">9:15</span>
-                      <span class="badge badge-pill bg-info">20 minutos</span>
-                    </div>
-                  </li>
-                  <li class="list-group-item bg-transparent text-white mb-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                      <span class="text-uppercase">Entrenamiento grupo "a"</span>
-                      <span class="text-uppercase">9:40</span>
-                      <span class="badge badge-pill bg-secondary">20 minutos</span>
-                    </div>
-                  </li>
-                  <li class="list-group-item bg-transparent text-white mb-3">
-                    <div class="d-flex justify-content-between align-items-center">
-                      <span class="text-uppercase">1era serie</span>
-                      <span class="text-uppercase">15:20</span>
-                      <div>
-                        <span class="badge badge-pill bg-secondary">20 minutos</span>
-                        <span class="badge badge-pill bg-secondary">6 vueltas</span>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+
+              <div class="track-activities-wrapper">
+                <racer-track-activities [trackActivities]="trackActivities" [selectedTrackActivity]="selectedTrackActivity"></racer-track-activities>
+              </div>
             </div>
           </div>
         </div>
