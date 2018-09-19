@@ -1,4 +1,4 @@
-// Main styles
+/* You can add global styles to this file, and also import other style files */
 @import 'scss/main';
 
 /* TODO: REVIEW STYLES */
@@ -7,34 +7,3 @@ body {
   min-height: 500px;
   background-color: #2f353d !important;
 }
-
-.column_partial-lap-time {
-  min-width: 100px;
-  text-align: center;
-}
-
-.column_lap-time {
-  min-width: 100px;
-  text-align: center;
-}
-
-.column_small {
-  width: 20px;
-}
-
-/* Badgets styles */
-.badge-secondary {
-  background-color: rgba(108,117,125, 0.2);
-}
-.badge-success {
-  background-color: rgba(40,167,69, 0.2);
-}
-.badge-info {
-  background-color: rgba(23,162,184, 0.2);
-}
-
-/* Tabble styles */
-table tr th {
-  color: #6c757d;
-}
-

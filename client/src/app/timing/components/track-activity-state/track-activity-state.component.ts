@@ -1,8 +1,7 @@
 // angular
 import { Component, Input, OnChanges } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { interval } from 'rxjs/observable/interval';
-import { of } from 'rxjs/observable/of';
+import { Observable, interval, of } from 'rxjs';
+
 import { map, take } from 'rxjs/operators';
 
 // models
