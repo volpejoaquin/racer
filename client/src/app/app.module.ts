@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
+// libs
+import { StoreModule } from '@ngrx/store';
+
 // modules
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +15,9 @@ import { DataAcquisitionModule } from './data-acquisition/data-acquisition.modul
 
 // components
 import { AppComponent } from './app.component';
+
+// recuders
+import { selectedRaceWeekedReducer } from './shared/reducers/race-weekend.reducer';
 
 @NgModule({
   declarations: [
@@ -24,7 +30,10 @@ import { AppComponent } from './app.component';
     CoreModule,
     AdminModule,
     TimingModule,
-    DataAcquisitionModule
+    DataAcquisitionModule,
+    StoreModule.forRoot({
+      selected_race_weekend: selectedRaceWeekedReducer
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
