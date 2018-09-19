@@ -46,6 +46,16 @@
             </div>
           </div>
         </div>
+
+        <div class="linear-box-wrapper" *ngIf="selectedTrackActivity">
+          <small class="linear-box-top-text d-block text-muted text-uppercase">
+            <i class="fas fa-dot-circle"></i> Actividad actual
+          </small>
+  
+          <div class="linear-box-content">
+            <racer-track-activity [trackActivity]="selectedTrackActivity"></racer-track-activity>
+          </div>
+        </div>
       </div>
     </div>
   </div>

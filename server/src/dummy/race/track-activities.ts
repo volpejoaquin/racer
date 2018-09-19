@@ -11,7 +11,8 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     date: '2018-10-12T00:10:50.000Z',
     duration: 20,
     laps: 0,
-    state: TrackActivityState.waiting
+    state: TrackActivityState.waiting,
+    race_participants_track_activities: []
   },
   {
     name: 'Comunitarias 1 grupo "A"',
@@ -19,7 +20,8 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     date: '2018-10-12T00:11:15.000Z',
     duration: 20,
     laps: 0,
-    state: TrackActivityState.waiting
+    state: TrackActivityState.waiting,
+    race_participants_track_activities: []
   },
   {
     name: 'Comunitarias 2 grupo "B"',
@@ -27,7 +29,8 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     date: '2018-10-12T00:13:35.000Z',
     duration: 20,
     laps: 0,
-    state: TrackActivityState.waiting
+    state: TrackActivityState.waiting,
+    race_participants_track_activities: []
   },
   {
     name: 'Comunitarias 2 grupo "A',
@@ -35,7 +38,8 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     date: '2018-10-12T00:14:00.000Z',
     duration: 20,
     laps: 0,
-    state: TrackActivityState.waiting
+    state: TrackActivityState.waiting,
+    race_participants_track_activities: []
   },
   {
     name: 'Comunitarias 3 grupo "B"',
@@ -43,7 +47,8 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     date: '2018-10-12T00:16:25.000Z',
     duration: 20,
     laps: 0,
-    state: TrackActivityState.waiting
+    state: TrackActivityState.waiting,
+    race_participants_track_activities: []
   },
   {
     name: 'Comunitarias 3 grupo "A',
@@ -51,7 +56,8 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     date: '2018-10-12T00:16:50.000Z',
     duration: 20,
     laps: 0,
-    state: TrackActivityState.waiting
+    state: TrackActivityState.waiting,
+    race_participants_track_activities: []
   },
   {
     name: 'Entrenamiento 1 grupo "B"',
@@ -59,7 +65,8 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     date: '2018-10-13T00:09:15.000Z',
     duration: 20,
     laps: 0,
-    state: TrackActivityState.waiting
+    state: TrackActivityState.waiting,
+    race_participants_track_activities: []
   },
   {
     name: 'Entrenamiento 1 grupo "A"',
@@ -67,7 +74,8 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     date: '2018-10-13T00:09:40.000Z',
     duration: 20,
     laps: 0,
-    state: TrackActivityState.waiting
+    state: TrackActivityState.waiting,
+    race_participants_track_activities: []
   },
   {
     name: 'Clasificacion 1 grupo "B"',
@@ -75,7 +83,8 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     date: '2018-10-13T00:11:50.000Z',
     duration: 10,
     laps: 0,
-    state: TrackActivityState.waiting
+    state: TrackActivityState.waiting,
+    race_participants_track_activities: []
   },
   {
     name: 'Clasificacion 1 grupo "A"',
@@ -83,7 +92,8 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     date: '2018-10-13T00:11:55.000Z',
     duration: 10,
     laps: 0,
-    state: TrackActivityState.waiting
+    state: TrackActivityState.waiting,
+    race_participants_track_activities: []
   },
   {
     name: 'Clasificacion 2 grupo "B"',
@@ -91,7 +101,8 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     date: '2018-10-13T00:13:10.000Z',
     duration: 10,
     laps: 0,
-    state: TrackActivityState.waiting
+    state: TrackActivityState.waiting,
+    race_participants_track_activities: []
   },
   {
     name: 'Clasificacion 2 grupo "A"',
@@ -99,7 +110,8 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     date: '2018-10-13T00:13:25.000Z',
     duration: 10,
     laps: 0,
-    state: TrackActivityState.waiting
+    state: TrackActivityState.waiting,
+    race_participants_track_activities: []
   },
   {
     name: '1º Serie',
@@ -107,7 +119,8 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     date: '2018-10-13T00:18:20.000Z',
     duration: 0,
     laps: 6,
-    state: TrackActivityState.waiting
+    state: TrackActivityState.waiting,
+    race_participants_track_activities: []
   },
   {
     name: '2º Serie',
@@ -115,7 +128,8 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     date: '2018-10-13T00:18:50.000Z',
     duration: 0,
     laps: 6,
-    state: TrackActivityState.waiting
+    state: TrackActivityState.waiting,
+    race_participants_track_activities: []
   },
   {
     name: 'Final',
@@ -123,6 +137,7 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     date: '2018-10-14T00:14:35.000Z',
     duration: 0,
     laps: 6,
-    state: TrackActivityState.waiting
+    state: TrackActivityState.waiting,
+    race_participants_track_activities: []
   }
 ];

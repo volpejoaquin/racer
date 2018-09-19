@@ -157,7 +157,6 @@ export class TimingDummy {
 
     const data: RaceParticipantTrackActivity = {
       state: RaceParticipantTrackActivityState.on_pit,
-      track_activity: this.trackActivity,
       race_participant: participant,
       laps: [],
       laps_count: 0,

@@ -54,7 +54,8 @@ export const TRACK_ACTIVITY: TrackActivity = {
   date: trackActivityDate.toISOString(),
   laps: 0,
   duration: trackActivityDuration,
-  state: TrackActivityState.waiting
+  state: TrackActivityState.waiting,
+  race_participants_track_activities: []
 };
 
 export const RACE_WEEKEND: RaceWeekend = {
@@ -188,7 +189,6 @@ export const TRACK_ACTIVITY_SECTORS = REF_LAP_PARTIALS.length;
 
 export const EMPTY_RACE_PARTICIPANT_TRACK_ACTIVITY: RaceParticipantTrackActivity = {
   state: RaceParticipantTrackActivityState.on_pit,
-  track_activity: null,
   race_participant: null,
   laps: [],
   laps_count: 0,

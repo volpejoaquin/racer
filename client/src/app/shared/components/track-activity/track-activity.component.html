@@ -1,0 +1,14 @@
+<div *ngIf="trackActivity">
+  <div class="d-flex justify-content-between align-items-center text-white">
+    <span class="text-uppercase">{{ trackActivity.name }}</span>
+    <span class="text-uppercase">{{ trackActivity.date | date:'mm:ss' }}</span>
+    <div>
+      <span class="badge badge-pill bg-secondary" *ngIf="trackActivity.duration > 0">
+        {{ trackActivity.duration }} minutos
+      </span>
+      <span class="badge badge-pill bg-secondary" *ngIf="trackActivity.laps > 0">{{ trackActivity.laps }} vueltas</span>
+    </div>
+  </div>
+
+  <button type="buttom" class="btn btn-primary mt-4" (click)="onImportClick()">Importar tiempos</button>
+</div>

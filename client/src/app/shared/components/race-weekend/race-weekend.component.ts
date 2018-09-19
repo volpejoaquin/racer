@@ -19,8 +19,7 @@ import {
 })
 export class RaceWeekendComponent implements OnInit, OnChanges {
   @Input() raceWeekend: RaceWeekend;
-
-  private selectedTrackActivity: TrackActivity;
+  selectedTrackActivity: TrackActivity;
 
   ngOnInit() {
   }

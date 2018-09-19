@@ -22,6 +22,7 @@ export interface TrackActivity {
   // Optionals
   // Relationships
   race_weekend?: RaceWeekend;
+  race_participants_track_activities: RaceParticipantTrackActivity[];
 }
 
 export interface TrackPartialLap {
@@ -38,7 +39,6 @@ export enum RaceParticipantTrackActivityState {
 export interface RaceParticipantTrackActivity {
   // Relationships
   state: RaceParticipantTrackActivityState,
-  track_activity: TrackActivity;
   race_participant: RaceParticipant;
   laps: TrackLap[];
   laps_count: number;

@@ -21,12 +21,8 @@ import {
 // dummy data
 import {
   TRACK_ACTIVITY,
-  REF_LAP,
-  EMPTY_RACE_PARTICIPANT_TRACK_ACTIVITY
+  REF_LAP
 } from '../../../shared/dummy';
-
-const DUMMY_TRACK_ACTIVITYES = [];
-lodash.times(40, () => { DUMMY_TRACK_ACTIVITYES.push(lodash.clone(EMPTY_RACE_PARTICIPANT_TRACK_ACTIVITY)) });
 
 @Component({
   selector: 'racer-timing-home',
@@ -35,7 +31,7 @@ lodash.times(40, () => { DUMMY_TRACK_ACTIVITYES.push(lodash.clone(EMPTY_RACE_PAR
 })
 export class TimingHomeComponent implements OnInit {
   trackActivity: TrackActivity = TRACK_ACTIVITY;
-  trackActivities: RaceParticipantTrackActivity[] = DUMMY_TRACK_ACTIVITYES;
+  trackActivities: RaceParticipantTrackActivity[] = [];
   bestTrackActivity: RaceParticipantTrackActivity = null;
   bestLap: TrackLap = REF_LAP;
 
