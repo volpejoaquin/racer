@@ -3,6 +3,7 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 // libs
 import * as lodash from 'lodash';
+import * as XLSX from 'xlsx';
 
 // models
 import {
@@ -34,7 +35,7 @@ export class TrackActivityComponent implements OnInit, OnChanges {
     const raceParticipantTrackActivities: RaceParticipantTrackActivity[] = [];
 
     lodash.times(40, () => {
-      raceParticipantTrackActivities.push(lodash.clone(RACE_PARTICIPANT_TRACK_ACTIVITY_EMPTY_SAMPLE))
+      raceParticipantTrackActivities.push(lodash.clone(RACE_PARTICIPANT_TRACK_ACTIVITY_EMPTY_SAMPLE));
     });
 
     this.trackActivity.race_participants_track_activities = raceParticipantTrackActivities;

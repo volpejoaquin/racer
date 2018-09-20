@@ -1,5 +1,6 @@
 // angular
 import { Component, OnInit, HostListener } from '@angular/core';
+import { Store } from '@ngrx/store';
 
 // libs
 import * as lodash from 'lodash';
@@ -8,6 +9,7 @@ import * as lodash from 'lodash';
 import { SocketService } from '../../../core/service';
 
 // models
+import { AppState } from './../../../app-state';
 import {
   TrackLap,
   TrackActivity,
@@ -20,7 +22,6 @@ import {
 
 // dummy data
 import {
-  TRACK_ACTIVITY,
   REF_LAP
 } from '../../../shared/dummy';
 
@@ -30,8 +31,8 @@ import {
   styleUrls: ['./timing-home.component.scss']
 })
 export class TimingHomeComponent implements OnInit {
-  trackActivity: TrackActivity = TRACK_ACTIVITY;
-  trackActivities: RaceParticipantTrackActivity[] = [];
+  trackActivity: TrackActivity;
+  raceParticipantTrackActivities: RaceParticipantTrackActivity[] = [];
   bestTrackActivity: RaceParticipantTrackActivity = null;
   bestLap: TrackLap = REF_LAP;
 
@@ -54,7 +55,13 @@ export class TimingHomeComponent implements OnInit {
     localStorage.setItem('currentViewNumber', '' + this.currentViewNumber);
   }
 
-  constructor(private socketService: SocketService) { }
+  constructor(private socketService: SocketService,
+    store: Store<AppState>) {
+    store.select('selected_track_activity').subscribe((tActivity: TrackActivity) => {
+      this.trackActivity = tActivity;
+      this.raceParticipantTrackActivities = tActivity.race_participants_track_activities;
+    });
+  }
 
   ngOnInit(): void {
     this.initIoConnection();
@@ -134,23 +141,23 @@ export class TimingHomeComponent implements OnInit {
       default:
         // console.log('Event: ' + event, data);
 
-        const currentObjectIndex = lodash.findIndex(this.trackActivities, (value) => {
+        const currentObjectIndex = lodash.findIndex(this.raceParticipantTrackActivities, (value) => {
           return !value.race_participant || value.race_participant.number === data.race_participant.number;
         });
 
         if (currentObjectIndex >= 0) {
-          this.trackActivities[currentObjectIndex] = data;
+          this.raceParticipantTrackActivities[currentObjectIndex] = data;
         } else {
-          this.trackActivities.push(data);
+          this.raceParticipantTrackActivities.push(data);
         }
 
-        this.trackActivities = lodash.orderBy(this.trackActivities, 'best_lap.time');
+        this.raceParticipantTrackActivities = lodash.orderBy(this.raceParticipantTrackActivities, 'best_lap.time');
 
         // Set best lap
-        if (this.trackActivities && this.trackActivities.length > 0 &&
-          this.trackActivities[0].best_lap && this.trackActivities[0].best_lap.time) {
-          this.bestTrackActivity = this.trackActivities[0];
-          this.bestLap = this.trackActivities[0].best_lap;
+        if (this.raceParticipantTrackActivities && this.raceParticipantTrackActivities.length > 0 &&
+          this.raceParticipantTrackActivities[0].best_lap && this.raceParticipantTrackActivities[0].best_lap.time) {
+          this.bestTrackActivity = this.raceParticipantTrackActivities[0];
+          this.bestLap = this.raceParticipantTrackActivities[0].best_lap;
         }
         break;
     }

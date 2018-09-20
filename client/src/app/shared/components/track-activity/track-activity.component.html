@@ -10,5 +10,17 @@
     </div>
   </div>
 
+  <div class="mt-4" *ngIf="trackActivity.race_participants_track_activities">
+    <span class="text-white">{{ trackActivity.race_participants_track_activities.length }} participantes</span>
+  </div>
+
   <button type="buttom" class="btn btn-primary mt-4" (click)="onImportClick()">Importar tiempos</button>
+
+  <table class="sjs-table">
+    <tr *ngFor="let row of data">
+      <td *ngFor="let val of row">
+        {{val}}
+      </td>
+    </tr>
+  </table>
 </div>
