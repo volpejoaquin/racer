@@ -1,0 +1,29 @@
+FINAL - TURISMO PISTA CLASE 2          
+SAN LUIS                                           
+1  29  MELLI LUIGI              CORSA           15     26;55,937             
+2  9   DI BELLA SEBASTIAN       CORSA           15     26;56,204        0,267
+3  4   CERRETTI RENZO           KA              15     26;56,734        0,797
+4  5   BULICH NICOLAS           CELTA           15     26;57,071        1,134
+5  34  GARRO LUCAS              CORSA           15     27;05,757        9,820
+6  13  ANGELI FABRIZIO          KA              15     27;06,430       10,493
+7  48  LESTON MARTIN            CELTA           15     27;11,297       15,360
+8  19  SCATENA FABRICIO         KA              15     27;11,330       15,393
+9  26  ARAMBURU TOMAS           CELTA           15     27;13,513       17,576
+10 21  VAZQUEZ PABLO            CORSA           15     27;13,521       17,584
+11 57  LECCE JUAN               FORD KA         15     27;13,678       17,741
+12 119 ROJAS NICOLAS            CELTA           15     27;13,936       17,999
+13 56  BATTINI ELIAS            CORSA           15     27;23,008       27,071
+14 90  ISOLDI STEFANO           CORSA           15     27;23,119       27,182
+15 50  ARGUISSAIN RUBEN         CORSA           15     27;28,995       33,058
+16 59  SINTIOLO JUSTO           KA              15     27;29,242       33,305
+17 60  MORENO EDUARDO           CELTA           15     27;30,865       34,928
+18 55  SANCHEZ WILLIAM          CORSA           15     27;33,509       37,572
+19 112 GRINOVERO JONATHAN       CELTA           15     27;54,898       58,961
+20 122 FERNANDEZ MATIAS         CORSA           15     27;55,831       59,894
+21 10  GRINOVERO FAVIO          CORSA           15     28;08,316     1;12,379
+22 73  ARRATE JOSE L.           CORSA           13     24;29,664    24;29,664
+23 18  ETCHEVESTE YAIR          CORSA           12     24;47,581    24;47,581
+24 62  MEZA CAMPOS FACUNDO      CORSA           7      12;45,228    12;45,228
+25 40  FAIJA LUIS               CORSA           3       5;51,782     5;51,782
+26 14  GIL DANILO               CORSA           2       4;11,069     4;11,069
+27 0   STREITEMBERGER PABLO     CORSA           0          0,000        0,000
