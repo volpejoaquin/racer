@@ -5,15 +5,15 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 // models
 import {
-  TrackActivity,
-  RaceParticipantTrackActivity
+  TrackActivity
 } from '../../../shared/model';
 
 // helpers
 import {
   FileReaderHelper,
   ImportTimesHelper,
-  LogHelper
+  LogHelper,
+  TimingHelper
 } from './../../helpers/';
 
 // dummy data
@@ -29,6 +29,9 @@ import {
 export class TrackActivityComponent implements OnInit, OnChanges {
   @Input() trackActivity: TrackActivity;
   data: any;
+
+  private importHelper = new ImportTimesHelper();
+  private timingHelper = new TimingHelper();
 
   ngOnInit() {
     // TODO: REMOVE THIS
@@ -52,8 +55,6 @@ export class TrackActivityComponent implements OnInit, OnChanges {
   }
 
   onImportClick(evt: any) {
-    return;
-
     /* wire up file reader */
     const target: DataTransfer = <DataTransfer>(evt.target);
     if (! target.files || target.files.length !== 1) {
@@ -68,8 +69,8 @@ export class TrackActivityComponent implements OnInit, OnChanges {
   }
 
   private importXlsFile(content: string) {
-    const importHelper = new ImportTimesHelper();
+    this.trackActivity.race_participants_track_activities = this.importHelper.importCDAData(content);
 
-    this.trackActivity.race_participants_track_activities = importHelper.importCDAData(content);
+    this.trackActivity.best_lap = this.timingHelper.getTrackActivityBestLap(this.trackActivity);
   }
 }

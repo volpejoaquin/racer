@@ -22,7 +22,8 @@ export interface TrackActivity {
   // Optionals
   // Relationships
   race_weekend?: RaceWeekend;
-  race_participants_track_activities: RaceParticipantTrackActivity[];
+  race_participants_track_activities?: RaceParticipantTrackActivity[];
+  best_lap?: TrackLap;
 }
 
 export interface TrackPartialLap {
@@ -50,6 +51,7 @@ export interface TrackLap {
   // Simple
   time: number;
   ref_lap: boolean;
+  partial_lap: boolean;
   // Relationships
   partials: TrackPartialLap[];
 }

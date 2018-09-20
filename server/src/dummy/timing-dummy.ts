@@ -192,6 +192,7 @@ export class TimingDummy {
     const lap: TrackLap = {
       time: null,
       ref_lap: false,
+      partial_lap: true,
       partials: []
     };
     
@@ -236,6 +237,7 @@ export class TimingDummy {
       const lap: TrackLap = {
         time: null,
         ref_lap: false,
+        partial_lap: true,
         partials: []
       };
       

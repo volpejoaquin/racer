@@ -1,11 +1,17 @@
 // angular
 import { Component, Input, OnChanges } from '@angular/core';
 
+// libs
+import * as lodash from 'lodash';
+
 // models
 import {
   TrackLap,
   TrackPartialLap
 } from '../../../shared/model/';
+
+// helpers
+import { TimingHelper } from '../../helpers';
 
 @Component({
   selector: 'racer-lap-time',
@@ -21,55 +27,35 @@ export class LapTimeComponent implements OnChanges {
   gap;
   poleGap;
 
+  private timingHelper = new TimingHelper();
+
   constructor() { }
 
   ngOnChanges() {
     if (this.lap && this.lap.partials && this.lap.partials.length > 0) {
-      let lapTime = this.lap.time;
+      const lap = lodash.clone(this.lap);
+      let lapTime = lap.time;
       const isPartialLap = !lapTime;
-      let partialCount = isPartialLap ? 0 : this.lap.partials.length;
 
       // Sum partials
       if (isPartialLap) {
         lapTime = 0;
 
-        this.lap.partials.forEach((partial: TrackPartialLap) => {
+        lap.partials.forEach((partial: TrackPartialLap) => {
           lapTime += partial.time;
-          partialCount++;
-        })
+        });
+
+        lap.time = lapTime;
       }
 
+      // TODO: Use timing helper
       if (this.bestLap) {
-        let bestLapTime = this.bestLap.time;
-
-        // Sum partials
-        if (!bestLapTime || isPartialLap) {
-          bestLapTime = 0;
-
-          let partial;
-          for (let index = 0; index < partialCount; index++) {
-            partial = this.bestLap.partials[index];
-            bestLapTime += partial.time;
-          }
-        }
-        this.gap = lapTime - bestLapTime;
+        this.gap = this.timingHelper.getTrackLapGap(lap, this.bestLap);
       }
 
+      // TODO: Use timing helper
       if (this.poleLap) {
-        let poleLapTime = this.poleLap.time;
-
-        // Sum partials
-        if (!poleLapTime || isPartialLap) {
-          poleLapTime = 0;
-
-          let partial;
-          for (let index = 0; index < partialCount; index++) {
-            partial = this.poleLap.partials[index];
-            poleLapTime += partial.time;
-          }
-        }
-
-        this.poleGap = lapTime - poleLapTime;
+        this.poleGap = this.timingHelper.getTrackLapGap(lap, this.poleLap);
       } else {
         this.poleGap = this.gap;
       }

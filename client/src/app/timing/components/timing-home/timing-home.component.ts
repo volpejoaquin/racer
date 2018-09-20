@@ -31,10 +31,10 @@ import {
   styleUrls: ['./timing-home.component.scss']
 })
 export class TimingHomeComponent implements OnInit {
-  trackActivity: TrackActivity;
+  trackActivity: TrackActivity = null;
   raceParticipantTrackActivities: RaceParticipantTrackActivity[] = [];
   bestTrackActivity: RaceParticipantTrackActivity = null;
-  bestLap: TrackLap = REF_LAP;
+  bestLap: TrackLap = null;
 
   currentViewNumber = parseInt(localStorage.getItem('currentViewNumber'), 10) || 0;
   viewsCount = 4;
@@ -60,6 +60,7 @@ export class TimingHomeComponent implements OnInit {
     store.select('selected_track_activity').subscribe((tActivity: TrackActivity) => {
       this.trackActivity = tActivity;
       this.raceParticipantTrackActivities = tActivity.race_participants_track_activities;
+      this.bestLap = tActivity.best_lap;
     });
   }
 

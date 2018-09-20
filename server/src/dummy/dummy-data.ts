@@ -162,6 +162,7 @@ export const LAP_PARTIALS_ESTIMATED_ERROR_MAX = [200, 400, 500, 450];
 export const REF_LAP: TrackLap = {
   time: REF_LAP_PARTIALS[0] + REF_LAP_PARTIALS[1] + REF_LAP_PARTIALS[2] + REF_LAP_PARTIALS[3],
   ref_lap: true,
+  partial_lap: false,
   partials: [
     {
       time: REF_LAP_PARTIALS[0],
