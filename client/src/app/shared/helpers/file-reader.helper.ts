@@ -6,8 +6,7 @@ export class FileReaderHelper {
   }
 
   convertXLSXToJson(file: any, onload: (e: any) => void) {
-    // this.readFile(file, (data: any) => {
-    this.readFileByUrl(file, (data: any) => { // TODO: REVIEW THIS
+    this.readFileByUrl(file, (data: any) => {
       if (!data) {
         onload(null);
         return;

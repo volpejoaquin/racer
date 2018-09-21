@@ -10,25 +10,5 @@
     </div>
   </div>
 
-  <div class="mt-4" *ngIf="trackActivity.race_participants_track_activities">
-    <span class="text-white">{{ trackActivity.race_participants_track_activities.length }} participantes</span>
-  </div>
-
-  <div class="input-group mb-3 mt-3">
-    <div class="input-group-prepend">
-      <button class="btn btn-primary" type="button" id="inputGroupFileAddon03" (click)="uploadTimes.click();">Subir</button>
-    </div>
-    <div class="custom-file">
-      <input type="file" class="custom-file-input" #uploadTimes aria-describedby="inputGroupFileAddon03" (change)="onImportClick($event)">
-      <label class="custom-file-label" for="inputGroupFile03">Importar tiempos</label>
-    </div>
-  </div>
-
-  <table class="sjs-table text-white">
-    <tr *ngFor="let row of data">
-      <td *ngFor="let val of row">
-        {{val}}
-      </td>
-    </tr>
-  </table>
+  <racer-track-activity-timing class="d-block mt-4" [trackActivity]="trackActivity"></racer-track-activity-timing>
 </div>

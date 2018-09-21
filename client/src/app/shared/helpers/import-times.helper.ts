@@ -41,7 +41,7 @@ export class ImportTimesHelper {
 
     let raceParticipantTrackActivities: any = {};
 
-    rows.forEach((row: []) => {
+    rows.forEach((row: any[]) => {
       // check if row is not empty
       if (!lodash.isEmpty(row)) {
         firstColValue = this.getRowValue(row, 0);
