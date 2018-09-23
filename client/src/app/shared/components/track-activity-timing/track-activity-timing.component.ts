@@ -28,7 +28,7 @@ import {
 })
 export class TrackActivityTimingComponent implements OnInit, OnChanges {
   @Input() trackActivity: TrackActivity;
-  fileUrl = 'assets/files/Final-Clase-2.xls';
+  fileUrl = 'assets/files/1ra-Clasi-Clase-3.xls';
 
   private readerHelper = new FileReaderHelper();
   private importHelper = new ImportTimesHelper();

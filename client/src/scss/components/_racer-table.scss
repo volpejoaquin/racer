@@ -1,5 +1,5 @@
 $colum-time-padding-left: 20px;
-$colum-lap-interval-padding-right: 120px;
+$colum-lap-interval-padding-right: 30px;
 
 $colum-participant-name-width: 220px;
 
@@ -20,8 +20,8 @@ $colum-participant-name-width: 220px;
     @include table-column-fixed(40px);
   }
 
-  .timing_table-column-participant_brand{
-    @include table-column-fixed(80px);
+  .timing_table-column-participant_brand {
+    @include table-column-fixed(60px);
   }
 
   .timing_table-column-pos,
@@ -35,7 +35,21 @@ $colum-participant-name-width: 220px;
 
   .timing_table-column-lap-diff,
   .timing_table-column-lap-interval {
-    @include table-column-fixed(80px);
+    @include table-column-fixed(70px);
+  }
+
+  thead {
+    .timing_table-column-lap-diff,
+    .timing_table-column-lap-interval {
+      text-align: center;
+    }
+  }
+  
+  tbody {
+    .timing_table-column-lap-diff,
+    .timing_table-column-lap-interval {
+      text-align: right;
+    }
   }
 
   .timing_table-column-lap-interval {
@@ -47,8 +61,4 @@ $colum-participant-name-width: 220px;
 
     padding-left: $colum-time-padding-left;
   }
-}
-
-.partials-per-lap_table {
-  
 }
