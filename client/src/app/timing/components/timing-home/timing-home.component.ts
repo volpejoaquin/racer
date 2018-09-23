@@ -1,3 +1,4 @@
+import { RACE_FINAL_DATA } from './../../../../../../server/src/dummy/race/race-final';
 // angular
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -32,9 +33,9 @@ import {
 })
 export class TimingHomeComponent implements OnInit {
   trackActivity: TrackActivity = null;
-  raceParticipantTrackActivities: RaceParticipantTrackActivity[] = [];
-  bestTrackActivity: RaceParticipantTrackActivity = null;
-  bestLap: TrackLap = null;
+  raceParticipantTrackActivities: RaceParticipantTrackActivity[] = RACE_FINAL_DATA;
+  bestTrackActivity: RaceParticipantTrackActivity = RACE_FINAL_DATA[0];
+  bestLap: TrackLap = RACE_FINAL_DATA[0].best_lap;
 
   currentViewNumber = parseInt(localStorage.getItem('currentViewNumber'), 10) || 0;
   viewsCount = 4;
@@ -57,11 +58,12 @@ export class TimingHomeComponent implements OnInit {
 
   constructor(private socketService: SocketService,
     store: Store<AppState>) {
-    store.select('selected_track_activity').subscribe((tActivity: TrackActivity) => {
-      this.trackActivity = tActivity;
-      this.raceParticipantTrackActivities = tActivity.race_participants_track_activities;
-      this.bestLap = tActivity.best_lap;
-    });
+      // TODO: REVERT THIS
+    // store.select('selected_track_activity').subscribe((tActivity: TrackActivity) => {
+    //   this.trackActivity = tActivity;
+    //   this.raceParticipantTrackActivities = tActivity.race_participants_track_activities;
+    //   this.bestLap = tActivity.best_lap;
+    // });
   }
 
   ngOnInit(): void {

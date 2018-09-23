@@ -79,6 +79,7 @@ export class ImportTimesHelper {
 
     this.logHelper.log('Finished !');
 
+    console.log(JSON.stringify(response));
     return response;
   }
 
@@ -157,7 +158,7 @@ export class ImportTimesHelper {
     }
 
     const trackLap: TrackLap = {
-      time: !isPartialLap ? partialsTotalTime : undefined,
+      time: !isPartialLap ? partialsTotalTime : 0,
       ref_lap: false,
       partial_lap: isPartialLap,
       partials: partials
