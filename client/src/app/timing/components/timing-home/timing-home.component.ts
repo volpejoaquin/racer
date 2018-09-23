@@ -33,9 +33,9 @@ import {
 })
 export class TimingHomeComponent implements OnInit {
   trackActivity: TrackActivity = TRACK_ACTIVITIES_SAMPLE[0];
-  raceParticipantTrackActivities: RaceParticipantTrackActivity[] = RACE_FINAL_DATA;
-  bestTrackActivity: RaceParticipantTrackActivity = RACE_FINAL_DATA[0];
-  bestLap: TrackLap = RACE_FINAL_DATA[0].best_lap;
+  raceParticipantTrackActivities: RaceParticipantTrackActivity[];
+  bestTrackActivity: RaceParticipantTrackActivity;
+  bestLap: TrackLap;
 
   currentViewNumber = parseInt(localStorage.getItem('currentViewNumber'), 10) || 0;
   viewsCount = 4;
@@ -64,6 +64,10 @@ export class TimingHomeComponent implements OnInit {
     //   this.raceParticipantTrackActivities = tActivity.race_participants_track_activities;
     //   this.bestLap = tActivity.best_lap;
     // });
+
+    this.raceParticipantTrackActivities = lodash.orderBy(RACE_FINAL_DATA, 'best_lap.time');
+    this.bestTrackActivity = this.raceParticipantTrackActivities[0];
+    this.bestLap = this.bestTrackActivity.best_lap;
   }
 
   ngOnInit(): void {
