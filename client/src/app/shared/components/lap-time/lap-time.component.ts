@@ -23,6 +23,7 @@ export class LapTimeComponent implements OnChanges {
   @Input() bestLap: TrackLap;
   @Input() poleLap: TrackLap;
   @Input() isRefLap = false;
+  @Input() showGap = true;
 
   gap;
   poleGap;

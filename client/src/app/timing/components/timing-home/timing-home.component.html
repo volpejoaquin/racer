@@ -5,7 +5,34 @@
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
       </ul>
-      <span class="navbar-text">
+      <div class="navbar-text mr-5" *ngIf="bestTrackActivity">
+        <span class="d-inline-block mr-5">
+          <small class="mr-2">POLE</small>
+          <span class="text-uppercase text-white">{{ bestTrackActivity.race_participant?.number }} {{ bestTrackActivity.race_participant?.driver.last_name }}</span>
+        </span>
+
+        <span class="d-inline-block ml-4">
+          <small class="mr-2">S1</small>
+          <racer-partial-lap-time class="d-inline-block" [partial]="bestLap.partials[0]" [polePartial]="bestLap.partials[0]" [isRefLap]="false"></racer-partial-lap-time>
+        </span>
+        <span class="d-inline-block ml-4">
+          <small class="mr-2">S2</small>
+          <racer-partial-lap-time class="d-inline-block" [partial]="bestLap.partials[1]" [polePartial]="bestLap.partials[1]" [isRefLap]="false"></racer-partial-lap-time>
+        </span>
+        <span class="d-inline-block ml-4">
+          <small class="mr-2">S3</small>
+          <racer-partial-lap-time class="d-inline-block" [partial]="bestLap.partials[2]" [polePartial]="bestLap.partials[2]" [isRefLap]="false"></racer-partial-lap-time>
+        </span>
+        <span class="d-inline-block ml-4 mr-5">
+          <small class="mr-2">S4</small>
+          <racer-partial-lap-time class="d-inline-block" [partial]="bestLap.partials[3]" [polePartial]="bestLap.partials[3]" [isRefLap]="false"></racer-partial-lap-time>
+        </span>
+        <span class="d-inline-block ml-5">
+          <small class="mr-2">TIEMPO</small>
+          <racer-lap-time class="d-inline-block" [lap]="bestLap" [poleLap]="bestLap" [isRefLap]="false"></racer-lap-time>
+        </span>
+      </div>
+      <span class="navbar-text d-none ml-5 mr-5">
         111 111 111
       </span>
     </div>
@@ -14,41 +41,30 @@
 
 <racer-leaderboard [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" *ngIf="currentViewNumber === 0"></racer-leaderboard>
 
-<div class="container-fluid" *ngIf="currentViewNumber === 1">
+<racer-best-partials-laps [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" *ngIf="currentViewNumber === 1"></racer-best-partials-laps>
+
+<div class="container-fluid">
   <div class="row mt-2">
-    <div class="col">
+    <div class="col-12" *ngIf="currentViewNumber === 2">
       <div class="row">
         <div class="col-6 mb-4" *ngFor="let trackActivity of raceParticipantTrackActivities; let trackActivityIndex = index;">
           <racer-partials-per-lap [trackActivity]="trackActivity" [bestLap]="bestLap" [title]="(trackActivityIndex + 1)"></racer-partials-per-lap>
         </div>
       </div>
     </div>
-  </div>
 
-
-  <div class="row no-gutters" *ngIf="currentViewNumber === 2">
-    <div class="col-12">
-      <h6 class="m-2 text-muted text-uppercase">Parciales</h6>
-
-      <racer-best-partials-laps [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap"></racer-best-partials-laps>
-    </div>
-  </div>
-
-  <div class="row no-gutters" *ngIf="currentViewNumber === 3">
-    <div class="col-12">
-      <h6 class="m-2 text-muted text-uppercase">Mejores parciales</h6>
-
-      <div class="row justify-content-center">
-        <div class="col-auto">
+    <div class="col-12" *ngIf="currentViewNumber === 3">
+      <div class="row">
+        <div class="col">
           <racer-best-per-partials [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" [partialIndex]="0"></racer-best-per-partials>
         </div>
-        <div class="col-auto">
+        <div class="col">
           <racer-best-per-partials [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" [partialIndex]="1"></racer-best-per-partials>
         </div>
-        <div class="col-auto">
+        <div class="col">
           <racer-best-per-partials [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" [partialIndex]="2"></racer-best-per-partials>
         </div>
-        <div class="col-auto">
+        <div class="col">
           <racer-best-per-partials [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" [partialIndex]="3"></racer-best-per-partials>
         </div>
       </div>
