@@ -1,4 +1,3 @@
-import { RACE_FINAL_DATA } from './../../../../../../server/src/dummy/race/race-final';
 // angular
 import { Component, OnInit, HostListener } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -23,7 +22,8 @@ import {
 
 // dummy data
 import {
-  REF_LAP
+  TRACK_ACTIVITIES_SAMPLE,
+  RACE_FINAL_DATA
 } from '../../../shared/dummy';
 
 @Component({
@@ -32,7 +32,7 @@ import {
   styleUrls: ['./timing-home.component.scss']
 })
 export class TimingHomeComponent implements OnInit {
-  trackActivity: TrackActivity = null;
+  trackActivity: TrackActivity = TRACK_ACTIVITIES_SAMPLE[0];
   raceParticipantTrackActivities: RaceParticipantTrackActivity[] = RACE_FINAL_DATA;
   bestTrackActivity: RaceParticipantTrackActivity = RACE_FINAL_DATA[0];
   bestLap: TrackLap = RACE_FINAL_DATA[0].best_lap;

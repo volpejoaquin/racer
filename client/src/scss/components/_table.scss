@@ -1,0 +1,46 @@
+$colum-time-padding-left: 20px;
+$colum-lap-interval-padding-right: 50px;
+$colum-participant-name-width: 250px;
+
+.racer_table {
+  thead th {
+    font-weight: normal;
+    color: $secondary;
+    font-size: 0.8rem;
+  }
+
+  .timing_table-column-pos,
+  .timing_table-column-car,
+  .timing_table-column-participant_brand,
+  .timing_table-column-laps {
+    @include table-column-fixed(40px);
+  }
+
+  .timing_table-column-participant_brand{
+    @include table-column-fixed(80px);
+  }
+
+  .timing_table-column-pos,
+  .timing_table-column-car {
+    text-align: center;
+  }
+  
+  .timing_table-column-participant_name {
+    @include table-column-fixed($colum-participant-name-width);
+  }
+
+  .timing_table-column-lap-diff,
+  .timing_table-column-lap-interval {
+    @include table-column-fixed(80px);
+  }
+
+  .timing_table-column-lap-interval {
+    padding-right: $colum-lap-interval-padding-right;
+  }
+
+  .timing_table-column-lap-time {
+    @include table-column-fixed(100px);
+
+    padding-left: $colum-time-padding-left;
+  }
+}

@@ -6,5 +6,18 @@
 // Import bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Mixins
+@import 'mixins/table';
+  
 // Components
 @import 'components/line-box';
+@import 'components/table';
+
+// TODO: REVIEW THIS
+.badge {
+  display: none !important;
+}
+
+.app-content {
+  min-height: 1000px;
+}

@@ -4,17 +4,43 @@
 
 $headings-font-family: Nunito;
 
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #aaaaaa !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #262626; // 38, 38, 38
+$gray-900: #202020; // 32, 32, 32
+$black:    #000 !default;
+
 $primary: #0F81C7;
-$secondary: #3b4149;
+$secondary: $gray-500;
 $success: #28A745;
 $danger: #FF304F;
 $info: #06648C;
 $warning: #0DE2EA;
 $light: #ececec;
-$dark: #2f353d;
+$dark: $gray-900;
+
+$body-bg: $gray-900;
+$body-color: $white;
 
 $spacer: 0.7rem;
 
 $border-width: 1px;
 
 $btn-border-radius: .25rem;
+
+// Small view
+$font-size-base: .90rem;
+$grid-gutter-width: 20px;
+
+// table
+$table-border-width: 0;
+$table-cell-padding: .65rem;
+$table-cell-padding-sm: .35rem .2rem;
+
+$table-accent-bg: $gray-800;
