@@ -1,55 +1,51 @@
-<div class="card bg-transparent border-dark text-white rounded-0" *ngIf="trackActivity && trackActivity.race_participant">
-  <div class="card-body pt-0 pb-0">
-    <h5 class="card-title text-muted text-uppercase">
-      {{ title }}
-    </h5>
-    <h6 class="card-subtitle mb-2 text-white text-uppercase">
-      <span class="border-right pr-2 mr-2">
-        {{ trackActivity.race_participant?.number }} {{ trackActivity.race_participant?.driver.last_name }} {{ trackActivity.race_participant?.driver.name }}
-      </span>
-      <small class="text-muted" [ngPlural]="trackActivity.laps_count">
-        <ng-template ngPluralCase="=0">first lap</ng-template>
-        <ng-template ngPluralCase="=1">{{ trackActivity.laps_count }} lap</ng-template>
-        <ng-template ngPluralCase="other">{{ trackActivity.laps_count }} laps</ng-template>
-      </small>
-    </h6>
-
-    <table class="table table-striped table-dark table-sm">
-      <thead>
-        <tr>
-          <!-- <th scope="col">P</th> --> <!-- TODO: Add position reference for that lap -->
-          <th scope="col">L</th>
-          <th scope="col" class="column_partial-lap-time">S1</th>
-          <th scope="col" class="column_partial-lap-time">S2</th>
-          <th scope="col" class="column_partial-lap-time">S3</th>
-          <th scope="col" class="column_partial-lap-time">S4</th>
-          <th scope="col" class="column_lap-time">TIEMPO</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let lap of trackActivity.laps; let lapIndex = index;">
-          <td>
-            <span [class.text-info]="trackActivity.best_lap?.time && lap.time === trackActivity.best_lap?.time">
-              {{ lapIndex + 1 }}
-            </span>
-          </td>
-          <td class="column_partial-lap-time">
-            <racer-partial-lap-time [partial]="lap.partials[0]" [bestPartial]="trackActivity.best_lap?.partials[0]" [polePartial]="bestLap?.partials[0]" [isRefLap]="false"></racer-partial-lap-time>
-          </td>
-          <td class="column_partial-lap-time">
-            <racer-partial-lap-time [partial]="lap.partials[1]" [bestPartial]="trackActivity.best_lap?.partials[1]" [polePartial]="bestLap?.partials[1]" [isRefLap]="false"></racer-partial-lap-time>
-          </td>
-          <td class="column_partial-lap-time">
-            <racer-partial-lap-time [partial]="lap.partials[2]" [bestPartial]="trackActivity.best_lap?.partials[2]" [polePartial]="bestLap?.partials[2]" [isRefLap]="false"></racer-partial-lap-time>
-          </td>
-          <td class="column_partial-lap-time">
-            <racer-partial-lap-time [partial]="lap.partials[3]" [bestPartial]="trackActivity.best_lap?.partials[3]" [polePartial]="bestLap?.partials[3]" [isRefLap]="false"></racer-partial-lap-time>
-          </td>
-          <td class="column_lap-time">
-            <racer-lap-time [lap]="lap" [bestLap]="trackActivity.best_lap" [poleLap]="bestLap" [isRefLap]="false"></racer-lap-time>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<div class="" *ngIf="trackActivity && trackActivity.race_participant">
+  <div id="header">
+    <span class="text-normal">{{ trackActivity.race_participant?.number }}</span>
+    <span class="text-uppercase"> {{ trackActivity.race_participant?.driver?.last_name }}</span>
+    <span class="text-normal pr-2 mr-2"> {{ trackActivity.race_participant?.driver?.name }}</span>
+    <small class="border-right border-left pl-2 ml-2 pr-2 mr-2 text-muted" [ngPlural]="trackActivity.laps_count">
+      <ng-template ngPluralCase="=0">Primera vuelta</ng-template>
+      <ng-template ngPluralCase="=1">Vuelta {{ trackActivity.laps_count }}</ng-template>
+      <ng-template ngPluralCase="other">{{ trackActivity.laps_count }} vueltas</ng-template>
+    </small>
+    <small class="text-muted">{{ title }} posición</small>
   </div>
+
+  <table class="table table-striped table-sm racer_table partials-per-lap_table">
+    <thead>
+      <tr>
+        <!-- <th scope="col">P</th> --> <!-- TODO: Add position reference for that lap -->
+        <th scope="col" class="timing_table-head-column timing_table-column-pos">V</th>
+        <th scope="col" class="timing_table-head-column timing_table-column-lap-sector">S1</th>
+        <th scope="col" class="timing_table-head-column timing_table-column-lap-sector">S2</th>
+        <th scope="col" class="timing_table-head-column timing_table-column-lap-sector">S3</th>
+        <th scope="col" class="timing_table-head-column timing_table-column-lap-sector">S4</th>
+        <th scope="col" class="timing_table-head-column timing_table-column-lap-time">TIEMPO</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let lap of trackActivity.laps; let lapIndex = index;">
+        <td class="timing_table-column-pos">
+          <span [class.text-info]="trackActivity.best_lap?.time && lap.time === trackActivity.best_lap?.time">
+            {{ lapIndex + 1 }}
+          </span>
+        </td>
+        <td class="timing_table-column-lap-sector">
+          <racer-partial-lap-time [partial]="lap.partials[0]" [bestPartial]="trackActivity.best_lap?.partials[0]" [polePartial]="bestLap?.partials[0]" [isRefLap]="false"></racer-partial-lap-time>
+        </td>
+        <td class="timing_table-column-lap-sector">
+          <racer-partial-lap-time [partial]="lap.partials[1]" [bestPartial]="trackActivity.best_lap?.partials[1]" [polePartial]="bestLap?.partials[1]" [isRefLap]="false"></racer-partial-lap-time>
+        </td>
+        <td class="timing_table-column-lap-sector">
+          <racer-partial-lap-time [partial]="lap.partials[2]" [bestPartial]="trackActivity.best_lap?.partials[2]" [polePartial]="bestLap?.partials[2]" [isRefLap]="false"></racer-partial-lap-time>
+        </td>
+        <td class="timing_table-column-lap-sector">
+          <racer-partial-lap-time [partial]="lap.partials[3]" [bestPartial]="trackActivity.best_lap?.partials[3]" [polePartial]="bestLap?.partials[3]" [isRefLap]="false"></racer-partial-lap-time>
+        </td>
+        <td class="timing_table-column-lap-time">
+          <racer-lap-time [lap]="lap" [bestLap]="trackActivity.best_lap" [poleLap]="bestLap" [isRefLap]="false"></racer-lap-time>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

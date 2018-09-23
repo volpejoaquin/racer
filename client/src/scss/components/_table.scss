@@ -9,7 +9,9 @@ $colum-participant-name-width: 220px;
     color: $secondary;
     font-size: 0.8rem;
   }
+}
 
+.leaderboard_table {
   .timing_table-column-pos,
   .timing_table-column-car,
   .timing_table-column-participant_brand,
@@ -44,4 +46,8 @@ $colum-participant-name-width: 220px;
 
     padding-left: $colum-time-padding-left;
   }
+}
+
+.partials-per-lap_table {
+  
 }

@@ -31,7 +31,7 @@ $body-color: $white;
 $spacer: 0.7rem;
 
 $border-width: 1px;
-
+$border-color: $secondary;
 $btn-border-radius: .25rem;
 
 // Small view
@@ -44,3 +44,10 @@ $table-cell-padding: .65rem;
 $table-cell-padding-sm: .35rem .2rem;
 
 $table-accent-bg: $gray-800;
+
+// badgets
+$badge-font-size: 75%;
+$badge-font-weight: normal;
+$badge-padding-y: 0.1em ;
+$badge-padding-x: 0.4em;
+// $badge-border-radius: $border-radius !default;
