@@ -2,7 +2,7 @@
 import { Action } from '@ngrx/store';
 
 export enum RaceWeekendActionTypes {
-  SelectRaceWeekend = '[APP] Select Track Activity'
+  SelectRaceWeekend = '[APP] Select Race Weekend'
 }
 
 export class SelectRaceWeekend implements Action {

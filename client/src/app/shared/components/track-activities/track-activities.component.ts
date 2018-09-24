@@ -2,7 +2,7 @@
 import { Component, Input, OnChanges } from '@angular/core';
 
 // libs
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 // modules
 import * as fromTiming from '../../../timing/reducers';
@@ -22,7 +22,11 @@ export class TrackActivitiesComponent implements OnChanges {
   @Input() trackActivities: TrackActivity[];
   selectedTrackActivity: TrackActivity;
 
-  constructor(private store: Store<fromTiming.State>) { }
+  constructor(private store: Store<fromTiming.State>) {
+    store.pipe(select(fromTiming.getSelectedTrackActivity)).subscribe((tActivity: TrackActivity) => {
+      this.selectedTrackActivity = tActivity;
+    });
+  }
 
   ngOnChanges() {
     // TODO: Scroll to selectedTrackActivity
@@ -33,8 +37,6 @@ export class TrackActivitiesComponent implements OnChanges {
   }
 
   private selectTrackActivity(trackActivity: TrackActivity) {
-    this.selectedTrackActivity = trackActivity;
-
     this.store.dispatch(new TrackActivityActions.SelectTrackActivity(trackActivity.id));
   }
 }

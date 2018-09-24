@@ -13,6 +13,7 @@ import { reducers } from './reducers';
 
 // components
 import { TIMING_COMPONENTS } from './components/';
+import { TIMING_CONTAINER_COMPONENTS } from './containers';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { TIMING_COMPONENTS } from './components/';
     StoreModule.forFeature('timing', reducers)
   ],
   declarations: [
-    ...TIMING_COMPONENTS
+    ...TIMING_COMPONENTS,
+    ...TIMING_CONTAINER_COMPONENTS
   ]
 })
 export class TimingModule { }

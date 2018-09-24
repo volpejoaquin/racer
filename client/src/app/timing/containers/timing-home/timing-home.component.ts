@@ -55,7 +55,7 @@ export class TimingHomeComponent implements OnInit {
   constructor(private socketService: SocketService,
     store: Store<fromTiming.State>) {
 
-    store.subscribe((state: any) => {
+    store.select('timing').subscribe((state: any) => {
       console.log(state);
       // // Check if selected track activity is set
       // if (state.selected_) {

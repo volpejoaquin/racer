@@ -1,7 +1,5 @@
 // libs
-import {
-  ActionReducerMap
-} from '@ngrx/store';
+import { ActionReducerMap, createSelector, createFeatureSelector } from '@ngrx/store';
 // import * as fromRouter from '@ngrx/router-store';
 
 // modules
@@ -22,26 +20,57 @@ export interface State extends fromRoot.State {
 export const reducers: ActionReducerMap<TimingState, any> = {
   raceWeekends: fromRaceWeekend.reducer,
   trackActivities: fromTrackActivity.reducer
-
-  // search: fromSearch.reducer,
-  // books: fromBooks.reducer,
-  // collection: fromCollection.reducer
-
-  // selectedRaceWeekendId: fromRaceWeekend.reducer,
-  // selectedTrackActivityId: fromTrackActivity.reducer
 };
 
 
-// export interface State {
-//   raceWeekends: RaceWeekendsState;
-//   trackActivities: TrackActivitiesState;
+export const getTimingState = createFeatureSelector<State, TimingState>('timing');
 
-//   selectedRaceWeekendId: fromRaceWeekend.State;
-//   selectedTrackActivityId: fromTrackActivity.State;
-// }
+export const getTrackActivitiesEntitiesState = createSelector(
+  getTimingState,
+  state => state.trackActivities
+);
 
-// export const reducers: ActionReducerMap<State> = {
-//   selectedRaceWeekend: fromRaceWeekend.reducer,
-//   selectedTrackActivity: fromTrackActivity.reducer
-// };
+export const getSelectedTrackActivityId = createSelector(
+  getTrackActivitiesEntitiesState,
+  fromTrackActivity.getSelectedId
+);
 
+export const {
+  selectIds: getTrackActivitiesIds,
+  selectEntities: getTrackActivitiesEntities,
+  selectAll: getAllTrackActivity,
+  selectTotal: getTotalTrackActivity,
+} = fromTrackActivity.adapter.getSelectors(getTrackActivitiesEntitiesState);
+
+export const getSelectedTrackActivity = createSelector(
+  getTrackActivitiesEntities,
+  getSelectedTrackActivityId,
+  (entities, selectedId) => {
+    return selectedId && entities[selectedId];
+  }
+);
+
+export const getRaceWeekendsEntitiesState = createSelector(
+  getTimingState,
+  state => state.raceWeekends
+);
+
+export const getSelectedRaceWeekendId = createSelector(
+  getRaceWeekendsEntitiesState,
+  fromRaceWeekend.getSelectedId
+);
+
+export const {
+  selectIds: getRaceWeekendsIds,
+  selectEntities: getRaceWeekendsEntities,
+  selectAll: getAllRaceWeekend,
+  selectTotal: getTotalRaceWeekend,
+} = fromRaceWeekend.adapter.getSelectors(getRaceWeekendsEntitiesState);
+
+export const getSelectedRaceWeekend = createSelector(
+  getRaceWeekendsEntities,
+  getSelectedRaceWeekendId,
+  (entities, selectedId) => {
+    return selectedId && entities[selectedId];
+  }
+);

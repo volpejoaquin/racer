@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // components
-import { TimingHomeComponent } from './components/timing-home/timing-home.component';
+import { TimingHomeComponent } from './containers/timing-home/timing-home.component';
 
 const routes: Routes = [
   {

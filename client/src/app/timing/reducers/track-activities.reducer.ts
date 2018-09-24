@@ -10,7 +10,7 @@ import {
 } from './../actions/';
 
 // dummy data
-import { RACE_WEEKEND } from '../../shared/dummy';
+import { TRACK_ACTIVITIES_SAMPLE } from '../../shared/dummy';
 
 export interface State extends EntityState<TrackActivity> {
   selectedTrackActivityId: number | null;
@@ -21,9 +21,11 @@ export const adapter: EntityAdapter<TrackActivity> = createEntityAdapter<TrackAc
   sortComparer: false,
 });
 
-export const initialState: State = adapter.getInitialState({
-  selectedTrackActivityId: null,
+export let initialState: State = adapter.getInitialState({
+  selectedTrackActivityId: 1,
 });
+
+initialState = adapter.addAll(TRACK_ACTIVITIES_SAMPLE, initialState); // TODO: REVIEW THIS
 
 export function reducer(
   state = initialState,
