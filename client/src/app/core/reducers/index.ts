@@ -3,14 +3,18 @@ import {
   ActionReducerMap,
   ActionReducer,
   MetaReducer,
+  createFeatureSelector,
+  createSelector
 } from '@ngrx/store';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 // import * as fromRouter from '@ngrx/router-store';
 
 // modules
-import * as fromLayout from '../core/reducers/layout.reducer';
+import * as fromUI from './ui.reducer';
+import * as fromLayout from './layout.reducer';
 
 export interface State {
+  ui: fromUI.State;
   layout: fromLayout.State;
 }
 
@@ -29,6 +33,7 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
 }
 
 export const reducers: ActionReducerMap<State, any> = {
+  ui: fromUI.reducer,
   layout: fromLayout.reducer
 };
 
@@ -40,3 +45,7 @@ export const reducers: ActionReducerMap<State, any> = {
 export const metaReducers: MetaReducer<State>[] =  !environment.production
   ? [logger]
   : []; // TODO: ADD storeFreeze
+
+export const getUIState = createFeatureSelector<fromUI.State>('ui');
+
+export const getSocketStatus = createSelector(getUIState, fromUI.getSocketStatus);

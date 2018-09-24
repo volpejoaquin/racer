@@ -17,7 +17,7 @@ import { DataAcquisitionModule } from './data-acquisition/data-acquisition.modul
 import { AppComponent } from './app.component';
 
 // recuders
-import { reducers, metaReducers } from './reducers';
+import { reducers, metaReducers } from './core/reducers';
 
 @NgModule({
   declarations: [

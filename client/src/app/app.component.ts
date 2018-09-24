@@ -20,13 +20,13 @@ export class AppComponent implements OnInit {
   constructor(private socketService: SocketService,
     private store: Store<fromTiming.State>) {
 
-    store.subscribe((state: any) => {
-      console.log(state);
-      // // Check if selected track activity is set
-      // if (state.selected_) {
-      //   this.loadTrackActivity(state.timing.selected_track_activity);
-      // }
-    });
+    // store.select('timing').subscribe((state: any) => {
+    //   console.log(state);
+    //   // // Check if selected track activity is set
+    //   // if (state.selected_) {
+    //   //   this.loadTrackActivity(state.timing.selected_track_activity);
+    //   // }
+    // });
   }
 
   ngOnInit(): void {

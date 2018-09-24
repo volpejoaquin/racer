@@ -1,6 +1,6 @@
 // angular
 import { Component, OnInit, HostListener } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 // libs
 import * as lodash from 'lodash';
@@ -36,6 +36,8 @@ export class TimingHomeComponent implements OnInit {
   currentViewNumber = parseInt(localStorage.getItem('currentViewNumber'), 10) || 0;
   viewsCount = 4;
 
+  private isLoading = false;
+
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     const keyCode = event.which || event.keyCode;
@@ -55,17 +57,19 @@ export class TimingHomeComponent implements OnInit {
   constructor(private socketService: SocketService,
     store: Store<fromTiming.State>) {
 
-    store.select('timing').subscribe((state: any) => {
-      console.log(state);
-      // // Check if selected track activity is set
-      // if (state.selected_) {
-      //   this.loadTrackActivity(state.timing.selected_track_activity);
-      // }
+    store.pipe(select(fromTiming.getSelectedTrackActivity)).subscribe((tActivity: TrackActivity) => {
+      this.isLoading = true;
+
+      this.loadTrackActivity(tActivity);
     });
   }
 
   ngOnInit(): void {
     this.initIoConnection();
+  }
+
+  isDataLoading() {
+    return this.isLoading;
   }
 
   private initIoConnection(): void {
@@ -170,6 +174,8 @@ export class TimingHomeComponent implements OnInit {
     if (this.trackActivity) {
       this.raceParticipantTrackActivities = lodash.orderBy(this.trackActivity.race_participants_track_activities, 'best_lap.time');
       this.bestLap = this.trackActivity.best_lap;
+
+      this.isLoading = false;
     }
   }
 }

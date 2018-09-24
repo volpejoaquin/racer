@@ -3,7 +3,7 @@ import { ActionReducerMap, createSelector, createFeatureSelector } from '@ngrx/s
 // import * as fromRouter from '@ngrx/router-store';
 
 // modules
-import * as fromRoot from '../../reducers';
+import * as fromRoot from '../../core/reducers';
 import * as fromRaceWeekend from './race-weekends.reducer';
 import * as fromTrackActivity from './track-activities.reducer';
 
@@ -21,7 +21,6 @@ export const reducers: ActionReducerMap<TimingState, any> = {
   raceWeekends: fromRaceWeekend.reducer,
   trackActivities: fromTrackActivity.reducer
 };
-
 
 export const getTimingState = createFeatureSelector<State, TimingState>('timing');
 
