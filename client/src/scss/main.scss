@@ -17,3 +17,19 @@
 .app-content {
   min-height: 1000px;
 }
+
+.connected {
+  color: $success;
+}
+
+.connected:after {
+  content: 'CONECTADO';
+}
+
+.disconnected {
+  color: $danger;
+}
+
+.disconnected:after {
+  content: 'DESCONECTADO';
+}

@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 @Injectable()
 export class SocketService {
 
-  private socket: SocketIOClient.Socket;
+  private socket: socketIo.Socket;
   connected$ = new ReplaySubject<boolean>(0);
 
   constructor() {
@@ -21,7 +21,7 @@ export class SocketService {
     // auto rejoin after reconnect mechanism
     this.connected$.subscribe(connected => {
       if (connected) {
-        this.socket.emit('join', {code});
+        this.socket.emit('join', { code });
       }
     });
   }

@@ -65,107 +65,11 @@ export class TimingHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.initIoConnection();
+    // this.initIoConnection();
   }
 
   isDataLoading() {
     return this.isLoading;
-  }
-
-  private initIoConnection(): void {
-    this.socketService.initSocket();
-
-    this.socketService.onEvent(BasicSocketEvent.CONNECT)
-      .subscribe((data: any) => {
-        this.onEvent(BasicSocketEvent.CONNECT, data);
-      });
-
-    this.socketService.onEvent(BasicSocketEvent.DISCONNECT)
-      .subscribe((data: any) => {
-        this.onEvent(BasicSocketEvent.DISCONNECT, data);
-      });
-
-    this.socketService.onEvent(TrackActivitySocketEvent.STARTED)
-      .subscribe((data: any) => {
-        this.onEvent(TrackActivitySocketEvent.STARTED, data);
-      });
-
-    this.socketService.onEvent(TrackActivitySocketEvent.CAUTION)
-      .subscribe((data: any) => {
-        this.onEvent(TrackActivitySocketEvent.CAUTION, data);
-      });
-
-    this.socketService.onEvent(TrackActivitySocketEvent.STOPPED)
-      .subscribe((data: any) => {
-        this.onEvent(TrackActivitySocketEvent.STOPPED, data);
-      });
-
-    this.socketService.onEvent(TrackActivitySocketEvent.FINISHED)
-      .subscribe((data: any) => {
-        this.onEvent(TrackActivitySocketEvent.STOPPED, data);
-      });
-
-    this.socketService.onEvent(TimingSocketEvent.GO_TO_TRACK)
-      .subscribe((data: any) => {
-        this.onEvent(TimingSocketEvent.GO_TO_TRACK, data);
-      });
-
-    this.socketService.onEvent(TimingSocketEvent.GO_TO_PIT)
-      .subscribe((data: any) => {
-        this.onEvent(TimingSocketEvent.GO_TO_PIT, data);
-      });
-
-    this.socketService.onEvent(TimingSocketEvent.PARTIAL_LAP_TIME)
-      .subscribe((data: any) => {
-        this.onEvent(TimingSocketEvent.PARTIAL_LAP_TIME, data);
-      });
-
-    this.socketService.onEvent(TimingSocketEvent.LAP_TIME)
-      .subscribe((data: any) => {
-        this.onEvent(TimingSocketEvent.LAP_TIME, data);
-      });
-  }
-
-  private onEvent(event: SocketEvent, data: any) {
-
-    console.log(event);
-
-    switch (event) {
-      case BasicSocketEvent.CONNECT:
-        // console.log('Event: connected', data);
-        break;
-      case BasicSocketEvent.DISCONNECT:
-        // console.log('Event: disconnected', data);
-        break;
-      case TrackActivitySocketEvent.STARTED:
-      case TrackActivitySocketEvent.CAUTION:
-      case TrackActivitySocketEvent.STOPPED:
-      case TrackActivitySocketEvent.FINISHED:
-        this.trackActivity = data;
-        break;
-      default:
-        // console.log('Event: ' + event, data);
-
-        const currentObjectIndex = lodash.findIndex(this.raceParticipantTrackActivities, (value) => {
-          return !value.race_participant || value.race_participant.number === data.race_participant.number;
-        });
-
-        if (currentObjectIndex >= 0) {
-          this.raceParticipantTrackActivities[currentObjectIndex] = data;
-        } else {
-          this.raceParticipantTrackActivities.push(data);
-        }
-
-        this.raceParticipantTrackActivities = lodash.orderBy(this.raceParticipantTrackActivities, 'best_lap.time');
-
-        // Set best lap
-        if (this.raceParticipantTrackActivities && this.raceParticipantTrackActivities.length > 0 &&
-          this.raceParticipantTrackActivities[0].best_lap && this.raceParticipantTrackActivities[0].best_lap.time) {
-          this.bestTrackActivity = this.raceParticipantTrackActivities[0];
-          this.bestLap = this.raceParticipantTrackActivities[0].best_lap;
-        }
-        break;
-    }
   }
 
   private loadTrackActivity(trackActivity: TrackActivity) {
@@ -178,4 +82,100 @@ export class TimingHomeComponent implements OnInit {
       this.isLoading = false;
     }
   }
+
+  // private initIoConnection(): void {
+  //   this.socketService.initSocket();
+
+  //   this.socketService.onEvent(BasicSocketEvent.CONNECT)
+  //     .subscribe((data: any) => {
+  //       this.onEvent(BasicSocketEvent.CONNECT, data);
+  //     });
+
+  //   this.socketService.onEvent(BasicSocketEvent.DISCONNECT)
+  //     .subscribe((data: any) => {
+  //       this.onEvent(BasicSocketEvent.DISCONNECT, data);
+  //     });
+
+  //   this.socketService.onEvent(TrackActivitySocketEvent.STARTED)
+  //     .subscribe((data: any) => {
+  //       this.onEvent(TrackActivitySocketEvent.STARTED, data);
+  //     });
+
+  //   this.socketService.onEvent(TrackActivitySocketEvent.CAUTION)
+  //     .subscribe((data: any) => {
+  //       this.onEvent(TrackActivitySocketEvent.CAUTION, data);
+  //     });
+
+  //   this.socketService.onEvent(TrackActivitySocketEvent.STOPPED)
+  //     .subscribe((data: any) => {
+  //       this.onEvent(TrackActivitySocketEvent.STOPPED, data);
+  //     });
+
+  //   this.socketService.onEvent(TrackActivitySocketEvent.FINISHED)
+  //     .subscribe((data: any) => {
+  //       this.onEvent(TrackActivitySocketEvent.STOPPED, data);
+  //     });
+
+  //   this.socketService.onEvent(TimingSocketEvent.GO_TO_TRACK)
+  //     .subscribe((data: any) => {
+  //       this.onEvent(TimingSocketEvent.GO_TO_TRACK, data);
+  //     });
+
+  //   this.socketService.onEvent(TimingSocketEvent.GO_TO_PIT)
+  //     .subscribe((data: any) => {
+  //       this.onEvent(TimingSocketEvent.GO_TO_PIT, data);
+  //     });
+
+  //   this.socketService.onEvent(TimingSocketEvent.PARTIAL_LAP_TIME)
+  //     .subscribe((data: any) => {
+  //       this.onEvent(TimingSocketEvent.PARTIAL_LAP_TIME, data);
+  //     });
+
+  //   this.socketService.onEvent(TimingSocketEvent.LAP_TIME)
+  //     .subscribe((data: any) => {
+  //       this.onEvent(TimingSocketEvent.LAP_TIME, data);
+  //     });
+  // }
+
+  // private onEvent(event: SocketEvent, data: any) {
+
+  //   console.log(event);
+
+  //   switch (event) {
+  //     case BasicSocketEvent.CONNECT:
+  //       // console.log('Event: connected', data);
+  //       break;
+  //     case BasicSocketEvent.DISCONNECT:
+  //       // console.log('Event: disconnected', data);
+  //       break;
+  //     case TrackActivitySocketEvent.STARTED:
+  //     case TrackActivitySocketEvent.CAUTION:
+  //     case TrackActivitySocketEvent.STOPPED:
+  //     case TrackActivitySocketEvent.FINISHED:
+  //       this.trackActivity = data;
+  //       break;
+  //     default:
+  //       // console.log('Event: ' + event, data);
+
+  //       const currentObjectIndex = lodash.findIndex(this.raceParticipantTrackActivities, (value) => {
+  //         return !value.race_participant || value.race_participant.number === data.race_participant.number;
+  //       });
+
+  //       if (currentObjectIndex >= 0) {
+  //         this.raceParticipantTrackActivities[currentObjectIndex] = data;
+  //       } else {
+  //         this.raceParticipantTrackActivities.push(data);
+  //       }
+
+  //       this.raceParticipantTrackActivities = lodash.orderBy(this.raceParticipantTrackActivities, 'best_lap.time');
+
+  //       // Set best lap
+  //       if (this.raceParticipantTrackActivities && this.raceParticipantTrackActivities.length > 0 &&
+  //         this.raceParticipantTrackActivities[0].best_lap && this.raceParticipantTrackActivities[0].best_lap.time) {
+  //         this.bestTrackActivity = this.raceParticipantTrackActivities[0];
+  //         this.bestLap = this.raceParticipantTrackActivities[0].best_lap;
+  //       }
+  //       break;
+  //   }
+  // }
 }

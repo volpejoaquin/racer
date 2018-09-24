@@ -1,6 +1,11 @@
 <div class="sticky-top timing-home_top_navbar">
   <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand text-uppercase" href="#">Racer</a>
+    <a class="navbar-brand text-uppercase text-muted" href="#">
+      <span *ngIf="currentViewNumber === 0">TIEMPOS</span>
+      <span *ngIf="currentViewNumber === 1">TIEMPOS PARCIALES</span>
+      <span *ngIf="currentViewNumber === 2">TIEMPOS POR VUELTA</span>
+      <span *ngIf="currentViewNumber === 3">MEJORES POR PARCIAL</span>
+    </a>
   
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">

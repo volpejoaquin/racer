@@ -54,12 +54,12 @@ export class TimingServer {
       console.log('Connected client on port %s.', this.port);
 
       // Simulate timing
-      const timingDummy = new TimingDummy(this.io);
-      timingDummy.start();
+      // const timingDummy = new TimingDummy(this.io);
+      // timingDummy.start();
 
       socket.on(BasicSocketEvent.DISCONNECT, () => {
         console.log('Client disconnected');
-        timingDummy.stop();
+        // timingDummy.stop();
       });
     });
   }

@@ -1,14 +1,19 @@
 // angular
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 // services
 import { SocketService } from './core/service/socket.service';
 
-// modules
+// store
+import * as fromRoot from './core/reducers/';
 import * as fromTiming from './timing/reducers/';
 import { SelectRaceWeekend } from './timing/actions/race-weekend.actions';
 import { SelectTrackActivity } from './timing/actions/track-activitiy.actions';
+import { UIActions } from './core/actions';
+
 
 @Component({
   selector: 'racer-root',
@@ -17,19 +22,23 @@ import { SelectTrackActivity } from './timing/actions/track-activitiy.actions';
 })
 export class AppComponent implements OnInit {
 
-  constructor(private socketService: SocketService,
-    private store: Store<fromTiming.State>) {
+  socketStatus$: Observable<string>;
 
-    // store.select('timing').subscribe((state: any) => {
-    //   console.log(state);
-    //   // // Check if selected track activity is set
-    //   // if (state.selected_) {
-    //   //   this.loadTrackActivity(state.timing.selected_track_activity);
-    //   // }
-    // });
+  constructor(private socket: SocketService,
+    private store: Store<fromTiming.State>) {
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+
+    this.socketStatus$ = this.store
+      .select(fromRoot.getSocketStatus)
+      .pipe(map(connected => connected ? 'connected' : 'disconnected'));
+
+    this.socket.connected$
+      .pipe(map(connected => new UIActions.SetSocketConnected(connected)))
+      .subscribe(this.store);
+
+    this.socket.join('11 11 11');
 
     this.store.dispatch(new SelectRaceWeekend(1));
 

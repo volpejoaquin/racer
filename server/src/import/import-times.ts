@@ -1,40 +1,40 @@
-// libs
-import * as fs from 'fs';
-import * as CsvReadableStream from  'csv-reader';
+// // libs
+// import * as fs from 'fs';
+// import * as CsvReadableStream from  'csv-reader';
 
-// models
-import { BaseImporter } from './base-import';
+// // models
+// import { BaseImporter } from './base-import';
 
-export class TimesImporter extends BaseImporter {
+// export class TimesImporter extends BaseImporter {
 
-  constructor(filePath: string, destPath: string) {
-    super(filePath, destPath);
+//   constructor(filePath: string, destPath: string) {
+//     super(filePath, destPath);
 
-    this.importFile();
-  }
+//     this.importFile();
+//   }
   
-  // private methods
-  private importFile(): void {
-    console.log('Importing file...');
+//   // private methods
+//   private importFile(): void {
+//     console.log('Importing file...');
     
-    if (!this.filePath) {
-      console.log('ERROR: INVALID FILE.');
-      return;
-    }
+//     if (!this.filePath) {
+//       console.log('ERROR: INVALID FILE.');
+//       return;
+//     }
 
-    const dummyFile = 'times.json';
+//     const dummyFile = 'times.json';
 
-    var inputStream = fs.createReadStream(this.filePath, 'utf8');
+//     var inputStream = fs.createReadStream(this.filePath, 'utf8');
  
-    inputStream
-      .pipe(CsvReadableStream({ parseNumbers: true, parseBooleans: true, trim: true }))
-      .on('data', function (row: any) {
-          console.log('A row arrived: ', row);
-      })
-      .on('end', function (data: any) {
-          console.log('No more rows!');
-      });
+//     inputStream
+//       .pipe(CsvReadableStream({ parseNumbers: true, parseBooleans: true, trim: true }))
+//       .on('data', function (row: any) {
+//           console.log('A row arrived: ', row);
+//       })
+//       .on('end', function (data: any) {
+//           console.log('No more rows!');
+//       });
 
-    console.log('Dummy file created: ' + dummyFile);
-  }
-}
+//     console.log('Dummy file created: ' + dummyFile);
+//   }
+// }
