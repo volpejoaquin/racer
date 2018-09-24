@@ -1,10 +1,11 @@
+import { BaseModel } from './base.model';
 import {
   Championship,
   CircuitVariant,
   TrackActivity
 } from './index';
 
-export interface RaceWeekend {
+export interface RaceWeekend extends BaseModel {
   name: string;
   // Relationships
   championship: Championship;

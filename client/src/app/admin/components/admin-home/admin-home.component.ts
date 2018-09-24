@@ -4,14 +4,13 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 // libs
 import { Store } from '@ngrx/store';
 
+// modules
+import * as fromTiming from './../../../timing/reducers/';
+
 // models
-import { AppState } from './../../../app-state';
 import {
   RaceWeekend
 } from '../../../shared/model';
-
-// actions
-import { SelectRaceweekend } from './../../../shared/actions/race-weekend.actions';
 
 @Component({
   selector: 'racer-admin-home',
@@ -21,9 +20,13 @@ import { SelectRaceweekend } from './../../../shared/actions/race-weekend.action
 export class AdminHomeComponent implements OnInit, OnChanges {
   raceWeekend: RaceWeekend;
 
-  constructor(store: Store<AppState>) {
-    store.select('selected_race_weekend').subscribe((rWeekend: RaceWeekend) => {
-      this.raceWeekend = rWeekend;
+  constructor(store: Store<fromTiming.State>) {
+    store.subscribe((state: any) => {
+      console.log(state);
+      // // Check if selected race weekend is set
+      // if (state.timing.selected_race_weekend) {
+      //   this.raceWeekend = state.timing.selected_race_weekend;
+      // }
     });
   }
 

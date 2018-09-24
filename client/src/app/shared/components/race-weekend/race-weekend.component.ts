@@ -4,8 +4,9 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
 // libs
 import { Store } from '@ngrx/store';
 
-// models
-import { AppState } from './../../../app-state';
+// modules
+import * as fromTiming from '../../../timing/reducers';
+
 import {
   RaceWeekend,
   TrackActivity
@@ -23,7 +24,7 @@ export class RaceWeekendComponent implements OnInit, OnChanges {
 
   selectedTrackActivity: TrackActivity;
 
-  constructor(store: Store<AppState>) {
+  constructor(store: Store<fromTiming.State>) {
     store.select('selected_track_activity').subscribe((tActivity: TrackActivity) => {
       this.selectedTrackActivity = tActivity;
     });
@@ -33,9 +34,5 @@ export class RaceWeekendComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-
-    if (this.raceWeekend) {
-      this.selectedTrackActivity = this.raceWeekend.track_activities[0];
-    }
   }
 }

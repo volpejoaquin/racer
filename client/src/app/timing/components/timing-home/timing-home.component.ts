@@ -5,11 +5,13 @@ import { Store } from '@ngrx/store';
 // libs
 import * as lodash from 'lodash';
 
+// modules
+import * as fromTiming from './../../reducers/';
+
 // services
 import { SocketService } from '../../../core/service';
 
 // models
-import { AppState } from './../../../app-state';
 import {
   TrackLap,
   TrackActivity,
@@ -20,19 +22,13 @@ import {
   TrackActivitySocketEvent
 } from '../../../shared/model/';
 
-// dummy data
-import {
-  TRACK_ACTIVITIES_SAMPLE,
-  RACE_FINAL_DATA
-} from '../../../shared/dummy';
-
 @Component({
   selector: 'racer-timing-home',
   templateUrl: './timing-home.component.html',
   styleUrls: ['./timing-home.component.scss']
 })
 export class TimingHomeComponent implements OnInit {
-  trackActivity: TrackActivity = TRACK_ACTIVITIES_SAMPLE[0];
+  trackActivity: TrackActivity;
   raceParticipantTrackActivities: RaceParticipantTrackActivity[];
   bestTrackActivity: RaceParticipantTrackActivity;
   bestLap: TrackLap;
@@ -57,17 +53,15 @@ export class TimingHomeComponent implements OnInit {
   }
 
   constructor(private socketService: SocketService,
-    store: Store<AppState>) {
-      // TODO: REVERT THIS
-    // store.select('selected_track_activity').subscribe((tActivity: TrackActivity) => {
-    //   this.trackActivity = tActivity;
-    //   this.raceParticipantTrackActivities = tActivity.race_participants_track_activities;
-    //   this.bestLap = tActivity.best_lap;
-    // });
+    store: Store<fromTiming.State>) {
 
-    this.raceParticipantTrackActivities = lodash.orderBy(RACE_FINAL_DATA, 'best_lap.time');
-    this.bestTrackActivity = this.raceParticipantTrackActivities[0];
-    this.bestLap = this.bestTrackActivity.best_lap;
+    store.subscribe((state: any) => {
+      console.log(state);
+      // // Check if selected track activity is set
+      // if (state.selected_) {
+      //   this.loadTrackActivity(state.timing.selected_track_activity);
+      // }
+    });
   }
 
   ngOnInit(): void {
@@ -167,6 +161,15 @@ export class TimingHomeComponent implements OnInit {
           this.bestLap = this.raceParticipantTrackActivities[0].best_lap;
         }
         break;
+    }
+  }
+
+  private loadTrackActivity(trackActivity: TrackActivity) {
+    this.trackActivity = trackActivity;
+
+    if (this.trackActivity) {
+      this.raceParticipantTrackActivities = lodash.orderBy(this.trackActivity.race_participants_track_activities, 'best_lap.time');
+      this.bestLap = this.trackActivity.best_lap;
     }
   }
 }

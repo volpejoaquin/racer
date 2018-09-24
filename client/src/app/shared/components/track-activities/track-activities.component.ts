@@ -4,14 +4,14 @@ import { Component, Input, OnChanges } from '@angular/core';
 // libs
 import { Store } from '@ngrx/store';
 
+// modules
+import * as fromTiming from '../../../timing/reducers';
+import { TrackActivityActions } from './../../../timing/actions';
+
 // models
-import { AppState } from './../../../app-state';
 import {
   TrackActivity
 } from '../../../shared/model/';
-
-// actions
-import { SelectTrackActivity } from '../../actions/track-activity.actions';
 
 @Component({
   selector: 'racer-track-activities',
@@ -22,14 +22,10 @@ export class TrackActivitiesComponent implements OnChanges {
   @Input() trackActivities: TrackActivity[];
   selectedTrackActivity: TrackActivity;
 
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<fromTiming.State>) { }
 
   ngOnChanges() {
     // TODO: Scroll to selectedTrackActivity
-
-    if (this.trackActivities && this.trackActivities.length > 0) {
-      this.selectTrackActivity(this.trackActivities[0]);
-    }
   }
 
   onSelectTrackActivity(trackActivity: TrackActivity) {
@@ -39,6 +35,6 @@ export class TrackActivitiesComponent implements OnChanges {
   private selectTrackActivity(trackActivity: TrackActivity) {
     this.selectedTrackActivity = trackActivity;
 
-    this.store.dispatch(new SelectTrackActivity(trackActivity));
+    this.store.dispatch(new TrackActivityActions.SelectTrackActivity(trackActivity.id));
   }
 }

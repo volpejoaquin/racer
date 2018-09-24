@@ -1,3 +1,4 @@
+import { BaseModel } from './base.model';
 import {
   RaceWeekend,
   RaceParticipant
@@ -11,7 +12,7 @@ export enum TrackActivityState {
   finished = 'finished'
 }
 
-export interface TrackActivity {
+export interface TrackActivity extends BaseModel {
   // Simple
   name: string;
   short_name: string;
@@ -26,7 +27,7 @@ export interface TrackActivity {
   best_lap?: TrackLap;
 }
 
-export interface TrackPartialLap {
+export interface TrackPartialLap extends BaseModel {
   // Simple
   time: number;
   sector: number;
@@ -37,7 +38,7 @@ export enum RaceParticipantTrackActivityState {
   on_pit = 'on_pit',
 }
 
-export interface RaceParticipantTrackActivity {
+export interface RaceParticipantTrackActivity extends BaseModel {
   // Relationships
   state: RaceParticipantTrackActivityState,
   race_participant: RaceParticipant;
@@ -47,7 +48,7 @@ export interface RaceParticipantTrackActivity {
   last_lap: TrackLap;
 }
 
-export interface TrackLap {
+export interface TrackLap extends BaseModel {
   // Simple
   time: number;
   ref_lap: boolean;

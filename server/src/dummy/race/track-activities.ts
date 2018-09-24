@@ -3,6 +3,7 @@ import {
   TrackActivity,
   TrackActivityState
 } from './../../model/track-activity.model';
+import { RACE_FINAL_DATA } from './race-final';
 
 export const TRACK_ACTIVITY_SAMPLE: TrackActivity = {
   name: 'Comunitarias 1 grupo "B"',
@@ -11,19 +12,12 @@ export const TRACK_ACTIVITY_SAMPLE: TrackActivity = {
   duration: 20,
   laps: 0,
   state: TrackActivityState.waiting,
-  race_participants_track_activities: []
+  race_participants_track_activities: RACE_FINAL_DATA,
+  best_lap: RACE_FINAL_DATA[0].best_lap
 };
 
 export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
-  {
-    name: 'Comunitarias 1 grupo "B"',
-    short_name: 'COM "B"',
-    date: '2018-10-12T00:10:50.000Z',
-    duration: 20,
-    laps: 0,
-    state: TrackActivityState.waiting,
-    race_participants_track_activities: []
-  },
+  TRACK_ACTIVITY_SAMPLE,
   {
     name: 'Comunitarias 1 grupo "A"',
     short_name: 'COM "A"',

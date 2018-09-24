@@ -1,22 +1,23 @@
+import { BaseModel } from './base.model';
 import { Championship } from './index';
 
-export interface Team {
+export interface Team extends BaseModel {
   // Simple
   name: string;
 }
 
-export interface Car {
+export interface Car extends BaseModel {
   // Simple
   name: string;
 }
 
-export interface Driver {
+export interface Driver extends BaseModel {
   // Simple
   name: string;
   last_name: string;
 }
 
-export interface RaceParticipant {
+export interface RaceParticipant extends BaseModel {
   // Relationships
   team: Team;
   car: Car;
