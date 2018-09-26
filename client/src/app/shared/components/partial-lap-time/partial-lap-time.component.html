@@ -1,6 +1,6 @@
 <div *ngIf="partial">
   <span
-    class="d-inline-block align-middle font-weight-normal"
+    class="d-inline-block align-middle font-weight-normal timing-partial-lap-time"
     [class.text-muted]="isRefLap"
     [class.text-success]="poleGap < 0"
     [class.text-info]="poleGap >= 0 && gap <= 0"
@@ -10,7 +10,7 @@
     {{ partial.time | partialLapTime  }}
   </span>
   <span
-    class="align-middle badge ml-2"
+    class="align-middle badge ml-2 timing-partial-lap-time-gap"
     [class.badge-success]="poleGap < 0"
     [class.badge-info]="poleGap >= 0 && gap <= 0"
     [class.badge-secondary]="poleGap > 0 && gap >= 0"

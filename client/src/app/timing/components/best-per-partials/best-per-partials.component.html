@@ -17,7 +17,7 @@
         </td>
         <td class="timing_table-column-car">
           {{ trackActivity.race_participant?.number }}
-          <span class="text-uppercase">{{ trackActivity.race_participant?.driver.last_name }}</span>
+          <span class="text-uppercase">{{ trackActivity.race_participant?.driver.last_name.slice(0, 3) }}</span>
         </td>
         <td class="timing_table-column-laps">
           <span class="text-muted">-</span>

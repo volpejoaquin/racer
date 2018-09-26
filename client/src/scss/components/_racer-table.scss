@@ -33,7 +33,12 @@ $colum-participant-name-width: 220px;
     @include table-column-fixed($colum-participant-name-width);
   }
 
-  .timing_table-column-lap-diff,
+  .timing_table-column-lap-diff {
+    @include table-column-fixed(130px);
+    padding-left: 20px;
+    padding-right: 70px;
+  }
+
   .timing_table-column-lap-interval {
     @include table-column-fixed(70px);
   }
@@ -63,6 +68,10 @@ $colum-participant-name-width: 220px;
   }
 }
 
+.timing-lap-time-gap,
+.timing-partial-lap-time-gap {
+  visibility: hidden;
+}
 
 // TODO: REVIEW THIS
 .timing_table-column-lap-diff {

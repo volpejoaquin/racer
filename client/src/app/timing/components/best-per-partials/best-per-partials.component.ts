@@ -90,7 +90,7 @@ export class BestPerPartialsComponent implements OnChanges {
           partial = lap.partials[this.partialIndex];
           partialTime = partial ? partial.time : 0;
 
-          if (partial && partialTime < bestPartialTime) {
+          if (partial && partialTime > 0 && partialTime < bestPartialTime) {
             bestPartialTime = partialTime;
             bestPartial = partial;
           }
