@@ -3,9 +3,13 @@ import {
   TrackActivity,
   TrackActivityState
 } from './../../model/track-activity.model';
-import { RACE_FINAL_DATA } from './race-final';
 
-export const TRACK_ACTIVITY_SAMPLE: TrackActivity = {
+// dummy data
+import { QUALY_SAMPLE } from './qualy';
+import { TP_C3_CAR_DIVISION } from './car-divisions';
+import { CIRCUIT_VARIANT_SAMPLE } from './circuit-variants';
+
+export const TP_C3_TRACK_ACTIVITY: TrackActivity = {
   id: 1,
   name: 'Comunitarias 1 grupo "B"',
   short_name: 'COM "B"',
@@ -13,12 +17,14 @@ export const TRACK_ACTIVITY_SAMPLE: TrackActivity = {
   duration: 20,
   laps: 0,
   state: TrackActivityState.waiting,
-  race_participants_track_activities: RACE_FINAL_DATA,
-  best_lap: RACE_FINAL_DATA[0].best_lap
+  race_participants_track_activities: QUALY_SAMPLE,
+  best_lap: QUALY_SAMPLE[0].best_lap,
+  car_division: TP_C3_CAR_DIVISION,
+  circuit_variant: CIRCUIT_VARIANT_SAMPLE
 };
 
-export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
-  TRACK_ACTIVITY_SAMPLE,
+export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
+  TP_C3_TRACK_ACTIVITY,
   {
     id: 2,
     name: 'Comunitarias 1 grupo "A"',
@@ -27,7 +33,9 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     duration: 20,
     laps: 0,
     state: TrackActivityState.waiting,
-    race_participants_track_activities: []
+    race_participants_track_activities: [],
+    car_division: TP_C3_CAR_DIVISION,
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE
   },
   {
     id: 3,
@@ -37,7 +45,9 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     duration: 20,
     laps: 0,
     state: TrackActivityState.waiting,
-    race_participants_track_activities: []
+    race_participants_track_activities: [],
+    car_division: TP_C3_CAR_DIVISION,
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE
   },
   {
     id: 4,
@@ -47,7 +57,9 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     duration: 20,
     laps: 0,
     state: TrackActivityState.waiting,
-    race_participants_track_activities: []
+    race_participants_track_activities: [],
+    car_division: TP_C3_CAR_DIVISION,
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE
   },
   {
     id: 5,
@@ -57,7 +69,9 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     duration: 20,
     laps: 0,
     state: TrackActivityState.waiting,
-    race_participants_track_activities: []
+    race_participants_track_activities: [],
+    car_division: TP_C3_CAR_DIVISION,
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE
   },
   {
     id: 6,
@@ -67,7 +81,9 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     duration: 20,
     laps: 0,
     state: TrackActivityState.waiting,
-    race_participants_track_activities: []
+    race_participants_track_activities: [],
+    car_division: TP_C3_CAR_DIVISION,
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE
   },
   {
     id: 7,
@@ -77,7 +93,9 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     duration: 20,
     laps: 0,
     state: TrackActivityState.waiting,
-    race_participants_track_activities: []
+    race_participants_track_activities: [],
+    car_division: TP_C3_CAR_DIVISION,
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE
   },
   {
     id: 8,
@@ -87,7 +105,9 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     duration: 20,
     laps: 0,
     state: TrackActivityState.waiting,
-    race_participants_track_activities: []
+    race_participants_track_activities: [],
+    car_division: TP_C3_CAR_DIVISION,
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE
   },
   {
     id: 9,
@@ -97,7 +117,9 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     duration: 10,
     laps: 0,
     state: TrackActivityState.waiting,
-    race_participants_track_activities: []
+    race_participants_track_activities: [],
+    car_division: TP_C3_CAR_DIVISION,
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE
   },
   {
     id: 10,
@@ -107,7 +129,9 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     duration: 10,
     laps: 0,
     state: TrackActivityState.waiting,
-    race_participants_track_activities: []
+    race_participants_track_activities: [],
+    car_division: TP_C3_CAR_DIVISION,
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE
   },
   {
     id: 11,
@@ -117,7 +141,9 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     duration: 10,
     laps: 0,
     state: TrackActivityState.waiting,
-    race_participants_track_activities: []
+    race_participants_track_activities: [],
+    car_division: TP_C3_CAR_DIVISION,
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE
   },
   {
     id: 12,
@@ -127,7 +153,9 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     duration: 10,
     laps: 0,
     state: TrackActivityState.waiting,
-    race_participants_track_activities: []
+    race_participants_track_activities: [],
+    car_division: TP_C3_CAR_DIVISION,
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE
   },
   {
     id: 13,
@@ -137,7 +165,9 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     duration: 0,
     laps: 6,
     state: TrackActivityState.waiting,
-    race_participants_track_activities: []
+    race_participants_track_activities: [],
+    car_division: TP_C3_CAR_DIVISION,
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE
   },
   {
     id: 14,
@@ -147,7 +177,9 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     duration: 0,
     laps: 6,
     state: TrackActivityState.waiting,
-    race_participants_track_activities: []
+    race_participants_track_activities: [],
+    car_division: TP_C3_CAR_DIVISION,
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE
   },
   {
     id: 15,
@@ -157,6 +189,8 @@ export const TRACK_ACTIVITIES_SAMPLE: TrackActivity[] = [
     duration: 0,
     laps: 6,
     state: TrackActivityState.waiting,
-    race_participants_track_activities: []
+    race_participants_track_activities: [],
+    car_division: TP_C3_CAR_DIVISION,
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE
   }
 ];

@@ -1,4 +1,4 @@
-<div class="sticky-top timing-home_top_navbar">
+<div class="sticky-top timing-home_top-navbar">
   <nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand text-uppercase text-muted" href="#">
       <span *ngIf="currentViewNumber === 0">TIEMPOS</span>
@@ -16,23 +16,23 @@
           <span class="text-uppercase text-white">{{ bestTrackActivity.race_participant?.number }} {{ bestTrackActivity.race_participant?.driver.last_name }}</span>
         </span>
 
-        <span class="d-inline-block ml-4">
+        <span class="d-inline-block timing-home_best-lap-sector-time">
           <small class="mr-2">S1</small>
           <racer-partial-lap-time class="d-inline-block" [partial]="bestLap.partials[0]" [polePartial]="bestLap.partials[0]" [isRefLap]="false"></racer-partial-lap-time>
         </span>
-        <span class="d-inline-block ml-4">
+        <span class="d-inline-block  timing-home_best-lap-sector-time">
           <small class="mr-2">S2</small>
           <racer-partial-lap-time class="d-inline-block" [partial]="bestLap.partials[1]" [polePartial]="bestLap.partials[1]" [isRefLap]="false"></racer-partial-lap-time>
         </span>
-        <span class="d-inline-block ml-4">
+        <span class="d-inline-block  timing-home_best-lap-sector-time">
           <small class="mr-2">S3</small>
           <racer-partial-lap-time class="d-inline-block" [partial]="bestLap.partials[2]" [polePartial]="bestLap.partials[2]" [isRefLap]="false"></racer-partial-lap-time>
         </span>
-        <span class="d-inline-block ml-4 mr-5">
+        <span class="d-inline-block  timing-home_best-lap-sector-time">
           <small class="mr-2">S4</small>
           <racer-partial-lap-time class="d-inline-block" [partial]="bestLap.partials[3]" [polePartial]="bestLap.partials[3]" [isRefLap]="false"></racer-partial-lap-time>
         </span>
-        <span class="d-inline-block ml-5">
+        <span class="d-inline-block timing-home_best-lap-time">
           <small class="mr-2">TIEMPO</small>
           <racer-lap-time class="d-inline-block" [lap]="bestLap" [poleLap]="bestLap" [isRefLap]="false"></racer-lap-time>
         </span>

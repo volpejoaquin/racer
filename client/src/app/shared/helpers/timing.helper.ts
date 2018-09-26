@@ -5,7 +5,6 @@ import * as lodash from 'lodash';
 import {
   RaceParticipantTrackActivity,
   TrackLap,
-  TrackPartialLap,
   TrackActivity
 } from './../model';
 

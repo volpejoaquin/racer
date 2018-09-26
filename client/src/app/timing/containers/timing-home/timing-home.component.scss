@@ -1,5 +1,10 @@
 @import '../../../../scss/vars/variables';
 
-.timing-home_top_navbar {
+.timing-home_top-navbar {
   background-color: $gray-800;
+}
+
+.timing-home_best-lap-sector-time,
+.timing-home_best-lap-time {
+  margin: 0 10px;
 }

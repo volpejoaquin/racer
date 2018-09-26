@@ -18,18 +18,7 @@ export const RACE_FINAL_DATA: RaceParticipantTrackActivity[] = [
         "name": "Nicolas",
         "last_name": "Bulich"
       },
-      "number": 5,
-      "championship": {
-        "year": 2018,
-        "car_division": {
-          "name": "Formula 1",
-          "short_name": "F1",
-          "car_category": {
-            "name": "Formula 1",
-            "short_name": "F1"
-          }
-        }
-      }
+      "number": 5
     },
     "laps": [
       {
@@ -427,18 +416,7 @@ export const RACE_FINAL_DATA: RaceParticipantTrackActivity[] = [
         "name": "Sebastián",
         "last_name": "Di Bella"
       },
-      "number": 9,
-      "championship": {
-        "year": 2018,
-        "car_division": {
-          "name": "Formula 1",
-          "short_name": "F1",
-          "car_category": {
-            "name": "Formula 1",
-            "short_name": "F1"
-          }
-        }
-      }
+      "number": 9
     },
     "laps": [
       {
@@ -836,18 +814,7 @@ export const RACE_FINAL_DATA: RaceParticipantTrackActivity[] = [
         "name": "Facundo",
         "last_name": "Meza Campos"
       },
-      "number": 10,
-      "championship": {
-        "year": 2018,
-        "car_division": {
-          "name": "Formula 1",
-          "short_name": "F1",
-          "car_category": {
-            "name": "Formula 1",
-            "short_name": "F1"
-          }
-        }
-      }
+      "number": 10
     },
     "laps": [
       {
@@ -1234,18 +1201,7 @@ export const RACE_FINAL_DATA: RaceParticipantTrackActivity[] = [
         "name": "Fabrizio",
         "last_name": "Angeli"
       },
-      "number": 13,
-      "championship": {
-        "year": 2018,
-        "car_division": {
-          "name": "Formula 1",
-          "short_name": "F1",
-          "car_category": {
-            "name": "Formula 1",
-            "short_name": "F1"
-          }
-        }
-      }
+      "number": 13
     },
     "laps": [
       {
@@ -1647,18 +1603,7 @@ export const RACE_FINAL_DATA: RaceParticipantTrackActivity[] = [
         "name": "Danilo",
         "last_name": "Gil"
       },
-      "number": 14,
-      "championship": {
-        "year": 2018,
-        "car_division": {
-          "name": "Formula 1",
-          "short_name": "F1",
-          "car_category": {
-            "name": "Formula 1",
-            "short_name": "F1"
-          }
-        }
-      }
+      "number": 14
     },
     "laps": [
       {
@@ -1746,18 +1691,7 @@ export const RACE_FINAL_DATA: RaceParticipantTrackActivity[] = [
         "name": "Yair",
         "last_name": "Etcheveste"
       },
-      "number": 18,
-      "championship": {
-        "year": 2018,
-        "car_division": {
-          "name": "Formula 1",
-          "short_name": "F1",
-          "car_category": {
-            "name": "Formula 1",
-            "short_name": "F1"
-          }
-        }
-      }
+      "number": 18
     },
     "laps": [
       {
@@ -2075,18 +2009,7 @@ export const RACE_FINAL_DATA: RaceParticipantTrackActivity[] = [
         "name": "Fabrizio",
         "last_name": "Scatena"
       },
-      "number": 19,
-      "championship": {
-        "year": 2018,
-        "car_division": {
-          "name": "Formula 1",
-          "short_name": "F1",
-          "car_category": {
-            "name": "Formula 1",
-            "short_name": "F1"
-          }
-        }
-      }
+      "number": 19
     },
     "laps": [
       {
@@ -2488,18 +2411,7 @@ export const RACE_FINAL_DATA: RaceParticipantTrackActivity[] = [
         "name": "Adrian",
         "last_name": "Roux"
       },
-      "number": 21,
-      "championship": {
-        "year": 2018,
-        "car_division": {
-          "name": "Formula 1",
-          "short_name": "F1",
-          "car_category": {
-            "name": "Formula 1",
-            "short_name": "F1"
-          }
-        }
-      }
+      "number": 21
     },
     "laps": [
       {

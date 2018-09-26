@@ -4,16 +4,14 @@ import {
 } from './../../model/';
 
 // dummy data
-import { TRACK_ACTIVITIES_SAMPLE } from './track-activities';
-import { CIRCUIT_VARIANT_SAMPLE } from './circuit-variants';
-import { CHAMPIONSHIP_SAMPLE } from './championships';
+import { TP_C3_TRACK_ACTIVITIES } from './track-activities';
 
 export const RACE_WEEKEND_SAMPLE: RaceWeekend = {
   id: 1,
   name: 'Fecha Nº 8',
-  championship: CHAMPIONSHIP_SAMPLE,
-  circuit_variant: CIRCUIT_VARIANT_SAMPLE,
-  track_activities: TRACK_ACTIVITIES_SAMPLE
+  start_date: '2018-10-12T03:00:00.000Z',
+  end_date: '2018-10-14T16:00:00.000Z',
+  track_activities: TP_C3_TRACK_ACTIVITIES
 };
 
 export const RACE_WEEKENDS_SAMPLE: RaceWeekend[] = [

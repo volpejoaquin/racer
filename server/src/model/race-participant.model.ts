@@ -1,5 +1,4 @@
 import { BaseModel } from './base.model';
-import { Championship } from './index';
 
 export interface Team extends BaseModel {
   // Simple
@@ -23,5 +22,4 @@ export interface RaceParticipant extends BaseModel {
   car: Car;
   driver: Driver;
   number: number;
-  championship: Championship;
 }

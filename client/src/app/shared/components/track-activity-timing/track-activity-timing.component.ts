@@ -55,8 +55,10 @@ export class TrackActivityTimingComponent implements OnInit, OnChanges {
   }
 
   private importXlsFile(content: string) {
-    this.trackActivity.race_participants_track_activities = this.importHelper.importCDAData(content);
+    this.trackActivity.race_participants_track_activities = this.importHelper.importCDAData(content, this.trackActivity);
 
     this.trackActivity.best_lap = this.timingHelper.getTrackActivityBestLap(this.trackActivity);
+
+    localStorage.setItem('I-' + new Date().getTime(), JSON.stringify(this.trackActivity));
   }
 }

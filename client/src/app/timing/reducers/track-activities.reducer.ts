@@ -10,7 +10,7 @@ import {
 } from './../actions/';
 
 // dummy data
-import { TRACK_ACTIVITIES_SAMPLE } from '../../shared/dummy';
+import { TP_C3_TRACK_ACTIVITIES } from '../../shared/dummy';
 
 export interface State extends EntityState<TrackActivity> {
   selectedTrackActivityId: number | null;
@@ -25,7 +25,7 @@ export let initialState: State = adapter.getInitialState({
   selectedTrackActivityId: 1,
 });
 
-initialState = adapter.addAll(TRACK_ACTIVITIES_SAMPLE, initialState); // TODO: REVIEW THIS
+initialState = adapter.addAll(TP_C3_TRACK_ACTIVITIES, initialState); // TODO: REVIEW THIS
 
 export function reducer(
   state = initialState,

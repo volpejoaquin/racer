@@ -1,7 +1,9 @@
 import { BaseModel } from './base.model';
 import {
   RaceWeekend,
-  RaceParticipant
+  RaceParticipant,
+  CarDivision,
+  CircuitVariant
 } from './index';
 
 export enum TrackActivityState {
@@ -23,6 +25,8 @@ export interface TrackActivity extends BaseModel {
   // Optionals
   // Relationships
   race_weekend?: RaceWeekend;
+  car_division?: CarDivision;
+  circuit_variant?: CircuitVariant;
   race_participants_track_activities?: RaceParticipantTrackActivity[];
   best_lap?: TrackLap;
 }

@@ -9,9 +9,7 @@
 
           <div class="linear-box-content">
             <span class="d-inline-block text-white">
-              {{ raceWeekend.championship.car_division.car_category.name }}
-              {{ raceWeekend.championship.car_division.name }}
-              - Campeonato {{ raceWeekend.championship.year }}
+              Campeonato 2018
             </span>
           </div>
         </div>
@@ -49,7 +47,7 @@
 
         <div class="linear-box-wrapper" *ngIf="selectedTrackActivity">
           <small class="linear-box-top-text d-block text-muted text-uppercase">
-            <i class="fas fa-dot-circle"></i> Actividad actual
+            <i class="fas fa-clock"></i> Tiempos
           </small>
   
           <div class="linear-box-content">
@@ -59,16 +57,16 @@
       </div>
     </div>
   </div>
-  <div class="col-6">
+  <div class="col-6" *ngIf="selectedTrackActivity.circuit_variant">
     <div class="linear-box-wrapper">
       <small class="linear-box-top-text d-block text-muted text-uppercase">
-        <i class="fas fa-map-marker-alt"></i> {{ raceWeekend.circuit_variant.circuit.city.name }}
+        <i class="fas fa-map-marker-alt"></i> {{ selectedTrackActivity.circuit_variant?.circuit.city.name }}
       </small>
 
       <div class="linear-box-content">
-        <span class="d-block text-white">{{ raceWeekend.circuit_variant.circuit.name }}</span>
-        <span class="d-block text-white">{{ raceWeekend.circuit_variant.name }}</span>
-        <span class="d-block text-white">{{ raceWeekend.circuit_variant.length }} metros</span>
+        <span class="d-block text-white">{{ selectedTrackActivity.circuit_variant?.circuit.name }}</span>
+        <span class="d-block text-white">{{ selectedTrackActivity.circuit_variant?.name }}</span>
+        <span class="d-block text-white">{{ selectedTrackActivity.circuit_variant?.length }} metros</span>
         <img class="img-responsive" src="http://localhost:8080/gpx/olavarria.png" height="300"/>
       </div>
     </div>

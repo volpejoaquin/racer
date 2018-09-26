@@ -7,17 +7,15 @@ import {
   TrackLap,
   TrackPartialLap,
   RaceParticipantTrackActivity,
-  RaceParticipantTrackActivityState
+  RaceParticipantTrackActivityState,
+  TrackActivity,
+  RaceParticipant
 } from '../model';
 
 // helpers
 import { LogHelper } from './log.helper';
 import { TimingHelper } from './timing.helper';
-
-// dummy data
-import {
-  CHAMPIONSHIP
-} from './../dummy';
+import { TP_C1_RACE_PARTICIPANTS, TP_C2_RACE_PARTICIPANTS, TP_C3_RACE_PARTICIPANTS } from '../dummy';
 
 const CDA_HEADERS = ['Auto', 'Sector 1', 'Sector 2', 'Sector 3', 'Sector 4', 'Tie.Vta.'];
 const HEADERS = CDA_HEADERS;
@@ -31,7 +29,7 @@ export class ImportTimesHelper {
   constructor() {
   }
 
-  importCDAData(rows: any): RaceParticipantTrackActivity[] {
+  importCDAData(rows: any, trackActivity: TrackActivity): RaceParticipantTrackActivity[] {
     this.logHelper.log('Parsing file...');
 
     let insideTimes = false;
@@ -60,7 +58,7 @@ export class ImportTimesHelper {
             this.logHelper.log('Left row: ' + JSON.stringify(leftRow));
 
             if (leftRow && leftRow.length > 0 && !this.isEmptyRow(leftRow)) {
-              raceParticipantTrackActivities = this.parseRow(leftRow, raceParticipantTrackActivities);
+              raceParticipantTrackActivities = this.parseRow(leftRow, raceParticipantTrackActivities, trackActivity);
             }
 
             // parse right row
@@ -68,7 +66,7 @@ export class ImportTimesHelper {
             this.logHelper.log('Right row: ' + JSON.stringify(rightRow));
 
             if (rightRow && rightRow.length > 0 && !this.isEmptyRow(rightRow)) {
-              raceParticipantTrackActivities = this.parseRow(rightRow, raceParticipantTrackActivities);
+              raceParticipantTrackActivities = this.parseRow(rightRow, raceParticipantTrackActivities, trackActivity);
             }
           }
         }
@@ -101,7 +99,7 @@ export class ImportTimesHelper {
     return empty;
   }
 
-  private parseRow(row: any[], raceParticipantTrackActivities: any): any {
+  private parseRow(row: any[], raceParticipantTrackActivities: any, trackActivity: TrackActivity): any {
     this.logHelper.log('Parsing row.. # ' + row[0]);
 
     // create partials
@@ -178,20 +176,7 @@ export class ImportTimesHelper {
     if (!raceParticipantTrackActivities[raceParticipantNumber]) {
       raceParticipantTrackActivities[raceParticipantNumber] = {
         state: RaceParticipantTrackActivityState.on_pit,
-        race_participant: { // TODO: find race participant insde app data
-          team: {
-            name: 'DUMMY'
-          },
-          car: {
-            name: 'DUMMY'
-          },
-          driver: {
-            name: 'DUMMY',
-            last_name: 'DUMMY'
-          },
-          number: raceParticipantNumber,
-          championship: CHAMPIONSHIP
-        },
+        race_participant: this.findRaceParticipant(raceParticipantNumber, trackActivity),
         laps: [
           trackLap
         ],
@@ -204,6 +189,20 @@ export class ImportTimesHelper {
     }
 
     return raceParticipantTrackActivities;
+  }
+
+  private findRaceParticipant(raceParticipantNumber: number, trackActivity: TrackActivity) {
+    let raceParticipants: RaceParticipant[];
+
+    if (trackActivity.car_division && trackActivity.car_division.short_name === 'C1') {
+      raceParticipants = TP_C1_RACE_PARTICIPANTS;
+    } else if (trackActivity.car_division && trackActivity.car_division.short_name === 'C2') {
+      raceParticipants = TP_C2_RACE_PARTICIPANTS;
+    } else if (trackActivity.car_division && trackActivity.car_division.short_name === 'C3') {
+      raceParticipants = TP_C3_RACE_PARTICIPANTS;
+    }
+
+    return lodash.find(raceParticipants, (rParticipant: RaceParticipant) => rParticipant.number === raceParticipantNumber);
   }
 
   private extractRowLapTime(row: any): number {

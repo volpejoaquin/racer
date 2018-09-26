@@ -4,7 +4,6 @@ import {
   CarDivision,
   Circuit,
   CircuitVariant,
-  Championship,
   RaceWeekend,
   TrackActivity,
   TrackActivityState,
@@ -15,19 +14,14 @@ import {
 } from '../model/';
 
 export const CAR_CATEGORY: CarCategory = {
-  name: 'Formula 1',
-  short_name: 'F1'
+  name: 'TURISMO PISTA',
+  short_name: 'TP'
 };
 
 export const CAR_DIVISION: CarDivision = {
-  name: 'Formula 1',
-  short_name: 'F1',
+  name: 'CLASE X',
+  short_name: 'CX',
   car_category: CAR_CATEGORY
-};
-
-export const CHAMPIONSHIP: Championship = {
-  year: 2018,
-  car_division: CAR_DIVISION
 };
 
 export const CIRCUIT: Circuit = {
@@ -60,8 +54,8 @@ export const TRACK_ACTIVITY: TrackActivity = {
 
 export const RACE_WEEKEND: RaceWeekend = {
   name: 'ITALY GP',
-  championship: CHAMPIONSHIP,
-  circuit_variant: CIRCUIT_VARIANT,
+  start_date: '',
+  end_date: '',
   track_activities: [
     TRACK_ACTIVITY
   ]
@@ -80,8 +74,7 @@ export const RACE_PARTICIPANTS: RaceParticipant[] = [
       name: 'LEWIS',
       last_name: 'HAMILTON'
     },
-    number: 44,
-    championship: CHAMPIONSHIP
+    number: 44
   },
   {
     team: {
@@ -94,8 +87,7 @@ export const RACE_PARTICIPANTS: RaceParticipant[] = [
       name: 'SEBASTIAL',
       last_name: 'VETTEL'
     },
-    number: 5,
-    championship: CHAMPIONSHIP
+    number: 5
   },
   {
     team: {
@@ -108,8 +100,7 @@ export const RACE_PARTICIPANTS: RaceParticipant[] = [
       name: 'DANIEL',
       last_name: 'RICCIARDO'
     },
-    number: 3,
-    championship: CHAMPIONSHIP
+    number: 3
   },
   {
     team: {
@@ -122,8 +113,7 @@ export const RACE_PARTICIPANTS: RaceParticipant[] = [
       name: 'RAIKKONEN',
       last_name: 'KIMI'
     },
-    number: 7,
-    championship: CHAMPIONSHIP
+    number: 7
   },
   {
     team: {
@@ -136,8 +126,7 @@ export const RACE_PARTICIPANTS: RaceParticipant[] = [
       name: 'BOTTAS',
       last_name: 'VALTTERI'
     },
-    number: 77,
-    championship: CHAMPIONSHIP
+    number: 77
   },
   {
     team: {
@@ -150,8 +139,7 @@ export const RACE_PARTICIPANTS: RaceParticipant[] = [
       name: 'VERSTAPEN',
       last_name: 'MAX'
     },
-    number: 33,
-    championship: CHAMPIONSHIP
+    number: 33
   }
 ];
 

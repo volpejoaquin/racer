@@ -35,7 +35,7 @@ $border-color: $secondary;
 $btn-border-radius: .25rem;
 
 // Small view
-$font-size-base: .90rem;
+$font-size-base: 1.2rem;
 $grid-gutter-width: 20px;
 
 // table
@@ -51,3 +51,6 @@ $badge-font-weight: normal;
 $badge-padding-y: 0.1em ;
 $badge-padding-x: 0.4em;
 // $badge-border-radius: $border-radius !default;
+
+// list
+$list-group-border-color: $border-color;

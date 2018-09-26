@@ -2,7 +2,7 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 // libs
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 // modules
 import * as fromTiming from '../../../timing/reducers';
@@ -25,7 +25,7 @@ export class RaceWeekendComponent implements OnInit, OnChanges {
   selectedTrackActivity: TrackActivity;
 
   constructor(store: Store<fromTiming.State>) {
-    store.select('selected_track_activity').subscribe((tActivity: TrackActivity) => {
+    store.pipe(select(fromTiming.getSelectedTrackActivity)).subscribe((tActivity: TrackActivity) => {
       this.selectedTrackActivity = tActivity;
     });
   }

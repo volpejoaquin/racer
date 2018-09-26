@@ -77,7 +77,8 @@ export class TimingHomeComponent implements OnInit {
 
     if (this.trackActivity) {
       this.raceParticipantTrackActivities = lodash.orderBy(this.trackActivity.race_participants_track_activities, 'best_lap.time');
-      this.bestLap = this.trackActivity.best_lap;
+      this.bestTrackActivity = this.raceParticipantTrackActivities[0];
+      this.bestLap = this.bestTrackActivity.best_lap;
 
       this.isLoading = false;
     }
