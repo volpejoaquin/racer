@@ -3,7 +3,7 @@
     <div class="d-flex justify-content-between align-items-center">
       <span class="text-uppercase" [class.text-success]="trackActivity === selectedTrackActivity">{{ trackActivity.car_division.name }}</span>
       <span class="text-uppercase" [class.text-success]="trackActivity === selectedTrackActivity">{{ trackActivity.name }}</span>
-      <span class="text-uppercase" [class.text-success]="trackActivity === selectedTrackActivity">{{ trackActivity.date | date:'mm:ss' }}</span>
+      <span class="text-uppercase" [class.text-success]="trackActivity === selectedTrackActivity">{{ trackActivity.date | date:'mm:ss' }} hs</span>
       <div>
         <span class="badge badge-pill" [class.bg-success]="trackActivity === selectedTrackActivity" [class.bg-secondary]="trackActivity !== selectedTrackActivity" *ngIf="trackActivity.duration > 0">
           {{ trackActivity.duration }} minutos

@@ -1,7 +1,7 @@
 <div *ngIf="trackActivity">
   <div class="d-flex justify-content-between align-items-center text-white">
     <span class="text-uppercase">{{ trackActivity.name }}</span>
-    <span class="text-uppercase">{{ trackActivity.date | date:'mm:ss' }}</span>
+    <span class="text-uppercase">{{ trackActivity.date | date:'mm:ss' }} hs</span>
     <div>
       <span class="badge badge-pill bg-secondary" *ngIf="trackActivity.duration > 0">
         {{ trackActivity.duration }} minutos

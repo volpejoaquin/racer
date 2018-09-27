@@ -1,12 +1,12 @@
+<racer-timing-primary-bar
+  [bestTrackActivity]="bestTrackActivity"
+  [title]="currentViewNumber === 0 ? 'Tiempos' : currentViewNumber === 1 ? 'PARCIALES' : currentViewNumber === 2 ? 'VUELTAS' : 'MEJORES POR PARCIAL'"></racer-timing-primary-bar>
+
 <div class="timing-content-loading p-5 text-center text-muted" *ngIf="isDataLoading()">
   <i class="d-block fas fa-spinner fa-spin"></i>
-  <span class="d-block">Cargando</span>
+  <span class="d-block">Daleeeeeeeeee...</span>
 </div>
 <div class="timing-content" *ngIf="!isDataLoading()">
-  <racer-timing-primary-bar
-    [bestTrackActivity]="bestTrackActivity"
-    [title]="currentViewNumber === 0 ? 'Tiempos' : currentViewNumber === 1 ? 'PARCIALES' : currentViewNumber === 2 ? 'VUELTAS' : 'MEJORES POR PARCIAL'"></racer-timing-primary-bar>
-
   <racer-leaderboard [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" *ngIf="currentViewNumber === 0"></racer-leaderboard>
 
   <racer-best-partials-laps [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" *ngIf="currentViewNumber === 1"></racer-best-partials-laps>
@@ -42,7 +42,6 @@
     </div>
   </div>
 
-  <racer-timing-secondary-bar
-    [bestTrackActivity]="bestTrackActivity"
-    [title]="currentViewNumber === 0 ? 'Tiempos' : currentViewNumber === 1 ? 'PARCIALES' : currentViewNumber === 2 ? 'VUELTAS' : 'MEJORES POR PARCIAL'"></racer-timing-secondary-bar>
 </div>
+
+<racer-timing-secondary-bar [trackActivity]="trackActivity$ | async" [raceWeekend]="raceWeekend"></racer-timing-secondary-bar>

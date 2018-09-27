@@ -1,6 +1,7 @@
 @import '../../../../../scss/vars/variables';
 
-.timing-secondary-bar_wrapper {
+.timing-secondary-bar_wrapper,
+.timing-secondary-bar_wrapper-extra {
   background-color: $gray-800;
 }
 
@@ -31,5 +32,14 @@
     margin-left: 5px;
     transform: skew(-20deg);
     background-color: $white;
+  }
+}
+
+.timing-secondary-bar_wrapper-extra {
+  max-height: 0;
+
+  &.timing-secondary-bar_wrapper-extra_expanded {
+    max-height: 800px;
+    transition: all 1s ease-in;
   }
 }
