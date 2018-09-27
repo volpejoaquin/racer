@@ -1,0 +1,10 @@
+@import '../../../../../scss/vars/variables';
+
+.timing-primary-bar_wrapper {
+  background-color: $gray-800;
+}
+
+.timing-primary-bar_best-lap-sector-time,
+.timing-primary-bar_best-lap-time {
+  margin: 0 10px;
+}

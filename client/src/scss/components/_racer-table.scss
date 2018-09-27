@@ -103,3 +103,13 @@ $colum-participant-name-width: 220px;
 .timing_table-column-lap-interval {
   display: none;
 }
+
+
+// TODO: REVIEW THIS
+.table-responsive,
+.partials-per-lap-wrapper {
+  display: block;
+  height: 800px;
+  max-height: 800px;
+  overflow: auto;
+}

@@ -1,61 +1,24 @@
-<div class="sticky-top timing-home_top-navbar">
-  <nav class="navbar navbar-expand-lg navbar-dark">
-    <a class="navbar-brand text-uppercase text-muted" href="#">
-      <span *ngIf="currentViewNumber === 0">TIEMPOS</span>
-      <span *ngIf="currentViewNumber === 1">TIEMPOS PARCIALES</span>
-      <span *ngIf="currentViewNumber === 2">TIEMPOS POR VUELTA</span>
-      <span *ngIf="currentViewNumber === 3">MEJORES POR PARCIAL</span>
-    </a>
-  
-    <div class="collapse navbar-collapse">
-      <ul class="navbar-nav mr-auto">
-      </ul>
-      <div class="navbar-text mr-5" *ngIf="bestTrackActivity">
-        <span class="d-inline-block mr-5">
-          <small class="mr-2">POLE</small>
-          <span class="text-uppercase text-white">{{ bestTrackActivity.race_participant?.number }} {{ bestTrackActivity.race_participant?.driver.last_name }}</span>
-        </span>
-
-        <span class="d-inline-block timing-home_best-lap-sector-time">
-          <small class="mr-2">S1</small>
-          <racer-partial-lap-time class="d-inline-block" [partial]="bestLap.partials[0]" [polePartial]="bestLap.partials[0]" [isRefLap]="false"></racer-partial-lap-time>
-        </span>
-        <span class="d-inline-block  timing-home_best-lap-sector-time">
-          <small class="mr-2">S2</small>
-          <racer-partial-lap-time class="d-inline-block" [partial]="bestLap.partials[1]" [polePartial]="bestLap.partials[1]" [isRefLap]="false"></racer-partial-lap-time>
-        </span>
-        <span class="d-inline-block  timing-home_best-lap-sector-time">
-          <small class="mr-2">S3</small>
-          <racer-partial-lap-time class="d-inline-block" [partial]="bestLap.partials[2]" [polePartial]="bestLap.partials[2]" [isRefLap]="false"></racer-partial-lap-time>
-        </span>
-        <span class="d-inline-block  timing-home_best-lap-sector-time">
-          <small class="mr-2">S4</small>
-          <racer-partial-lap-time class="d-inline-block" [partial]="bestLap.partials[3]" [polePartial]="bestLap.partials[3]" [isRefLap]="false"></racer-partial-lap-time>
-        </span>
-        <span class="d-inline-block timing-home_best-lap-time">
-          <small class="mr-2">TIEMPO</small>
-          <racer-lap-time class="d-inline-block" [lap]="bestLap" [poleLap]="bestLap" [isRefLap]="false"></racer-lap-time>
-        </span>
-      </div>
-    </div>
-  </nav>
-</div>
-
 <div class="timing-content-loading p-5 text-center text-muted" *ngIf="isDataLoading()">
   <i class="d-block fas fa-spinner fa-spin"></i>
   <span class="d-block">Cargando</span>
 </div>
 <div class="timing-content" *ngIf="!isDataLoading()">
+  <racer-timing-primary-bar
+    [bestTrackActivity]="bestTrackActivity"
+    [title]="currentViewNumber === 0 ? 'Tiempos' : currentViewNumber === 1 ? 'PARCIALES' : currentViewNumber === 2 ? 'VUELTAS' : 'MEJORES POR PARCIAL'"></racer-timing-primary-bar>
+
   <racer-leaderboard [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" *ngIf="currentViewNumber === 0"></racer-leaderboard>
 
   <racer-best-partials-laps [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" *ngIf="currentViewNumber === 1"></racer-best-partials-laps>
 
   <div class="container-fluid">
-    <div class="row mt-4">
+    <div class="row">
       <div class="col-12" *ngIf="currentViewNumber === 2">
-        <div class="row">
-          <div class="col-6 mb-4" *ngFor="let trackActivity of raceParticipantTrackActivities; let trackActivityIndex = index;">
-            <racer-partials-per-lap [trackActivity]="trackActivity" [bestLap]="bestLap" [title]="(trackActivityIndex + 1)"></racer-partials-per-lap>
+        <div class="partials-per-lap-wrapper mt-2">
+          <div class="row">
+            <div class="col-6 mb-4" *ngFor="let trackActivity of raceParticipantTrackActivities; let trackActivityIndex = index;">
+              <racer-partials-per-lap [trackActivity]="trackActivity" [bestLap]="bestLap" [title]="(trackActivityIndex + 1)"></racer-partials-per-lap>
+            </div>
           </div>
         </div>
       </div>
@@ -78,4 +41,8 @@
       </div>
     </div>
   </div>
+
+  <racer-timing-secondary-bar
+    [bestTrackActivity]="bestTrackActivity"
+    [title]="currentViewNumber === 0 ? 'Tiempos' : currentViewNumber === 1 ? 'PARCIALES' : currentViewNumber === 2 ? 'VUELTAS' : 'MEJORES POR PARCIAL'"></racer-timing-secondary-bar>
 </div>

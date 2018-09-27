@@ -15,11 +15,7 @@ import { SocketService } from '../../../core/service';
 import {
   TrackLap,
   TrackActivity,
-  RaceParticipantTrackActivity,
-  SocketEvent,
-  BasicSocketEvent,
-  TimingSocketEvent,
-  TrackActivitySocketEvent
+  RaceParticipantTrackActivity
 } from '../../../shared/model/';
 
 @Component({

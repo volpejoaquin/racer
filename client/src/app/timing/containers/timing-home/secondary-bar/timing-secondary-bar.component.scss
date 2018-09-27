@@ -1,0 +1,35 @@
+@import '../../../../../scss/vars/variables';
+
+.timing-secondary-bar_wrapper {
+  background-color: $gray-800;
+}
+
+.timing-secondary-bar_best-lap-sector-time,
+.timing-secondary-bar_best-lap-time {
+  margin: 0 10px;
+}
+
+.timing-secondary-bar_box-wrapper {
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    margin-left: -20px;
+    transform: skew(-20deg);
+    background-color: $white;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 20px;
+    margin-left: 5px;
+    transform: skew(-20deg);
+    background-color: $white;
+  }
+}

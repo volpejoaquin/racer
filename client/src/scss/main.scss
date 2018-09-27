@@ -14,8 +14,14 @@
 @import 'components/racer-table';
 
 // TODO: REVIEW THIS
+
+html,
+body {
+  height: 100vh;
+}
+
 .app-content {
-  min-height: 1000px;
+  // min-height: 1000px;
 }
 
 .connected {
