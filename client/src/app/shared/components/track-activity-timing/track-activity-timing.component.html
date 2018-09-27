@@ -1,8 +1,4 @@
-<form class="form mt-3 mb-3">
-  <input type="text" class="form-control mb-2 mr-sm-2 bg-transparent text-white" name="fileUrl" [(ngModel)]="fileUrl">
+<form class="form-inline mt-3 mb-3">
+  <input type="text" class="form-control mb-2 mr-sm-2 bg-transparent text-white" name="fileUrl" [(ngModel)]="fileUrl" style="min-width: 450px;">
   <button type="submit" class="btn btn-primary mb-2" (click)="onImportClick();">Importar</button>
 </form>
-
-<div class="mt-4" *ngIf="trackActivity.race_participants_track_activities">
-  <span class="text-white">{{ trackActivity.race_participants_track_activities.length }} participantes</span>
-</div>

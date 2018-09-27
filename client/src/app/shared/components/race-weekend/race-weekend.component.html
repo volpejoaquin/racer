@@ -16,18 +16,18 @@
       </div>
       <div class="col-6" *ngIf="raceWeekend && raceWeekend.track_activities">
         <div class="linear-box-wrapper">
-          <small class="linear-box-top-text d-none text-muted text-uppercase">
+          <small class="linear-box-top-text text-muted text-uppercase">
             <i class="fas fa-list-ul"></i> Actividades
           </small>
   
           <div class="linear-box-content">
             <div class="row">
-              <div class="col-11">
+              <div class="col-12">
                 <div class="track-activities-wrapper">
                   <racer-track-activities [trackActivities]="raceWeekend.track_activities"></racer-track-activities>
                 </div>
               </div>
-              <div class="col-1">
+              <div class="col-1 d-none">
                 <div class="row h-100">
                   <div class="col align-self-start">
                     <button type="button" class="btn btn-link p-1">
@@ -48,11 +48,20 @@
       <div class="col-6">
         <div class="linear-box-wrapper" *ngIf="selectedTrackActivity">
           <small class="linear-box-top-text d-block text-muted text-uppercase">
-            <i class="fas fa-clock"></i> Tiempos
+            <i class="fas fa-calendar-alt"></i> Actividad actual
           </small>
   
           <div class="linear-box-content">
             <racer-track-activity [trackActivity]="selectedTrackActivity"></racer-track-activity>
+          </div>
+        </div>
+        <div class="linear-box-wrapper" *ngIf="selectedTrackActivity">
+          <small class="linear-box-top-text d-block text-muted text-uppercase">
+            <i class="fas fa-clock"></i> Tiempos
+          </small>
+  
+          <div class="linear-box-content">
+            <racer-track-activity-timing [trackActivity]="selectedTrackActivity"></racer-track-activity-timing>
           </div>
         </div>
       </div>

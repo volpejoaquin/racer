@@ -14,7 +14,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12" *ngIf="currentViewNumber === 2">
-        <div class="partials-per-lap-wrapper mt-2">
+        <div class="partials-per-lap-wrapper mt-2 mb-2">
           <div class="row">
             <div class="col-6 mb-4" *ngFor="let trackActivity of raceParticipantTrackActivities; let trackActivityIndex = index;">
               <racer-partials-per-lap [trackActivity]="trackActivity" [bestLap]="bestLap" [title]="(trackActivityIndex + 1)"></racer-partials-per-lap>
@@ -44,4 +44,4 @@
 
 </div>
 
-<racer-timing-secondary-bar [trackActivity]="trackActivity$ | async" [raceWeekend]="raceWeekend"></racer-timing-secondary-bar>
+<racer-timing-secondary-bar [trackActivity]="trackActivity$ | async" [raceWeekend]="raceWeekend$ | async"></racer-timing-secondary-bar>

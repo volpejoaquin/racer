@@ -10,6 +10,10 @@
   margin: 0 10px;
 }
 
+.timing-secondary-bar_wrapper {
+  border-top: 3px solid $success;
+}
+
 .timing-secondary-bar_box-wrapper {
 
   &::before {

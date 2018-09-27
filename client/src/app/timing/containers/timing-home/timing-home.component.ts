@@ -23,7 +23,7 @@ import {
   styleUrls: ['./timing-home.component.scss']
 })
 export class TimingHomeComponent implements OnInit {
-  raceWeekend: RaceWeekend;
+  raceWeekend$: Observable<RaceWeekend>;
   trackActivity$: Observable<TrackActivity>;
   raceParticipantTrackActivities: RaceParticipantTrackActivity[];
   bestTrackActivity: RaceParticipantTrackActivity;
@@ -52,9 +52,7 @@ export class TimingHomeComponent implements OnInit {
 
   constructor(store: Store<fromTiming.State>) {
 
-    store.pipe(select(fromTiming.getSelectedRaceWeekend)).subscribe((rWeekend: RaceWeekend) => {
-      this.raceWeekend = rWeekend;
-    });
+    this.raceWeekend$ = store.pipe(select(fromTiming.getSelectedRaceWeekend));
 
     this.trackActivity$ = store.pipe(select(fromTiming.getSelectedTrackActivity));
 
