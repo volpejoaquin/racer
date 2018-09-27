@@ -43,7 +43,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="timing_table-row" *ngFor="let trackActivity of trackActivities; let trackActivityIndex = index;">
+      <tr class="timing_table-row" *ngFor="let trackActivity of trackActivities; let trackActivityIndex = index;" racerRaceParticipant [raceParticipant]="trackActivity.race_participant">
         <td class="timing_table-row-column timing_table-column-pos">
           <span *ngIf="trackActivity.best_lap?.time">{{ trackActivityIndex + 1 }}</span>
           <span class="text-muted" *ngIf="trackActivity.laps_count === 0">-</span>

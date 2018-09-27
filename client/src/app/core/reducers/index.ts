@@ -49,3 +49,6 @@ export const metaReducers: MetaReducer<State>[] =  !environment.production
 export const getUIState = createFeatureSelector<fromUI.State>('ui');
 
 export const getSocketStatus = createSelector(getUIState, fromUI.getSocketStatus);
+
+export const getInvisibleRaceParticipants = createSelector(getUIState, fromUI.getInvisibleRaceParticipants);
+export const getDimmedRaceParticipants = createSelector(getUIState, fromUI.getDimmedRaceParticipants);

@@ -37,9 +37,6 @@
           <racer-lap-time class="d-inline-block" [lap]="bestLap" [poleLap]="bestLap" [isRefLap]="false"></racer-lap-time>
         </span>
       </div>
-      <span class="navbar-text d-none ml-5 mr-5">
-        111 111 111
-      </span>
     </div>
   </nav>
 </div>
@@ -54,7 +51,7 @@
   <racer-best-partials-laps [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" *ngIf="currentViewNumber === 1"></racer-best-partials-laps>
 
   <div class="container-fluid">
-    <div class="row mt-2">
+    <div class="row mt-4">
       <div class="col-12" *ngIf="currentViewNumber === 2">
         <div class="row">
           <div class="col-6 mb-4" *ngFor="let trackActivity of raceParticipantTrackActivities; let trackActivityIndex = index;">
@@ -65,7 +62,7 @@
 
       <div class="col-12" *ngIf="currentViewNumber === 3">
         <div class="row">
-          <div class="col">
+          <div class="col pl-0">
             <racer-best-per-partials [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" [partialIndex]="0"></racer-best-per-partials>
           </div>
           <div class="col">
@@ -74,7 +71,7 @@
           <div class="col">
             <racer-best-per-partials [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" [partialIndex]="2"></racer-best-per-partials>
           </div>
-          <div class="col">
+          <div class="col pr-0">
             <racer-best-per-partials [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" [partialIndex]="3"></racer-best-per-partials>
           </div>
         </div>

@@ -11,6 +11,16 @@ $colum-participant-name-width: 220px;
   }
 }
 
+// tables
+.leaderboard_table,
+.best-partials-laps_table,
+.best-per-partials_table {
+  .timing_table-column-pos,
+  .timing_table-column-car {
+    text-align: center;
+  }
+}
+
 .leaderboard_table,
 .best-partials-laps_table {
   .timing_table-column-pos,
@@ -22,11 +32,6 @@ $colum-participant-name-width: 220px;
 
   .timing_table-column-participant_brand {
     @include table-column-fixed(60px);
-  }
-
-  .timing_table-column-pos,
-  .timing_table-column-car {
-    text-align: center;
   }
   
   .timing_table-column-participant_name {
@@ -68,12 +73,28 @@ $colum-participant-name-width: 220px;
   }
 }
 
-.timing-lap-time-gap,
-.timing-partial-lap-time-gap {
-  visibility: hidden;
+// race participants
+.racer_table {
+  .race-participant {
+
+    &.race-participant_invisible {
+      display: none;
+    }
+
+    &.race-participant_dimmed {
+      opacity: 0.2;
+    }
+
+    &.race-participant_invisible,
+    &.race-participant_dimmed {
+      .timing-lap-time-gap,
+      .timing-partial-lap-time-gap {
+        visibility: hidden;
+      }
+    }
+  }
 }
 
-// TODO: REVIEW THIS
 .timing_table-column-lap-diff {
   border-right: 60px solid transparent;
   box-sizing: border-box;
