@@ -4,14 +4,12 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 // libs
-import * as lodash from 'lodash';
 
 // modules
 import * as fromTiming from './../../reducers/';
 
 // models
 import {
-  TrackLap,
   TrackActivity,
   RaceParticipantTrackActivity,
   RaceWeekend
@@ -25,7 +23,7 @@ import {
 export class TimingHomeComponent implements OnInit {
   raceWeekend$: Observable<RaceWeekend>;
   trackActivity$: Observable<TrackActivity>;
-  // raceParticipantTrackActivities: RaceParticipantTrackActivity[];
+  raceParticipantsTrackActivities$: Observable<RaceParticipantTrackActivity[]>;
   // bestTrackActivity: RaceParticipantTrackActivity;
   // bestLap: TrackLap;
 
@@ -54,10 +52,7 @@ export class TimingHomeComponent implements OnInit {
 
     this.trackActivity$ = store.pipe(select(fromTiming.getSelectedTrackActivity));
 
-    // this.trackActivity$.subscribe((tActivity: TrackActivity) => {
-    //   console.log('AAAAAAAA');
-    //   this.loadTrackActivityTimes(tActivity);
-    // });
+    this.raceParticipantsTrackActivities$ = store.pipe(select(fromTiming.getRaceParticipantsTrackActivitiesArray));
   }
 
   ngOnInit(): void {
@@ -68,13 +63,4 @@ export class TimingHomeComponent implements OnInit {
       raceParticipantTrackActivities[0].best_lap :
       null;
   }
-
-  // private loadTrackActivityTimes(trackActivity: TrackActivity) {
-  //   this.raceParticipantTrackActivities = lodash.orderBy(trackActivity.race_participants_track_activities, 'best_lap.time');
-
-  //   if (this.raceParticipantTrackActivities && this.raceParticipantTrackActivities.length > 0) {
-  //     this.bestTrackActivity = this.raceParticipantTrackActivities[0];
-  //     this.bestLap = this.bestTrackActivity.best_lap;
-  //   }
-  // }
 }

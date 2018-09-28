@@ -1,20 +1,19 @@
 // angular
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import * as lodash from 'lodash';
+import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
 
 // libs
 
 // models
 import {
-  TrackActivity
+  TrackActivity,
+  RaceParticipantTrackActivity
 } from '../../../shared/model';
 
 // helpers
 import {
   FileReaderHelper,
   ImportTimesHelper,
-  LogHelper,
-  TimingHelper
+  LogHelper
 } from './../../helpers/';
 
 // dummy data
@@ -29,11 +28,11 @@ import {
 })
 export class TrackActivityTimingComponent implements OnInit, OnChanges {
   @Input() trackActivity: TrackActivity;
+  @Output() raceParticipantsTrackActivities = new EventEmitter<RaceParticipantTrackActivity[]>();
   fileUrl = 'assets/files/1ra-Clasi-Clase-3.xls';
 
   private readerHelper = new FileReaderHelper();
   private importHelper = new ImportTimesHelper();
-  private timingHelper = new TimingHelper();
   private logHelper = new LogHelper(true);
 
   ngOnInit() {
@@ -44,8 +43,6 @@ export class TrackActivityTimingComponent implements OnInit, OnChanges {
   }
 
   onImportClick() {
-    this.logHelper.log('Reading file...');
-
     this.readerHelper.convertXLSXToJson(this.fileUrl, (response: any) => {
       if (!response) {
         this.logHelper.log('ERROR !');
@@ -58,10 +55,6 @@ export class TrackActivityTimingComponent implements OnInit, OnChanges {
   private importXlsFile(content: string) {
     const raceParticipantsTrackActivities = this.importHelper.importCDAData(content, this.trackActivity);
 
-    this.trackActivity.race_participants_track_activities = lodash.orderBy(raceParticipantsTrackActivities, 'best_lap.time');
-
-    this.trackActivity.best_lap = this.timingHelper.getTrackActivityBestLap(this.trackActivity);
-
-    localStorage.setItem('I-' + new Date().getTime(), JSON.stringify(this.trackActivity));
+    this.raceParticipantsTrackActivities.emit(raceParticipantsTrackActivities);
   }
 }

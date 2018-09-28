@@ -7,9 +7,14 @@ import { Store, select } from '@ngrx/store';
 // modules
 import * as fromTiming from '../../../timing/reducers';
 
+// actions
+import { RaceParticipantTrackActivityActions } from '../../../timing/actions';
+
+// models
 import {
   RaceWeekend,
-  TrackActivity
+  TrackActivity,
+  RaceParticipantTrackActivity
 } from '../../../shared/model';
 
 // dummy data
@@ -24,7 +29,7 @@ export class RaceWeekendComponent implements OnInit, OnChanges {
 
   selectedTrackActivity: TrackActivity;
 
-  constructor(store: Store<fromTiming.State>) {
+  constructor(private store: Store<fromTiming.State>) {
     store.pipe(select(fromTiming.getSelectedTrackActivity)).subscribe((tActivity: TrackActivity) => {
       this.selectedTrackActivity = tActivity;
     });
@@ -34,5 +39,10 @@ export class RaceWeekendComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
+  }
+
+  onRaceParticipantsTrackActivitiesLoaded(raceParticipantsTrackActivites: RaceParticipantTrackActivity[]) {
+
+    this.store.dispatch(new RaceParticipantTrackActivityActions.LoadRaceParticipantTrackActivities(raceParticipantsTrackActivites));
   }
 }

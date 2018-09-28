@@ -75,6 +75,12 @@ export class ImportTimesHelper {
 
     const response: RaceParticipantTrackActivity[] = this.parseRaceParticipantTrackActivities(raceParticipantTrackActivities);
 
+    lodash.orderBy(response, 'best_lap.time');
+
+    response.forEach((row: any, index: number) => {
+      row.id = index;
+    });
+
     this.logHelper.log('Finished !');
 
     return response;

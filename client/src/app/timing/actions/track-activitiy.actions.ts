@@ -1,9 +1,6 @@
 // libs
 import { Action } from '@ngrx/store';
 
-// models
-import { TrackActivity } from '../../shared/model';
-
 export enum TrackActivityActionTypes {
   SelectTrackActivity = '[APP] Select Track Activity'
 }

@@ -61,7 +61,7 @@
           </small>
   
           <div class="linear-box-content">
-            <racer-track-activity-timing [trackActivity]="selectedTrackActivity"></racer-track-activity-timing>
+            <racer-track-activity-timing [trackActivity]="selectedTrackActivity" (raceParticipantsTrackActivities)="onRaceParticipantsTrackActivitiesLoaded($event)"></racer-track-activity-timing>
           </div>
         </div>
       </div>
