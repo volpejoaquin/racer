@@ -1,5 +1,6 @@
 // angular
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import * as lodash from 'lodash';
 
 // libs
 
@@ -55,7 +56,9 @@ export class TrackActivityTimingComponent implements OnInit, OnChanges {
   }
 
   private importXlsFile(content: string) {
-    this.trackActivity.race_participants_track_activities = this.importHelper.importCDAData(content, this.trackActivity);
+    const raceParticipantsTrackActivities = this.importHelper.importCDAData(content, this.trackActivity);
+
+    this.trackActivity.race_participants_track_activities = lodash.orderBy(raceParticipantsTrackActivities, 'best_lap.time');
 
     this.trackActivity.best_lap = this.timingHelper.getTrackActivityBestLap(this.trackActivity);
 

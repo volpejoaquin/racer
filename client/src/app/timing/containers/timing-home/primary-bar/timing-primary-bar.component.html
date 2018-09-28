@@ -7,31 +7,31 @@
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto">
       </ul>
-      <div class="navbar-text mr-5" *ngIf="bestTrackActivity">
+      <div class="navbar-text mr-5" *ngIf="bestRaceParticipantTrackActivity">
         <span class="d-inline-block mr-5">
           <small class="text-muted mr-2">POLE</small>
-          <span class="text-uppercase text-white">{{ bestTrackActivity.race_participant?.number }} {{ bestTrackActivity.race_participant?.driver.last_name }}</span>
+          <span class="text-uppercase text-white">{{ bestRaceParticipantTrackActivity.race_participant?.number }} {{ bestRaceParticipantTrackActivity.race_participant?.driver.last_name }}</span>
         </span>
 
         <span class="d-inline-block timing-primary-bar_best-lap-sector-time">
           <small class="text-muted mr-2">S1</small>
-          <racer-partial-lap-time class="d-inline-block" [partial]="bestTrackActivity.best_lap?.partials[0]" [polePartial]="bestTrackActivity.best_lap?.partials[0]" [isRefLap]="false"></racer-partial-lap-time>
+          <racer-partial-lap-time class="d-inline-block" [partial]="bestRaceParticipantTrackActivity.best_lap?.partials[0]" [polePartial]="bestRaceParticipantTrackActivity.best_lap?.partials[0]" [isRefLap]="false"></racer-partial-lap-time>
         </span>
         <span class="d-inline-block  timing-primary-bar_best-lap-sector-time">
           <small class="text-muted mr-2">S2</small>
-          <racer-partial-lap-time class="d-inline-block" [partial]="bestTrackActivity.best_lap?.partials[1]" [polePartial]="bestTrackActivity.best_lap?.partials[1]" [isRefLap]="false"></racer-partial-lap-time>
+          <racer-partial-lap-time class="d-inline-block" [partial]="bestRaceParticipantTrackActivity.best_lap?.partials[1]" [polePartial]="bestRaceParticipantTrackActivity.best_lap?.partials[1]" [isRefLap]="false"></racer-partial-lap-time>
         </span>
         <span class="d-inline-block  timing-primary-bar_best-lap-sector-time">
           <small class="text-muted mr-2">S3</small>
-          <racer-partial-lap-time class="d-inline-block" [partial]="bestTrackActivity.best_lap?.partials[2]" [polePartial]="bestTrackActivity.best_lap?.partials[2]" [isRefLap]="false"></racer-partial-lap-time>
+          <racer-partial-lap-time class="d-inline-block" [partial]="bestRaceParticipantTrackActivity.best_lap?.partials[2]" [polePartial]="bestRaceParticipantTrackActivity.best_lap?.partials[2]" [isRefLap]="false"></racer-partial-lap-time>
         </span>
         <span class="d-inline-block  timing-primary-bar_best-lap-sector-time">
           <small class="text-muted mr-2">S4</small>
-          <racer-partial-lap-time class="d-inline-block" [partial]="bestTrackActivity.best_lap?.partials[3]" [polePartial]="bestTrackActivity.best_lap?.partials[3]" [isRefLap]="false"></racer-partial-lap-time>
+          <racer-partial-lap-time class="d-inline-block" [partial]="bestRaceParticipantTrackActivity.best_lap?.partials[3]" [polePartial]="bestRaceParticipantTrackActivity.best_lap?.partials[3]" [isRefLap]="false"></racer-partial-lap-time>
         </span>
         <span class="d-inline-block timing-primary-bar_best-lap-time">
           <small class="text-muted mr-2">TIEMPO</small>
-          <racer-lap-time class="d-inline-block" [lap]="bestTrackActivity.best_lap" [poleLap]="bestTrackActivity.best_lap" [isRefLap]="false"></racer-lap-time>
+          <racer-lap-time class="d-inline-block" [lap]="bestRaceParticipantTrackActivity.best_lap" [poleLap]="bestRaceParticipantTrackActivity.best_lap" [isRefLap]="false"></racer-lap-time>
         </span>
       </div>
     </div>

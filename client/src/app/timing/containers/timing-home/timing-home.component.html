@@ -1,41 +1,54 @@
-<racer-timing-primary-bar
-  [bestTrackActivity]="bestTrackActivity"
-  [title]="currentViewNumber === 0 ? 'Tiempos' : currentViewNumber === 1 ? 'PARCIALES' : currentViewNumber === 2 ? 'VUELTAS' : 'MEJORES POR PARCIAL'"></racer-timing-primary-bar>
+<ng-template #loading>
+  <div class="timing-content-loading p-5 text-center text-muted">
+    <i class="d-block fas fa-spinner fa-spin"></i>
+    <span class="d-block">Daleeeeeeeeee...</span>
+  </div>
+</ng-template>
 
-<div class="timing-content-loading p-5 text-center text-muted" *ngIf="isDataLoading()">
-  <i class="d-block fas fa-spinner fa-spin"></i>
-  <span class="d-block">Daleeeeeeeeee...</span>
-</div>
-<div class="timing-content" *ngIf="!isDataLoading()">
-  <racer-leaderboard [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" *ngIf="currentViewNumber === 0"></racer-leaderboard>
+<ng-template #empty>
+  <div class="timing-content-loading p-5 text-center text-muted">
+    <i class="d-block fas fa-times"></i>
+    <span class="d-block">No hay datos de tiempos</span>
+  </div>
+</ng-template>
 
-  <racer-best-partials-laps [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" *ngIf="currentViewNumber === 1"></racer-best-partials-laps>
+<div class="timing-content" *ngIf="trackActivity$ | async as trackActivity; else loading">
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-12" *ngIf="currentViewNumber === 2">
-        <div class="partials-per-lap-wrapper mt-2 mb-2">
-          <div class="row">
-            <div class="col-6 mb-4" *ngFor="let trackActivity of raceParticipantTrackActivities; let trackActivityIndex = index;">
-              <racer-partials-per-lap [trackActivity]="trackActivity" [bestLap]="bestLap" [title]="(trackActivityIndex + 1)"></racer-partials-per-lap>
+  <div *ngIf="trackActivity.race_participants_track_activities && trackActivity.race_participants_track_activities.length > 0; else empty">
+    <racer-timing-primary-bar
+      [bestRaceParticipantTrackActivity]="trackActivity.race_participants_track_activities[0]"
+      [title]="currentViewNumber === 0 ? 'Tiempos' : currentViewNumber === 1 ? 'PARCIALES' : currentViewNumber === 2 ? 'VUELTAS' : 'MEJORES POR PARCIAL'"></racer-timing-primary-bar>
+
+    <racer-leaderboard [trackActivities]="trackActivity.race_participants_track_activities" [bestLap]="getBestLap(trackActivity.race_participants_track_activities)" *ngIf="currentViewNumber === 0"></racer-leaderboard>
+
+    <racer-best-partials-laps [trackActivities]="trackActivity.race_participants_track_activities" [bestLap]="getBestLap(trackActivity.race_participants_track_activities)" *ngIf="currentViewNumber === 1"></racer-best-partials-laps>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12" *ngIf="currentViewNumber === 2">
+          <div class="partials-per-lap-wrapper mt-2 mb-2">
+            <div class="row">
+              <div class="col-6 mb-4" *ngFor="let trackActivity of trackActivity.race_participants_track_activities; let trackActivityIndex = index;">
+                <racer-partials-per-lap [trackActivity]="trackActivity" [bestLap]="getBestLap(trackActivity.race_participants_track_activities)" [title]="(trackActivityIndex + 1)"></racer-partials-per-lap>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-12" *ngIf="currentViewNumber === 3">
-        <div class="row">
-          <div class="col pl-0">
-            <racer-best-per-partials [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" [partialIndex]="0"></racer-best-per-partials>
-          </div>
-          <div class="col">
-            <racer-best-per-partials [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" [partialIndex]="1"></racer-best-per-partials>
-          </div>
-          <div class="col">
-            <racer-best-per-partials [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" [partialIndex]="2"></racer-best-per-partials>
-          </div>
-          <div class="col pr-0">
-            <racer-best-per-partials [trackActivities]="raceParticipantTrackActivities" [bestLap]="bestLap" [partialIndex]="3"></racer-best-per-partials>
+        <div class="col-12" *ngIf="currentViewNumber === 3">
+          <div class="row">
+            <div class="col pl-0">
+              <racer-best-per-partials [trackActivities]="trackActivity.race_participants_track_activities" [bestLap]="getBestLap(trackActivity.race_participants_track_activities)" [partialIndex]="0"></racer-best-per-partials>
+            </div>
+            <div class="col">
+              <racer-best-per-partials [trackActivities]="trackActivity.race_participants_track_activities" [bestLap]="getBestLap(trackActivity.race_participants_track_activities)" [partialIndex]="1"></racer-best-per-partials>
+            </div>
+            <div class="col">
+              <racer-best-per-partials [trackActivities]="trackActivity.race_participants_track_activities" [bestLap]="getBestLap(trackActivity.race_participants_track_activities)" [partialIndex]="2"></racer-best-per-partials>
+            </div>
+            <div class="col pr-0">
+              <racer-best-per-partials [trackActivities]="trackActivity.race_participants_track_activities" [bestLap]="getBestLap(trackActivity.race_participants_track_activities)" [partialIndex]="3"></racer-best-per-partials>
+            </div>
           </div>
         </div>
       </div>

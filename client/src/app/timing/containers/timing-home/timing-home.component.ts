@@ -25,14 +25,12 @@ import {
 export class TimingHomeComponent implements OnInit {
   raceWeekend$: Observable<RaceWeekend>;
   trackActivity$: Observable<TrackActivity>;
-  raceParticipantTrackActivities: RaceParticipantTrackActivity[];
-  bestTrackActivity: RaceParticipantTrackActivity;
-  bestLap: TrackLap;
+  // raceParticipantTrackActivities: RaceParticipantTrackActivity[];
+  // bestTrackActivity: RaceParticipantTrackActivity;
+  // bestLap: TrackLap;
 
   currentViewNumber = parseInt(localStorage.getItem('currentViewNumber'), 10) || 0;
   viewsCount = 4;
-
-  private isLoading = false;
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
@@ -56,25 +54,27 @@ export class TimingHomeComponent implements OnInit {
 
     this.trackActivity$ = store.pipe(select(fromTiming.getSelectedTrackActivity));
 
-    this.trackActivity$.subscribe((tActivity: TrackActivity) => {
-      console.log(tActivity);
-      this.loadTrackActivityTimes(tActivity);
-    });
+    // this.trackActivity$.subscribe((tActivity: TrackActivity) => {
+    //   console.log('AAAAAAAA');
+    //   this.loadTrackActivityTimes(tActivity);
+    // });
   }
 
   ngOnInit(): void {
   }
 
-  isDataLoading() {
-    return this.isLoading;
+  getBestLap(raceParticipantTrackActivities: RaceParticipantTrackActivity[]) {
+    return raceParticipantTrackActivities && raceParticipantTrackActivities.length > 0 && raceParticipantTrackActivities[0].best_lap ?
+      raceParticipantTrackActivities[0].best_lap :
+      null;
   }
 
-  private loadTrackActivityTimes(trackActivity: TrackActivity) {
-    this.raceParticipantTrackActivities = lodash.orderBy(trackActivity.race_participants_track_activities, 'best_lap.time');
+  // private loadTrackActivityTimes(trackActivity: TrackActivity) {
+  //   this.raceParticipantTrackActivities = lodash.orderBy(trackActivity.race_participants_track_activities, 'best_lap.time');
 
-    if (this.raceParticipantTrackActivities && this.raceParticipantTrackActivities.length > 0) {
-      this.bestTrackActivity = this.raceParticipantTrackActivities[0];
-      this.bestLap = this.bestTrackActivity.best_lap;
-    }
-  }
+  //   if (this.raceParticipantTrackActivities && this.raceParticipantTrackActivities.length > 0) {
+  //     this.bestTrackActivity = this.raceParticipantTrackActivities[0];
+  //     this.bestLap = this.bestTrackActivity.best_lap;
+  //   }
+  // }
 }

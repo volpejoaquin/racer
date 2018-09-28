@@ -11,7 +11,7 @@ import { RaceParticipantTrackActivity } from '../../../../shared/model';
 })
 export class TimingPrimaryBarComponent implements OnInit {
   @Input() title: string;
-  @Input() bestTrackActivity: RaceParticipantTrackActivity;
+  @Input() bestRaceParticipantTrackActivity: RaceParticipantTrackActivity;
 
   constructor() {
   }

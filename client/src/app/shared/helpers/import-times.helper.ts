@@ -23,7 +23,7 @@ const PARTICIPANT_COLS_COUNT = CDA_HEADERS.length;
 const PARTIALS_COUNT = 4;
 
 export class ImportTimesHelper {
-  private logHelper: LogHelper = new LogHelper(true);
+  private logHelper: LogHelper = new LogHelper(false);
   private timingHelper: TimingHelper = new TimingHelper();
 
   constructor() {
@@ -77,7 +77,6 @@ export class ImportTimesHelper {
 
     this.logHelper.log('Finished !');
 
-    console.log(JSON.stringify(response));
     return response;
   }
 
@@ -113,7 +112,7 @@ export class ImportTimesHelper {
     rowPartials.forEach((col: any, index: number) => {
       partialTime = lodash.toNumber(col);
 
-      if (lodash.isNumber(partialTime)) {
+      if (lodash.isNumber(partialTime) && partialTime > 0) {
 
         partials.push({
           time: partialTime,
@@ -130,7 +129,7 @@ export class ImportTimesHelper {
       }
     });
 
-    isPartialLap = partials.length !== PARTIALS_COUNT;
+    // isPartialLap = partials.length !== PARTIALS_COUNT;
 
     const rowLapTime = this.extractRowLapTime(row);
 

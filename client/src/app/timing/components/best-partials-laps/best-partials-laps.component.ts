@@ -26,7 +26,9 @@ export class BestPartialsLapsComponent {
   }
 
   calculateInterval(index: number, row: RaceParticipantTrackActivity) {
-    if (index === 1 || !this.bestLap) {
+    if (index === 1 || !row.best_lap || !this.bestLap ||
+      !this.trackActivities[index - 2] ||
+      !this.trackActivities[index - 2].best_lap) {
       return '';
     }
     // Calculate interval
