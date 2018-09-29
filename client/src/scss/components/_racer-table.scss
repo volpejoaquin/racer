@@ -73,6 +73,11 @@ $colum-participant-name-width: 220px;
   }
 }
 
+.timing-partial-lap-time-gap,
+.timing-lap-time-gap {
+  font-size: 80%;   
+}
+
 // race participants
 .racer_table {
   .race-participant {
@@ -112,4 +117,9 @@ $colum-participant-name-width: 220px;
   height: 800px;
   max-height: 800px;
   overflow: auto;
+}
+
+.timing_table-head-column,
+.timing_table-column-pos {
+  @extend .text-muted;
 }

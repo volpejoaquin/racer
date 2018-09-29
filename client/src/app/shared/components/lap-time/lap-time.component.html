@@ -10,10 +10,10 @@
     {{ lap.time | lapTime  }}
   </span>
   <span
-    class="align-middle badge ml-2 timing-lap-time-gap"
-    [class.badge-success]="poleGap < 0"
-    [class.badge-info]="poleGap >= 0 && gap <= 0"
-    [class.badge-secondary]="poleGap > 0 && gap >= 0"
+    class="align-middle ml-2 timing-lap-time-gap"
+    [class.text-success]="poleGap < 0"
+    [class.text-info]="poleGap >= 0 && gap <= 0"
+    [class.text-secondary]="poleGap > 0 && gap >= 0"
     [class.d-none]="!showGap || poleGap === 0"
     [class.d-inline-block]="showGap && poleGap != 0"
   >

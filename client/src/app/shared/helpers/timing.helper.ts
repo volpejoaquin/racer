@@ -5,7 +5,8 @@ import * as lodash from 'lodash';
 import {
   RaceParticipantTrackActivity,
   TrackLap,
-  TrackActivity
+  TrackActivity,
+  TrackPartialLap
 } from './../model';
 
 export class TimingHelper {
@@ -29,26 +30,25 @@ export class TimingHelper {
     return laps.length > 0 ? this.getBestLap(laps) : null;
   }
 
-  getTrackLapGap(trackLap: TrackLap, bestLap: TrackLap) {
-    const lapTime = trackLap.time;
-    const isPartialLap = !lapTime;
-    const partialCount = isPartialLap ? 0 : trackLap.partials.length;
-    let bestLapTime = bestLap.time;
+  getTrackLapGap(trackLap: TrackLap, refLap: TrackLap) {
+    const lapTime = this.calculateLapTime(trackLap);
+    const refLapTime = this.calculateLapTime(refLap, trackLap.partials.length);
 
-    // Sum partials
-    if (!bestLapTime || isPartialLap) { // TODO: Review is partial lap diff
-      bestLapTime = 0;
+    return lapTime - refLapTime;
+  }
 
-      let partial;
-      for (let index = 0; index < partialCount; index++) {
-        partial = bestLap.partials[index];
+  private calculateLapTime(trackLap: TrackLap, partialsCount: number = -1) {
+    const trackLapPartials = trackLap.partials,
+      partials = partialsCount > 0 ? trackLapPartials.slice(0, partialsCount) : trackLapPartials;
 
-        if (partial) {
-          bestLapTime += partial.time;
-        }
-      }
-    }
-    return lapTime - bestLapTime;
+    // Sum track lap partials
+    let lapTime = 0;
+
+    partials.forEach((partial: TrackPartialLap) => {
+      lapTime += partial.time;
+    });
+
+    return lapTime;
   }
 
   private getLastLap(laps: TrackLap[]) {

@@ -12,6 +12,11 @@ export class LapTimePipe implements PipeTransform {
     if (!time || time === 0) {
       return '';
     }
-    return moment(time).format('m:ss.SSS');
+    let formatString = 'm:ss.SSS';
+
+    if (time < 60000) {
+      formatString = 's.SSS';
+    }
+    return moment(time).format(formatString);
   }
 }

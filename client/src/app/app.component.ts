@@ -51,10 +51,10 @@ export class AppComponent implements OnInit {
 
     this.store.dispatch(new SelectTrackActivity(1));
 
-    const data = lodash.orderBy(TP_C3_TRACK_ACTIVITY.race_participants_track_activities, 'best_lap.time');
+    // const data = lodash.orderBy(TP_C3_TRACK_ACTIVITY.race_participants_track_activities, 'best_lap.time');
 
-    this.store.dispatch(new LoadRaceParticipantTrackActivities(data));
+    // this.store.dispatch(new LoadRaceParticipantTrackActivities(data));
 
-    this.store.dispatch(new SetBestRaceParticipantTrackActivity(data[0].id));
+    // this.store.dispatch(new SetBestRaceParticipantTrackActivity(data[0].id));
   }
 }

@@ -26,7 +26,7 @@
     <tbody>
       <tr *ngFor="let lap of trackActivity.laps; let lapIndex = index;">
         <td class="timing_table-column-pos">
-          <span [class.text-info]="trackActivity.best_lap?.time && lap.time === trackActivity.best_lap?.time">
+          <span class="align-middle" [class.text-info]="trackActivity.best_lap?.time && lap.time === trackActivity.best_lap?.time">
             {{ lapIndex + 1 }}
           </span>
         </td>

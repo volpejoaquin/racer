@@ -54,9 +54,10 @@ export interface RaceParticipantTrackActivity extends BaseModel {
 
 export interface TrackLap extends BaseModel {
   // Simple
-  time: number;
   ref_lap: boolean;
   partial_lap: boolean;
   // Relationships
   partials: TrackPartialLap[];
+  // Optionals
+  time?: number;
 }

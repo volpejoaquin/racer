@@ -5,7 +5,10 @@ import { Observable } from 'rxjs';
 
 // modules
 import * as fromTiming from './../../reducers/';
-import { LoadRaceParticipantTrackActivities } from './../../actions/race-participant-track-activity.actions';
+import {
+  LoadRaceParticipantTrackActivities,
+  SetBestRaceParticipantTrackActivity
+} from './../../actions/race-participant-track-activity.actions';
 
 // models
 import {

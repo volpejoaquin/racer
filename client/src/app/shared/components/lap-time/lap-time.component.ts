@@ -34,29 +34,14 @@ export class LapTimeComponent implements OnChanges {
 
   ngOnChanges() {
     if (this.lap && this.lap.partials && this.lap.partials.length > 0) {
-      const lap = lodash.clone(this.lap);
-      let lapTime = lap.time;
-      const isPartialLap = !lapTime;
-
-      // Sum partials
-      if (isPartialLap) {
-        lapTime = 0;
-
-        lap.partials.forEach((partial: TrackPartialLap) => {
-          lapTime += partial.time;
-        });
-
-        lap.time = lapTime;
-      }
-
       // TODO: Use timing helper
       if (this.bestLap) {
-        this.gap = this.timingHelper.getTrackLapGap(lap, this.bestLap);
+        this.gap = this.timingHelper.getTrackLapGap(this.lap, this.bestLap);
       }
 
       // TODO: Use timing helper
       if (this.poleLap) {
-        this.poleGap = this.timingHelper.getTrackLapGap(lap, this.poleLap);
+        this.poleGap = this.timingHelper.getTrackLapGap(this.lap, this.poleLap);
       } else {
         this.poleGap = this.gap;
       }

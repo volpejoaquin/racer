@@ -17,8 +17,6 @@ export const TP_C3_TRACK_ACTIVITY: TrackActivity = {
   duration: 20,
   laps: 0,
   state: TrackActivityState.waiting,
-  race_participants_track_activities: QUALY_SAMPLE,
-  best_lap: QUALY_SAMPLE[0].best_lap,
   car_division: TP_C3_CAR_DIVISION,
   circuit_variant: CIRCUIT_VARIANT_SAMPLE
 };

@@ -36,7 +36,10 @@ export function reducer(
 
       const newState = adapter.addAll(action.payload, state);
 
-      return newState;
+      return {
+        ...newState,
+        bestRaceParticipantTrackActivityId: newState.ids[0] as number
+      };
     }
 
     case RaceParticipantTrackActivityActions.RaceParticipantTrackActivityActionTypes.SetBestRaceParticipantTrackActivity: {

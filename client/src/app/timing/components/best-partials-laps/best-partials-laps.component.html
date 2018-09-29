@@ -16,18 +16,18 @@
     <tbody>
       <tr *ngFor="let trackActivity of trackActivities; let trackActivityIndex = index;" racerRaceParticipant [raceParticipant]="trackActivity.race_participant">
         <td class="timing_table-column-pos">
-          <span *ngIf="trackActivity.best_lap?.time">{{ trackActivityIndex + 1 }}</span>
-          <span class="text-muted" *ngIf="trackActivity.laps_count === 0">-</span>
+          <span class="align-middle" *ngIf="trackActivity.best_lap?.time">{{ trackActivityIndex + 1 }}</span>
+          <span class="align-middle text-muted" *ngIf="trackActivity.laps_count === 0">-</span>
         </td>
         <td class="timing_table-column-car">
-          {{ trackActivity.race_participant?.number }}
+          <span class="align-middle">{{ trackActivity.race_participant?.number }}</span>
         </td>
         <td class="timing_table-column-participant_name">
-          <span class="text-uppercase">{{ trackActivity.race_participant?.driver.last_name }}</span>
-          <span class=""> {{ trackActivity.race_participant?.driver.name }}</span>
+          <span class="align-middle text-uppercase">{{ trackActivity.race_participant?.driver.last_name }}</span>
+          <span class="align-middle"> {{ trackActivity.race_participant?.driver.name }}</span>
         </td>
         <td class="timing_table-column-laps">
-          <span class="text-muted">-</span>
+          <span class="align-middle text-muted">-</span>
         </td>
         <td class="timing_table-column-lap-sector">
           <racer-partial-lap-time [partial]="getPartial(trackActivity, 0)" [bestPartial]="getBestPartial(trackActivity, 0)" [polePartial]="getPolePartial(0)" [isRefLap]="false"></racer-partial-lap-time>

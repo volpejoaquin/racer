@@ -1,6 +1,5 @@
 // libs
 import * as lodash from 'lodash';
-import * as moment from 'moment';
 
 // models
 import {
@@ -20,10 +19,9 @@ import { TP_C1_RACE_PARTICIPANTS, TP_C2_RACE_PARTICIPANTS, TP_C3_RACE_PARTICIPAN
 const CDA_HEADERS = ['Auto', 'Sector 1', 'Sector 2', 'Sector 3', 'Sector 4', 'Tie.Vta.'];
 const HEADERS = CDA_HEADERS;
 const PARTICIPANT_COLS_COUNT = CDA_HEADERS.length;
-const PARTIALS_COUNT = 4;
 
 export class ImportTimesHelper {
-  private logHelper: LogHelper = new LogHelper(false);
+  private logHelper: LogHelper = new LogHelper(true);
   private timingHelper: TimingHelper = new TimingHelper();
 
   constructor() {
@@ -78,8 +76,10 @@ export class ImportTimesHelper {
     response = lodash.orderBy(response, 'best_lap.time');
 
     response.forEach((row: any, index: number) => {
-      row.id = index;
+      row.id = index + 1;
     });
+
+    this.logHelper.log(JSON.stringify(response));
 
     this.logHelper.log('Finished !');
 
@@ -116,9 +116,9 @@ export class ImportTimesHelper {
     let invalidLapTime = false;
 
     rowPartials.forEach((col: any, index: number) => {
-      partialTime = lodash.toNumber(col);
+      partialTime = this.calculateTime(col);
 
-      if (lodash.isNumber(partialTime) && partialTime > 0) {
+      if (partialTime && partialTime > 0) {
 
         partials.push({
           time: partialTime,
@@ -135,11 +135,10 @@ export class ImportTimesHelper {
       }
     });
 
-    // isPartialLap = partials.length !== PARTIALS_COUNT;
-
     const rowLapTime = this.extractRowLapTime(row);
 
     if (!rowLapTime || rowLapTime === 0) {
+      isPartialLap = true;
       invalidLapTime = true;
 
       this.logHelper.log('WARNING ! Invalid lap time... ' + rowLapTime);
@@ -161,7 +160,7 @@ export class ImportTimesHelper {
     }
 
     const trackLap: TrackLap = {
-      time: !isPartialLap ? partialsTotalTime : 0,
+      time: !isPartialLap ? partialsTotalTime : undefined,
       ref_lap: false,
       partial_lap: isPartialLap,
       partials: partials
@@ -211,37 +210,13 @@ export class ImportTimesHelper {
   }
 
   private extractRowLapTime(row: any): number {
-    let rowLapTime: number;
 
-    let timeString = lodash.last(row);
+    const timeString = lodash.last(row);
     if (!lodash.isString(timeString)) {
-      return rowLapTime;
+      return null;
     }
 
-    this.logHelper.log('Parsing lap time... ' + timeString);
-
-    // remove invalid characters
-    timeString = lodash.trim(timeString).replace(';', ':').replace(',', '.');
-
-    this.logHelper.log('Trimmed lap time... ' + timeString);
-
-    const regexResult = timeString.match(/(\d*):(\d*).(\d*)/);
-
-    if (regexResult.length === 4) {
-      const mins = lodash.toNumber(regexResult[1]),
-        seconds = lodash.toNumber(regexResult[2]),
-        miliseconds = lodash.toNumber(regexResult[3]);
-
-      if (!lodash.isNaN(mins) && !lodash.isNaN(mins) && !lodash.isNaN(mins)) {
-        rowLapTime = (mins * 60 + seconds) * 1000 + miliseconds;
-      } else {
-        this.logHelper.log('WARNING ! Invalid number conversion ');
-      }
-    } else {
-      this.logHelper.log('WARNING ! Regex does not match ' + timeString);
-    }
-
-    return rowLapTime;
+    return this.calculateTime(timeString);
   }
 
   private parseRaceParticipantTrackActivities(raceParticipantTrackActivities): RaceParticipantTrackActivity[] {
@@ -252,5 +227,37 @@ export class ImportTimesHelper {
     });
 
     return response;
+  }
+
+  private calculateTime(colString: string) {
+    let time;
+
+    if (!lodash.isNumber(colString)) {
+      this.logHelper.log('Parsing time... ' + colString);
+
+      // remove invalid characters
+      colString = lodash.trim(colString).replace(';', ':').replace(',', '.');
+
+      this.logHelper.log('Trimmed time... ' + colString);
+      const regexResult = colString.match(/(\d*):(\d*).(\d*)/);
+
+      if (regexResult.length === 4) {
+        const mins = lodash.toNumber(regexResult[1]),
+          seconds = lodash.toNumber(regexResult[2]),
+          miliseconds = lodash.toNumber(regexResult[3]);
+
+        if (!lodash.isNaN(mins) && !lodash.isNaN(mins) && !lodash.isNaN(mins)) {
+          time = (mins * 60 + seconds) * 1000 + miliseconds;
+        } else {
+          this.logHelper.log('WARNING ! Invalid number conversion ');
+        }
+      } else {
+        this.logHelper.log('WARNING ! Regex does not match ' + colString);
+      }
+    } else {
+      time = lodash.toNumber(colString);
+    }
+
+    return time;
   }
 }
