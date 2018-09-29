@@ -1,11 +1,10 @@
 // angular
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 // models
 import {
   RaceParticipantTrackActivity,
-  TrackLap,
-  TrackPartialLap
+  TrackLap
 } from '../../../shared/model/';
 
 @Component({
@@ -13,46 +12,35 @@ import {
   templateUrl: './best-partials-laps.component.html',
   styleUrls: ['./best-partials-laps.component.scss']
 })
-export class BestPartialsLapsComponent {
+export class BestPartialsLapsComponent implements OnChanges {
   @Input() trackActivities: RaceParticipantTrackActivity[];
-  @Input() bestLap: TrackLap;
+  @Input() bestRaceParticipantTrackActivity: RaceParticipantTrackActivity;
 
-  calculateGap(index: number, row: RaceParticipantTrackActivity) {
-    if (index === 1 || !this.bestLap) {
-      return '';
+  private bestLap: TrackLap;
+
+  ngOnChanges() {
+    if (this.bestRaceParticipantTrackActivity && this.bestRaceParticipantTrackActivity.best_lap) {
+      this.bestLap = this.bestRaceParticipantTrackActivity.best_lap;
     }
-    // Calculate gap
-    return row.best_lap.time - this.bestLap.time;
   }
 
-  calculateInterval(index: number, row: RaceParticipantTrackActivity) {
-    if (index === 1 || !row.best_lap || !this.bestLap ||
-      !this.trackActivities[index - 2] ||
-      !this.trackActivities[index - 2].best_lap) {
-      return '';
-    }
-    // Calculate interval
-    return row.best_lap.time - this.trackActivities[index - 2].best_lap.time;
+  getBestLap(trackActivity: RaceParticipantTrackActivity) {
+    return trackActivity.best_lap;
   }
 
-  calculateGapCurrentLap(index: number, row: RaceParticipantTrackActivity) {
-    if (
-      !this.bestLap ||
-      !row.last_lap ||
-      !row.last_lap.partials ||
-      row.last_lap.partials.length === 0
-    ) {
-      return 0;
-    }
-    let current_lap_time = 0,
-      best_partial_time = 0;
+  getPoleLap() {
+    return this.bestLap;
+  }
 
-    row.last_lap.partials.forEach((partial: TrackPartialLap, partialIndex: number) => {
-      current_lap_time += partial.time;
-      best_partial_time += this.bestLap.partials[partialIndex].time;
-    });
+  getPartial(trackActivity: RaceParticipantTrackActivity, partialIndex: number) {
+    return trackActivity.best_lap ? trackActivity.best_lap.partials[partialIndex] : null;
+  }
 
-    // Calculate gap
-    return current_lap_time - best_partial_time;
+  getBestPartial(trackActivity: RaceParticipantTrackActivity, partialIndex: number) {
+    return trackActivity.best_lap ? trackActivity.best_lap.partials[partialIndex] : null;
+  }
+
+  getPolePartial(partialIndex: number) {
+    return this.bestLap ? this.bestLap.partials[partialIndex] : null;
   }
 }

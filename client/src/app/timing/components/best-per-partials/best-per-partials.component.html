@@ -23,10 +23,10 @@
           <span class="text-muted">-</span>
         </td>
         <td class="timing_table-column-lap-sector">
-          <racer-partial-lap-time [partial]="getPartial(trackActivity)" [bestPartial]="getPartial(trackActivity)" [polePartial]="bestLap?.partials[partialIndex]" [isRefLap]="false"></racer-partial-lap-time>
+          <racer-partial-lap-time [partial]="getPartial(trackActivity)" [bestPartial]="getBestPartial(trackActivity)" [polePartial]="getPolePartial()" [isRefLap]="false"></racer-partial-lap-time>
         </td>
         <td class="timing_table-column-partial-lap-time">
-          <racer-lap-time [lap]="trackActivity.best_lap" [bestLap]="trackActivity.best_lap" [poleLap]="bestLap" [isRefLap]="false" [showGap]="false"></racer-lap-time>
+          <racer-lap-time [lap]="getBestLap(trackActivity)" [bestLap]="getBestLap(trackActivity)" [poleLap]="getPoleLap()" [isRefLap]="false"></racer-lap-time>
         </td>
       </tr>
     </tbody>

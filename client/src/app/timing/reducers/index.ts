@@ -1,12 +1,13 @@
 // libs
 import { ActionReducerMap, createSelector, createFeatureSelector } from '@ngrx/store';
+import * as lodash from 'lodash';
 // import * as fromRouter from '@ngrx/router-store';
 
 // modules
 import * as fromRoot from '../../core/reducers';
 import * as fromRaceWeekend from './race-weekends.reducer';
 import * as fromTrackActivity from './track-activities.reducer';
-import * as fromRaceParticipantTrackActivity from './race-participant-track-activity.reducer';
+import * as fromRaceParticipantTrackActivity from './race-participant-track-activities.reducer';
 
 
 export interface TimingState {
@@ -82,5 +83,25 @@ export const getRaceParticipantsTrackActivitiesState = createSelector(
   state => state.raceParticipantsTrackActivities
 );
 
+export const getBestRaceParticipantTrackActivityId = createSelector(
+  getRaceParticipantsTrackActivitiesState,
+  fromRaceParticipantTrackActivity.getBestId
+);
+
+export const {
+  selectIds: getRaceParticipantsTrackActivitiesIds,
+  selectEntities: getRaceParticipantsTrackActivitiesEntities,
+  selectAll: getAllRaceParticipantsTrackActivities,
+  selectTotal: getTotalRaceParticipantsTrackActivities,
+} = fromRaceParticipantTrackActivity.adapter.getSelectors(getRaceParticipantsTrackActivitiesState);
+
 export const getRaceParticipantsTrackActivitiesArray =
   createSelector(getRaceParticipantsTrackActivitiesState, fromRaceParticipantTrackActivity.getRaceParticipantsTrackActivitiesArray);
+
+export const getBestRaceParticipantTrackActivity = createSelector(
+  getRaceParticipantsTrackActivitiesEntities,
+  getBestRaceParticipantTrackActivityId,
+  (entities, bestId) => {
+    return bestId && entities[bestId];
+  }
+);

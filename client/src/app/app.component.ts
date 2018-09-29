@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import * as lodash from 'lodash';
 
 // services
 import { SocketService } from './core/service/socket.service';
@@ -12,8 +13,14 @@ import * as fromRoot from './core/reducers/';
 import * as fromTiming from './timing/reducers/';
 import { SelectRaceWeekend } from './timing/actions/race-weekend.actions';
 import { SelectTrackActivity } from './timing/actions/track-activitiy.actions';
+import {
+  LoadRaceParticipantTrackActivities,
+  SetBestRaceParticipantTrackActivity
+} from './timing/actions/race-participant-track-activity.actions';
 import { UIActions } from './core/actions';
 
+// dummy data
+import { TP_C3_TRACK_ACTIVITY } from './shared/dummy';
 
 @Component({
   selector: 'racer-root',
@@ -43,5 +50,11 @@ export class AppComponent implements OnInit {
     this.store.dispatch(new SelectRaceWeekend(1));
 
     this.store.dispatch(new SelectTrackActivity(1));
+
+    const data = lodash.orderBy(TP_C3_TRACK_ACTIVITY.race_participants_track_activities, 'best_lap.time');
+
+    this.store.dispatch(new LoadRaceParticipantTrackActivities(data));
+
+    this.store.dispatch(new SetBestRaceParticipantTrackActivity(data[0].id));
   }
 }

@@ -30,19 +30,19 @@
           <span class="text-muted">-</span>
         </td>
         <td class="timing_table-column-lap-sector">
-          <racer-partial-lap-time [partial]="trackActivity.best_lap?.partials[0]" [bestPartial]="trackActivity.best_lap?.partials[0]" [polePartial]="bestLap?.partials[0]" [isRefLap]="false"></racer-partial-lap-time>
+          <racer-partial-lap-time [partial]="getPartial(trackActivity, 0)" [bestPartial]="getBestPartial(trackActivity, 0)" [polePartial]="getPolePartial(0)" [isRefLap]="false"></racer-partial-lap-time>
         </td>
         <td class="timing_table-column-lap-sector">
-          <racer-partial-lap-time [partial]="trackActivity.best_lap?.partials[1]" [bestPartial]="trackActivity.best_lap?.partials[1]" [polePartial]="bestLap?.partials[1]" [isRefLap]="false"></racer-partial-lap-time>
+          <racer-partial-lap-time [partial]="getPartial(trackActivity, 1)" [bestPartial]="getBestPartial(trackActivity, 1)" [polePartial]="getPolePartial(1)" [isRefLap]="false"></racer-partial-lap-time>
         </td>
         <td class="timing_table-column-lap-sector">
-          <racer-partial-lap-time [partial]="trackActivity.best_lap?.partials[2]" [bestPartial]="trackActivity.best_lap?.partials[2]" [polePartial]="bestLap?.partials[2]" [isRefLap]="false"></racer-partial-lap-time>
+            <racer-partial-lap-time [partial]="getPartial(trackActivity, 2)" [bestPartial]="getBestPartial(trackActivity, 2)" [polePartial]="getPolePartial(2)" [isRefLap]="false"></racer-partial-lap-time>
         </td>
         <td class="timing_table-column-lap-sector">
-          <racer-partial-lap-time [partial]="trackActivity.best_lap?.partials[3]" [bestPartial]="trackActivity.best_lap?.partials[3]" [polePartial]="bestLap?.partials[3]" [isRefLap]="false"></racer-partial-lap-time>
+          <racer-partial-lap-time [partial]="getPartial(trackActivity, 3)" [bestPartial]="getBestPartial(trackActivity, 3)" [polePartial]="getPolePartial(3)" [isRefLap]="false"></racer-partial-lap-time>
         </td>
         <td class="timing_table-column-partial-lap-time">
-          <racer-lap-time [lap]="trackActivity.best_lap" [bestLap]="trackActivity.best_lap" [poleLap]="bestLap" [isRefLap]="false"></racer-lap-time>
+          <racer-lap-time [lap]="getBestLap(trackActivity)" [bestLap]="getBestLap(trackActivity)" [poleLap]="getPoleLap()" [isRefLap]="false"></racer-lap-time>
         </td>
       </tr>
     </tbody>

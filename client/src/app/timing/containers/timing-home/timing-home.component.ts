@@ -24,8 +24,7 @@ export class TimingHomeComponent implements OnInit {
   raceWeekend$: Observable<RaceWeekend>;
   trackActivity$: Observable<TrackActivity>;
   raceParticipantsTrackActivities$: Observable<RaceParticipantTrackActivity[]>;
-  // bestTrackActivity: RaceParticipantTrackActivity;
-  // bestLap: TrackLap;
+  bestRaceParticipantTrackActivity$: Observable<RaceParticipantTrackActivity>;
 
   currentViewNumber = parseInt(localStorage.getItem('currentViewNumber'), 10) || 0;
   viewsCount = 4;
@@ -53,14 +52,10 @@ export class TimingHomeComponent implements OnInit {
     this.trackActivity$ = store.pipe(select(fromTiming.getSelectedTrackActivity));
 
     this.raceParticipantsTrackActivities$ = store.pipe(select(fromTiming.getRaceParticipantsTrackActivitiesArray));
+
+    this.bestRaceParticipantTrackActivity$ = store.pipe(select(fromTiming.getBestRaceParticipantTrackActivity));
   }
 
   ngOnInit(): void {
-  }
-
-  getBestLap(raceParticipantTrackActivities: RaceParticipantTrackActivity[]) {
-    return raceParticipantTrackActivities && raceParticipantTrackActivities.length > 0 && raceParticipantTrackActivities[0].best_lap ?
-      raceParticipantTrackActivities[0].best_lap :
-      null;
   }
 }

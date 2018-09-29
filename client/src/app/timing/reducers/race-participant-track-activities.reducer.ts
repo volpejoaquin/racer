@@ -10,11 +10,9 @@ import {
   RaceParticipantTrackActivityActions
 } from './../actions/';
 
-// dummy data
-import { TP_C3_TRACK_ACTIVITY } from '../../shared/dummy';
-
 export interface State extends EntityState<RaceParticipantTrackActivity> {
   selectedRaceParticipantTrackActivityId: number | null;
+  bestRaceParticipantTrackActivityId: number | null;
 }
 
 export const adapter: EntityAdapter<RaceParticipantTrackActivity> = createEntityAdapter<RaceParticipantTrackActivity>({
@@ -23,15 +21,15 @@ export const adapter: EntityAdapter<RaceParticipantTrackActivity> = createEntity
 });
 
 export let initialState: State = adapter.getInitialState({
-  selectedRaceParticipantTrackActivityId: 1
+  selectedRaceParticipantTrackActivityId: 1,
+  bestRaceParticipantTrackActivityId: 1
 });
-
-initialState = adapter.addAll(TP_C3_TRACK_ACTIVITY.race_participants_track_activities, initialState); // TODO: REVIEW THIS
 
 export function reducer(
   state = initialState,
   action:
     | RaceParticipantTrackActivityActions.LoadRaceParticipantTrackActivities
+    | RaceParticipantTrackActivityActions.SetBestRaceParticipantTrackActivity
 ): State {
   switch (action.type) {
     case RaceParticipantTrackActivityActions.RaceParticipantTrackActivityActionTypes.LoadRaceParticipantTrackActivities: {
@@ -41,6 +39,13 @@ export function reducer(
       return newState;
     }
 
+    case RaceParticipantTrackActivityActions.RaceParticipantTrackActivityActionTypes.SetBestRaceParticipantTrackActivity: {
+      return {
+        ...state,
+        bestRaceParticipantTrackActivityId: action.payload
+      };
+    }
+
     default: {
       return state;
     }
@@ -48,4 +53,5 @@ export function reducer(
 }
 
 export const getSelectedId = (state: State) => state.selectedRaceParticipantTrackActivityId;
+export const getBestId = (state: State) => state.bestRaceParticipantTrackActivityId;
 export const getRaceParticipantsTrackActivitiesArray = (state: State) => lodash.map(state.ids, (id: any) => state.entities[id]);

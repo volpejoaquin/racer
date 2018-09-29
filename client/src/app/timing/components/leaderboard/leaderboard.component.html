@@ -9,7 +9,6 @@
         <th scope="col" class="timing_table-head-column timing_table-column-laps">V</th>
         <th scope="col" class="timing_table-head-column-time timing_table-column-lap-time">TIEMPO</th>
         <th scope="col" class="timing_table-head-column timing_table-column-lap-diff col-auto">DIFF</th>
-        <th scope="col" class="timing_table-head-column timing_table-column-lap-interval">INT</th>
         <th scope="col" class="timing_table-head-column timing_table-column-lap-sector">S1</th>
         <th scope="col" class="timing_table-head-column timing_table-column-lap-sector">S2</th>
         <th scope="col" class="timing_table-head-column timing_table-column-lap-sector">S3</th>
@@ -20,7 +19,6 @@
         <th scope="col" class="column_small text-center"></th>
         <th scope="col" class="column_small text-center"></th>
         <th scope="col" class="column_race_participant_name"></th>
-        <th scope="col" class="column_small"></th>
         <th scope="col" class="column_small"></th>
         <th scope="col" class="column_lap-time"></th>
         <th scope="col" class="column_small"></th>
@@ -66,9 +64,6 @@
         </td>
         <td class="timing_table-row-column timing_table-column-lap-diff">
           <span *ngIf="calculateGap(trackActivityIndex + 1, trackActivity) > 0">{{ calculateGap(trackActivityIndex + 1, trackActivity) | partialLapTime }}</span>
-        </td>
-        <td class="timing_table-row-column timing_table-column-lap-interval">
-          <span *ngIf="calculateInterval(trackActivityIndex + 1, trackActivity) > 0">{{ calculateInterval(trackActivityIndex + 1, trackActivity) | partialLapTime }}</span>
         </td>
         <td class="timing_table-row-column timing_table-column-lap-sector">
           <racer-partial-lap-time [partial]="trackActivity.last_lap?.partials[0]" [bestPartial]="trackActivity.best_lap?.partials[0]" [polePartial]="bestLap?.partials[0]" [isRefLap]="false"></racer-partial-lap-time>

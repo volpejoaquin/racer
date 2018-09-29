@@ -1,11 +1,10 @@
 // angular
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 // models
 import {
   RaceParticipantTrackActivity,
-  TrackLap,
-  TrackPartialLap
+  TrackLap
 } from '../../../shared/model/';
 
 @Component({
@@ -13,46 +12,23 @@ import {
   templateUrl: './leaderboard.component.html',
   styleUrls: ['./leaderboard.component.scss']
 })
-export class LeaderboardComponent {
+export class LeaderboardComponent implements OnChanges {
   @Input() trackActivities: RaceParticipantTrackActivity[];
-  @Input() bestLap: TrackLap;
+  @Input() bestRaceParticipantTrackActivity: RaceParticipantTrackActivity;
+
+  private bestLap: TrackLap;
+
+  ngOnChanges() {
+    if (this.bestRaceParticipantTrackActivity && this.bestRaceParticipantTrackActivity.best_lap) {
+      this.bestLap = this.bestRaceParticipantTrackActivity.best_lap;
+    }
+  }
 
   calculateGap(index: number, row: RaceParticipantTrackActivity) {
-    if (index === 1 || !row.best_lap || !this.bestLap ) {
+    if (index === 1 || !row.best_lap || !this.bestLap) {
       return '';
     }
     // Calculate gap
     return row.best_lap.time - this.bestLap.time;
-  }
-
-  calculateInterval(index: number, row: RaceParticipantTrackActivity) {
-    if (index === 1 || !row.best_lap || !this.bestLap ||
-      this.trackActivities[index - 2] ||
-      this.trackActivities[index - 2].best_lap) {
-      return '';
-    }
-    // Calculate interval
-    return row.best_lap.time - this.trackActivities[index - 2].best_lap.time;
-  }
-
-  calculateGapCurrentLap(index: number, row: RaceParticipantTrackActivity) {
-    if (
-      !row.last_lap ||
-      !this.bestLap ||
-      !row.last_lap.partials ||
-      row.last_lap.partials.length === 0
-    ) {
-      return 0;
-    }
-    let current_lap_time = 0,
-      best_partial_time = 0;
-
-    row.last_lap.partials.forEach((partial: TrackPartialLap, partialIndex: number) => {
-      current_lap_time += partial.time;
-      best_partial_time += this.bestLap.partials[partialIndex].time;
-    });
-
-    // Calculate gap
-    return current_lap_time - best_partial_time;
   }
 }

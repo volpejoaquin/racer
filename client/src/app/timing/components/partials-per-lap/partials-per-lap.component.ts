@@ -1,5 +1,5 @@
 // angular
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 // models
 import {
@@ -13,31 +13,36 @@ import {
   templateUrl: './partials-per-lap.component.html',
   styleUrls: ['./partials-per-lap.component.scss']
 })
-export class PartialPerLapComponent {
+export class PartialPerLapComponent implements OnChanges {
   @Input() title = '';
   @Input() trackActivity: RaceParticipantTrackActivity;
-  @Input() bestLap: TrackLap;
+  @Input() bestRaceParticipantTrackActivity: RaceParticipantTrackActivity;
 
-  constructor() { }
+  private bestLap: TrackLap;
 
-  calculateGapCurrentLap(index: number, row: RaceParticipantTrackActivity) {
-    if (
-      !this.bestLap ||
-      !row.last_lap ||
-      !row.last_lap.partials ||
-      row.last_lap.partials.length === 0
-    ) {
-      return 0;
+  ngOnChanges() {
+    if (this.bestRaceParticipantTrackActivity && this.bestRaceParticipantTrackActivity.best_lap) {
+      this.bestLap = this.bestRaceParticipantTrackActivity.best_lap;
     }
-    let current_lap_time = 0,
-      best_partial_time = 0;
+  }
 
-    row.last_lap.partials.forEach((partial: TrackPartialLap, partialIndex: number) => {
-      current_lap_time += partial.time;
-      best_partial_time += this.bestLap.partials[partialIndex].time;
-    });
+  getBestLap(_lap: TrackLap) {
+    return this.trackActivity ? this.trackActivity.best_lap : null;
+  }
 
-    // Calculate gap
-    return current_lap_time - best_partial_time;
+  getPoleLap() {
+    return this.bestLap;
+  }
+
+  getPartial(lap: TrackLap, partialIndex: number) {
+    return lap.partials[partialIndex];
+  }
+
+  getBestPartial(_lap: TrackLap, partialIndex: number) {
+    return this.trackActivity.best_lap ? this.trackActivity.best_lap.partials[partialIndex] : null;
+  }
+
+  getPolePartial(partialIndex: number) {
+    return this.bestLap ? this.bestLap.partials[partialIndex] : null;
   }
 }
