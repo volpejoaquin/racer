@@ -1,9 +1,9 @@
-<div class="fixed-bottom">
+<div class="fixed-bottom" [class.timing-secondary-bar_wrapper-extra_expanded]="isExpanded">
   <nav class="timing-secondary-bar_wrapper p-3">
     <div class="row justify-content-center align-items-center">
       <div class="col-auto">
         <div class="text-center">
-          <i class="fas fa-lg text-primary" [class.fa-chevron-down]="isExpanded" [class.fa-chevron-up]="!isExpanded" (click)="isExpanded = !isExpanded"></i>
+          <i class="fas fa-lg fa-chevron-down text-primary timing-secondary-bar_toggle-icon" (click)="isExpanded = !isExpanded"></i>
         </div>
       </div>
       <div class="col">
@@ -28,7 +28,7 @@
     </div>
   </nav>
 
-  <div class="timing-secondary-bar_wrapper-extra" [class.timing-secondary-bar_wrapper-extra_expanded]="isExpanded">
+  <div class="timing-secondary-bar_wrapper-extra">
     <racer-race-weekend class="d-block pl-3 pr-3" [raceWeekend]="raceWeekend"></racer-race-weekend>
   </div>
 </div>

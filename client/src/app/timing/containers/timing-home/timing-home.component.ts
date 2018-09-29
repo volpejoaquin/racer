@@ -3,10 +3,9 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-// libs
-
 // modules
 import * as fromTiming from './../../reducers/';
+import { LoadRaceParticipantTrackActivities } from './../../actions/race-participant-track-activity.actions';
 
 // models
 import {
@@ -54,6 +53,13 @@ export class TimingHomeComponent implements OnInit {
     this.raceParticipantsTrackActivities$ = store.pipe(select(fromTiming.getRaceParticipantsTrackActivitiesArray));
 
     this.bestRaceParticipantTrackActivity$ = store.pipe(select(fromTiming.getBestRaceParticipantTrackActivity));
+
+    this.trackActivity$.subscribe((selectedTrackActivity: TrackActivity) => {
+
+      if (selectedTrackActivity.race_participants_track_activities) {
+        store.dispatch(new LoadRaceParticipantTrackActivities(selectedTrackActivity.race_participants_track_activities));
+      }
+    });
   }
 
   ngOnInit(): void {

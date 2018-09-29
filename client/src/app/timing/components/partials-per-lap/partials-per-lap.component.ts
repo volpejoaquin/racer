@@ -4,8 +4,7 @@ import { Component, Input, OnChanges } from '@angular/core';
 // models
 import {
   RaceParticipantTrackActivity,
-  TrackLap,
-  TrackPartialLap
+  TrackLap
 } from '../../../shared/model/';
 
 @Component({

@@ -6,7 +6,8 @@ import { TrackActivity } from '../../shared/model';
 
 // actions
 import {
-  TrackActivityActions
+  TrackActivityActions,
+  RaceParticipantTrackActivityActions
 } from './../actions/';
 
 // dummy data
@@ -31,6 +32,7 @@ export function reducer(
   state = initialState,
   action:
     | TrackActivityActions.SelectTrackActivity
+    | RaceParticipantTrackActivityActions.LoadRaceParticipantTrackActivities
 ): State {
   switch (action.type) {
     case TrackActivityActions.TrackActivityActionTypes.SelectTrackActivity: {
@@ -38,6 +40,16 @@ export function reducer(
         ...state,
         selectedTrackActivityId: action.payload
       };
+    }
+
+    case RaceParticipantTrackActivityActions.RaceParticipantTrackActivityActionTypes.LoadRaceParticipantTrackActivities: {
+
+      const selectedTrackActivityId = state.selectedTrackActivityId,
+        selectedTrackActivity = state.entities[selectedTrackActivityId];
+
+      selectedTrackActivity.race_participants_track_activities = action.payload;
+
+      return state;
     }
 
     default: {
