@@ -16,7 +16,7 @@ export class TimingSecondaryBarComponent implements OnInit {
   @Input() raceWeekend: RaceWeekend;
   @Input() trackActivity: TrackActivity;
 
-  isExpanded = true; // TODO: REVERT THIS
+  isExpanded = false;
 
   constructor() {
   }

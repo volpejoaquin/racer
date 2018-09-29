@@ -20,7 +20,7 @@ import {
 import { UIActions } from './core/actions';
 
 // dummy data
-import { TP_C3_TRACK_ACTIVITY } from './shared/dummy';
+import { QUALY_SAMPLE } from './shared/dummy';
 
 @Component({
   selector: 'racer-root',
@@ -51,10 +51,8 @@ export class AppComponent implements OnInit {
 
     this.store.dispatch(new SelectTrackActivity(1));
 
-    // const data = lodash.orderBy(TP_C3_TRACK_ACTIVITY.race_participants_track_activities, 'best_lap.time');
+    const data = lodash.orderBy(QUALY_SAMPLE, 'best_lap.time');
 
-    // this.store.dispatch(new LoadRaceParticipantTrackActivities(data));
-
-    // this.store.dispatch(new SetBestRaceParticipantTrackActivity(data[0].id));
+    this.store.dispatch(new LoadRaceParticipantTrackActivities(data));
   }
 }
