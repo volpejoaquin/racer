@@ -14,6 +14,11 @@ export enum TrackActivityState {
   finished = 'finished'
 }
 
+export enum TrackActivityType {
+  practice = 'practice',
+  race = 'race'
+}
+
 export interface TrackActivity extends BaseModel {
   // Simple
   name: string;
@@ -22,6 +27,7 @@ export interface TrackActivity extends BaseModel {
   duration: number; // In minutes
   laps: number;
   state: TrackActivityState;
+  type: TrackActivityType;
   // Optionals
   // Relationships
   race_weekend?: RaceWeekend;
@@ -50,6 +56,7 @@ export interface RaceParticipantTrackActivity extends BaseModel {
   laps_count: number;
   best_lap: TrackLap;
   last_lap: TrackLap;
+  total_time: number;
 }
 
 export interface TrackLap extends BaseModel {

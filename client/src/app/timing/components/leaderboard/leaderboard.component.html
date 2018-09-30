@@ -41,9 +41,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="timing_table-row" *ngFor="let trackActivity of trackActivities; let trackActivityIndex = index;" racerRaceParticipant [raceParticipant]="trackActivity.race_participant">
+      <tr class="timing_table-row" *ngFor="let trackActivity of (trackActivities | order:orderBy:orders); let trackActivityIndex = index;" racerRaceParticipant [raceParticipant]="trackActivity.race_participant">
         <td class="timing_table-row-column timing_table-column-pos">
-          <span class="align-middle" *ngIf="trackActivity.best_lap?.time">{{ trackActivityIndex + 1 }}</span>
+          <span class="align-middle" *ngIf="trackActivity.laps_count > 0">{{ trackActivityIndex + 1 }}</span>
           <span class="align-middle text-muted" *ngIf="trackActivity.laps_count === 0">-</span>
         </td>
         <td class="timing_table-row-column timing_table-column-car">
@@ -60,7 +60,7 @@
           <span class="align-middle" *ngIf="trackActivity.laps_count !== 0">{{ trackActivity.laps_count }}</span>
         </td>
         <td class="timing_table-row-column timing_table-column-lap-time">
-          <span class="align-middle">{{ trackActivity.best_lap?.time | lapTime }}</span>
+          <span class="align-middle">{{ getTime(trackActivity) | lapTime }}</span>
         </td>
         <td class="timing_table-row-column timing_table-column-lap-diff">
           <span class="align-middle" *ngIf="calculateGap(trackActivityIndex + 1, trackActivity) > 0">{{ calculateGap(trackActivityIndex + 1, trackActivity) | partialLapTime }}</span>

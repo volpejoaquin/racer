@@ -179,9 +179,10 @@ export class ImportTimesHelper {
       this.logHelper.log('WARNING ! Invalid race participant number: ' + JSON.stringify(row));
     }
 
+    let raceParticipantTrackActivity: RaceParticipantTrackActivity;
     // check base object
     if (!raceParticipantTrackActivities[raceParticipantNumber]) {
-      raceParticipantTrackActivities[raceParticipantNumber] = {
+      raceParticipantTrackActivity = {
         state: RaceParticipantTrackActivityState.on_pit,
         race_participant: this.findRaceParticipant(raceParticipantNumber, trackActivity),
         laps: [
@@ -189,10 +190,19 @@ export class ImportTimesHelper {
         ],
         laps_count: 0,
         best_lap: null,
-        last_lap: null
+        last_lap: null,
+        total_time: trackLap.partial_lap ? 0 : trackLap.time
       };
+
+      raceParticipantTrackActivities[raceParticipantNumber] = raceParticipantTrackActivity;
     } else {
-      raceParticipantTrackActivities[raceParticipantNumber].laps.push(trackLap);
+      raceParticipantTrackActivity = raceParticipantTrackActivities[raceParticipantNumber];
+
+      raceParticipantTrackActivity.laps.push(trackLap);
+
+      if (!trackLap.partial_lap) {
+        raceParticipantTrackActivity.total_time += trackLap.time;
+      }
     }
 
     return raceParticipantTrackActivities;

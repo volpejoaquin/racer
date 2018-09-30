@@ -16,6 +16,9 @@ export class BestPartialsLapsComponent implements OnChanges {
   @Input() trackActivities: RaceParticipantTrackActivity[];
   @Input() bestRaceParticipantTrackActivity: RaceParticipantTrackActivity;
 
+  orderBy = 'best_lap.time';
+  orders = 'asc';
+
   private bestLap: TrackLap;
 
   ngOnChanges() {

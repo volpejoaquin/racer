@@ -161,7 +161,8 @@ export class TimingDummy {
       laps: [],
       laps_count: 0,
       best_lap: null,
-      last_lap: null
+      last_lap: null,
+      total_time: 0
     };
 
     this.simulateTrackActivity(data);

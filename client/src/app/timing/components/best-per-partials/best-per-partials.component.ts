@@ -7,8 +7,7 @@ import * as lodash from 'lodash';
 // models
 import {
   RaceParticipantTrackActivity,
-  TrackLap,
-  TrackPartialLap
+  TrackLap
 } from '../../../shared/model/';
 
 @Component({

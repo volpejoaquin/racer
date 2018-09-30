@@ -1,7 +1,8 @@
 // models
 import {
   TrackActivity,
-  TrackActivityState
+  TrackActivityState,
+  TrackActivityType
 } from './../../model/track-activity.model';
 
 // dummy data
@@ -18,6 +19,7 @@ export const TP_C3_TRACK_ACTIVITY: TrackActivity = {
   duration: 10,
   laps: 0,
   state: TrackActivityState.waiting,
+  type: TrackActivityType.practice,
   race_participants_track_activities: QUALY_A_SAMPLE,
   car_division: TP_C3_CAR_DIVISION,
   circuit_variant: CIRCUIT_VARIANT_SAMPLE
@@ -33,6 +35,7 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     duration: 10,
     laps: 0,
     state: TrackActivityState.waiting,
+    type: TrackActivityType.practice,
     race_participants_track_activities: QUALY_B_SAMPLE,
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: CIRCUIT_VARIANT_SAMPLE
@@ -45,6 +48,7 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     duration: 10,
     laps: 0,
     state: TrackActivityState.waiting,
+    type: TrackActivityType.practice,
     race_participants_track_activities: [],
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: CIRCUIT_VARIANT_SAMPLE
@@ -57,6 +61,7 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     duration: 10,
     laps: 0,
     state: TrackActivityState.waiting,
+    type: TrackActivityType.practice,
     race_participants_track_activities: [],
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: CIRCUIT_VARIANT_SAMPLE
@@ -69,6 +74,7 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     duration: 0,
     laps: 6,
     state: TrackActivityState.waiting,
+    type: TrackActivityType.race,
     race_participants_track_activities: RACE_SERIE_1_DATA,
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: CIRCUIT_VARIANT_SAMPLE
@@ -81,6 +87,7 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     duration: 0,
     laps: 6,
     state: TrackActivityState.waiting,
+    type: TrackActivityType.race,
     race_participants_track_activities: RACE_SERIE_2_DATA,
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: CIRCUIT_VARIANT_SAMPLE
@@ -93,6 +100,7 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     duration: 30,
     laps: 15,
     state: TrackActivityState.waiting,
+    type: TrackActivityType.race,
     race_participants_track_activities: [],
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: CIRCUIT_VARIANT_SAMPLE

@@ -10,7 +10,8 @@ import {
   TrackLap,
   RaceParticipant,
   RaceParticipantTrackActivityState,
-  RaceParticipantTrackActivity
+  RaceParticipantTrackActivity,
+  TrackActivityType
 } from '../model/';
 
 export const CAR_CATEGORY: CarCategory = {
@@ -49,6 +50,7 @@ export const TRACK_ACTIVITY: TrackActivity = {
   laps: 0,
   duration: trackActivityDuration,
   state: TrackActivityState.waiting,
+  type: TrackActivityType.practice,
   race_participants_track_activities: []
 };
 
@@ -182,5 +184,6 @@ export const EMPTY_RACE_PARTICIPANT_TRACK_ACTIVITY: RaceParticipantTrackActivity
   laps: [],
   laps_count: 0,
   best_lap: null,
-  last_lap: null
+  last_lap: null,
+  total_time: 0
 };
