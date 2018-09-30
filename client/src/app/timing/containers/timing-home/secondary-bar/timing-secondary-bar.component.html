@@ -3,7 +3,7 @@
     <div class="row justify-content-center align-items-center">
       <div class="col-auto">
         <div class="text-center">
-          <i class="fas fa-lg fa-chevron-up text-primary timing-secondary-bar_toggle-icon" (click)="isExpanded = !isExpanded"></i>
+          <i class="fas fa-lg fa-chevron-up text-primary timing-secondary-bar_toggle-icon" (click)="isExpanded = !isExpanded">TRACK</i>
         </div>
       </div>
       <div class="col">
@@ -21,8 +21,8 @@
       </div>
       <div class="col-auto">
         <div class="text-center">
-          <i class="fas fa-exchange-alt fa-lg mr-2 text-primary"></i>
-          <i class="fas fa-tv fa-lg text-primary"></i>
+          <i class="fas fa-exchange-alt fa-lg mr-2 text-primary" (click)="timingUIBar.nextUIMode()">CHANGE</i>
+          <i class="fas fa-tv fa-lg text-primary" (click)="isUIExpanded = !isUIExpanded">UI</i>
         </div>
       </div>
     </div>
@@ -31,4 +31,6 @@
   <div class="timing-secondary-bar_wrapper-extra">
     <racer-race-weekend class="d-block pl-3 pr-3" [raceWeekend]="raceWeekend"></racer-race-weekend>
   </div>
+
+  <racer-timing-ui-bar #timingUIBar class="timing-ui-bar_wrapper" [class.timing-ui-bar_wrapper_expanded]="isUIExpanded" [raceParticipants]="raceParticipants"></racer-timing-ui-bar>
 </div>

@@ -30,12 +30,12 @@ export class RaceWeekendComponent implements OnInit, OnChanges {
   selectedTrackActivity: TrackActivity;
 
   constructor(private store: Store<fromTiming.State>) {
-    store.pipe(select(fromTiming.getSelectedTrackActivity)).subscribe((tActivity: TrackActivity) => {
-      this.selectedTrackActivity = tActivity;
-    });
   }
 
   ngOnInit() {
+    this.store.select(fromTiming.getSelectedTrackActivity).subscribe((tActivity: TrackActivity) => {
+      this.selectedTrackActivity = tActivity;
+    });
   }
 
   ngOnChanges() {

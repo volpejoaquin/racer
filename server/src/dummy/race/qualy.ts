@@ -16,7 +16,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Mauro",
-           "last_name":"\tSalvi"
+           "last_name":"Salvi"
         },
         "number":35
      },
@@ -110,7 +110,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Dino",
-           "last_name":"\tCassiano"
+           "last_name":"Cassiano"
         },
         "number":19
      },
@@ -253,7 +253,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Marcos",
-           "last_name":"\tDagostino"
+           "last_name":"Dagostino"
         },
         "number":7
      },
@@ -422,7 +422,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Gonzalo",
-           "last_name":"\tAntolin"
+           "last_name":"Antolin"
         },
         "number":9
      },
@@ -599,7 +599,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Tomás",
-           "last_name":"\tSniechowski"
+           "last_name":"Sniechowski"
         },
         "number":14
      },
@@ -948,7 +948,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Jonathan",
-           "last_name":"\tBaldinelli"
+           "last_name":"Baldinelli"
         },
         "number":60
      },
@@ -1096,7 +1096,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Pablo",
-           "last_name":"\tVuyovich"
+           "last_name":"Vuyovich"
         },
         "number":20
      },
@@ -1265,7 +1265,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Lucas",
-           "last_name":"\tPetracchini"
+           "last_name":"Petracchini"
         },
         "number":26
      },
@@ -1434,7 +1434,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Juan",
-           "last_name":"\tKreitz"
+           "last_name":"Kreitz"
         },
         "number":24
      },
@@ -1695,7 +1695,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Thiago",
-           "last_name":"\tMartinez"
+           "last_name":"Martinez"
         },
         "number":25
      },
@@ -1868,7 +1868,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Juan",
-           "last_name":"\tDamiani"
+           "last_name":"Damiani"
         },
         "number":29
      },
@@ -2191,7 +2191,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Ramiro",
-           "last_name":"\tAlcaine"
+           "last_name":"Alcaine"
         },
         "number":13
      },
@@ -2364,7 +2364,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Joaquin",
-           "last_name":"\tTelo"
+           "last_name":"Telo"
         },
         "number":42
      },
@@ -2540,7 +2540,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Lucas",
-           "last_name":"\tBagnera"
+           "last_name":"Bagnera"
         },
         "number":3
      },
@@ -2716,7 +2716,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Jorge",
-           "last_name":"\tPossiel"
+           "last_name":"Possiel"
         },
         "number":18
      },
@@ -2897,7 +2897,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Lucas",
-           "last_name":"\tYerobi"
+           "last_name":"Yerobi"
         },
         "number":2
      },
@@ -3059,7 +3059,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Joaquin",
-           "last_name":"\tVolpe"
+           "last_name":"Volpe"
         },
         "number":80
      },
@@ -3221,7 +3221,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Martín",
-           "last_name":"\tFierros"
+           "last_name":"Fierros"
         },
         "number":47
      },
@@ -3375,7 +3375,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Pablo",
-           "last_name":"\tMauri"
+           "last_name":"Mauri"
         },
         "number":74
      },
@@ -3544,7 +3544,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Pablo",
-           "last_name":"\tRossi"
+           "last_name":"Rossi"
         },
         "number":77
      },
@@ -3699,7 +3699,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Marcos",
-           "last_name":"\tBobbio"
+           "last_name":"Bobbio"
         },
         "number":91
      },
@@ -4047,7 +4047,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Fredy",
-           "last_name":"\tLestard"
+           "last_name":"Lestard"
         },
         "number":85
      },
@@ -4228,7 +4228,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Pablo",
-           "last_name":"\tMalizia"
+           "last_name":"Malizia"
         },
         "number":63
      },
@@ -4382,7 +4382,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Leonel",
-           "last_name":"\tGiles"
+           "last_name":"Giles"
         },
         "number":93
      },
@@ -4717,7 +4717,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Juan",
-           "last_name":"\tGaravaglia"
+           "last_name":"Garavaglia"
         },
         "number":76
      },
@@ -4880,7 +4880,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Matias",
-           "last_name":"\tAntolin"
+           "last_name":"Antolin"
         },
         "number":10
      },
@@ -4996,7 +4996,7 @@ export const QUALY_SAMPLE: RaceParticipantTrackActivity[] = [
         },
         "driver":{
            "name":"Rubén",
-           "last_name":"\tLoiacono"
+           "last_name":"Loiacono"
         },
         "number":38
      },

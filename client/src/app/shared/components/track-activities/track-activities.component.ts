@@ -1,5 +1,5 @@
 // angular
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges } from '@angular/core';
 
 // libs
 import { Store, select } from '@ngrx/store';
@@ -18,12 +18,15 @@ import {
   templateUrl: './track-activities.component.html',
   styleUrls: ['./track-activities.component.scss']
 })
-export class TrackActivitiesComponent implements OnChanges {
+export class TrackActivitiesComponent implements OnInit, OnChanges {
   @Input() trackActivities: TrackActivity[];
   selectedTrackActivity: TrackActivity;
 
   constructor(private store: Store<fromTiming.State>) {
-    store.pipe(select(fromTiming.getSelectedTrackActivity)).subscribe((tActivity: TrackActivity) => {
+  }
+
+  ngOnInit() {
+    this.store.select(fromTiming.getSelectedTrackActivity).subscribe((tActivity: TrackActivity) => {
       this.selectedTrackActivity = tActivity;
     });
   }

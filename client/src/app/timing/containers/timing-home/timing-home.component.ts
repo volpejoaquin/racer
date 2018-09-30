@@ -14,7 +14,8 @@ import {
 import {
   TrackActivity,
   RaceParticipantTrackActivity,
-  RaceWeekend
+  RaceWeekend,
+  RaceParticipant
 } from '../../../shared/model/';
 
 @Component({
@@ -27,6 +28,8 @@ export class TimingHomeComponent implements OnInit {
   trackActivity$: Observable<TrackActivity>;
   raceParticipantsTrackActivities$: Observable<RaceParticipantTrackActivity[]>;
   bestRaceParticipantTrackActivity$: Observable<RaceParticipantTrackActivity>;
+
+  raceParticipants: RaceParticipant[];
 
   currentViewNumber = parseInt(localStorage.getItem('currentViewNumber'), 10) || 0;
   viewsCount = 4;
@@ -61,6 +64,16 @@ export class TimingHomeComponent implements OnInit {
 
       if (selectedTrackActivity.race_participants_track_activities) {
         store.dispatch(new LoadRaceParticipantTrackActivities(selectedTrackActivity.race_participants_track_activities));
+      }
+    });
+
+    this.raceParticipantsTrackActivities$.subscribe((raceParticipantsTrackActivities: RaceParticipantTrackActivity[]) => {
+      if (raceParticipantsTrackActivities) {
+        this.raceParticipants = [];
+
+        raceParticipantsTrackActivities.forEach((raceParticipantTrackActivity: RaceParticipantTrackActivity) => {
+          this.raceParticipants.push(raceParticipantTrackActivity.race_participant);
+        });
       }
     });
   }

@@ -4,7 +4,8 @@ import { Component, OnInit, Input } from '@angular/core';
 // models
 import {
   TrackActivity,
-  RaceWeekend
+  RaceWeekend,
+  RaceParticipant
 } from '../../../../shared/model';
 
 @Component({
@@ -15,8 +16,10 @@ import {
 export class TimingSecondaryBarComponent implements OnInit {
   @Input() raceWeekend: RaceWeekend;
   @Input() trackActivity: TrackActivity;
+  @Input() raceParticipants: RaceParticipant[];
 
   isExpanded = false;
+  isUIExpanded = true;
 
   constructor() {
   }

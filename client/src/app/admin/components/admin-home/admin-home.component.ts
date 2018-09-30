@@ -20,13 +20,13 @@ import {
 export class AdminHomeComponent implements OnInit, OnChanges {
   raceWeekend: RaceWeekend;
 
-  constructor(store: Store<fromTiming.State>) {
-    store.pipe(select(fromTiming.getSelectedRaceWeekend)).subscribe((rWeekend: RaceWeekend) => {
-      this.raceWeekend = rWeekend;
-    });
+  constructor(private store: Store<fromTiming.State>) {
   }
 
   ngOnInit() {
+    this.store.select(fromTiming.getSelectedRaceWeekend).subscribe((rWeekend: RaceWeekend) => {
+      this.raceWeekend = rWeekend;
+    });
   }
 
   ngOnChanges() {

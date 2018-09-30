@@ -1,5 +1,8 @@
 @import '../../../../../scss/vars/variables';
 
+$timing-secondary-bar-border-size: 3px;
+$timing-ui-bar-width: 300px;
+
 .timing-secondary-bar_wrapper,
 .timing-secondary-bar_wrapper-extra {
   background-color: $gray-800;
@@ -11,7 +14,7 @@
 }
 
 .timing-secondary-bar_wrapper {
-  border-top: 3px solid $success;
+  border-top: $timing-secondary-bar-border-size solid $success;
 }
 
 .timing-secondary-bar_box-wrapper {
@@ -41,7 +44,7 @@
 
 .timing-secondary-bar_toggle-icon,
 .timing-secondary-bar_wrapper-extra {
-  transition: all 0.2s;   
+  transition: all 0.2s;
 }
 
 .timing-secondary-bar_wrapper-extra {
@@ -56,5 +59,22 @@
 
   .timing-secondary-bar_toggle-icon {
     transform: rotate(180deg);
+  }
+}
+
+.timing-ui-bar_wrapper {
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  width: 0;
+  background-color: $dark;
+  z-index: 1030;
+  transition: width 0.2s;
+
+  border-left: 2px solid $gray-600;
+  border-top: 2px solid $gray-600;
+  
+  &.timing-ui-bar_wrapper_expanded {
+    width: $timing-ui-bar-width;
   }
 }

@@ -1,0 +1,35 @@
+<div class="p-3">
+  <div class="linear-box-wrapper">
+    <small class="linear-box-top-text d-block text-muted text-uppercase">
+      <i class="fas fa-monitor"></i> Vista
+    </small>
+  
+    <div class="linear-box-content">
+      <div class="row">
+        <div class="col-12">
+          <div class="btn-group btn-group-toggle mb-1" data-toggle="buttons">
+            <label class="btn btn-sm btn-outline-secondary text-uppercase" [class.active]="currentUIMode === 0">
+              <input type="radio" name="options" id="option1" autocomplete="off" [attr.checked]="currentUIMode === 0" (click)="onChangeMode(0)"> Normal
+            </label>
+            <label class="btn btn-sm btn-outline-secondary text-uppercase" [class.active]="currentUIMode === 1">
+              <input type="radio" name="options" id="option1" autocomplete="off" [attr.checked]="currentUIMode === 1" (click)="onChangeMode(1)"> Equipo
+            </label>
+            <label class="btn btn-sm btn-outline-secondary text-uppercase" [class.active]="currentUIMode === 2">
+              <input type="radio" name="options" id="option1" autocomplete="off" [attr.checked]="currentUIMode === 2" (click)="onChangeMode(2)"> Custom
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="linear-box-wrapper">
+    <small class="linear-box-top-text d-block text-muted text-uppercase">
+      <i class="fas fa-eye"></i> Visibilidad
+    </small>
+  
+    <div class="linear-box-content">
+      <racer-race-participants-visibility [raceParticipants]="raceParticipants"></racer-race-participants-visibility>
+    </div>
+  </div>
+</div>

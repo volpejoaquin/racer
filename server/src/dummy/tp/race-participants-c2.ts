@@ -10,7 +10,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Nicolas",
-      last_name: "	Bulich"
+      last_name: "Bulich"
     },
     number: 5
   },
@@ -23,7 +23,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Renzo",
-      last_name: "	Cerretti"
+      last_name: "Cerretti"
     },
     number: 4
   },
@@ -36,7 +36,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Luigi",
-      last_name: "	Melli"
+      last_name: "Melli"
     },
     number: 29
   },
@@ -49,7 +49,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Lucas",
-      last_name: "	Garro"
+      last_name: "Garro"
     },
     number: 34
   },
@@ -62,7 +62,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Pablo",
-      last_name: "	Vazquez"
+      last_name: "Vazquez"
     },
     number: 21
   },
@@ -75,7 +75,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Fabrizio",
-      last_name: "	Angeli"
+      last_name: "Angeli"
     },
     number: 13
   },
@@ -88,7 +88,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Favio",
-      last_name: "	Grinovero"
+      last_name: "Grinovero"
     },
     number: 10
   },
@@ -101,7 +101,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Danilo",
-      last_name: "	Gil"
+      last_name: "Gil"
     },
     number: 14
   },
@@ -114,7 +114,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Matías",
-      last_name: "	Fernández"
+      last_name: "Fernández"
     },
     number: 122
   },
@@ -140,7 +140,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Martín",
-      last_name: "	Leston"
+      last_name: "Leston"
     },
     number: 48
   },
@@ -166,7 +166,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Fabrizio",
-      last_name: "	Scatena"
+      last_name: "Scatena"
     },
     number: 19
   },
@@ -179,7 +179,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Yair",
-      last_name: "	Etcheveste"
+      last_name: "Etcheveste"
     },
     number: 18
   },
@@ -192,7 +192,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Leonardo",
-      last_name: "	Guisci"
+      last_name: "Guisci"
     },
     number: 6
   },
@@ -205,7 +205,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Rubén",
-      last_name: "	Arguissain"
+      last_name: "Arguissain"
     },
     number: 50
   },
@@ -218,7 +218,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Juan",
-      last_name: "	Lecce"
+      last_name: "Lecce"
     },
     number: 57
   },
@@ -231,7 +231,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Jonathan",
-      last_name: "	Grinovero"
+      last_name: "Grinovero"
     },
     number: 112
   },
@@ -244,7 +244,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Stefano",
-      last_name: "	Isoldi"
+      last_name: "Isoldi"
     },
     number: 90
   },
@@ -257,7 +257,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Nicolás",
-      last_name: "	Rojas"
+      last_name: "Rojas"
     },
     number: 119
   },
@@ -270,7 +270,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Adrian",
-      last_name: "	Roux"
+      last_name: "Roux"
     },
     number: 37
   },
@@ -296,7 +296,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "uis",
-      last_name: "	Arrate, Jose"
+      last_name: "Arrate, Jose"
     },
     number: 73
   },
@@ -309,7 +309,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Tomás",
-      last_name: "	Aramburu"
+      last_name: "Aramburu"
     },
     number: 26
   },
@@ -322,7 +322,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Franco",
-      last_name: "	Trombini"
+      last_name: "Trombini"
     },
     number: 111
   },
@@ -335,7 +335,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Franco",
-      last_name: "	Baccon"
+      last_name: "Baccon"
     },
     number: 93
   },
@@ -348,7 +348,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Justo",
-      last_name: "	Sintiolo"
+      last_name: "Sintiolo"
     },
     number: 59
   },
@@ -361,7 +361,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Marcelo",
-      last_name: "	Marchesse"
+      last_name: "Marchesse"
     },
     number: 8
   },
@@ -374,7 +374,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Sergio",
-      last_name: "	Giacomasso"
+      last_name: "Giacomasso"
     },
     number: 24
   },
@@ -387,7 +387,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Gustavo",
-      last_name: "	Marielli"
+      last_name: "Marielli"
     },
     number: 51
   },
@@ -400,7 +400,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Diego",
-      last_name: "	Leston"
+      last_name: "Leston"
     },
     number: 99
   },
@@ -413,7 +413,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Ayrton",
-      last_name: "	Boni"
+      last_name: "Boni"
     },
     number: 28
   },
@@ -426,7 +426,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Minardi",
-      last_name: "	Pablo"
+      last_name: "Pablo"
     },
     number: 27
   },
@@ -439,7 +439,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Elias",
-      last_name: "	Battini"
+      last_name: "Battini"
     },
     number: 56
   },
@@ -452,7 +452,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Sami",
-      last_name: "	Mendaña"
+      last_name: "Mendaña"
     },
     number: 107
   },
@@ -465,7 +465,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Luis",
-      last_name: "	Faija"
+      last_name: "Faija"
     },
     number: 40
   },
@@ -491,7 +491,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "William",
-      last_name: "	Sanchez"
+      last_name: "Sanchez"
     },
     number: 55
   },
@@ -517,7 +517,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Eduardo",
-      last_name: "	Moreno"
+      last_name: "Moreno"
     },
     number: 60
   },
@@ -530,7 +530,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Francisco",
-      last_name: "	Martorelli"
+      last_name: "Martorelli"
     },
     number: 44
   },
@@ -543,7 +543,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Pablo",
-      last_name: "	Mattei"
+      last_name: "Mattei"
     },
     number: 52
   },
@@ -556,7 +556,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Alan",
-      last_name: "	Leston"
+      last_name: "Leston"
     },
     number: 15
   },
@@ -569,7 +569,7 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Adrián",
-      last_name: "	Dattilo"
+      last_name: "Dattilo"
     },
     number: 47
   }

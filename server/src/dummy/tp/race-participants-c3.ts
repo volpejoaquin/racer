@@ -10,7 +10,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Gonzalo",
-      last_name: "	Antolin"
+      last_name: "Antolin"
     },
     number: 9
   },
@@ -23,7 +23,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Dino",
-      last_name: "	Cassiano"
+      last_name: "Cassiano"
     },
     number: 19
   },
@@ -36,7 +36,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Mauro",
-      last_name: "	Salvi"
+      last_name: "Salvi"
     },
     number: 35
   },
@@ -49,7 +49,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Lucas",
-      last_name: "	Bagnera"
+      last_name: "Bagnera"
     },
     number: 3
   },
@@ -62,7 +62,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Pablo",
-      last_name: "	Vuyovich"
+      last_name: "Vuyovich"
     },
     number: 20
   },
@@ -75,7 +75,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Marcos",
-      last_name: "	Dagostino"
+      last_name: "Dagostino"
     },
     number: 7
   },
@@ -88,7 +88,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Ramiro",
-      last_name: "	Alcaine"
+      last_name: "Alcaine"
     },
     number: 13
   },
@@ -101,7 +101,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Thiago",
-      last_name: "	Martinez"
+      last_name: "Martinez"
     },
     number: 25
   },
@@ -127,7 +127,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Lucas",
-      last_name: "	Petracchini"
+      last_name: "Petracchini"
     },
     number: 26
   },
@@ -140,7 +140,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Tomás",
-      last_name: "	Sniechowski"
+      last_name: "Sniechowski"
     },
     number: 14
   },
@@ -166,7 +166,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Federico",
-      last_name: "	Santos"
+      last_name: "Santos"
     },
     number: 15
   },
@@ -179,7 +179,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Esteban",
-      last_name: "	Cistola"
+      last_name: "Cistola"
     },
     number: 68
   },
@@ -192,7 +192,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Joaquin",
-      last_name: "	Telo"
+      last_name: "Telo"
     },
     number: 42
   },
@@ -205,7 +205,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Matias",
-      last_name: "	Antolin"
+      last_name: "Antolin"
     },
     number: 10
   },
@@ -218,7 +218,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Juan",
-      last_name: "	Kreitz"
+      last_name: "Kreitz"
     },
     number: 24
   },
@@ -244,7 +244,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Pablo",
-      last_name: "	Mauri"
+      last_name: "Mauri"
     },
     number: 74
   },
@@ -257,7 +257,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Pablo",
-      last_name: "	Rossi"
+      last_name: "Rossi"
     },
     number: 77
   },
@@ -283,7 +283,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Martín",
-      last_name: "	Fierros"
+      last_name: "Fierros"
     },
     number: 47
   },
@@ -296,7 +296,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Fredy",
-      last_name: "	Lestard"
+      last_name: "Lestard"
     },
     number: 85
   },
@@ -309,7 +309,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Renzo",
-      last_name: "	Cerretti"
+      last_name: "Cerretti"
     },
     number: 89
   },
@@ -322,7 +322,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Jorge",
-      last_name: "	Possiel"
+      last_name: "Possiel"
     },
     number: 18
   },
@@ -335,7 +335,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Marcelo",
-      last_name: "	Gonzalez"
+      last_name: "Gonzalez"
     },
     number: 5
   },
@@ -348,7 +348,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Juan",
-      last_name: "	Damiani"
+      last_name: "Damiani"
     },
     number: 29
   },
@@ -361,7 +361,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Lucas",
-      last_name: "	Yerobi"
+      last_name: "Yerobi"
     },
     number: 2
   },
@@ -374,7 +374,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Rubén",
-      last_name: "	Loiacono"
+      last_name: "Loiacono"
     },
     number: 38
   },
@@ -387,7 +387,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Pablo",
-      last_name: "	Malizia"
+      last_name: "Malizia"
     },
     number: 63
   },
@@ -400,7 +400,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Matias",
-      last_name: "	Signorelli"
+      last_name: "Signorelli"
     },
     number: 8
   },
@@ -413,7 +413,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Joaquin",
-      last_name: "	Volpe"
+      last_name: "Volpe"
     },
     number: 80
   },
@@ -426,7 +426,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Emiliano",
-      last_name: "	Gonzalez"
+      last_name: "Gonzalez"
     },
     number: 88
   },
@@ -439,7 +439,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Marcos",
-      last_name: "	Bobbio"
+      last_name: "Bobbio"
     },
     number: 91
   },
@@ -452,7 +452,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Nicolás",
-      last_name: "	Lago"
+      last_name: "Lago"
     },
     number: 41
   },
@@ -465,7 +465,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Leonel",
-      last_name: "	Giles"
+      last_name: "Giles"
     },
     number: 93
   },
@@ -478,7 +478,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Saul",
-      last_name: "	Eidilstein"
+      last_name: "Eidilstein"
     },
     number: 23
   },
@@ -491,7 +491,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Juan",
-      last_name: "	Garavaglia"
+      last_name: "Garavaglia"
     },
     number: 76
   },
@@ -517,7 +517,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Jonathan",
-      last_name: "	Baldinelli"
+      last_name: "Baldinelli"
     },
     number: 60
   },
@@ -530,7 +530,7 @@ export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = [
     },
     driver: {
       name: "Jorge",
-      last_name: "	Baliñas"
+      last_name: "Baliñas"
     },
     number: 22
   },

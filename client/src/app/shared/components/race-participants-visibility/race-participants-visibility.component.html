@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-12">
+    <div class="btn-group btn-group-toggle mb-1" data-toggle="buttons">
+      <label class="btn btn-sm btn-outline-secondary text-uppercase" [class.active]="currentMode === 0">
+        <input type="radio" name="options" id="option1" autocomplete="off" [attr.checked]="currentMode === 0" (click)="onChangeMode(0)"> Todos
+      </label>
+      <label class="btn btn-sm btn-outline-secondary text-uppercase" [class.active]="currentMode === 1">
+        <input type="radio" name="options" id="option1" autocomplete="off" [attr.checked]="currentMode === 1" (click)="onChangeMode(1)"> Equipo
+      </label>
+      <label class="btn btn-sm btn-outline-secondary text-uppercase" [class.active]="currentMode === 2">
+        <input type="radio" name="options" id="option1" autocomplete="off" [attr.checked]="currentMode === 2" (click)="onChangeMode(2)"> Custom
+      </label>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-auto text-center race-participant_wrapper" *ngFor="let raceParticipant of raceParticipants" (click)="onRaceParticipantClick(raceParticipant)">
+    <span class="mr-1">{{ raceParticipant.number }}</span>
+    <span class="ml-1 text-uppercase">{{ raceParticipant.driver.last_name.slice(0, 3) }}</span>
+  </div>
+</div>

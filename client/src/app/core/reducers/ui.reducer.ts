@@ -11,8 +11,8 @@ export interface State {
 export const INIT_STATE: State = {
   socketConnected: false,
   raceParticipants: {
-    invisible: [42],
-    dimmed: [14]
+    invisible: [],
+    dimmed: []
   }
 };
 
@@ -27,21 +27,44 @@ export function reducer(state = INIT_STATE, action: uiActions.All): State {
     }
 
     case uiActions.SHOW_RACE_PARTICIPANT : {
-      return {
-        ...state
-      };
+
+      const newState = Object.assign({}, state);
+
+      let numberIndex = newState.raceParticipants.dimmed.indexOf(action.payload);
+      if (numberIndex >= 0) {
+        newState.raceParticipants.dimmed.splice(numberIndex, 1);
+      }
+
+      numberIndex = newState.raceParticipants.invisible.indexOf(action.payload);
+      if (numberIndex >= 0) {
+        newState.raceParticipants.invisible.splice(numberIndex, 1);
+      }
+
+      return newState;
     }
 
     case uiActions.HIDE_RACE_PARTICIPANT : {
-      return {
-        ...state
-      };
+      const newState = Object.assign({}, state),
+        numberIndex = newState.raceParticipants.dimmed.indexOf(action.payload);
+      if (numberIndex >= 0) {
+        newState.raceParticipants.dimmed.splice(numberIndex, 1);
+      }
+
+      newState.raceParticipants.invisible.push(action.payload);
+
+      return newState;
     }
 
     case uiActions.DIM_RACE_PARTICIPANT : {
-      return {
-        ...state
-      };
+      const newState = Object.assign({}, state),
+        numberIndex = newState.raceParticipants.invisible.indexOf(action.payload);
+      if (numberIndex >= 0) {
+        newState.raceParticipants.invisible.splice(numberIndex, 1);
+      }
+
+      newState.raceParticipants.dimmed.push(action.payload);
+
+      return newState;
     }
     default : return state;
   }
