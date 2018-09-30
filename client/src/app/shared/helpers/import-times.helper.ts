@@ -71,9 +71,7 @@ export class ImportTimesHelper {
       }
     });
 
-    let response: RaceParticipantTrackActivity[] = this.parseRaceParticipantTrackActivities(raceParticipantTrackActivities);
-
-    response = lodash.orderBy(response, 'best_lap.time');
+    const response: RaceParticipantTrackActivity[] = this.parseRaceParticipantTrackActivities(raceParticipantTrackActivities);
 
     response.forEach((row: any, index: number) => {
       row.id = index + 1;
@@ -82,6 +80,11 @@ export class ImportTimesHelper {
     this.logHelper.log(JSON.stringify(response));
 
     this.logHelper.log('Finished !');
+
+    const copy = lodash.clone(response);
+
+    this.logHelper.log(JSON.stringify(copy.slice(0, response.length / 2)));
+    this.logHelper.log(JSON.stringify(copy.slice(response.length / 2, response.length)));
 
     return response;
   }
@@ -206,7 +209,21 @@ export class ImportTimesHelper {
       raceParticipants = TP_C3_RACE_PARTICIPANTS;
     }
 
-    return lodash.find(raceParticipants, (rParticipant: RaceParticipant) => rParticipant.number === raceParticipantNumber);
+    const raceParticipant: RaceParticipant =
+      lodash.find(raceParticipants, (rParticipant: RaceParticipant) => rParticipant.number === raceParticipantNumber);
+    return raceParticipant ? raceParticipant : {
+      team: {
+        name: ''
+      },
+      car: {
+        name: ''
+      },
+      driver: {
+        name: '',
+        last_name: ''
+      },
+      number: raceParticipantNumber
+    };
   }
 
   private extractRowLapTime(row: any): number {

@@ -24,8 +24,6 @@ export class DataAcquisitionComponent implements OnInit {
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     const keyCode = event.which || event.keyCode;
-
-    console.log(keyCode);
   }
 
   constructor() { }
@@ -37,9 +35,5 @@ export class DataAcquisitionComponent implements OnInit {
     this.poleLap.partials[1].time += 300;
     this.poleLap.partials[2].time -= 100;
     this.poleLap.partials[3].time += 400;
-
-    console.log(this.currentLap);
-    console.log(this.bestLap);
-    console.log(this.poleLap);
   }
 }

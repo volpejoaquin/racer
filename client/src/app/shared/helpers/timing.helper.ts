@@ -10,6 +10,25 @@ import {
 } from './../model';
 
 export class TimingHelper {
+  getBestRaceParticipantTrackActivity(raceParticipantTrackActivities: RaceParticipantTrackActivity[]): RaceParticipantTrackActivity | null {
+    let bestRaceParticipantTrackActivity: RaceParticipantTrackActivity = null;
+
+    if (!raceParticipantTrackActivities || raceParticipantTrackActivities.length === 0) {
+      return bestRaceParticipantTrackActivity;
+    }
+
+    let bestTime = Number.MAX_SAFE_INTEGER;
+    raceParticipantTrackActivities.forEach((rPTActivity: RaceParticipantTrackActivity) => {
+      // check if is not a partial lap and time is the best
+      if (rPTActivity.best_lap && !rPTActivity.best_lap.partial_lap && rPTActivity.best_lap.time < bestTime) {
+        bestRaceParticipantTrackActivity = rPTActivity;
+        bestTime = bestRaceParticipantTrackActivity.best_lap.time;
+      }
+    });
+
+    return bestRaceParticipantTrackActivity;
+  }
+
   completeRaceParticipantTrackActivity(raceParticipantTrackActivity: RaceParticipantTrackActivity) {
     raceParticipantTrackActivity.last_lap = this.getLastLap(raceParticipantTrackActivity.laps);
     raceParticipantTrackActivity.laps_count = raceParticipantTrackActivity.laps.length;

@@ -29,7 +29,7 @@ import {
 export class TrackActivityTimingComponent implements OnInit, OnChanges {
   @Input() trackActivity: TrackActivity;
   @Output() raceParticipantsTrackActivities = new EventEmitter<RaceParticipantTrackActivity[]>();
-  fileUrl = 'assets/files/1ra-Clasi-Clase-3.xls';
+  fileUrl = 'assets/files/Final-Clase-3.xls';
 
   private readerHelper = new FileReaderHelper();
   private importHelper = new ImportTimesHelper();

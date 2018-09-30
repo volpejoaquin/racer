@@ -5,6 +5,9 @@ import * as lodash from 'lodash';
 // models
 import { RaceParticipantTrackActivity } from '../../shared/model';
 
+// helpers
+import { TimingHelper } from './../../shared/helpers/timing.helper';
+
 // actions
 import {
   RaceParticipantTrackActivityActions
@@ -25,6 +28,8 @@ export let initialState: State = adapter.getInitialState({
   bestRaceParticipantTrackActivityId: 1
 });
 
+const timingHelper = new TimingHelper();
+
 export function reducer(
   state = initialState,
   action:
@@ -35,10 +40,12 @@ export function reducer(
     case RaceParticipantTrackActivityActions.RaceParticipantTrackActivityActionTypes.LoadRaceParticipantTrackActivities: {
 
       const newState = adapter.addAll(action.payload, state);
+      const list: RaceParticipantTrackActivity[] = Object.values(newState.entities);
+      const bestTrackActivity = timingHelper.getBestRaceParticipantTrackActivity(list);
 
       return {
         ...newState,
-        bestRaceParticipantTrackActivityId: newState.ids[0] as number
+        bestRaceParticipantTrackActivityId: bestTrackActivity ? bestTrackActivity.id : 0
       };
     }
 

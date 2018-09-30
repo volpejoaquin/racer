@@ -8,7 +8,7 @@
         <span class="badge badge-pill" [class.bg-success]="trackActivity === selectedTrackActivity" [class.bg-secondary]="trackActivity !== selectedTrackActivity" *ngIf="trackActivity.duration > 0">
           {{ trackActivity.duration }} minutos
         </span>
-        <span class="badge badge-pill bg-secondary" *ngIf="trackActivity.laps > 0">{{ trackActivity.laps }} vueltas</span>
+        <span class="badge badge-pill" [class.bg-success]="trackActivity === selectedTrackActivity" [class.bg-secondary]="trackActivity !== selectedTrackActivity" *ngIf="trackActivity.laps > 0">{{ trackActivity.laps }} vueltas</span>
       </div>
     </div>
   </li>
