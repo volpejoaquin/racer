@@ -37,7 +37,7 @@ export class TrackActivitiesComponent implements OnInit, OnChanges {
         this.selectTrackActivity(this.trackActivityId);
         break;
       case 40:
-        if (this.trackActivityId <= this.trackActivities.length) {
+        if (this.trackActivityId < this.trackActivities.length) {
           this.trackActivityId++;
         }
         event.preventDefault();

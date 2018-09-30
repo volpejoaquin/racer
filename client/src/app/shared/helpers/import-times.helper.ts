@@ -199,7 +199,6 @@ export class ImportTimesHelper {
       raceParticipantTrackActivity = raceParticipantTrackActivities[raceParticipantNumber];
 
       raceParticipantTrackActivity.laps.push(trackLap);
-
       if (!trackLap.partial_lap) {
         raceParticipantTrackActivity.total_time += trackLap.time;
       }

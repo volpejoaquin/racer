@@ -25,7 +25,11 @@ export class PartialPerLapComponent implements OnChanges {
     }
   }
 
-  getBestLap(_lap: TrackLap) {
+  getLap(lap: TrackLap) {
+    return lap;
+  }
+
+  getBestLap() {
     return this.trackActivity ? this.trackActivity.best_lap : null;
   }
 

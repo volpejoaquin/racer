@@ -43,7 +43,7 @@
           <racer-partial-lap-time [partial]="getPartial(lap, 3)" [bestPartial]="getBestPartial(lap, 3)" [polePartial]="getPolePartial(3)" [isRefLap]="false"></racer-partial-lap-time>
         </td>
         <td class="timing_table-column-partial-lap-time">
-          <racer-lap-time [lap]="getBestLap(trackActivity)" [bestLap]="getBestLap(trackActivity)" [poleLap]="getPoleLap()" [isRefLap]="false"></racer-lap-time>
+          <racer-lap-time [lap]="getLap(lap)" [bestLap]="getBestLap()" [poleLap]="getPoleLap()" [isRefLap]="false"></racer-lap-time>
         </td>
       </tr>
     </tbody>

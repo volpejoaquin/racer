@@ -3,6 +3,7 @@ import { Component, Input, OnChanges } from '@angular/core';
 
 // models
 import {
+  TrackActivity,
   RaceParticipantTrackActivity,
   TrackLap
 } from '../../../shared/model/';
@@ -13,11 +14,9 @@ import {
   styleUrls: ['./best-partials-laps.component.scss']
 })
 export class BestPartialsLapsComponent implements OnChanges {
+  @Input() trackActivity: TrackActivity[];
   @Input() trackActivities: RaceParticipantTrackActivity[];
   @Input() bestRaceParticipantTrackActivity: RaceParticipantTrackActivity;
-
-  orderBy = 'best_lap.time';
-  orders = 'asc';
 
   private bestLap: TrackLap;
 

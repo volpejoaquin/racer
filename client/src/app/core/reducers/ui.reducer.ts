@@ -11,8 +11,8 @@ export interface State {
 export const INIT_STATE: State = {
   socketConnected: false,
   raceParticipants: {
-    invisible: [],
-    dimmed: []
+    invisible: [110, 76],
+    dimmed: [152]
   }
 };
 

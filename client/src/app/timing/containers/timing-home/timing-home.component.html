@@ -19,16 +19,16 @@
   [title]="currentViewNumber === 0 ? 'Tiempos' : currentViewNumber === 1 ? 'PARCIALES' : currentViewNumber === 2 ? 'VUELTAS' : 'MEJORES POR PARCIAL'"></racer-timing-primary-bar>
     
   <div *ngIf="raceParticipantsTrackActivities$ | async as raceParticipantsTrackActivities; else empty">
-    <racer-leaderboard [trackActivities]="raceParticipantsTrackActivities" [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async" [trackActivityType]="trackActivity.type" *ngIf="currentViewNumber === 0"></racer-leaderboard>
+    <racer-leaderboard [trackActivities]="raceParticipantsTrackActivities" [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async" [trackActivity]="trackActivity" *ngIf="currentViewNumber === 0"></racer-leaderboard>
 
-    <racer-best-partials-laps [trackActivities]="raceParticipantsTrackActivities" [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async" *ngIf="currentViewNumber === 1"></racer-best-partials-laps>
+    <racer-best-partials-laps [trackActivities]="raceParticipantsTrackActivities" [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async" [trackActivity]="trackActivity" *ngIf="currentViewNumber === 1"></racer-best-partials-laps>
 
     <div class="container-fluid">
       <div class="row">
         <div class="col-12" *ngIf="currentViewNumber === 2">
           <div class="partials-per-lap-wrapper mt-2 mb-2">
             <div class="row">
-              <div class="col-6 mb-4" *ngFor="let trackActivity of (raceParticipantsTrackActivities | order:'best_lap.time':'asc'); let trackActivityIndex = index;">
+              <div class="col-6 mb-4" *ngFor="let trackActivity of (raceParticipantsTrackActivities | orderByTrackActivity:trackActivity); let trackActivityIndex = index;">
                 <racer-partials-per-lap [trackActivity]="trackActivity" [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async" [title]="(trackActivityIndex + 1)"></racer-partials-per-lap>
               </div>
             </div>

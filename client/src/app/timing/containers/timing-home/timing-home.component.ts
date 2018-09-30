@@ -72,7 +72,12 @@ export class TimingHomeComponent implements OnInit {
         this.raceParticipants = [];
 
         raceParticipantsTrackActivities.forEach((raceParticipantTrackActivity: RaceParticipantTrackActivity) => {
-          this.raceParticipants.push(raceParticipantTrackActivity.race_participant);
+
+          if (raceParticipantTrackActivity.race_participant) {
+            this.raceParticipants.push(raceParticipantTrackActivity.race_participant);
+          } else {
+            console.log('WARNING ! ', raceParticipantTrackActivity);
+          }
         });
       }
     });

@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
 
     this.store.dispatch(new SelectRaceWeekend(1));
 
-    this.store.dispatch(new SelectTrackActivity(5));
+    this.store.dispatch(new SelectTrackActivity(6));
 
     // const data = lodash.orderBy(QUALY_SAMPLE, 'best_lap.time');
 

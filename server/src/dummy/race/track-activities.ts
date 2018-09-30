@@ -10,6 +10,7 @@ import { TP_C3_CAR_DIVISION } from './car-divisions';
 import { CIRCUIT_VARIANT_SAMPLE } from './circuit-variants';
 import { QUALY_A_SAMPLE, QUALY_B_SAMPLE } from './qualy';
 import { RACE_SERIE_1_DATA, RACE_SERIE_2_DATA } from './race-serie';
+import { RACE_FINAL_DATA } from './race-final';
 
 export const TP_C3_TRACK_ACTIVITY: TrackActivity = {
   id: 1,
@@ -101,7 +102,7 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     laps: 15,
     state: TrackActivityState.waiting,
     type: TrackActivityType.race,
-    race_participants_track_activities: [],
+    race_participants_track_activities: RACE_FINAL_DATA,
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: CIRCUIT_VARIANT_SAMPLE
   }
