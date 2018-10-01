@@ -33,10 +33,23 @@ const timingHelper = new TimingHelper();
 export function reducer(
   state = initialState,
   action:
+    | RaceParticipantTrackActivityActions.ImportRaceParticipantTrackActivities
     | RaceParticipantTrackActivityActions.LoadRaceParticipantTrackActivities
     | RaceParticipantTrackActivityActions.SetBestRaceParticipantTrackActivity
 ): State {
   switch (action.type) {
+    case RaceParticipantTrackActivityActions.RaceParticipantTrackActivityActionTypes.ImportRaceParticipantTrackActivities: {
+
+      const newState = adapter.addAll(action.payload, state);
+      const list: RaceParticipantTrackActivity[] = Object.values(newState.entities);
+      const bestTrackActivity = timingHelper.getBestRaceParticipantTrackActivity(list);
+
+      return {
+        ...newState,
+        bestRaceParticipantTrackActivityId: bestTrackActivity ? bestTrackActivity.id : 0
+      };
+    }
+
     case RaceParticipantTrackActivityActions.RaceParticipantTrackActivityActionTypes.LoadRaceParticipantTrackActivities: {
 
       const newState = adapter.addAll(action.payload, state);

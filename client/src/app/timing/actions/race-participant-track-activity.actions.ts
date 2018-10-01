@@ -5,8 +5,15 @@ import { Action } from '@ngrx/store';
 import { RaceParticipantTrackActivity } from '../../shared/model';
 
 export enum RaceParticipantTrackActivityActionTypes {
+  ImportRaceParticipantTrackActivities = '[APP] Import Race Participant Track Activities',
   LoadRaceParticipantTrackActivities = '[APP] Load Race Participant Track Activities',
   SetBestRaceParticipantTrackActivity = '[APP] Set Best Race Participant Track Activity'
+}
+
+export class ImportRaceParticipantTrackActivities implements Action {
+  readonly type = RaceParticipantTrackActivityActionTypes.ImportRaceParticipantTrackActivities;
+
+  constructor(public payload: RaceParticipantTrackActivity[]) {}
 }
 
 export class LoadRaceParticipantTrackActivities implements Action {
@@ -21,4 +28,8 @@ export class SetBestRaceParticipantTrackActivity implements Action {
   constructor(public payload: number) {}
 }
 
-export type RaceParticipantTrackActivityActionsUnion = LoadRaceParticipantTrackActivities | SetBestRaceParticipantTrackActivity;
+export type RaceParticipantTrackActivityActionsUnion =
+  ImportRaceParticipantTrackActivities |
+  LoadRaceParticipantTrackActivities |
+  SetBestRaceParticipantTrackActivity;
+

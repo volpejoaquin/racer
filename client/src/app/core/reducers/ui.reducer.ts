@@ -12,7 +12,7 @@ export const INIT_STATE: State = {
   socketConnected: false,
   raceParticipants: {
     invisible: [110, 76],
-    dimmed: [152]
+    dimmed: [91]
   }
 };
 

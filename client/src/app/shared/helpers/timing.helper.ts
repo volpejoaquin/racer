@@ -10,6 +10,25 @@ import {
 } from './../model';
 
 export class TimingHelper {
+  filterRaceParticipantTrackActivities(trackActivity: TrackActivity, raceParticipantTrackActivities: RaceParticipantTrackActivity[]) {
+    let response: RaceParticipantTrackActivity[] = [];
+
+      if (trackActivity.enabled_race_participant_numbers) {
+        let raceParticipantNumber: number;
+
+        raceParticipantTrackActivities.forEach((raceParticipantTrackActivity: RaceParticipantTrackActivity) => {
+          raceParticipantNumber = raceParticipantTrackActivity.race_participant ? raceParticipantTrackActivity.race_participant.number : 0;
+
+          if (trackActivity.enabled_race_participant_numbers.indexOf(raceParticipantNumber) >= 0) {
+            response.push(raceParticipantTrackActivity);
+          }
+        });
+      } else if (raceParticipantTrackActivities) {
+        response = raceParticipantTrackActivities;
+      }
+    return response;
+  }
+
   getBestRaceParticipantTrackActivity(raceParticipantTrackActivities: RaceParticipantTrackActivity[]): RaceParticipantTrackActivity | null {
     let bestRaceParticipantTrackActivity: RaceParticipantTrackActivity = null;
 

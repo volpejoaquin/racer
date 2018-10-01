@@ -1,14 +1,14 @@
 <ul class="list-group">
   <li class="list-group-item bg-transparent text-white mb-3" *ngFor="let trackActivity of trackActivities" (click)="onSelectTrackActivity(trackActivity)">
     <div class="d-flex justify-content-between align-items-center">
-      <span class="text-uppercase" [class.text-success]="trackActivity === selectedTrackActivity">{{ trackActivity.car_division.name }}</span>
-      <span class="text-uppercase" [class.text-success]="trackActivity === selectedTrackActivity">{{ trackActivity.name }}</span>
-      <span class="text-uppercase" [class.text-success]="trackActivity === selectedTrackActivity" *ngIf="trackActivity.date">{{ trackActivity.date | date:'mm:ss' }} hs</span>
+      <span class="text-uppercase" [class.text-success]="trackActivity.id === selectedTrackActivity.id">{{ trackActivity.car_division.name }}</span>
+      <span class="text-uppercase" [class.text-success]="trackActivity.id === selectedTrackActivity.id">{{ trackActivity.name }}</span>
+      <span class="text-uppercase" [class.text-success]="trackActivity.id === selectedTrackActivity.id" *ngIf="trackActivity.date">{{ trackActivity.date | date:'mm:ss' }} hs</span>
       <div>
-        <span class="badge badge-pill" [class.bg-success]="trackActivity === selectedTrackActivity" [class.bg-secondary]="trackActivity !== selectedTrackActivity" *ngIf="trackActivity.duration > 0">
+        <span class="badge badge-pill" [class.bg-success]="trackActivity.id === selectedTrackActivity.id" [class.bg-secondary]="trackActivity.id !== selectedTrackActivity.id" *ngIf="trackActivity.duration > 0">
           {{ trackActivity.duration }} minutos
         </span>
-        <span class="badge badge-pill" [class.bg-success]="trackActivity === selectedTrackActivity" [class.bg-secondary]="trackActivity !== selectedTrackActivity" *ngIf="trackActivity.laps > 0">{{ trackActivity.laps }} vueltas</span>
+        <span class="badge badge-pill" [class.bg-success]="trackActivity.id === selectedTrackActivity.id" [class.bg-secondary]="trackActivity.id !== selectedTrackActivity.id" *ngIf="trackActivity.laps > 0">{{ trackActivity.laps }} vueltas</span>
       </div>
     </div>
   </li>

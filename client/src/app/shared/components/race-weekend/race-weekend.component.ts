@@ -16,6 +16,7 @@ import {
   TrackActivity,
   RaceParticipantTrackActivity
 } from '../../../shared/model';
+import { Observable } from 'rxjs';
 
 // dummy data
 
@@ -26,6 +27,7 @@ import {
 })
 export class RaceWeekendComponent implements OnInit, OnChanges {
   @Input() raceWeekend: RaceWeekend;
+  trackActivities$: Observable<TrackActivity>;
 
   selectedTrackActivity: TrackActivity;
 
@@ -36,6 +38,8 @@ export class RaceWeekendComponent implements OnInit, OnChanges {
     this.store.select(fromTiming.getSelectedTrackActivity).subscribe((tActivity: TrackActivity) => {
       this.selectedTrackActivity = tActivity;
     });
+
+    this.trackActivities$ = this.store.pipe(select(fromTiming.getTrackActivitiesArray));
   }
 
   ngOnChanges() {
@@ -43,6 +47,6 @@ export class RaceWeekendComponent implements OnInit, OnChanges {
 
   onRaceParticipantsTrackActivitiesLoaded(raceParticipantsTrackActivites: RaceParticipantTrackActivity[]) {
 
-    this.store.dispatch(new RaceParticipantTrackActivityActions.LoadRaceParticipantTrackActivities(raceParticipantsTrackActivites));
+    this.store.dispatch(new RaceParticipantTrackActivityActions.ImportRaceParticipantTrackActivities(raceParticipantsTrackActivites));
   }
 }

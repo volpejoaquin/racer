@@ -105,3 +105,11 @@ export const getBestRaceParticipantTrackActivity = createSelector(
     return bestId && entities[bestId];
   }
 );
+
+export const getTrackActivitiesState = createSelector(
+  getTimingState,
+  state => state.trackActivities
+);
+
+export const getTrackActivitiesArray =
+  createSelector(getTrackActivitiesState, fromTrackActivity.getTrackActivitiesArray);

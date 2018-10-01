@@ -1,10 +1,13 @@
 // libs
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import * as lodash from 'lodash';
+
+// helpers
+import { TimingHelper } from './../../shared/helpers/timing.helper';
 
 // models
 import {
-  TrackActivity,
-  RaceParticipantTrackActivity
+  TrackActivity
 } from '../../shared/model';
 
 // actions
@@ -29,13 +32,15 @@ export let initialState: State = adapter.getInitialState({
   selectedTrackActivityId: 1,
 });
 
-initialState = adapter.addAll(TP_C3_TRACK_ACTIVITIES, initialState); // TODO: REVIEW THIS
+initialState = adapter.addAll(TP_C3_TRACK_ACTIVITIES, initialState);
+
+const timingHelper = new TimingHelper();
 
 export function reducer(
   state = initialState,
   action:
     | TrackActivityActions.SelectTrackActivity
-    | RaceParticipantTrackActivityActions.LoadRaceParticipantTrackActivities
+    | RaceParticipantTrackActivityActions.ImportRaceParticipantTrackActivities
 ): State {
   switch (action.type) {
     case TrackActivityActions.TrackActivityActionTypes.SelectTrackActivity: {
@@ -45,30 +50,30 @@ export function reducer(
       };
     }
 
-    case RaceParticipantTrackActivityActions.RaceParticipantTrackActivityActionTypes.LoadRaceParticipantTrackActivities: {
+    case RaceParticipantTrackActivityActions.RaceParticipantTrackActivityActionTypes.ImportRaceParticipantTrackActivities: {
 
-      const selectedTrackActivityId = state.selectedTrackActivityId,
-        selectedTrackActivity = state.entities[selectedTrackActivityId];
+      const newState = Object.assign({}, state);
 
-      let raceParticipantTrackActivities: RaceParticipantTrackActivity[] = [];
+      const selectedTrackActivityId = newState.selectedTrackActivityId,
+        selectedTrackActivity = newState.entities[selectedTrackActivityId];
 
-      if (selectedTrackActivity.enabled_race_participant_numbers) {
-        let raceParticipantNumber: number;
+      let trackActivityIds = [selectedTrackActivity.id],
+        trackActivity: TrackActivity;
 
-        action.payload.forEach((raceParticipantTrackActivity: RaceParticipantTrackActivity) => {
-          raceParticipantNumber = raceParticipantTrackActivity.race_participant ? raceParticipantTrackActivity.race_participant.number : 0;
-
-          if (selectedTrackActivity.enabled_race_participant_numbers.indexOf(raceParticipantNumber) >= 0) {
-            raceParticipantTrackActivities.push(raceParticipantTrackActivity);
-          }
-        });
-      } else {
-        raceParticipantTrackActivities = action.payload;
+      if (selectedTrackActivity.related_track_activity_ids) {
+        trackActivityIds = trackActivityIds.concat(selectedTrackActivity.related_track_activity_ids);
       }
 
-      selectedTrackActivity.race_participants_track_activities = raceParticipantTrackActivities;
+      trackActivityIds.forEach((trackActivityId: number) => {
+        trackActivity = newState.entities[trackActivityId];
 
-      return state;
+        if (trackActivity) {
+          trackActivity.race_participants_track_activities =
+            timingHelper.filterRaceParticipantTrackActivities(trackActivity, action.payload);
+        }
+      });
+
+      return newState;
     }
 
     default: {
@@ -78,3 +83,4 @@ export function reducer(
 }
 
 export const getSelectedId = (state: State) => state.selectedTrackActivityId;
+export const getTrackActivitiesArray = (state: State) => lodash.map(state.ids, (id: any) => state.entities[id]);
