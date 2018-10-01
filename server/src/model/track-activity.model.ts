@@ -34,6 +34,7 @@ export interface TrackActivity extends BaseModel {
   car_division?: CarDivision;
   circuit_variant?: CircuitVariant;
   race_participants_track_activities?: RaceParticipantTrackActivity[];
+  enabled_race_participant_numbers?: number[];
   best_lap?: TrackLap;
 }
 

@@ -18,7 +18,7 @@ export class TimingSecondaryBarComponent implements OnInit {
   @Input() trackActivity: TrackActivity;
   @Input() raceParticipants: RaceParticipant[];
 
-  isExpanded = false;
+  isExpanded = true;
   isUIExpanded = false;
 
   constructor() {

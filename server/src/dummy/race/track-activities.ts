@@ -11,6 +11,11 @@ import { CIRCUIT_VARIANT_SAMPLE } from './circuit-variants';
 import { QUALY_A_SAMPLE, QUALY_B_SAMPLE } from './qualy';
 import { RACE_SERIE_1_DATA, RACE_SERIE_2_DATA } from './race-serie';
 import { RACE_FINAL_DATA } from './race-final';
+import {
+  TP_C3_RACE_PARTICIPANTS_GROUP_A_NUMBERS,
+  TP_C3_RACE_PARTICIPANTS_GROUP_B_NUMBERS,
+  TP_C3_RACE_PARTICIPANTS_NUMBERS
+} from './../tp/race-participants-c3';
 
 export const TP_C3_TRACK_ACTIVITY: TrackActivity = {
   id: 1,
@@ -23,7 +28,8 @@ export const TP_C3_TRACK_ACTIVITY: TrackActivity = {
   type: TrackActivityType.practice,
   race_participants_track_activities: QUALY_A_SAMPLE,
   car_division: TP_C3_CAR_DIVISION,
-  circuit_variant: CIRCUIT_VARIANT_SAMPLE
+  circuit_variant: CIRCUIT_VARIANT_SAMPLE,
+  enabled_race_participant_numbers: TP_C3_RACE_PARTICIPANTS_GROUP_B_NUMBERS
 };
 
 export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
@@ -39,7 +45,8 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     type: TrackActivityType.practice,
     race_participants_track_activities: QUALY_B_SAMPLE,
     car_division: TP_C3_CAR_DIVISION,
-    circuit_variant: CIRCUIT_VARIANT_SAMPLE
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE,
+    enabled_race_participant_numbers: TP_C3_RACE_PARTICIPANTS_GROUP_A_NUMBERS
   },
   {
     id: 3,
@@ -52,7 +59,8 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     type: TrackActivityType.practice,
     race_participants_track_activities: QUALY_A_SAMPLE.concat(QUALY_B_SAMPLE),
     car_division: TP_C3_CAR_DIVISION,
-    circuit_variant: CIRCUIT_VARIANT_SAMPLE
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE,
+    enabled_race_participant_numbers: TP_C3_RACE_PARTICIPANTS_NUMBERS
   },
   {
     id: 4,
@@ -65,7 +73,8 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     type: TrackActivityType.practice,
     race_participants_track_activities: [],
     car_division: TP_C3_CAR_DIVISION,
-    circuit_variant: CIRCUIT_VARIANT_SAMPLE
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE,
+    enabled_race_participant_numbers: TP_C3_RACE_PARTICIPANTS_GROUP_B_NUMBERS
   },
   {
     id: 5,
@@ -78,7 +87,8 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     type: TrackActivityType.practice,
     race_participants_track_activities: [],
     car_division: TP_C3_CAR_DIVISION,
-    circuit_variant: CIRCUIT_VARIANT_SAMPLE
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE,
+    enabled_race_participant_numbers: TP_C3_RACE_PARTICIPANTS_GROUP_A_NUMBERS
   },
   {
     id: 6,
@@ -91,7 +101,8 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     type: TrackActivityType.practice,
     race_participants_track_activities: [],
     car_division: TP_C3_CAR_DIVISION,
-    circuit_variant: CIRCUIT_VARIANT_SAMPLE
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE,
+    enabled_race_participant_numbers: TP_C3_RACE_PARTICIPANTS_NUMBERS
   },
   {
     id: 7,
@@ -104,7 +115,8 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     type: TrackActivityType.practice,
     race_participants_track_activities: QUALY_A_SAMPLE.concat(QUALY_B_SAMPLE),
     car_division: TP_C3_CAR_DIVISION,
-    circuit_variant: CIRCUIT_VARIANT_SAMPLE
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE,
+    enabled_race_participant_numbers: TP_C3_RACE_PARTICIPANTS_NUMBERS
   },
   {
     id: 8,

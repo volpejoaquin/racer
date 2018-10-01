@@ -2,7 +2,10 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 // models
-import { TrackActivity } from '../../shared/model';
+import {
+  TrackActivity,
+  RaceParticipantTrackActivity
+} from '../../shared/model';
 
 // actions
 import {
@@ -47,7 +50,23 @@ export function reducer(
       const selectedTrackActivityId = state.selectedTrackActivityId,
         selectedTrackActivity = state.entities[selectedTrackActivityId];
 
-      selectedTrackActivity.race_participants_track_activities = action.payload;
+      let raceParticipantTrackActivities: RaceParticipantTrackActivity[] = [];
+
+      if (selectedTrackActivity.enabled_race_participant_numbers) {
+        let raceParticipantNumber: number;
+
+        action.payload.forEach((raceParticipantTrackActivity: RaceParticipantTrackActivity) => {
+          raceParticipantNumber = raceParticipantTrackActivity.race_participant ? raceParticipantTrackActivity.race_participant.number : 0;
+
+          if (selectedTrackActivity.enabled_race_participant_numbers.indexOf(raceParticipantNumber) >= 0) {
+            raceParticipantTrackActivities.push(raceParticipantTrackActivity);
+          }
+        });
+      } else {
+        raceParticipantTrackActivities = action.payload;
+      }
+
+      selectedTrackActivity.race_participants_track_activities = raceParticipantTrackActivities;
 
       return state;
     }
