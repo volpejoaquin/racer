@@ -15,7 +15,7 @@ import { RACE_FINAL_DATA } from './race-final';
 export const TP_C3_TRACK_ACTIVITY: TrackActivity = {
   id: 1,
   name: 'Clasificacion 1 grupo "B"',
-  short_name: 'C1 "B"',
+  short_name: 'CLAS1 "B"',
   date: '2018-10-13T00:11:50.000Z',
   duration: 10,
   laps: 0,
@@ -31,7 +31,7 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
   {
     id: 2,
     name: 'Clasificacion 1 grupo "A"',
-    short_name: 'C1 "A"',
+    short_name: 'CLAS1 "A"',
     date: '2018-10-13T00:11:55.000Z',
     duration: 10,
     laps: 0,
@@ -43,8 +43,21 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
   },
   {
     id: 3,
+    name: 'Clasificacion 1 general',
+    short_name: 'CLAS1 GENERAL',
+    date: null,
+    duration: null,
+    laps: 0,
+    state: TrackActivityState.waiting,
+    type: TrackActivityType.practice,
+    race_participants_track_activities: QUALY_A_SAMPLE.concat(QUALY_B_SAMPLE),
+    car_division: TP_C3_CAR_DIVISION,
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE
+  },
+  {
+    id: 4,
     name: 'Clasificacion 2 grupo "B"',
-    short_name: 'C2 "B"',
+    short_name: 'CLAS2 "B"',
     date: '2018-10-13T00:13:10.000Z',
     duration: 10,
     laps: 0,
@@ -55,9 +68,9 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     circuit_variant: CIRCUIT_VARIANT_SAMPLE
   },
   {
-    id: 4,
+    id: 5,
     name: 'Clasificacion 2 grupo "A"',
-    short_name: 'C2 "A"',
+    short_name: 'CLAS2 "A"',
     date: '2018-10-13T00:13:25.000Z',
     duration: 10,
     laps: 0,
@@ -68,7 +81,33 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     circuit_variant: CIRCUIT_VARIANT_SAMPLE
   },
   {
-    id: 5,
+    id: 6,
+    name: 'Clasificacion 2 general',
+    short_name: 'CLAS2 GENERAL',
+    date: null,
+    duration: null,
+    laps: 0,
+    state: TrackActivityState.waiting,
+    type: TrackActivityType.practice,
+    race_participants_track_activities: [],
+    car_division: TP_C3_CAR_DIVISION,
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE
+  },
+  {
+    id: 7,
+    name: 'Clasificacion general',
+    short_name: 'CLAS GENERAL',
+    date: null,
+    duration: null,
+    laps: 0,
+    state: TrackActivityState.waiting,
+    type: TrackActivityType.practice,
+    race_participants_track_activities: QUALY_A_SAMPLE.concat(QUALY_B_SAMPLE),
+    car_division: TP_C3_CAR_DIVISION,
+    circuit_variant: CIRCUIT_VARIANT_SAMPLE
+  },
+  {
+    id: 8,
     name: '1º Serie',
     short_name: 'SERIE1',
     date: '2018-10-13T00:18:20.000Z',
@@ -81,7 +120,7 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     circuit_variant: CIRCUIT_VARIANT_SAMPLE
   },
   {
-    id: 6,
+    id: 9,
     name: '2º Serie',
     short_name: 'SERIE2',
     date: '2018-10-13T00:18:50.000Z',
@@ -94,7 +133,7 @@ export const TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     circuit_variant: CIRCUIT_VARIANT_SAMPLE
   },
   {
-    id: 7,
+    id: 10,
     name: 'Final',
     short_name: 'FINAL',
     date: '2018-10-14T00:14:35.000Z',

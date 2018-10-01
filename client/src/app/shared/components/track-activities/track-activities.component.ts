@@ -29,6 +29,7 @@ export class TrackActivitiesComponent implements OnInit, OnChanges {
     const keyCode = event.which || event.keyCode;
 
     switch (keyCode) {
+      // up key
       case 38:
         if (this.trackActivityId > 1) {
           this.trackActivityId--;
@@ -36,6 +37,7 @@ export class TrackActivitiesComponent implements OnInit, OnChanges {
         event.preventDefault();
         this.selectTrackActivity(this.trackActivityId);
         break;
+      // down key
       case 40:
         if (this.trackActivityId < this.trackActivities.length) {
           this.trackActivityId++;
