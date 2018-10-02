@@ -5,21 +5,19 @@ export class FileReaderHelper {
   constructor() {
   }
 
-  convertXLSXToJson(file: any, onload: (e: any) => void) {
-    this.readFileByUrl(file, (data: any) => {
-      if (!data) {
-        onload(null);
-        return;
-      }
-      const wb: XLSX.WorkBook = XLSX.read(data, {type: 'binary'});
+  convertXLSXToJson(data: any, onload: (e: any) => void) {
+    if (!data) {
+      onload(null);
+      return;
+    }
+    const wb: XLSX.WorkBook = XLSX.read(data, {type: 'binary'});
 
-      // read first sheet
-      const wsname: string = wb.SheetNames[0];
-      const ws: XLSX.WorkSheet = wb.Sheets[wsname];
+    // read first sheet
+    const wsname: string = wb.SheetNames[0];
+    const ws: XLSX.WorkSheet = wb.Sheets[wsname];
 
-      // convert to json
-      onload(XLSX.utils.sheet_to_json(ws, { header: 1 }));
-    });
+    // convert to json
+    onload(XLSX.utils.sheet_to_json(ws, { header: 1 }));
   }
 
   readFile(file: any, onload: (e: any) => void) {
@@ -40,7 +38,7 @@ export class FileReaderHelper {
     request.responseType = 'blob';
     request.onload = ()  => {
       // check response validity
-      if (request && request.response) {
+      if (request && request.status === 200 && request.response) {
         this.readFile(request.response, onload);
       }
     };

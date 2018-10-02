@@ -29,7 +29,6 @@ import {
 export class TrackActivityTimingComponent implements OnInit, OnChanges {
   @Input() trackActivity: TrackActivity;
   @Output() raceParticipantsTrackActivities = new EventEmitter<RaceParticipantTrackActivity[]>();
-  fileUrl = 'assets/files/Final-Clase-3.xls';
 
   private readerHelper = new FileReaderHelper();
   private importHelper = new ImportTimesHelper();
@@ -42,8 +41,20 @@ export class TrackActivityTimingComponent implements OnInit, OnChanges {
   ngOnChanges() {
   }
 
-  onImportClick() {
-    this.readerHelper.convertXLSXToJson(this.fileUrl, (response: any) => {
+  onSelectFile($event) {
+    if (!$event.target || !$event.target.files || !$event.target.files[0]) {
+      return;
+    }
+
+    this.readerHelper.readFile($event.target.files[0], (data: any) => {
+      if (data) {
+        this.importFile(data);
+      }
+    });
+  }
+
+  private importFile(data: any) {
+    this.readerHelper.convertXLSXToJson(data, (response: any) => {
       if (!response) {
         this.logHelper.log('ERROR !');
       } else {

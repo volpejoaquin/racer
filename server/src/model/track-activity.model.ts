@@ -36,7 +36,6 @@ export interface TrackActivity extends BaseModel {
   race_participants_track_activities?: RaceParticipantTrackActivity[];
   enabled_race_participant_numbers?: number[];
   related_track_activity_ids?: number[];
-  best_lap?: TrackLap;
 }
 
 export interface TrackPartialLap extends BaseModel {

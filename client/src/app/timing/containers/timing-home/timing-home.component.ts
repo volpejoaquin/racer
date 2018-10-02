@@ -6,8 +6,7 @@ import { Observable } from 'rxjs';
 // modules
 import * as fromTiming from './../../reducers/';
 import {
-  LoadRaceParticipantTrackActivities,
-  SetBestRaceParticipantTrackActivity
+  LoadRaceParticipantTrackActivities
 } from './../../actions/race-participant-track-activity.actions';
 
 // models
