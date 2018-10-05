@@ -91,17 +91,14 @@ export class ImportTimesHelper {
   }
 
   private isEmptyRow(row: any) {
-    let empty = row.length < PARTICIPANT_COLS_COUNT;
+    const parsedRow = lodash.compact(row);
+    const isEmpty = parsedRow.length < PARTICIPANT_COLS_COUNT;
 
-    row.forEach((col: any) => {
-      empty = empty || lodash.isEmpty(col);
-    });
-
-    if (empty) {
+    if (isEmpty) {
       this.logHelper.log('WARGNING ! Empty row');
     }
 
-    return empty;
+    return isEmpty;
   }
 
   private parseRow(row: any[], raceParticipantTrackActivities: any, trackActivity: TrackActivity): any {
@@ -296,8 +293,17 @@ export class ImportTimesHelper {
     } else {
       this.logHelper.log('WARNING ! Regex does not match ' + colString);
 
-      if (colString[colString.length - 1] !== '0') {
-        time = this.calculateTime(colString + '0');
+      const colStringSplitted = colString.split('.');
+
+      if (colStringSplitted.length >= 2) {
+        const mili = colStringSplitted[1];
+
+        if (mili.length === 1) {
+          colString += '00';
+        } else if (mili.length === 2) {
+          colString += '0';
+        }
+        time = this.calculateTime(colString);
       }
     }
 
