@@ -1,4 +1,5 @@
 import * as socketIo from 'socket.io';
+import * as lodash from 'lodash';
 
 // models
 import { RacerSocketEvent, IRaceWeekend } from './../interfaces/';
@@ -53,17 +54,18 @@ export class SocketSession {
         return;
       }
 
-      let initialState = {
-        ids: [],
-        entities: []
-      };
+      let ids: string[] = [],
+        entities = {};
 
       raceWeekends.forEach((raceWeekend: IRaceWeekend) => {
-        initialState.ids.push(raceWeekend.id);
-        initialState.entities[raceWeekend.id] = raceWeekend;
-      })
+        ids.push(raceWeekend.id);
+        entities[raceWeekend.id] = raceWeekend;
+      });
 
-      this.currentState.timing.raceWeekends = initialState;
+      this.currentState.timing.raceWeekends = {
+        ids,
+        entities: entities
+      };
 
       this.start(); // TODO: REVIEW THIS
     });

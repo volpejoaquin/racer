@@ -39,14 +39,14 @@ export class AppComponent implements OnInit {
       .select(fromRoot.getSocketStatus)
       .pipe(map(connected => connected ? 'connected' : 'disconnected'));
 
-    this.socket.connected$
-      .pipe(map(connected => new UIActions.SetSocketConnected(connected)))
-      .subscribe(this.store);
+    // this.socket.connected$
+    //   .pipe(map(connected => new UIActions.SetSocketConnected(connected)))
+    //   .subscribe(this.store);
 
     this.socket.listen(RacerSocketEvent.INIT).subscribe((response: any) => {
 
       if (response) {
-        this.store.dispatch(new LoadInitialState(response));
+        // this.store.dispatch(new LoadInitialState(response));
       }
     });
   }

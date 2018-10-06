@@ -61,6 +61,7 @@ export class RacerServer {
   }
 
   private listen(): void {
+    console.log('Listening...');
     this.server.listen(this.port, () => {
         console.log('INFO - Running server on port %s', this.port);
     });
@@ -78,7 +79,7 @@ export class RacerServer {
       this.socketSessions.push(socketSession);
 
       socket.on(BasicSocketEvent.DISCONNECT, () => {
-        console.log('EVENT - [' + BasicSocketEvent.DISCONNECT + '] Connected disconnected.');
+        console.log('EVENT - [' + BasicSocketEvent.DISCONNECT + '] Client disconnected.');
 
         if (socketSessionIndex > 0) {
           // delete socket session
