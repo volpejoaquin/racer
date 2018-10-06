@@ -1,9 +1,8 @@
 import * as socketIo from 'socket.io';
 
 // models
-import { RacerSocketEvent } from './../interfaces/';
+import { RacerSocketEvent, IRaceWeekend } from './../interfaces/';
 import { RaceWeekend } from './../models/';
-import { raceWeekendsAdapter } from './adapters';
 
 export class SocketSession {
   private socket: SocketIO.Socket;
@@ -17,9 +16,18 @@ export class SocketSession {
       }
     },
     timing: {
-      raceWeekends: null,
-      trackActivities: null,
-      raceParticipantsTrackActivities: null
+      raceWeekends: {
+        ids: [],
+        entities: []
+      },
+      trackActivities: {
+        ids: [],
+        entities: []
+      },
+      raceParticipantsTrackActivities: {
+        ids: [],
+        entities: []
+      }
     }
   };
 
@@ -28,26 +36,14 @@ export class SocketSession {
     this.code = code;
 
     console.log('INFO - New socket session. CODE:', code);
+
+    this.getRaceWeekends();
   }
   
   private start() {
-    const initAppState: any = {
-      ui: {
-        socketConnected: true,
-        raceParticipants: {
-          invisible: [],
-          dimmed: [91, 110]
-        }
-      },
-      timing: {
-        raceWeekends: this.getRaceWeekends(),
-        trackActivities: [],
-        raceParticipantsTrackActivities: []
-      }
-    };
     // emit init event
-    this.socket.emit(RacerSocketEvent.INIT, initAppState);
-    console.log('EMIT - [' + RacerSocketEvent.INIT + ']', initAppState);
+    this.socket.emit(RacerSocketEvent.INIT, this.currentState);
+    console.log('EMIT - [' + RacerSocketEvent.INIT + ']', this.currentState);
   }
 
   private getRaceWeekends() {
@@ -57,10 +53,15 @@ export class SocketSession {
         return;
       }
 
-      let initialState = raceWeekendsAdapter.getInitialState({
-        selectedRaceWeekendId: raceWeekends[0].id,
-      });
-      initialState = raceWeekendsAdapter.addAll(raceWeekends, initialState);
+      let initialState = {
+        ids: [],
+        entities: []
+      };
+
+      raceWeekends.forEach((raceWeekend: IRaceWeekend) => {
+        initialState.ids.push(raceWeekend.id);
+        initialState.entities[raceWeekend.id] = raceWeekend;
+      })
 
       this.currentState.timing.raceWeekends = initialState;
 

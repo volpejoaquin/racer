@@ -29,10 +29,8 @@ export const adapter: EntityAdapter<TrackActivity> = createEntityAdapter<TrackAc
 });
 
 export let initialState: State = adapter.getInitialState({
-  selectedTrackActivityId: 1,
+  selectedTrackActivityId: null
 });
-
-initialState = adapter.addAll(TP_C3_TRACK_ACTIVITIES, initialState);
 
 const timingHelper = new TimingHelper();
 
