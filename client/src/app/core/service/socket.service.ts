@@ -5,6 +5,9 @@ import * as socketIo from 'socket.io-client';
 
 import { environment } from '../../../environments/environment';
 
+// models
+import { BasicSocketEvent } from './../../shared/model';
+
 @Injectable()
 export class SocketService {
 
@@ -13,17 +16,8 @@ export class SocketService {
 
   constructor() {
     this.socket = socketIo(environment.socket.baseUrl, environment.socket.config);
-    this.socket.on('connect', () => this.connected$.next(true));
-    this.socket.on('disconnect', () => this.connected$.next(false));
-  }
-
-  join(code: string) {
-    // auto rejoin after reconnect mechanism
-    this.connected$.subscribe(connected => {
-      if (connected) {
-        this.socket.emit('join', { code });
-      }
-    });
+    this.socket.on(BasicSocketEvent.CONNECT, () => this.connected$.next(true));
+    this.socket.on(BasicSocketEvent.DISCONNECT, () => this.connected$.next(false));
   }
 
   disconnect() {
@@ -33,8 +27,8 @@ export class SocketService {
 
   emit(event: string, data?: any) {
 
-    console.group();
-      console.log('----- SOCKET OUTGOING -----');
+    console.group('[SOCKET] Socket outgoing');
+      console.log();
       console.log('Action: ', event);
       console.log('Payload: ', data);
     console.groupEnd();
@@ -47,8 +41,7 @@ export class SocketService {
 
       this.socket.on(event, data => {
 
-        console.group();
-          console.log('----- SOCKET INBOUND -----');
+        console.group('[SOCKET] Socket inbound');
           console.log('Action: ', event);
           console.log('Payload: ', data);
         console.groupEnd();

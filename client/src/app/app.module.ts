@@ -32,7 +32,7 @@ import { reducers, metaReducers } from './core/reducers';
     TimingModule,
     DataAcquisitionModule,
 
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(reducers, { metaReducers })
   ],
   providers: [],
   bootstrap: [AppComponent]

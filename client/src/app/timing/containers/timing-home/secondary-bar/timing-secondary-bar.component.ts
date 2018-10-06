@@ -5,7 +5,7 @@ import { Store, select } from '@ngrx/store';
 // models
 import {
   TrackActivity,
-  RaceWeekend,
+  IRaceWeekend,
   RaceParticipant,
   RaceParticipantTrackActivity
 } from '../../../../shared/model';
@@ -19,7 +19,7 @@ import * as fromTiming from './../../../reducers/';
   styleUrls: ['./timing-secondary-bar.component.scss']
 })
 export class TimingSecondaryBarComponent implements OnInit {
-  @Input() raceWeekend: RaceWeekend;
+  @Input() raceWeekend: IRaceWeekend;
   @Input() trackActivity: TrackActivity;
   @Input() raceParticipants: RaceParticipant[];
 

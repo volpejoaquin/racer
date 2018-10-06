@@ -1,6 +1,5 @@
 import { BaseModel } from './base.model';
 import {
-  RaceWeekend,
   RaceParticipant,
   CarDivision,
   CircuitVariant
@@ -30,7 +29,6 @@ export interface TrackActivity extends BaseModel {
   type: TrackActivityType;
   // Optionals
   // Relationships
-  race_weekend?: RaceWeekend;
   car_division?: CarDivision;
   circuit_variant?: CircuitVariant;
   race_participants_track_activities?: RaceParticipantTrackActivity[];

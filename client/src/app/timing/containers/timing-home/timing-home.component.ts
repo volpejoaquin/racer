@@ -13,7 +13,7 @@ import {
 import {
   TrackActivity,
   RaceParticipantTrackActivity,
-  RaceWeekend,
+  IRaceWeekend,
   RaceParticipant
 } from '../../../shared/model/';
 
@@ -23,7 +23,7 @@ import {
   styleUrls: ['./timing-home.component.scss']
 })
 export class TimingHomeComponent implements OnInit {
-  raceWeekend$: Observable<RaceWeekend>;
+  raceWeekend$: Observable<IRaceWeekend>;
   trackActivity$: Observable<TrackActivity>;
   raceParticipantsTrackActivities$: Observable<RaceParticipantTrackActivity[]>;
   bestRaceParticipantTrackActivity$: Observable<RaceParticipantTrackActivity>;
@@ -61,7 +61,7 @@ export class TimingHomeComponent implements OnInit {
 
     this.trackActivity$.subscribe((selectedTrackActivity: TrackActivity) => {
 
-      if (selectedTrackActivity.race_participants_track_activities) {
+      if (selectedTrackActivity && selectedTrackActivity.race_participants_track_activities) {
         store.dispatch(new LoadRaceParticipantTrackActivities(selectedTrackActivity.race_participants_track_activities));
       }
     });

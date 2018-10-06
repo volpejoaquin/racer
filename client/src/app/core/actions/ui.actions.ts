@@ -1,5 +1,5 @@
 // libs
-import {Action} from '@ngrx/store';
+import { Action } from '@ngrx/store';
 
 export const SET_SOCKET_CONECTED = '[UI] Set Socket Connected';
 export const SHOW_RACE_PARTICIPANT = '[UI] Show Race Participant';

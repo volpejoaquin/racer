@@ -30,6 +30,7 @@
     "install": "^0.12.1",
     "moment": "^2.22.2",
     "npm": "^6.4.1",
+    "redux-async-initial-state": "^0.3.0",
     "rxjs": "^6.0.0",
     "xlsx": "^0.14.0",
     "zone.js": "~0.8.26"

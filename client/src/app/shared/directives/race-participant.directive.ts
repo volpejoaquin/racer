@@ -1,6 +1,6 @@
 // libs
 import { Directive, Input, OnInit, OnChanges, HostBinding } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import * as lodash from 'lodash';
 
 // actions
@@ -53,5 +53,7 @@ export class RaceParticipantDirective implements OnInit, OnChanges {
   private checkVisibility() {
     this.isInvisible = this.invisibleRaceParticipantNumbers.indexOf(this.raceParticipantNumber) >= 0;
     this.isDimmed = this.dimmedRaceParticipantNumbers.indexOf(this.raceParticipantNumber) >= 0;
+
+    console.log('checkVisibility');
   }
 }

@@ -12,7 +12,7 @@ import { RaceParticipantTrackActivityActions } from '../../../timing/actions';
 
 // models
 import {
-  RaceWeekend,
+  IRaceWeekend,
   TrackActivity,
   RaceParticipantTrackActivity
 } from '../../../shared/model';
@@ -26,7 +26,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./race-weekend.component.scss']
 })
 export class RaceWeekendComponent implements OnInit, OnChanges {
-  @Input() raceWeekend: RaceWeekend;
+  @Input() raceWeekend: IRaceWeekend;
   trackActivities$: Observable<TrackActivity>;
 
   selectedTrackActivity: TrackActivity;
