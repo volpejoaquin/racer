@@ -6,7 +6,7 @@ import * as socketIo from 'socket.io-client';
 import { environment } from '../../../environments/environment';
 
 // models
-import { BasicSocketEvent } from './../../shared/model';
+import { BasicSocketEvent, RacerSocketEvent } from './../../shared/model';
 
 @Injectable()
 export class SocketService {
@@ -20,13 +20,21 @@ export class SocketService {
     this.socket.on(BasicSocketEvent.DISCONNECT, () => this.connected$.next(false));
   }
 
+  join(code: string) {
+    // auto rejoin after reconnect mechanism
+    this.connected$.subscribe(connected => {
+      if (connected) {
+        this.socket.emit(RacerSocketEvent.JOIN, { code });
+      }
+    });
+  }
+
   disconnect() {
     this.socket.disconnect();
     this.connected$.next(false);
   }
 
   emit(event: string, data?: any) {
-
     console.group('[SOCKET] Socket outgoing');
       console.log();
       console.log('Action: ', event);

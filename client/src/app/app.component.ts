@@ -43,10 +43,12 @@ export class AppComponent implements OnInit {
     //   .pipe(map(connected => new UIActions.SetSocketConnected(connected)))
     //   .subscribe(this.store);
 
+    this.socket.join('11 11 11');
+
     this.socket.listen(RacerSocketEvent.INIT).subscribe((response: any) => {
 
       if (response) {
-        // this.store.dispatch(new LoadInitialState(response));
+        this.store.dispatch(new LoadInitialState(response));
       }
     });
   }

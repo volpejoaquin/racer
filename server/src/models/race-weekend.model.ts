@@ -10,12 +10,10 @@ export const RaceWeekendSchema = new Schema({
     type: String
   },
   start_date: {
-    type: Date,
-    default: Date.now
+    type: String
   },
   end_date: {
-    type: Date,
-    default: Date.now
+    type: String
   }
 });
 

@@ -6,7 +6,7 @@ import * as mongoose from 'mongoose';
 import * as socketIo from 'socket.io';
 
 // models
-import { BasicSocketEvent } from './interfaces';
+import { BasicSocketEvent, RacerSocketEvent } from './interfaces';
 import { SocketSession } from './modules';
 
 export class RacerServer {
@@ -18,7 +18,7 @@ export class RacerServer {
   private server: Server;
   private io: SocketIO.Server;
   private port: string | number;
-  private socketSessions: SocketSession[] = [];
+  private socketSessions: any = {};
 
   constructor() {
     this.createApp();
@@ -66,26 +66,31 @@ export class RacerServer {
         console.log('INFO - Running server on port %s', this.port);
     });
 
-    let socketSession: SocketSession,
-      socketSessionIndex: number;
-
     this.io.on(BasicSocketEvent.CONNECT, (socket: SocketIO.Socket) => {
       console.log('EVENT - [' + BasicSocketEvent.CONNECT + '] Connected client on port %s.', this.port);
 
-      socketSessionIndex = this.socketSessions.length;
-
-      // create and add socket session
-      socketSession = new SocketSession(socket, 'A00' + socketSessionIndex);
-      this.socketSessions.push(socketSession);
-
-      socket.on(BasicSocketEvent.DISCONNECT, () => {
-        console.log('EVENT - [' + BasicSocketEvent.DISCONNECT + '] Client disconnected.');
-
-        if (socketSessionIndex > 0) {
-          // delete socket session
-          this.socketSessions.slice(socketSessionIndex, 1);
+      socket.on(RacerSocketEvent.JOIN, (response: any) => {
+        if (!response) {
+          return;
         }
-      });
+
+        this.onJoin(socket, response.code);
+      })
+    });
+  }
+
+  private onJoin(socket: SocketIO.Socket, code: string) {
+    console.log('EVENT - [' + RacerSocketEvent.JOIN + '] Client joined %s.', code);
+
+    let socketSession: SocketSession;
+
+    // create and add socket session
+    socketSession = new SocketSession(socket, code);
+    this.socketSessions[code] = socketSession;
+
+    socket.on(BasicSocketEvent.DISCONNECT, (response) => {
+      console.log(response);
+      console.log('EVENT - [' + BasicSocketEvent.DISCONNECT + '] Client disconnected. Session code:', code);
     });
   }
 }

@@ -16,6 +16,9 @@ export class SocketSession {
         dimmed: [91, 110]
       }
     },
+    layout: {
+      showSidenav: false
+    },
     timing: {
       raceWeekends: {
         ids: [],
@@ -55,17 +58,15 @@ export class SocketSession {
       }
 
       let ids: string[] = [],
-        entities = {};
+        entities: {[key: string]: IRaceWeekend} = {};
 
       raceWeekends.forEach((raceWeekend: IRaceWeekend) => {
         ids.push(raceWeekend.id);
         entities[raceWeekend.id] = raceWeekend;
       });
 
-      this.currentState.timing.raceWeekends = {
-        ids,
-        entities: entities
-      };
+      this.currentState.timing.raceWeekends.ids = ids;
+      this.currentState.timing.raceWeekends.entities = entities;
 
       this.start(); // TODO: REVIEW THIS
     });
