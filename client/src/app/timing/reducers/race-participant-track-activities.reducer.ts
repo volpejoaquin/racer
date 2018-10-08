@@ -24,8 +24,8 @@ export const adapter: EntityAdapter<RaceParticipantTrackActivity> = createEntity
 });
 
 export let initialState: State = adapter.getInitialState({
-  selectedRaceParticipantTrackActivityId: 1,
-  bestRaceParticipantTrackActivityId: 1
+  selectedRaceParticipantTrackActivityId: null,
+  bestRaceParticipantTrackActivityId: null
 });
 
 const timingHelper = new TimingHelper();

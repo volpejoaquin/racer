@@ -1,7 +1,5 @@
 // libs
 import { ActionReducerMap, createSelector, createFeatureSelector } from '@ngrx/store';
-import * as lodash from 'lodash';
-// import * as fromRouter from '@ngrx/router-store';
 
 // modules
 import * as fromRoot from '../../core/reducers';

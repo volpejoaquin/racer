@@ -8,11 +8,13 @@ import {
 } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
 import * as lodash from 'lodash';
-// import * as fromRouter from '@ngrx/router-store';
 
 // modules
 import * as fromUI from './ui.reducer';
 import * as fromLayout from './layout.reducer';
+
+// actions
+import { APPActionTypes } from './../actions/app.actions';
 
 export interface State {
   ui: fromUI.State;
@@ -33,6 +35,18 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
   };
 }
 
+export function stateSetter(r: ActionReducer<any>): ActionReducer<any> {
+  return function(state: any, action: any) {
+    if (action.type === APPActionTypes.LoadInitialState) {
+      return {
+        ...state,
+        ...action.payload
+      };
+    }
+    return r(state, action);
+  };
+}
+
 export const reducers: ActionReducerMap<State, any> = {
   ui: fromUI.reducer,
   layout: fromLayout.reducer
@@ -44,8 +58,8 @@ export const reducers: ActionReducerMap<State, any> = {
  * that will be composed to form the root meta-reducer.
  */
 export const metaReducers: MetaReducer<State>[] =  !environment.production
-  ? [logger]
-  : []; // TODO: ADD storeFreeze
+  ? [logger, stateSetter]
+  : [stateSetter];
 
 export const getUIState = createFeatureSelector<fromUI.State>('ui');
 

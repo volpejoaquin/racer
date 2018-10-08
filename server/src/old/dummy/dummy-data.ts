@@ -1,10 +1,10 @@
+import { IRaceWeekend } from './../../interfaces/race-weekend';
 // models
 import {
   CarCategory,
   CarDivision,
   Circuit,
   CircuitVariant,
-  RaceWeekend,
   TrackActivity,
   TrackActivityState,
   TrackLap,
@@ -54,13 +54,10 @@ export const TRACK_ACTIVITY: TrackActivity = {
   race_participants_track_activities: []
 };
 
-export const RACE_WEEKEND: RaceWeekend = {
+export const RACE_WEEKEND: IRaceWeekend = {
   name: 'ITALY GP',
   start_date: '',
-  end_date: '',
-  track_activities: [
-    TRACK_ACTIVITY
-  ]
+  end_date: ''
 };
 
 

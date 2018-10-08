@@ -2,7 +2,7 @@
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 
 // models
-import { RaceWeekend } from '../../shared/model';
+import { IRaceWeekend } from '../../shared/model';
 
 // actions
 import {
@@ -10,17 +10,17 @@ import {
 } from './../actions/';
 import { RACE_WEEKENDS_SAMPLE } from '../../shared/dummy';
 
-export interface State extends EntityState<RaceWeekend> {
+export interface State extends EntityState<IRaceWeekend> {
   selectedRaceWeekendId: number | null;
 }
 
-export const adapter: EntityAdapter<RaceWeekend> = createEntityAdapter<RaceWeekend>({
-  selectId: (raceWeekend: RaceWeekend) => raceWeekend.id,
+export const adapter: EntityAdapter<IRaceWeekend> = createEntityAdapter<IRaceWeekend>({
+  selectId: (raceWeekend: IRaceWeekend) => raceWeekend.id,
   sortComparer: false
 });
 
 export let initialState: State = adapter.getInitialState({
-  selectedRaceWeekendId: 1,
+  selectedRaceWeekendId: null
 });
 
 initialState = adapter.addAll(RACE_WEEKENDS_SAMPLE, initialState); // TODO: REVIEW THIS

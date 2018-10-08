@@ -35,7 +35,7 @@ import { reducers, metaReducers } from './core/reducers';
 
     SharedModule,
 
-    StoreModule.forRoot(reducers, { metaReducers }),
+    StoreModule.forRoot(reducers, { metaReducers })
   ],
   providers: [],
   bootstrap: [AppComponent]

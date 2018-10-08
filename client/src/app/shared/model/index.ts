@@ -1,1 +1,2 @@
-export * from '../../../../../server/src/model';
+export * from '../../../../../server/src/old/model';
+export * from '../../../../../server/src/interfaces';

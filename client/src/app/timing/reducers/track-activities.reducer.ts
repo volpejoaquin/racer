@@ -29,7 +29,7 @@ export const adapter: EntityAdapter<TrackActivity> = createEntityAdapter<TrackAc
 });
 
 export let initialState: State = adapter.getInitialState({
-  selectedTrackActivityId: 1,
+  selectedTrackActivityId: 1
 });
 
 initialState = adapter.addAll(TP_C3_TRACK_ACTIVITIES, initialState);

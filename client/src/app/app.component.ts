@@ -10,13 +10,16 @@ import { SocketService } from './core/service/socket.service';
 // store
 import * as fromRoot from './core/reducers/';
 import * as fromTiming from './timing/reducers/';
-import { SelectRaceWeekend } from './timing/actions/race-weekend.actions';
-import { SelectTrackActivity } from './timing/actions/track-activitiy.actions';
 import {
   LoadRaceParticipantTrackActivities,
   SetBestRaceParticipantTrackActivity
 } from './timing/actions/race-participant-track-activity.actions';
-import { UIActions } from './core/actions';
+// import { LoadInitialState } from './core/actions/app.actions';
+import { SelectTrackActivity } from './timing/actions/track-activitiy.actions';
+import { SelectRaceWeekend } from './timing/actions/race-weekend.actions';
+
+// models
+// import { RacerSocketEvent } from './shared/model';
 
 @Component({
   selector: 'racer-root',
@@ -36,18 +39,20 @@ export class AppComponent implements OnInit {
       .select(fromRoot.getSocketStatus)
       .pipe(map(connected => connected ? 'connected' : 'disconnected'));
 
-    this.socket.connected$
-      .pipe(map(connected => new UIActions.SetSocketConnected(connected)))
-      .subscribe(this.store);
+    // this.socket.connected$
+    //   .pipe(map(connected => new UIActions.SetSocketConnected(connected)))
+    //   .subscribe(this.store);
 
     // this.socket.join('11 11 11');
 
+    // this.socket.listen(RacerSocketEvent.INIT).subscribe((response: any) => {
+
+    //   if (response) {
+    //     this.store.dispatch(new LoadInitialState(response));
+    //   }
+    // });
+
     this.store.dispatch(new SelectRaceWeekend(1));
-
     this.store.dispatch(new SelectTrackActivity(1));
-
-    // const data = lodash.orderBy(QUALY_SAMPLE, 'best_lap.time');
-
-    // this.store.dispatch(new LoadRaceParticipantTrackActivities(data));
   }
 }
