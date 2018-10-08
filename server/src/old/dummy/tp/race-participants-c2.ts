@@ -1,4 +1,4 @@
-import { RaceParticipant } from './../../model/race-participant.model';
+import { RaceParticipant, CarBrand } from './../../model/race-participant.model';
 
 export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
   {
@@ -6,7 +6,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CELTA",
+      brand: CarBrand.chevroletCelta
     },
     driver: {
       name: "Nicolas",
@@ -19,7 +20,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "FORD KA",
+      brand: CarBrand.fordKa
     },
     driver: {
       name: "Renzo",
@@ -32,7 +34,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Luigi",
@@ -45,7 +48,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Lucas",
@@ -58,7 +62,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Pablo",
@@ -71,7 +76,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "FORD KA",
+      brand: CarBrand.fordKa
     },
     driver: {
       name: "Fabrizio",
@@ -84,7 +90,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Favio",
@@ -97,7 +104,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Danilo",
@@ -110,7 +118,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Matías",
@@ -123,7 +132,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Facundo",
@@ -136,7 +146,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CELTA",
+      brand: CarBrand.chevroletCelta
     },
     driver: {
       name: "Martín",
@@ -149,7 +160,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Sebastián",
@@ -162,7 +174,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "FORD KA",
+      brand: CarBrand.fordKa
     },
     driver: {
       name: "Fabrizio",
@@ -175,7 +188,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Yair",
@@ -188,7 +202,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "FORD KA",
+      brand: CarBrand.fordKa
     },
     driver: {
       name: "Leonardo",
@@ -201,7 +216,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Rubén",
@@ -214,7 +230,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Juan",
@@ -227,7 +244,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CELTA",
+      brand: CarBrand.chevroletCelta
     },
     driver: {
       name: "Jonathan",
@@ -240,7 +258,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Stefano",
@@ -253,7 +272,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CELTA",
+      brand: CarBrand.chevroletCelta
     },
     driver: {
       name: "Nicolás",
@@ -266,7 +286,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CELTA",
+      brand: CarBrand.chevroletCelta
     },
     driver: {
       name: "Adrian",
@@ -279,7 +300,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Pablo",
@@ -292,10 +314,11 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
-      name: "uis",
+      name: "Luis",
       last_name: "Arrate, Jose"
     },
     number: 73
@@ -305,7 +328,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CELTA",
+      brand: CarBrand.chevroletCelta
     },
     driver: {
       name: "Tomás",
@@ -318,7 +342,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Franco",
@@ -331,7 +356,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "FORD KA",
+      brand: CarBrand.fordKa
     },
     driver: {
       name: "Franco",
@@ -344,7 +370,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "FORD KA",
+      brand: CarBrand.fordKa
     },
     driver: {
       name: "Justo",
@@ -357,7 +384,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "FORD KA",
+      brand: CarBrand.fordKa
     },
     driver: {
       name: "Marcelo",
@@ -370,7 +398,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Sergio",
@@ -383,7 +412,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Gustavo",
@@ -396,7 +426,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Diego",
@@ -409,7 +440,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Ayrton",
@@ -422,7 +454,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Minardi",
@@ -435,7 +468,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Elias",
@@ -448,7 +482,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "FORD KA",
+      brand: CarBrand.fordKa
     },
     driver: {
       name: "Sami",
@@ -461,7 +496,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Luis",
@@ -474,7 +510,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Cristian",
@@ -487,7 +524,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "William",
@@ -500,7 +538,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CELTA",
+      brand: CarBrand.chevroletCelta
     },
     driver: {
       name: "Juan C",
@@ -513,7 +552,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Eduardo",
@@ -526,7 +566,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Francisco",
@@ -539,7 +580,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
     },
     driver: {
       name: "Pablo",
@@ -552,7 +594,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CELTA",
+      brand: CarBrand.chevroletCelta
     },
     driver: {
       name: "Alan",
@@ -565,7 +608,8 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       name: "DUMMY"
     },
     car: {
-      name: "DUMMY"
+      name: "CELTA",
+      brand: CarBrand.chevroletCelta
     },
     driver: {
       name: "Adrián",

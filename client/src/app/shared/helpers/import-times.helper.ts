@@ -219,7 +219,8 @@ export class ImportTimesHelper {
         name: ''
       },
       car: {
-        name: ''
+        name: '',
+        brand: null
       },
       driver: {
         name: '',

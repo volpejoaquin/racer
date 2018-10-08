@@ -67,7 +67,8 @@ export const RACE_PARTICIPANTS: RaceParticipant[] = [
       name: 'TEAM'
     },
     car: {
-      name: 'CAR NAME'
+      name: 'CAR NAME',
+      brand: null
     },
     driver: {
       name: 'LEWIS',
@@ -80,7 +81,8 @@ export const RACE_PARTICIPANTS: RaceParticipant[] = [
       name: 'TEAM'
     },
     car: {
-      name: 'CAR NAME'
+      name: 'CAR NAME',
+      brand: null
     },
     driver: {
       name: 'SEBASTIAL',
@@ -93,7 +95,8 @@ export const RACE_PARTICIPANTS: RaceParticipant[] = [
       name: 'TEAM'
     },
     car: {
-      name: 'CAR NAME'
+      name: 'CAR NAME',
+      brand: null
     },
     driver: {
       name: 'DANIEL',
@@ -106,7 +109,8 @@ export const RACE_PARTICIPANTS: RaceParticipant[] = [
       name: 'TEAM'
     },
     car: {
-      name: 'CAR NAME'
+      name: 'CAR NAME',
+      brand: null
     },
     driver: {
       name: 'RAIKKONEN',
@@ -119,7 +123,8 @@ export const RACE_PARTICIPANTS: RaceParticipant[] = [
       name: 'TEAM'
     },
     car: {
-      name: 'CAR NAME'
+      name: 'CAR NAME',
+      brand: null
     },
     driver: {
       name: 'BOTTAS',
@@ -132,7 +137,8 @@ export const RACE_PARTICIPANTS: RaceParticipant[] = [
       name: 'TEAM'
     },
     car: {
-      name: 'CAR NAME'
+      name: 'CAR NAME',
+      brand: null
     },
     driver: {
       name: 'VERSTAPEN',
