@@ -1,8 +1,10 @@
 import * as uiActions from '../actions/ui.actions';
+import * as lodash from 'lodash';
 
 export interface RaceParticipantsState {
   invisible: number[];
   dimmed: number[];
+  marked: number[];
 }
 
 export interface State {
@@ -14,7 +16,8 @@ export const INIT_STATE: State = {
   socketConnected: false,
   raceParticipants: {
     invisible: [],
-    dimmed: []
+    dimmed: [],
+    marked: [80]
   }
 };
 
@@ -32,15 +35,13 @@ export function reducer(state = INIT_STATE, action: uiActions.All): State {
 
       const newState = Object.assign({}, state);
 
-      let numberIndex = newState.raceParticipants.dimmed.indexOf(action.payload);
-      if (numberIndex >= 0) {
-        newState.raceParticipants.dimmed.splice(numberIndex, 1);
-      }
-
-      numberIndex = newState.raceParticipants.invisible.indexOf(action.payload);
-      if (numberIndex >= 0) {
-        newState.raceParticipants.invisible.splice(numberIndex, 1);
-      }
+      let numberIndex;
+      lodash.values(newState.raceParticipants).forEach((list: any) => {
+        numberIndex = list.indexOf(action.payload);
+        if (numberIndex >= 0) {
+          list.splice(numberIndex, 1);
+        }
+      });
 
       return newState;
     }
@@ -48,10 +49,13 @@ export function reducer(state = INIT_STATE, action: uiActions.All): State {
     case uiActions.HIDE_RACE_PARTICIPANT : {
       const newState = Object.assign({}, state);
 
-      const numberIndex = newState.raceParticipants.dimmed.indexOf(action.payload);
-      if (numberIndex >= 0) {
-        newState.raceParticipants.dimmed.splice(numberIndex, 1);
-      }
+      let numberIndex;
+      lodash.values(newState.raceParticipants).forEach((list: any) => {
+        numberIndex = list.indexOf(action.payload);
+        if (numberIndex >= 0) {
+          list.splice(numberIndex, 1);
+        }
+      });
 
       newState.raceParticipants.invisible.push(action.payload);
 
@@ -61,12 +65,31 @@ export function reducer(state = INIT_STATE, action: uiActions.All): State {
     case uiActions.DIM_RACE_PARTICIPANT : {
       const newState = Object.assign({}, state);
 
-      const numberIndex = newState.raceParticipants.invisible.indexOf(action.payload);
-      if (numberIndex >= 0) {
-        newState.raceParticipants.invisible.splice(numberIndex, 1);
-      }
+      let numberIndex;
+      lodash.values(newState.raceParticipants).forEach((list: any) => {
+        numberIndex = list.indexOf(action.payload);
+        if (numberIndex >= 0) {
+          list.splice(numberIndex, 1);
+        }
+      });
 
       newState.raceParticipants.dimmed.push(action.payload);
+
+      return newState;
+    }
+
+    case uiActions.MARK_RACE_PARTICIPANT : {
+      const newState = Object.assign({}, state);
+
+      let numberIndex;
+      lodash.values(newState.raceParticipants).forEach((list: any) => {
+        numberIndex = list.indexOf(action.payload);
+        if (numberIndex >= 0) {
+          list.splice(numberIndex, 1);
+        }
+      });
+
+      newState.raceParticipants.marked.push(action.payload);
 
       return newState;
     }

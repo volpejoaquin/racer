@@ -80,6 +80,28 @@ $colum-participant-name-width: 220px;
 // race participants
 .race-participant_row {
 
+  &:not(.race-participant_marked) {
+    .timing_table-column-pos {
+      .text-info,
+      .text-success {
+        color: $gray-600 !important;
+      }
+    }
+
+    .timing_table-column-lap-sector,
+    .timing_table-column-partial-lap-time {
+      .text-info,
+      .text-success {
+        color: $white !important;
+      }
+    }
+
+    .timing-partial-lap-time-gap,
+    .timing-lap-time-gap {
+      display: none !important;
+    }
+  }
+
   &.race-participant_invisible {
     display: none;
   }

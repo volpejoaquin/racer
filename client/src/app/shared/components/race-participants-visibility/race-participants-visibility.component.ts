@@ -1,15 +1,14 @@
 // angular
-import { Component, Input, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Store } from '@ngrx/store';
 import * as lodash from 'lodash';
-
-// libs
-import { Store, select } from '@ngrx/store';
 
 // modules
 import {
   ShowRaceParticipant,
   HideRaceParticipant,
-  DimRaceParticipant
+  DimRaceParticipant,
+  MarkRaceParticipant
 } from './../../../core/actions/ui.actions';
 import * as fromRoot from '../../../core/reducers/';
 
@@ -25,44 +24,33 @@ import {
 })
 export class RaceParticipantsVisibilityComponent implements OnInit, OnChanges {
   @Input() raceParticipants: RaceParticipant[];
-  teamRaceParticipantNumbers: number[] = [80];
-  invisibleRaceParticipantNumbers: number[] = [];
-  dimmedRaceParticipantNumbers: number[] = [];
+  @Input() currentMode = 0;
+  @Input() invisibleRaceParticipantNumbers: number[] = [];
+  @Input() dimmedRaceParticipantNumbers: number[] = [];
+  @Input() markedRaceParticipantNumbers: number[] = [];
+  @Input() searchText = '';
+  teamRaceParticipantNumbers: number[] = [80]; // TODO: REVIEW THIS
 
-  currentMode = 0;
-  searchText = '';
 
   constructor(private store: Store<fromRoot.State>) {
   }
 
   ngOnInit() {
-    this.store.pipe(select(fromRoot.getRaceParticipants)).subscribe((raceParticipants: any) => {
-      this.invisibleRaceParticipantNumbers = raceParticipants.invisible;
-      this.dimmedRaceParticipantNumbers = raceParticipants.dimmed;
-    });
   }
 
-  ngOnChanges() {
+  ngOnChanges(simpleChanges: SimpleChanges) {
+    if (simpleChanges && simpleChanges.currentMode && !simpleChanges.currentMode.firstChange) {
+      setTimeout(() => {
+        const modeChanged = simpleChanges.currentMode.previousValue !== simpleChanges.currentMode.currentValue;
+        this.checkState(modeChanged);
+      }, 100); // TODO: REVIEW THIS
+    }
   }
 
   onChangeMode(mode: number) {
+    const modeChanged = this.currentMode !== mode;
     this.currentMode = mode;
-
-    this.raceParticipants.forEach((raceParticipant: RaceParticipant) => {
-      const raceParticipantNumber = lodash.toNumber(raceParticipant.number);
-
-      if (this.currentMode === 0) {
-        this.showRaceParticipant(raceParticipantNumber);
-      } else if (this.currentMode === 1) {
-        if (this.teamRaceParticipantNumbers.indexOf(raceParticipantNumber) >= 0) {
-          this.showRaceParticipant(raceParticipantNumber);
-        } else {
-          this.dimRaceParticipant(raceParticipantNumber);
-        }
-      } else if (this.currentMode === 2) {
-        this.changeRaceParticipantVisibility(raceParticipantNumber);
-      }
-    });
+    this.checkState(modeChanged);
   }
 
   onRaceParticipantClick(raceParticipant: RaceParticipant) {
@@ -71,8 +59,6 @@ export class RaceParticipantsVisibilityComponent implements OnInit, OnChanges {
     const raceParticipantNumber = lodash.toNumber(raceParticipant.number);
 
     this.changeRaceParticipantVisibility(raceParticipantNumber);
-
-    this.searchText = '';
   }
 
   isRaceParticipantInvisible(raceParticipant: RaceParticipant) {
@@ -83,13 +69,19 @@ export class RaceParticipantsVisibilityComponent implements OnInit, OnChanges {
     return this.isRaceParticipantNumberDimmed(raceParticipant.number);
   }
 
+  isRaceParticipantMarked(raceParticipant: RaceParticipant) {
+    return this.isRaceParticipantNumberMarked(raceParticipant.number);
+  }
+
   private changeRaceParticipantVisibility(raceParticipantNumber: number) {
     if (this.isRaceParticipantNumberInvisible(raceParticipantNumber)) {
       this.showRaceParticipant(raceParticipantNumber);
     } else if (this.isRaceParticipantNumberDimmed(raceParticipantNumber)) {
       this.hideRaceParticipant(raceParticipantNumber);
-    } else {
+    } else if (this.isRaceParticipantNumberMarked(raceParticipantNumber)) {
       this.dimRaceParticipant(raceParticipantNumber);
+    } else {
+      this.markRaceParticipant(raceParticipantNumber);
     }
   }
 
@@ -99,6 +91,10 @@ export class RaceParticipantsVisibilityComponent implements OnInit, OnChanges {
 
   private isRaceParticipantNumberDimmed(raceParticipantNumber: number) {
     return this.dimmedRaceParticipantNumbers.indexOf(raceParticipantNumber) >= 0;
+  }
+
+  private isRaceParticipantNumberMarked(raceParticipantNumber: number) {
+    return this.markedRaceParticipantNumbers.indexOf(raceParticipantNumber) >= 0;
   }
 
   private showRaceParticipant(raceParticipantNumber: number) {
@@ -111,5 +107,27 @@ export class RaceParticipantsVisibilityComponent implements OnInit, OnChanges {
 
   private dimRaceParticipant(raceParticipantNumber: number) {
     this.store.dispatch(new DimRaceParticipant(raceParticipantNumber));
+  }
+
+  private markRaceParticipant(raceParticipantNumber: number) {
+    this.store.dispatch(new MarkRaceParticipant(raceParticipantNumber));
+  }
+
+  private checkState(modeChanged = true) {
+    this.raceParticipants.forEach((raceParticipant: RaceParticipant) => {
+      const raceParticipantNumber = lodash.toNumber(raceParticipant.number);
+
+      if (this.currentMode === 0) {
+        this.showRaceParticipant(raceParticipantNumber);
+      } else if (this.currentMode === 1) {
+        if (this.teamRaceParticipantNumbers.indexOf(raceParticipantNumber) >= 0) {
+          this.markRaceParticipant(raceParticipantNumber);
+        } else {
+          this.dimRaceParticipant(raceParticipantNumber);
+        }
+      } else if (this.currentMode === 2 && !modeChanged) {
+        this.changeRaceParticipantVisibility(raceParticipantNumber);
+      }
+    });
   }
 }

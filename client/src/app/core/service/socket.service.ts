@@ -15,9 +15,10 @@ export class SocketService {
   connected$ = new ReplaySubject<boolean>(0);
 
   constructor() {
-    this.socket = socketIo(environment.socket.baseUrl, environment.socket.config);
-    this.socket.on(BasicSocketEvent.CONNECT, () => this.connected$.next(true));
-    this.socket.on(BasicSocketEvent.DISCONNECT, () => this.connected$.next(false));
+    // TODO: REVIEW THIS
+    // this.socket = socketIo(environment.socket.baseUrl, environment.socket.config);
+    // this.socket.on(BasicSocketEvent.CONNECT, () => this.connected$.next(true));
+    // this.socket.on(BasicSocketEvent.DISCONNECT, () => this.connected$.next(false));
   }
 
   join(code: string) {

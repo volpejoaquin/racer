@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-12 car-brands_wrapper">
+    <div class="row flex-row flex-nowrap">
+      <div class="col text-center mt-2 mb-2 car-brand_wrapper text-uppercase text-center"
+        *ngFor="let carBrand of carBrands | filter:null:searchText"
+        (click)="onCarBrandClick(carBrand)"
+        [class.car_brand_invisible]="isCarBrandInvisible(carBrand)"
+        [class.car_brand_dimmed]="isCarBrandDimmed(carBrand)"
+        [class.car_brand_marked]="isCarBrandMarked(carBrand)">
+        <span>{{ carBrand }}</span>
+        <fa-icon class="car_brand_marked-icon text-primary" [icon]="['fas', 'star']" size="sm" [class.invisible]="!isCarBrandMarked(carBrand)"></fa-icon>
+      </div>
+    </div>
+  </div>
+</div>

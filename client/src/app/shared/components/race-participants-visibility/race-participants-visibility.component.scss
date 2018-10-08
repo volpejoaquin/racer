@@ -1,9 +1,7 @@
 .race-participants_wrapper {
+  position: relative;
   overflow-x: scroll;
-}
-
-.race-participants_search_input {
-  width: 40px;
+  min-height: 80px;
 }
 
 .race-participant_wrapper {
@@ -16,4 +14,10 @@
 
 .race-participant_dimmed {
   opacity: 0.5;
+}
+
+.race-participant_marked-icon {
+  position: absolute;
+  top: -7px;
+  right: 0;
 }

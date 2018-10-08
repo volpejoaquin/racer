@@ -36,9 +36,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
 
-    this.socketStatus$ = this.store
-      .select(fromRoot.getSocketStatus)
-      .pipe(map(connected => connected ? 'connected' : 'disconnected'));
+    // this.socketStatus$ = this.store
+    //   .select(fromRoot.getSocketStatus)
+    //   .pipe(map(connected => connected ? 'connected' : 'disconnected'));
 
     // this.socket.connected$
     //   .pipe(map(connected => new UIActions.SetSocketConnected(connected)))

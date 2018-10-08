@@ -44,7 +44,8 @@
       <tr class="timing_table-row race-participant_row"
         *ngFor="let trackActivity of (trackActivities | orderByTrackActivity:trackActivity); let trackActivityIndex = index;"
         [class.race-participant_invisible]="isRaceParticipantInvisible(trackActivity.race_participant)"
-        [class.race-participant_dimmed]="isRaceParticipantDimmed(trackActivity.race_participant)">
+        [class.race-participant_dimmed]="isRaceParticipantDimmed(trackActivity.race_participant)"
+        [class.race-participant_marked]="isRaceParticipantMarked(trackActivity.race_participant)">
         <td class="timing_table-row-column timing_table-column-pos">
           <span class="align-middle" *ngIf="trackActivity.laps_count > 0">{{ trackActivityIndex + 1 }}</span>
           <span class="align-middle text-muted" *ngIf="trackActivity.laps_count === 0">-</span>

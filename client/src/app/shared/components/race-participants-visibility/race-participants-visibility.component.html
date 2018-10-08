@@ -1,32 +1,31 @@
 <div class="row">
   <div class="col-12">
-    <div class="d-inline-block">
-      <div class="btn-group btn-group-toggle mb-1" data-toggle="buttons">
-        <label class="btn btn-sm btn-outline-secondary text-uppercase" [class.active]="currentMode === 0">
-          <input type="radio" name="options" id="option1" autocomplete="off" [attr.checked]="currentMode === 0" (click)="onChangeMode(0)"> Todos
-        </label>
-        <label class="btn btn-sm btn-outline-secondary text-uppercase" [class.active]="currentMode === 1">
-          <input type="radio" name="options" id="option1" autocomplete="off" [attr.checked]="currentMode === 1" (click)="onChangeMode(1)"> Equipo
-        </label>
-        <label class="btn btn-sm btn-outline-secondary text-uppercase" [class.active]="currentMode === 2">
-          <input type="radio" name="options" id="option1" autocomplete="off" [attr.checked]="currentMode === 2" (click)="onChangeMode(2)"> Custom
-        </label>
-      </div>
+    <div class="btn-group btn-group-toggle mb-1" data-toggle="buttons">
+      <label class="btn btn-sm btn-outline-secondary text-uppercase" [class.active]="currentMode === 0">
+        <input type="radio" name="options" id="option1" autocomplete="off" [attr.checked]="currentMode === 0" (click)="onChangeMode(0)"> Todos
+      </label>
+      <label class="btn btn-sm btn-outline-secondary text-uppercase" [class.active]="currentMode === 1">
+        <input type="radio" name="options" id="option1" autocomplete="off" [attr.checked]="currentMode === 1" (click)="onChangeMode(1)"> Equipo
+      </label>
+      <label class="btn btn-sm btn-outline-secondary text-uppercase" [class.active]="currentMode === 2">
+        <input type="radio" name="options" id="option1" autocomplete="off" [attr.checked]="currentMode === 2" (click)="onChangeMode(2)"> Custom
+      </label>
     </div>
-    <input type="text" class="d-inline-block form-control form-control-sm bg-transparent ml-2 race-participants_search_input" [(ngModel)]="searchText">
   </div>
 </div>
 <div class="row">
   <div class="col-12 race-participants_wrapper">
     <div class="row flex-row flex-nowrap">
       <div class="col-auto text-center mt-2 mb-2 race-participant_wrapper"
-        *ngFor="let raceParticipant of raceParticipants | filter: searchText"
+        *ngFor="let raceParticipant of raceParticipants | filter:'number':searchText"
         (click)="onRaceParticipantClick(raceParticipant)"
         [class.race-participant_invisible]="isRaceParticipantInvisible(raceParticipant)"
-        [class.race-participant_dimmed]="isRaceParticipantDimmed(raceParticipant)">
+        [class.race-participant_dimmed]="isRaceParticipantDimmed(raceParticipant)"
+        [class.race-participant_marked]="isRaceParticipantMarked(raceParticipant)">
         <img _ngcontent-c13="" class="d-block img-rounded" src="assets/racing-helmet.png" height="40">
-        <span class="mr-1">{{ raceParticipant.number }}</span>
-        <span class="ml-1 text-uppercase">{{ raceParticipant.driver.last_name.slice(0, 3) }}</span>
+        <span>{{ raceParticipant.number }}</span>
+        <span class="ml-2 text-uppercase">{{ raceParticipant.driver.last_name.slice(0, 3) }}</span>
+        <fa-icon class="race-participant_marked-icon text-primary" [icon]="['fas', 'star']" size="sm" [class.invisible]="!isRaceParticipantMarked(raceParticipant)"></fa-icon>
       </div>
     </div>
   </div>

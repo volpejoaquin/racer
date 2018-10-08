@@ -8,7 +8,7 @@ import * as lodash from 'lodash';
   name: 'filter'
 })
 export class FilterPipe implements PipeTransform {
-  transform(items: any[], searchText: string): any[] {
+  transform(items: any[], fieldName: string = '', searchText: string): any[] {
     if (!items) {
       return [];
     }
@@ -16,11 +16,19 @@ export class FilterPipe implements PipeTransform {
       return items;
     }
 
-    searchText = searchText.toLowerCase();
+    let value = '';
+    searchText = lodash.toLower(searchText);
 
     return lodash.filter(items, (item) => {
-      const numberString = item.number ? item.number.toString() : '';
-      return numberString.indexOf(searchText) >= 0;
+      if (!fieldName) {
+        value = item;
+      } else {
+        value = item[fieldName].toString();
+      }
+
+      value = lodash.toLower(value);
+
+      return value.indexOf(searchText) >= 0;
     });
   }
 }

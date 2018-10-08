@@ -1,0 +1,23 @@
+.car-brands_wrapper {
+  position: relative;
+  overflow-x: scroll;
+  min-height: 40px;
+}
+
+.car-brand_wrapper {
+  cursor: pointer;
+}
+
+.car-brand_invisible {
+  opacity: 0.1;
+}
+
+.car-brand_dimmed {
+  opacity: 0.5;
+}
+
+.car-brand_marked-icon {
+  position: absolute;
+  top: -7px;
+  right: 0;
+}

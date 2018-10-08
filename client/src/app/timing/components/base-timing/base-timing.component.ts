@@ -6,6 +6,7 @@ import { Store, select } from '@ngrx/store';
 
 // actions
 import * as fromRoot from '../../../core/reducers/';
+import * as fromUI from '../../../core/reducers/ui.reducer';
 
 // models
 import {
@@ -16,15 +17,17 @@ export class BaseTimingComponent implements OnInit {
   // protected properties
   invisibleRaceParticipantNumbers: number[] = [];
   dimmedRaceParticipantNumbers: number[] = [];
+  markedRaceParticipantNumbers: number[] = [];
 
   // public methods
   constructor(private store: Store<fromRoot.State>) {
   }
 
   ngOnInit() {
-    this.store.pipe(select(fromRoot.getRaceParticipants)).subscribe((raceParticipants: any) => {
+    this.store.pipe(select(fromRoot.getRaceParticipants)).subscribe((raceParticipants: fromUI.RaceParticipantsState) => {
       this.invisibleRaceParticipantNumbers = raceParticipants.invisible;
       this.dimmedRaceParticipantNumbers = raceParticipants.dimmed;
+      this.markedRaceParticipantNumbers = raceParticipants.marked;
     });
   }
 
@@ -36,6 +39,10 @@ export class BaseTimingComponent implements OnInit {
     return this.isRaceParticipantNumberDimmed(raceParticipant.number);
   }
 
+  isRaceParticipantMarked(raceParticipant: RaceParticipant) {
+    return this.isRaceParticipantNumberMarked(raceParticipant.number);
+  }
+
   // protected methods
 
   protected isRaceParticipantNumberInvisible(raceParticipantNumber: number) {
@@ -44,5 +51,9 @@ export class BaseTimingComponent implements OnInit {
 
   protected isRaceParticipantNumberDimmed(raceParticipantNumber: number) {
     return this.dimmedRaceParticipantNumbers.indexOf(raceParticipantNumber) >= 0;
+  }
+
+  protected isRaceParticipantNumberMarked(raceParticipantNumber: number) {
+    return this.markedRaceParticipantNumbers.indexOf(raceParticipantNumber) >= 0;
   }
 }

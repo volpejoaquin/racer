@@ -5,6 +5,7 @@ export const SET_SOCKET_CONECTED = '[UI] Set Socket Connected';
 export const SHOW_RACE_PARTICIPANT = '[UI] Show Race Participant';
 export const HIDE_RACE_PARTICIPANT = '[UI] Hide Race Participant';
 export const DIM_RACE_PARTICIPANT = '[UI] Dim Race Participant';
+export const MARK_RACE_PARTICIPANT = '[UI] Mark Race Participant';
 
 export class SetSocketConnected implements Action {
   readonly type = SET_SOCKET_CONECTED;
@@ -26,8 +27,14 @@ export class DimRaceParticipant implements Action {
   constructor(public payload?: number) {}
 }
 
+export class MarkRaceParticipant implements Action {
+  readonly type = MARK_RACE_PARTICIPANT;
+  constructor(public payload?: number) {}
+}
+
 export type All =
   SetSocketConnected |
   ShowRaceParticipant |
   HideRaceParticipant |
-  DimRaceParticipant;
+  DimRaceParticipant |
+  MarkRaceParticipant;
