@@ -4,7 +4,7 @@
       <tr>
         <th scope="col" class="timing_table-head-column timing_table-column-pos">POS</th>
         <th scope="col" class="timing_table-head-column timing_table-column-car">NOMBRE</th>
-        <th scope="col" class="timing_table-head-column timing_table-column-laps">V</th>
+        <th scope="col" class="timing_table-head-column timing_table-column-participant_car-brand">MARCA</th>
         <th scope="col" class="timing_table-head-column timing_table-column-lap-sector">S{{ partialIndex + 1}}</th>
         <th scope="col" class="timing_table-head-column timing_table-column-partial-lap-time">TIEMPO</th>
       </tr>
@@ -22,8 +22,8 @@
           <span class="align-middle">{{ trackActivity.race_participant?.number }}</span>
           <span class="align-middle text-uppercase"> {{ trackActivity.race_participant?.driver.last_name.slice(0, 3) }}</span>
         </td>
-        <td class="timing_table-column-laps">
-          <span class="align-middle text-muted">-</span>
+        <td class="timing_table-row-column timing_table-column-participant_car-brand">
+          <racer-car-brand [car]="trackActivity.race_participant.car" *ngIf="trackActivity.race_participant && trackActivity.race_participant.car" size="small"></racer-car-brand>
         </td>
         <td class="timing_table-column-lap-sector">
           <racer-partial-lap-time [partial]="getPartial(trackActivity)" [bestPartial]="getBestPartial(trackActivity)" [polePartial]="getPolePartial()" [isRefLap]="false"></racer-partial-lap-time>

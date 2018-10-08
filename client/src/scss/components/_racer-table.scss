@@ -25,13 +25,12 @@ $colum-participant-name-width: 220px;
 .best-partials-laps_table {
   .timing_table-column-pos,
   .timing_table-column-car,
-  .timing_table-column-participant_brand,
   .timing_table-column-laps {
     @include table-column-fixed(40px);
   }
 
-  .timing_table-column-participant_brand {
-    @include table-column-fixed(60px);
+  .timing_table-column-participant_car-brand {
+    @include table-column-fixed(80px);
   }
 
   .timing_table-column-participant_name {

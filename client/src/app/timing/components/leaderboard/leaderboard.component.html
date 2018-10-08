@@ -5,7 +5,7 @@
         <th scope="col" class="timing_table-head-column timing_table-column-pos">POS</th>
         <th scope="col" class="timing_table-head-column timing_table-column-car">NUM</th>
         <th scope="col" class="timing_table-head-column timing_table-column-participant_name">NOMBRE</th>
-        <th scope="col" class="timing_table-head-column timing_table-column-participant_brand">MARCA</th>
+        <th scope="col" class="timing_table-head-column timing_table-column-participant_car-brand">MARCA</th>
         <th scope="col" class="timing_table-head-column timing_table-column-laps">V</th>
         <th scope="col" class="timing_table-head-column timing_table-column-lap-time">TIEMPO</th>
         <th scope="col" class="timing_table-head-column timing_table-column-lap-diff col-auto">DIFF</th>
@@ -56,8 +56,8 @@
           <span class="align-middle text-uppercase">{{ trackActivity.race_participant?.driver.last_name }}</span>
           <span class="align-middle"> {{ trackActivity.race_participant?.driver.name }}</span>
         </td>
-        <td class="timing_table-row-column timing_table-column-participant_brand">
-          <img class="img-responsive" src="/assets/ford.png" width="40" *ngIf="trackActivity.race_participant"/>
+        <td class="timing_table-row-column timing_table-column-participant_car-brand">
+          <racer-car-brand [car]="trackActivity.race_participant.car" *ngIf="trackActivity.race_participant && trackActivity.race_participant.car"></racer-car-brand>
         </td>
         <td class="timing_table-row-column timing_table-column-laps">
           <span class="align-middle" *ngIf="trackActivity.laps_count !== 0">{{ trackActivity.laps_count }}</span>
