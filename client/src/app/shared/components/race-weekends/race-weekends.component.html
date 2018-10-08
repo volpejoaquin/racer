@@ -1,0 +1,9 @@
+<ul class="list-group">
+  <li class="list-group-item bg-transparent text-white mb-3" *ngFor="let raceWeekend of raceWeekends" (click)="onSelectRaceWeekend(raceWeekend)">
+    <div class="d-flex justify-content-between align-items-center">
+      <span class="text-uppercase" [class.text-success]="isSelectedRaceWeekend(raceWeekend)">{{ raceWeekend.name }}</span>
+      <span class="text-uppercase" [class.text-success]="isSelectedRaceWeekend(raceWeekend)" *ngIf="raceWeekend.start_date">{{ raceWeekend.start_date | date:'shortDate' }}</span>
+      <span class="text-uppercase" [class.text-success]="isSelectedRaceWeekend(raceWeekend)" *ngIf="raceWeekend.end_date">{{ raceWeekend.end_date | date:'shortDate' }}</span>
+    </div>
+  </li>
+</ul>

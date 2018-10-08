@@ -60,13 +60,6 @@ export class TimingHomeComponent implements OnInit {
 
     this.bestRaceParticipantTrackActivity$ = store.pipe(select(fromRoot.getBestRaceParticipantTrackActivity));
 
-    this.raceWeekend$.subscribe((selectedRaceWeekend: IRaceWeekend) => {
-
-      if (selectedRaceWeekend && selectedRaceWeekend.track_activities) {
-        store.dispatch(new LoadTrackActivities(selectedRaceWeekend.track_activities));
-      }
-    });
-
     this.trackActivity$.subscribe((selectedTrackActivity: TrackActivity) => {
 
       if (selectedTrackActivity && selectedTrackActivity.race_participants_track_activities) {

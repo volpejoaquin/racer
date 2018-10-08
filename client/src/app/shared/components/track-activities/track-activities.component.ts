@@ -70,6 +70,10 @@ export class TrackActivitiesComponent implements OnInit, OnChanges {
     this.selectTrackActivity(trackActivity.id);
   }
 
+  isSelectedTrackActivity(trackActivity: TrackActivity) {
+    return this.selectedTrackActivity && this.selectedTrackActivity.id === trackActivity.id;
+  }
+
   private selectTrackActivity(trackActivityId: string) {
     this.store.dispatch(new TrackActivityActions.SelectTrackActivity(trackActivityId));
   }

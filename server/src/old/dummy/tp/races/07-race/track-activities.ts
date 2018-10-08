@@ -26,7 +26,7 @@ export const F07_TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: F07_CIRCUIT_VARIANT,
     enabled_race_participant_numbers: TP_C3_RACE_PARTICIPANTS_NUMBERS,
-    related_track_activity_ids: []
+    related_track_activity_ids: ['3']
   },
   {
     id: '2',
@@ -41,7 +41,7 @@ export const F07_TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: F07_CIRCUIT_VARIANT,
     enabled_race_participant_numbers: TP_C3_RACE_PARTICIPANTS_NUMBERS,
-    related_track_activity_ids: []
+    related_track_activity_ids: ['3']
   },
   {
     id: '3',
@@ -71,7 +71,7 @@ export const F07_TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: F07_CIRCUIT_VARIANT,
     enabled_race_participant_numbers: TP_C3_RACE_PARTICIPANTS_NUMBERS,
-    related_track_activity_ids: []
+    related_track_activity_ids: ['6']
   },
   {
     id: '5',
@@ -86,7 +86,7 @@ export const F07_TP_C3_TRACK_ACTIVITIES: TrackActivity[] = [
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: F07_CIRCUIT_VARIANT,
     enabled_race_participant_numbers: TP_C3_RACE_PARTICIPANTS_NUMBERS,
-    related_track_activity_ids: []
+    related_track_activity_ids: ['6']
   },
   {
     id: '6',

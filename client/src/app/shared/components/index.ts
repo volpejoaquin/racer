@@ -6,6 +6,7 @@ import { TrackActivityComponent } from './track-activity/track-activity.componen
 import { TrackActivityTimingComponent } from './track-activity-timing/track-activity-timing.component';
 import { RaceParticipantsVisibilityComponent } from './race-participants-visibility/race-participants-visibility.component';
 import { CarBrandComponent } from './car-brand/car-brand.component';
+import { RaceWeekendsComponent } from './race-weekends/race-weekends.component';
 
 export const SHARED_COMPONENTS: any[] = [
   PartialLapTimeComponent,
@@ -15,7 +16,8 @@ export const SHARED_COMPONENTS: any[] = [
   TrackActivityComponent,
   TrackActivityTimingComponent,
   RaceParticipantsVisibilityComponent,
-  CarBrandComponent
+  CarBrandComponent,
+  RaceWeekendsComponent
 ];
 
 export * from './partial-lap-time/partial-lap-time.component';
@@ -26,3 +28,4 @@ export * from './track-activity/track-activity.component';
 export * from './track-activity-timing/track-activity-timing.component';
 export * from './race-participants-visibility/race-participants-visibility.component';
 export * from './car-brand/car-brand.component';
+export * from './race-weekends/race-weekends.component';

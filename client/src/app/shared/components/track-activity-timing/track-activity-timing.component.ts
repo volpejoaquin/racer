@@ -48,19 +48,23 @@ export class TrackActivityTimingComponent implements OnInit, OnChanges {
     });
   }
 
+  onClear() {
+    this.import([]);
+  }
+
   private importFile(data: any) {
     this.readerHelper.convertXLSXToJson(data, (response: any) => {
       if (!response) {
         this.logHelper.log('ERROR !');
       } else {
-        this.importXlsFile(response);
+        const raceParticipantsTrackActivities = this.importHelper.importCDAData(response, this.trackActivity);
+
+        this.import(raceParticipantsTrackActivities);
       }
     });
   }
 
-  private importXlsFile(content: string) {
-    const raceParticipantsTrackActivities = this.importHelper.importCDAData(content, this.trackActivity);
-
+  private import(raceParticipantsTrackActivities: RaceParticipantTrackActivity[]) {
     this.raceParticipantsTrackActivities.emit(raceParticipantsTrackActivities);
   }
 }

@@ -19,7 +19,6 @@ import * as fromTiming from './../../../reducers/';
   styleUrls: ['./timing-secondary-bar.component.scss']
 })
 export class TimingSecondaryBarComponent implements OnInit {
-  @Input() raceWeekend: IRaceWeekend;
   @Input() trackActivity: TrackActivity;
   @Input() raceParticipants: RaceParticipant[];
 

@@ -39,7 +39,6 @@ export function reducer(
 ): State {
   switch (action.type) {
     case RaceParticipantTrackActivityActions.RaceParticipantTrackActivityActionTypes.ImportRaceParticipantTrackActivities: {
-
       const newState = adapter.addAll(action.payload, state);
       const list: RaceParticipantTrackActivity[] = Object.values(newState.entities);
       const bestTrackActivity = timingHelper.getBestRaceParticipantTrackActivity(list);

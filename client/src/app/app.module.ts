@@ -1,7 +1,9 @@
 // angular
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { registerLocaleData } from '@angular/common';
+import localeESAR from '@angular/common/locales/es-AR';
 
 // libs
 import { StoreModule } from '@ngrx/store';
@@ -25,6 +27,11 @@ import { schema } from './db';
 // recuders
 import { reducers, metaReducers } from './core/reducers';
 
+const language = 'es-AR';
+
+// the second parameter 'es-AR' is optional
+registerLocaleData(localeESAR, language);
+
 @NgModule({
   declarations: [
     AppComponent
@@ -45,7 +52,9 @@ import { reducers, metaReducers } from './core/reducers';
 
     StoreModule.forRoot(reducers, { metaReducers })
   ],
-  providers: [],
+  providers: [
+    { provide: LOCALE_ID, useValue: language }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

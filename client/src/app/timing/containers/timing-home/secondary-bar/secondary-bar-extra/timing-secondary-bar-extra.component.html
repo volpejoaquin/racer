@@ -1,7 +1,7 @@
-<div class="row" *ngIf="raceWeekend">
+<div class="row">
   <div class="col-12">
     <div class="row">
-      <div class="col-12 d-none">
+      <div class="col-12 d-none" *ngIf="raceWeekend">
         <div class="linear-box-wrapper">
           <small class="linear-box-top-text d-block text-muted text-uppercase">
             <fa-icon [icon]="['fas', 'calendar-alt']"></fa-icon> {{ raceWeekend.name }}
@@ -14,7 +14,22 @@
           </div>
         </div>
       </div>
-      <div class="col-6" *ngIf="raceWeekend && raceWeekend.track_activities">
+      <div class="col-6">
+        <div class="linear-box-wrapper">
+          <small class="linear-box-top-text text-muted text-uppercase">
+            <fa-icon [icon]="['fas', 'list-ul']"></fa-icon> Carreras
+          </small>
+
+          <div class="linear-box-content">
+            <div class="row">
+              <div class="col-12">
+                <div class="race-weekends-wrapper">
+                  <racer-race-weekends [raceWeekends]="raceWeekends$ | async"></racer-race-weekends>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="linear-box-wrapper">
           <small class="linear-box-top-text text-muted text-uppercase">
             <fa-icon [icon]="['fas', 'list-ul']"></fa-icon> Actividades
@@ -25,20 +40,6 @@
               <div class="col-12">
                 <div class="track-activities-wrapper">
                   <racer-track-activities [trackActivities]="trackActivities$ | async"></racer-track-activities>
-                </div>
-              </div>
-              <div class="col-1 d-none">
-                <div class="row h-100">
-                  <div class="col align-self-start">
-                    <button type="button" class="btn btn-link p-1 text-primary">
-                      <fa-icon [icon]="['fas', 'chevron-up']"></fa-icon>
-                    </button>
-                  </div>
-                  <div class="col align-self-end">
-                    <button type="button" class="btn btn-link p-1 text-primary">
-                      <fa-icon [icon]="['fas', 'chevron-down']"></fa-icon>
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>
@@ -57,6 +58,7 @@
         </div>
         <div class="linear-box-wrapper" *ngIf="selectedTrackActivity">
           <small class="linear-box-top-text d-block text-muted text-uppercase">
+            <i class="fas fa-clock"></i> Tiempos
             <fa-icon [icon]="['fas', 'clock']"></fa-icon> Tiempos
           </small>
 

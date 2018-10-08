@@ -1,3 +1,5 @@
 <form class="form-inline mt-3 mb-3" #form>
-  <input type="file" class="form-control mb-2 mr-sm-2 bg-transparent text-white" name="fileUrl" (change)="onSelectFile($event); form.reset()" style="min-width: 450px;">
+  <input type="file" class="form-control mb-2 mr-sm-2 bg-transparent text-white d-none" name="fileUrl" (change)="onSelectFile($event); form.reset()" style="min-width: 450px;" #selectFileInput>
+  <button type="button" class="btn btn-primary" (click)="selectFileInput.click()">Importar</button>
+  <button type="button" class="btn btn-secondary ml-4" (click)="onClear()">Limpiar</button>
 </form>

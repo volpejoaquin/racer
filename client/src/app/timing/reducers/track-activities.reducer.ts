@@ -7,7 +7,8 @@ import { TimingHelper } from './../../shared/helpers/timing.helper';
 
 // models
 import {
-  TrackActivity
+  TrackActivity,
+  RaceParticipantTrackActivity
 } from '../../shared/model';
 
 // actions
@@ -72,12 +73,14 @@ export function reducer(
         trackActivityIds = trackActivityIds.concat(selectedTrackActivity.related_track_activity_ids);
       }
 
+      let newRaceParticipantsTrackActivities: RaceParticipantTrackActivity[];
       trackActivityIds.forEach((trackActivityId: string) => {
         trackActivity = newState.entities[trackActivityId];
 
         if (trackActivity) {
+          newRaceParticipantsTrackActivities = timingHelper.filterRaceParticipantTrackActivities(trackActivity, action.payload);
           trackActivity.race_participants_track_activities =
-            timingHelper.filterRaceParticipantTrackActivities(trackActivity, action.payload);
+            trackActivity.race_participants_track_activities.concat(newRaceParticipantsTrackActivities);
         }
       });
 
