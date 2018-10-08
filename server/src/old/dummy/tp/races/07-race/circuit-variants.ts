@@ -1,9 +1,9 @@
 // models
 import {
   CircuitVariant
-} from './../../model/';
+} from './../../../../model/';
 
-export const CIRCUIT_VARIANT_SAMPLE: CircuitVariant = {
+export const F07_CIRCUIT_VARIANT: CircuitVariant = {
   name: 'Circuito Nº 5',
   length: 4200,
   circuit: {

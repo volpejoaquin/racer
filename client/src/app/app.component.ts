@@ -53,6 +53,7 @@ export class AppComponent implements OnInit {
     // });
 
     this.store.dispatch(new SelectRaceWeekend(1));
-    this.store.dispatch(new SelectTrackActivity(1));
+
+    // this.store.dispatch(new SelectTrackActivity(1));
   }
 }

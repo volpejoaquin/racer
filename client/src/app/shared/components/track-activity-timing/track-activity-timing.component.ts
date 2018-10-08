@@ -16,11 +16,6 @@ import {
   LogHelper
 } from './../../helpers/';
 
-// dummy data
-import {
-  RACE_PARTICIPANT_TRACK_ACTIVITY_EMPTY_SAMPLE
-} from '../../dummy';
-
 @Component({
   selector: 'racer-track-activity-timing',
   templateUrl: './track-activity-timing.component.html',

@@ -8,6 +8,7 @@ import * as fromRoot from './../../reducers/';
 import {
   LoadRaceParticipantTrackActivities
 } from './../../actions/race-participant-track-activity.actions';
+import { LoadTrackActivities } from './../../actions/track-activitiy.actions';
 
 // models
 import {
@@ -58,6 +59,13 @@ export class TimingHomeComponent implements OnInit {
     this.raceParticipantsTrackActivities$ = store.pipe(select(fromRoot.getRaceParticipantsTrackActivitiesArray));
 
     this.bestRaceParticipantTrackActivity$ = store.pipe(select(fromRoot.getBestRaceParticipantTrackActivity));
+
+    this.raceWeekend$.subscribe((selectedRaceWeekend: IRaceWeekend) => {
+
+      if (selectedRaceWeekend && selectedRaceWeekend.track_activities) {
+        store.dispatch(new LoadTrackActivities(selectedRaceWeekend.track_activities));
+      }
+    });
 
     this.trackActivity$.subscribe((selectedTrackActivity: TrackActivity) => {
 

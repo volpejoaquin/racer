@@ -16,9 +16,6 @@ import {
   RaceParticipantTrackActivityActions
 } from './../actions/';
 
-// dummy data
-import { TP_C3_TRACK_ACTIVITIES } from '../../shared/dummy';
-
 export interface State extends EntityState<TrackActivity> {
   selectedTrackActivityId: number | null;
 }
@@ -32,14 +29,13 @@ export let initialState: State = adapter.getInitialState({
   selectedTrackActivityId: 1
 });
 
-initialState = adapter.addAll(TP_C3_TRACK_ACTIVITIES, initialState);
-
 const timingHelper = new TimingHelper();
 
 export function reducer(
   state = initialState,
   action:
     | TrackActivityActions.SelectTrackActivity
+    | TrackActivityActions.LoadTrackActivities
     | RaceParticipantTrackActivityActions.ImportRaceParticipantTrackActivities
 ): State {
   switch (action.type) {
@@ -47,6 +43,18 @@ export function reducer(
       return {
         ...state,
         selectedTrackActivityId: action.payload
+      };
+    }
+
+    case TrackActivityActions.TrackActivityActionTypes.LoadTrackActivities: {
+
+      const newState = adapter.addAll(action.payload, state);
+      const list: TrackActivity[] = Object.values(newState.entities);
+      const selectedTrackActivityId =  list && list.length > 0 ? list[0].id : null;
+
+      return {
+        ...newState,
+        selectedTrackActivityId: selectedTrackActivityId
       };
     }
 
