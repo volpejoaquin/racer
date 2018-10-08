@@ -1,20 +1,14 @@
+import { EventEmitter } from '@angular/core';
 // angular
-import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, SimpleChanges, Output } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as lodash from 'lodash';
 
 // modules
-import {
-  ShowRaceParticipant,
-  HideRaceParticipant,
-  DimRaceParticipant,
-  MarkRaceParticipant
-} from './../../../core/actions/ui.actions';
 import * as fromRoot from '../../../core/reducers/';
 
 // models
 import {
-  RaceParticipant,
   CarBrand
 } from '../../../shared/model/';
 
@@ -24,10 +18,14 @@ import {
   styleUrls: ['./car-brands-visibility.component.scss']
 })
 export class CarBrandsVisibilityComponent implements OnInit, OnChanges {
+  @Input() carBrands: CarBrand[] = lodash.values(CarBrand);
   @Input() currentMode = 0;
   @Input() searchText = '';
+  @Output() visibility = new EventEmitter<any>();
 
-  carBrands: CarBrand[] = lodash.values(CarBrand);
+  invisibleCarBrands: CarBrand[] = [];
+  dimmedCarBrands: CarBrand[] = [];
+  markedCarBrands: CarBrand[] = [];
 
 
   constructor(private store: Store<fromRoot.State>) {
@@ -37,85 +35,76 @@ export class CarBrandsVisibilityComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(_simpleChanges: SimpleChanges) {
-    // if (simpleChanges && simpleChanges.currentMode && !simpleChanges.currentMode.firstChange) {
-    //   setTimeout(() => {
-    //     const modeChanged = simpleChanges.currentMode.previousValue !== simpleChanges.currentMode.currentValue;
-    //     this.checkState(modeChanged);
-    //   }, 100); // TODO: REVIEW THIS
-    // }
   }
 
   onCarBrandClick(carBrand: CarBrand) {
-    console.log(carBrand);
+    this.changeCarBrandVisibility(carBrand);
   }
 
-  isCarBrandInvisible(_carBrand: CarBrand) {
-    return false;
+  isCarBrandInvisible(carBrand: CarBrand) {
+    return this.invisibleCarBrands.indexOf(carBrand) >= 0;
   }
 
-  isCarBrandDimmed(_carBrand: CarBrand) {
-    return false;
+  isCarBrandDimmed(carBrand: CarBrand) {
+    return this.dimmedCarBrands.indexOf(carBrand) >= 0;
   }
 
-  isCarBrandMarked(_carBrand: CarBrand) {
-    return false;
+  isCarBrandMarked(carBrand: CarBrand) {
+    return this.markedCarBrands.indexOf(carBrand) >= 0;
   }
 
-  // private changeRaceParticipantVisibility(raceParticipantNumber: number) {
-  //   if (this.isRaceParticipantNumberInvisible(raceParticipantNumber)) {
-  //     this.showRaceParticipant(raceParticipantNumber);
-  //   } else if (this.isRaceParticipantNumberDimmed(raceParticipantNumber)) {
-  //     this.hideRaceParticipant(raceParticipantNumber);
-  //   } else if (this.isRaceParticipantNumberMarked(raceParticipantNumber)) {
-  //     this.dimRaceParticipant(raceParticipantNumber);
-  //   } else {
-  //     this.markRaceParticipant(raceParticipantNumber);
-  //   }
-  // }
+  private changeCarBrandVisibility(carBrand: CarBrand) {
+    if (this.isCarBrandInvisible(carBrand)) {
+      this.showCarBrand(carBrand);
+    } else if (this.isCarBrandDimmed(carBrand)) {
+      this.hideCarBrand(carBrand);
+    } else if (this.isCarBrandMarked(carBrand)) {
+      this.dimCarBrand(carBrand);
+    } else {
+      this.markCarBrand(carBrand);
+    }
+  }
 
-  // private isRaceParticipantNumberInvisible(raceParticipantNumber: number) {
-  //   return this.invisibleRaceParticipantNumbers.indexOf(raceParticipantNumber) >= 0;
-  // }
+  private showCarBrand(carBrand: CarBrand) {
+    this.invisibleCarBrands = lodash.remove(this.invisibleCarBrands, carBrand);
+    this.dimmedCarBrands = lodash.remove(this.dimmedCarBrands, carBrand);
+    this.markedCarBrands = lodash.remove(this.markedCarBrands, carBrand);
 
-  // private isRaceParticipantNumberDimmed(raceParticipantNumber: number) {
-  //   return this.dimmedRaceParticipantNumbers.indexOf(raceParticipantNumber) >= 0;
-  // }
+    this.emitEvent();
+  }
 
-  // private isRaceParticipantNumberMarked(raceParticipantNumber: number) {
-  //   return this.markedRaceParticipantNumbers.indexOf(raceParticipantNumber) >= 0;
-  // }
+  private hideCarBrand(carBrand: CarBrand) {
+    this.invisibleCarBrands = lodash.remove(this.invisibleCarBrands, carBrand);
+    this.dimmedCarBrands = lodash.remove(this.dimmedCarBrands, carBrand);
+    this.markedCarBrands = lodash.remove(this.markedCarBrands, carBrand);
 
-  // private showRaceParticipant(raceParticipantNumber: number) {
-  //   this.store.dispatch(new ShowRaceParticipant(raceParticipantNumber));
-  // }
+    this.invisibleCarBrands.push(carBrand);
+    this.emitEvent();
+  }
 
-  // private hideRaceParticipant(raceParticipantNumber: number) {
-  //   this.store.dispatch(new HideRaceParticipant(raceParticipantNumber));
-  // }
+  private dimCarBrand(carBrand: CarBrand) {
+    this.invisibleCarBrands = lodash.remove(this.invisibleCarBrands, carBrand);
+    this.dimmedCarBrands = lodash.remove(this.dimmedCarBrands, carBrand);
+    this.markedCarBrands = lodash.remove(this.markedCarBrands, carBrand);
 
-  // private dimRaceParticipant(raceParticipantNumber: number) {
-  //   this.store.dispatch(new DimRaceParticipant(raceParticipantNumber));
-  // }
+    this.dimmedCarBrands.push(carBrand);
+    this.emitEvent();
+  }
 
-  // private markRaceParticipant(raceParticipantNumber: number) {
-  //   this.store.dispatch(new MarkRaceParticipant(raceParticipantNumber));
-  // }
+  private markCarBrand(carBrand: CarBrand) {
+    this.invisibleCarBrands = lodash.remove(this.invisibleCarBrands, carBrand);
+    this.dimmedCarBrands = lodash.remove(this.dimmedCarBrands, carBrand);
+    this.markedCarBrands = lodash.remove(this.markedCarBrands, carBrand);
 
-  // private checkState(modeChanged = true) {
-  //   this.raceParticipants.forEach((raceParticipant: RaceParticipant) => {
-  //     const raceParticipantNumber = lodash.toNumber(raceParticipant.number);
+    this.markedCarBrands.push(carBrand);
+    this.emitEvent();
+  }
 
-  //     if (this.currentMode === 0) {
-  //       this.showRaceParticipant(raceParticipantNumber);
-  //     } else if (this.currentMode === 1) {
-  //       if (this.teamRaceParticipantNumbers.indexOf(raceParticipantNumber) >= 0) {
-  //         this.markRaceParticipant(raceParticipantNumber);
-  //       } else {
-  //         this.dimRaceParticipant(raceParticipantNumber);
-  //       }
-  //     } else if (this.currentMode === 2 && !modeChanged) {
-  //       this.changeRaceParticipantVisibility(raceParticipantNumber);
-  //     }
-  //   });
-  // }
+  private emitEvent() {
+    this.visibility.emit({
+      invisible: this.invisibleCarBrands,
+      dimmed: this.dimmedCarBrands,
+      marked: this.markedCarBrands
+    });
+  }
 }
