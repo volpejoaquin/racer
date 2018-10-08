@@ -1,6 +1,8 @@
 <ng-template #loading>
   <div class="timing-content-loading p-5 text-center text-muted">
-    <i class="d-block fas fa-spinner fa-spin"></i>
+    <div class="d-block">
+      <fa-icon [icon]="['fas', 'spinner']"></fa-icon>
+    </div>
     <span class="d-block">Daleeeeeeeeee...</span>
   </div>
 </ng-template>
@@ -17,7 +19,7 @@
   <racer-timing-primary-bar
   [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async"
   [title]="currentViewNumber === 0 ? 'Tiempos' : currentViewNumber === 1 ? 'PARCIALES' : currentViewNumber === 2 ? 'VUELTAS' : 'MEJORES POR PARCIAL'"></racer-timing-primary-bar>
-    
+
   <div *ngIf="raceParticipantsTrackActivities$ | async as raceParticipantsTrackActivities; else empty">
     <racer-leaderboard [trackActivities]="raceParticipantsTrackActivities" [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async" [trackActivity]="trackActivity" *ngIf="currentViewNumber === 0"></racer-leaderboard>
 

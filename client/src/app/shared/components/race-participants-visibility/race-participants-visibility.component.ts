@@ -32,16 +32,13 @@ export class RaceParticipantsVisibilityComponent implements OnInit, OnChanges {
   currentMode = 0;
   searchText = '';
 
-
   constructor(private store: Store<fromRoot.State>) {
   }
 
   ngOnInit() {
     this.store.pipe(select(fromRoot.getRaceParticipants)).subscribe((raceParticipants: any) => {
-      console.log('raceParticipants', raceParticipants);
       this.invisibleRaceParticipantNumbers = raceParticipants.invisible;
       this.dimmedRaceParticipantNumbers = raceParticipants.dimmed;
-
     });
   }
 
@@ -54,14 +51,16 @@ export class RaceParticipantsVisibilityComponent implements OnInit, OnChanges {
     this.raceParticipants.forEach((raceParticipant: RaceParticipant) => {
       const raceParticipantNumber = lodash.toNumber(raceParticipant.number);
 
-      if (this.currentMode === 1) {
-        this.changeRaceParticipantVisibility(raceParticipantNumber);
-      } else if (this.currentMode === 2) {
+      if (this.currentMode === 0) {
+        this.showRaceParticipant(raceParticipantNumber);
+      } else if (this.currentMode === 1) {
         if (this.teamRaceParticipantNumbers.indexOf(raceParticipantNumber) >= 0) {
           this.showRaceParticipant(raceParticipantNumber);
         } else {
-          this.changeRaceParticipantVisibility(raceParticipantNumber);
+          this.dimRaceParticipant(raceParticipantNumber);
         }
+      } else if (this.currentMode === 2) {
+        this.changeRaceParticipantVisibility(raceParticipantNumber);
       }
     });
   }
@@ -72,6 +71,8 @@ export class RaceParticipantsVisibilityComponent implements OnInit, OnChanges {
     const raceParticipantNumber = lodash.toNumber(raceParticipant.number);
 
     this.changeRaceParticipantVisibility(raceParticipantNumber);
+
+    this.searchText = '';
   }
 
   isRaceParticipantInvisible(raceParticipant: RaceParticipant) {

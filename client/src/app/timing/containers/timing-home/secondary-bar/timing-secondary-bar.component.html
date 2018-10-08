@@ -3,7 +3,10 @@
     <div class="row justify-content-center align-items-center">
       <div class="col-auto">
         <div class="text-center">
-          <i class="fas fa-lg fa-chevron-up text-primary timing-secondary-bar_toggle-icon" (click)="isExpanded = !isExpanded"></i>
+          <fa-icon class="text-primary timing-secondary-bar_toggle-icon"
+            [icon]="['fas', 'chevron-up']"
+            size="lg"
+            (click)="isExpanded = !isExpanded"></fa-icon>
         </div>
       </div>
       <div class="col">
@@ -21,8 +24,14 @@
       </div>
       <div class="col-auto">
         <div class="text-center">
-          <i class="fas fa-exchange-alt fa-lg mr-2 text-primary" (click)="timingUIBar.nextUIMode()"></i>
-          <i class="fas fa-tv fa-lg text-primary" (click)="isUIExpanded = !isUIExpanded"></i>
+          <fa-icon class="text-primary mr-4"
+            [icon]="['fas', 'exchange-alt']"
+            size="lg"
+            (click)="timingUIBar.nextUIMode()"></fa-icon>
+          <fa-icon class="text-primary"
+            [icon]="['fas', 'tv']"
+            size="lg"
+            (click)="isUIExpanded = !isUIExpanded"></fa-icon>
         </div>
       </div>
     </div>

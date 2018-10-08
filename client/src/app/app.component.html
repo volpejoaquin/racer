@@ -7,13 +7,19 @@
   <div class="collapse navbar-collapse" id="navbarToggler">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/timing">Tiempos <i class="fas fa-stopwatch"></i></a>
+        <a class="nav-link" routerLink="/timing">
+          Tiempos <fa-icon [icon]="['fas', 'stopwatch']"></fa-icon>
+        </a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/admin">Administración <i class="fas fa-cog"></i></a>
+        <a class="nav-link" routerLink="/admin">
+          Administración <fa-icon [icon]="['fas', 'cog']"></fa-icon>
+        </a>
       </li>
       <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/data">Datos <i class="fas fa-clipboard-list"></i></a>
+        <a class="nav-link" routerLink="/data">
+          Datos <fa-icon [icon]="['fas', 'clipboard-list']"></fa-icon>
+        </a>
       </li>
     </ul>
     <span [ngClass]="socketStatus$ | async"></span>

@@ -19,7 +19,8 @@ export class FilterPipe implements PipeTransform {
     searchText = searchText.toLowerCase();
 
     return lodash.filter(items, (item) => {
-      return searchText.indexOf(item.number) >= 0;
+      const numberString = item.number ? item.number.toString() : '';
+      return numberString.indexOf(searchText) >= 0;
     });
   }
 }

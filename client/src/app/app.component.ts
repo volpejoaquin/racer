@@ -1,9 +1,8 @@
 // angular
 import { Component, OnInit } from '@angular/core';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import * as lodash from 'lodash';
 
 // services
 import { SocketService } from './core/service/socket.service';
@@ -19,16 +18,12 @@ import {
 } from './timing/actions/race-participant-track-activity.actions';
 import { UIActions } from './core/actions';
 
-// dummy data
-import { QUALY_SAMPLE } from './shared/dummy';
-
 @Component({
   selector: 'racer-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-
   socketStatus$: Observable<string>;
 
   constructor(private socket: SocketService,

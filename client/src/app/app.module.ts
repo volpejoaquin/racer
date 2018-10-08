@@ -12,6 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AdminModule } from './admin/admin.module';
 import { TimingModule } from './timing/timing.module';
 import { DataAcquisitionModule } from './data-acquisition/data-acquisition.module';
+import { SharedModule } from './shared/shared.module';
 
 // components
 import { AppComponent } from './app.component';
@@ -31,6 +32,8 @@ import { reducers, metaReducers } from './core/reducers';
     AdminModule,
     TimingModule,
     DataAcquisitionModule,
+
+    SharedModule,
 
     StoreModule.forRoot(reducers, { metaReducers }),
   ],
