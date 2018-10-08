@@ -10,7 +10,31 @@ import {
 } from './../model';
 
 export class TimingHelper {
-  filterRaceParticipantTrackActivities(trackActivity: TrackActivity, raceParticipantTrackActivities: RaceParticipantTrackActivity[]) {
+  mixRaceParticipantsTrackActivities(
+    trackActivity: TrackActivity,
+    newRaceParticipantTrackActivities: RaceParticipantTrackActivity[]): RaceParticipantTrackActivity[] {
+    const response: RaceParticipantTrackActivity[] = trackActivity.race_participants_track_activities;
+    let raceParticipantTrackActivity: RaceParticipantTrackActivity;
+
+    newRaceParticipantTrackActivities.forEach((newRaceParticipantTrackActivity: RaceParticipantTrackActivity) => {
+      raceParticipantTrackActivity = lodash.find(response, (rPTrackActivity: RaceParticipantTrackActivity) => {
+        return rPTrackActivity.race_participant.number === newRaceParticipantTrackActivity.race_participant.number;
+      });
+
+      if (raceParticipantTrackActivity) {
+        raceParticipantTrackActivity.laps = raceParticipantTrackActivity.laps.concat(newRaceParticipantTrackActivity.laps);
+
+        raceParticipantTrackActivity = this.completeRaceParticipantTrackActivity(raceParticipantTrackActivity);
+      } else {
+        response.push(newRaceParticipantTrackActivity);
+      }
+    });
+    return response;
+  }
+
+  filterRaceParticipantTrackActivities(
+    trackActivity: TrackActivity,
+    raceParticipantTrackActivities: RaceParticipantTrackActivity[]): RaceParticipantTrackActivity[] {
     let response: RaceParticipantTrackActivity[] = [];
 
       if (trackActivity.enabled_race_participant_numbers) {

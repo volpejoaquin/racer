@@ -80,7 +80,7 @@ export function reducer(
         if (trackActivity) {
           newRaceParticipantsTrackActivities = timingHelper.filterRaceParticipantTrackActivities(trackActivity, action.payload);
           trackActivity.race_participants_track_activities =
-            trackActivity.race_participants_track_activities.concat(newRaceParticipantsTrackActivities);
+            timingHelper.mixRaceParticipantsTrackActivities(trackActivity, newRaceParticipantsTrackActivities);
         }
       });
 

@@ -32,8 +32,7 @@ import { RACE_WEEKENDS_SAMPLE } from '../shared/dummy';
 })
 export class DummyComponent implements OnInit {
 
-  private raceWeekends: IRaceWeekend[] = RACE_WEEKENDS_SAMPLE; // TODO: REMOVE THIS
-  // private raceWeekends: IRaceWeekend[];
+  private raceWeekends: IRaceWeekend[];
   private trackActivities: TrackActivity[];
 
   private raceWeekend$: Observable<IRaceWeekend>;
@@ -48,7 +47,8 @@ export class DummyComponent implements OnInit {
       console.log('[DATABASE INFO] ', response);
 
       // TODO: REMOVE THIS
-      this.db.insert('race_weekends', this.raceWeekends).subscribe();
+      // this.raceWeekends = RACE_WEEKENDS_SAMPLE;
+      // this.db.insert('race_weekends', this.raceWeekends).subscribe();
 
       this.db.query('race_weekends').pipe(
         toArray(),
@@ -90,7 +90,7 @@ export class DummyComponent implements OnInit {
 
     raceWeekends.forEach((rWeekend: IRaceWeekend) => {
       raceWeekend = lodash.clone(rWeekend);
-      delete raceWeekend.track_activities;
+      // delete raceWeekend.track_activities; TODO: REVIEW THIS
       raceWeekendsCopy.push(raceWeekend);
     });
     this.store.dispatch(new LoadRaceWeekends(raceWeekendsCopy));
@@ -104,7 +104,7 @@ export class DummyComponent implements OnInit {
 
     trackActivities.forEach((tActivity: TrackActivity) => {
       trackActivity = lodash.clone(tActivity);
-      delete trackActivity.race_participants_track_activities;
+      // trackActivity.race_participants_track_activities = []; TODO: REVIEW THIS
       trackActivitiesCopy.push(trackActivity);
     });
     this.store.dispatch(new LoadTrackActivities(trackActivitiesCopy));
