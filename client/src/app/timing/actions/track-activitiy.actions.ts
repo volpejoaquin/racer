@@ -12,7 +12,7 @@ export enum TrackActivityActionTypes {
 export class SelectTrackActivity implements Action {
   readonly type = TrackActivityActionTypes.SelectTrackActivity;
 
-  constructor(public payload: number) {}
+  constructor(public payload: string) {}
 }
 
 export class LoadTrackActivities implements Action {

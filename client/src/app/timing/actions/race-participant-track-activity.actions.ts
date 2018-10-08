@@ -25,7 +25,7 @@ export class LoadRaceParticipantTrackActivities implements Action {
 export class SetBestRaceParticipantTrackActivity implements Action {
   readonly type = RaceParticipantTrackActivityActionTypes.SetBestRaceParticipantTrackActivity;
 
-  constructor(public payload: number) {}
+  constructor(public payload: string) {}
 }
 
 export type RaceParticipantTrackActivityActionsUnion =

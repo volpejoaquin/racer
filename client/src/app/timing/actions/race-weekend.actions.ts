@@ -12,7 +12,7 @@ export enum RaceWeekendActionTypes {
 export class SelectRaceWeekend implements Action {
   readonly type = RaceWeekendActionTypes.SelectRaceWeekend;
 
-  constructor(public payload: number) {}
+  constructor(public payload: string) {}
 }
 
 export class LoadRaceWeekends implements Action {

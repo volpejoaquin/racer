@@ -2,7 +2,7 @@
 import { Component, Input, OnInit, OnChanges, HostListener } from '@angular/core';
 
 // libs
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 
 // modules
 import * as fromTiming from '../../../timing/reducers';
@@ -35,7 +35,7 @@ export class TrackActivitiesComponent implements OnInit, OnChanges {
           this.trackActivityId--;
         }
         event.preventDefault();
-        this.selectTrackActivity(this.trackActivityId);
+        this.selectTrackActivity(this.trackActivityId.toString());
         break;
       // down key
       case 40:
@@ -43,7 +43,7 @@ export class TrackActivitiesComponent implements OnInit, OnChanges {
           this.trackActivityId++;
         }
         event.preventDefault();
-        this.selectTrackActivity(this.trackActivityId);
+        this.selectTrackActivity(this.trackActivityId.toString());
         break;
     }
 
@@ -57,7 +57,7 @@ export class TrackActivitiesComponent implements OnInit, OnChanges {
       this.selectedTrackActivity = tActivity;
 
       if (tActivity) {
-        this.trackActivityId = tActivity.id;
+        this.trackActivityId = parseInt(tActivity.id, 10);
       }
     });
   }
@@ -70,7 +70,7 @@ export class TrackActivitiesComponent implements OnInit, OnChanges {
     this.selectTrackActivity(trackActivity.id);
   }
 
-  private selectTrackActivity(trackActivityId: number) {
+  private selectTrackActivity(trackActivityId: string) {
     this.store.dispatch(new TrackActivityActions.SelectTrackActivity(trackActivityId));
   }
 }

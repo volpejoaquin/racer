@@ -68,6 +68,14 @@ export const {
   selectTotal: getTotalRaceWeekend,
 } = fromRaceWeekend.adapter.getSelectors(getRaceWeekendsEntitiesState);
 
+export const getRaceWeekendsState = createSelector(
+  getTimingState,
+  state => state.raceWeekends
+);
+
+export const getRaceWeekendsArray =
+  createSelector(getRaceWeekendsState, fromRaceWeekend.getRaceWeekendsArray);
+
 export const getSelectedRaceWeekend = createSelector(
   getRaceWeekendsEntities,
   getSelectedRaceWeekendId,
@@ -107,6 +115,11 @@ export const getBestRaceParticipantTrackActivity = createSelector(
 export const getTrackActivitiesState = createSelector(
   getTimingState,
   state => state.trackActivities
+);
+
+export const getSelectedTrackActivitydId = createSelector(
+  getTrackActivitiesState,
+  fromTrackActivity.getSelectedId
 );
 
 export const getTrackActivitiesArray =

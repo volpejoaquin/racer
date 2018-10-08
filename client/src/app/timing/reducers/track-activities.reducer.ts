@@ -17,7 +17,7 @@ import {
 } from './../actions/';
 
 export interface State extends EntityState<TrackActivity> {
-  selectedTrackActivityId: number | null;
+  selectedTrackActivityId: string | null;
 }
 
 export const adapter: EntityAdapter<TrackActivity> = createEntityAdapter<TrackActivity>({
@@ -26,7 +26,7 @@ export const adapter: EntityAdapter<TrackActivity> = createEntityAdapter<TrackAc
 });
 
 export let initialState: State = adapter.getInitialState({
-  selectedTrackActivityId: 1
+  selectedTrackActivityId: null
 });
 
 const timingHelper = new TimingHelper();
@@ -72,7 +72,7 @@ export function reducer(
         trackActivityIds = trackActivityIds.concat(selectedTrackActivity.related_track_activity_ids);
       }
 
-      trackActivityIds.forEach((trackActivityId: number) => {
+      trackActivityIds.forEach((trackActivityId: string) => {
         trackActivity = newState.entities[trackActivityId];
 
         if (trackActivity) {

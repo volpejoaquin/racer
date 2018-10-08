@@ -1,5 +1,6 @@
 // libs
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
+import * as lodash from 'lodash';
 
 // models
 import { IRaceWeekend } from '../../shared/model';
@@ -11,7 +12,7 @@ import {
 import { RACE_WEEKENDS_SAMPLE } from '../../shared/dummy';
 
 export interface State extends EntityState<IRaceWeekend> {
-  selectedRaceWeekendId: number | null;
+  selectedRaceWeekendId: string | null;
 }
 
 export const adapter: EntityAdapter<IRaceWeekend> = createEntityAdapter<IRaceWeekend>({
@@ -58,3 +59,4 @@ export function reducer(
 }
 
 export const getSelectedId = (state: State) => state.selectedRaceWeekendId;
+export const getRaceWeekendsArray = (state: State) => lodash.map(state.ids, (id: any) => state.entities[id]);

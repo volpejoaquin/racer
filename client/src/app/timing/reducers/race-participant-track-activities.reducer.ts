@@ -14,8 +14,8 @@ import {
 } from './../actions/';
 
 export interface State extends EntityState<RaceParticipantTrackActivity> {
-  selectedRaceParticipantTrackActivityId: number | null;
-  bestRaceParticipantTrackActivityId: number | null;
+  selectedRaceParticipantTrackActivityId: string | null;
+  bestRaceParticipantTrackActivityId: string | null;
 }
 
 export const adapter: EntityAdapter<RaceParticipantTrackActivity> = createEntityAdapter<RaceParticipantTrackActivity>({
@@ -46,7 +46,7 @@ export function reducer(
 
       return {
         ...newState,
-        bestRaceParticipantTrackActivityId: bestTrackActivity ? bestTrackActivity.id : 0
+        bestRaceParticipantTrackActivityId: bestTrackActivity ? bestTrackActivity.id : null
       };
     }
 
@@ -58,7 +58,7 @@ export function reducer(
 
       return {
         ...newState,
-        bestRaceParticipantTrackActivityId: bestTrackActivity ? bestTrackActivity.id : 0
+        bestRaceParticipantTrackActivityId: bestTrackActivity ? bestTrackActivity.id : null
       };
     }
 
