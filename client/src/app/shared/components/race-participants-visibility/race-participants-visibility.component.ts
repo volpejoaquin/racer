@@ -3,7 +3,7 @@ import { Component, Input, OnInit, OnChanges } from '@angular/core';
 import * as lodash from 'lodash';
 
 // libs
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 
 // modules
 import {
@@ -11,7 +11,7 @@ import {
   HideRaceParticipant,
   DimRaceParticipant
 } from './../../../core/actions/ui.actions';
-import * as fromUI from '../../../core/reducers';
+import * as fromRoot from '../../../core/reducers/';
 
 // models
 import {
@@ -26,22 +26,22 @@ import {
 export class RaceParticipantsVisibilityComponent implements OnInit, OnChanges {
   @Input() raceParticipants: RaceParticipant[];
   teamRaceParticipantNumbers: number[] = [80];
+  invisibleRaceParticipantNumbers: number[] = [];
+  dimmedRaceParticipantNumbers: number[] = [];
 
   currentMode = 0;
+  searchText = '';
 
-  private invisibleRaceParticipantNumbers: number[] = [];
-  private dimmedRaceParticipantNumbers: number[] = [];
 
-  constructor(private store: Store<fromUI.State>) {
+  constructor(private store: Store<fromRoot.State>) {
   }
 
   ngOnInit() {
-    this.store.select(fromUI.getInvisibleRaceParticipants).subscribe((invisibleRaceParticipants: number[]) => {
-      this.invisibleRaceParticipantNumbers = invisibleRaceParticipants || [];
-    });
+    this.store.pipe(select(fromRoot.getRaceParticipants)).subscribe((raceParticipants: any) => {
+      console.log('raceParticipants', raceParticipants);
+      this.invisibleRaceParticipantNumbers = raceParticipants.invisible;
+      this.dimmedRaceParticipantNumbers = raceParticipants.dimmed;
 
-    this.store.select(fromUI.getDimmedRaceParticipants).subscribe((dimmedRaceParticipants: number[]) => {
-      this.dimmedRaceParticipantNumbers = dimmedRaceParticipants || [];
     });
   }
 
@@ -74,14 +74,30 @@ export class RaceParticipantsVisibilityComponent implements OnInit, OnChanges {
     this.changeRaceParticipantVisibility(raceParticipantNumber);
   }
 
+  isRaceParticipantInvisible(raceParticipant: RaceParticipant) {
+    return this.isRaceParticipantNumberInvisible(raceParticipant.number);
+  }
+
+  isRaceParticipantDimmed(raceParticipant: RaceParticipant) {
+    return this.isRaceParticipantNumberDimmed(raceParticipant.number);
+  }
+
   private changeRaceParticipantVisibility(raceParticipantNumber: number) {
-    if (this.invisibleRaceParticipantNumbers.indexOf(raceParticipantNumber) >= 0) {
+    if (this.isRaceParticipantNumberInvisible(raceParticipantNumber)) {
       this.showRaceParticipant(raceParticipantNumber);
-    } else if (this.dimmedRaceParticipantNumbers.indexOf(raceParticipantNumber) >= 0) {
+    } else if (this.isRaceParticipantNumberDimmed(raceParticipantNumber)) {
       this.hideRaceParticipant(raceParticipantNumber);
     } else {
       this.dimRaceParticipant(raceParticipantNumber);
     }
+  }
+
+  private isRaceParticipantNumberInvisible(raceParticipantNumber: number) {
+    return this.invisibleRaceParticipantNumbers.indexOf(raceParticipantNumber) >= 0;
+  }
+
+  private isRaceParticipantNumberDimmed(raceParticipantNumber: number) {
+    return this.dimmedRaceParticipantNumbers.indexOf(raceParticipantNumber) >= 0;
   }
 
   private showRaceParticipant(raceParticipantNumber: number) {

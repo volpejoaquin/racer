@@ -24,7 +24,7 @@ export class TimingSecondaryBarComponent implements OnInit {
   @Input() raceParticipants: RaceParticipant[];
 
   isExpanded = true;
-  isUIExpanded = false;
+  isUIExpanded = true;
 
   constructor(private store: Store<fromTiming.State>) {
   }

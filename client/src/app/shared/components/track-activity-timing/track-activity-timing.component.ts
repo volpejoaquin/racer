@@ -32,7 +32,7 @@ export class TrackActivityTimingComponent implements OnInit, OnChanges {
 
   private readerHelper = new FileReaderHelper();
   private importHelper = new ImportTimesHelper();
-  private logHelper = new LogHelper(true);
+  private logHelper = new LogHelper(false);
 
   ngOnInit() {
     // TODO: Completar esta pantalla con tiempos importados anteriormente

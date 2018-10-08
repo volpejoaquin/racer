@@ -1,4 +1,6 @@
-<div class="" *ngIf="trackActivity && trackActivity.race_participant" racerRaceParticipant [raceParticipant]="trackActivity.race_participant">
+<div class="race-participant_row" *ngIf="trackActivity && trackActivity.race_participant"
+  [class.race-participant_invisible]="isRaceParticipantInvisible(trackActivity.race_participant)"
+  [class.race-participant_dimmed]="isRaceParticipantDimmed(trackActivity.race_participant)">
   <div id="header">
     <span class="text-normal">{{ trackActivity.race_participant?.number }}</span>
     <span class="text-uppercase"> {{ trackActivity.race_participant?.driver?.last_name }}</span>

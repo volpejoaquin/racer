@@ -1,6 +1,15 @@
 // angular
 import { Component, Input, OnChanges } from '@angular/core';
 
+// libs
+import { Store } from '@ngrx/store';
+
+// actions
+import * as fromRoot from '../../../core/reducers/';
+
+// components
+import { BaseTimingComponent } from './../base-timing/base-timing.component';
+
 // models
 import {
   RaceParticipantTrackActivity,
@@ -14,16 +23,20 @@ import {
   templateUrl: './leaderboard.component.html',
   styleUrls: ['./leaderboard.component.scss']
 })
-export class LeaderboardComponent implements OnChanges {
+export class LeaderboardComponent extends BaseTimingComponent implements OnChanges {
   @Input() trackActivity: TrackActivity;
   @Input() trackActivities: RaceParticipantTrackActivity[];
   @Input() bestRaceParticipantTrackActivity: RaceParticipantTrackActivity;
+  bestLap: TrackLap;
 
   orderBy: string | string[] = 'best_lap.time';
   orders: string | string[] = 'asc';
 
-  private bestLap: TrackLap;
   private bestTotalTime: number;
+
+  constructor(store: Store<fromRoot.State>) {
+    super(store);
+  }
 
   ngOnChanges() {
     if (this.bestRaceParticipantTrackActivity && this.bestRaceParticipantTrackActivity.best_lap) {

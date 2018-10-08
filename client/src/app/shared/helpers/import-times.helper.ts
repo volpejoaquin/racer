@@ -22,7 +22,7 @@ const PARTICIPANT_COLS_COUNT = CDA_HEADERS.length;
 const TIME_REGEX = /(?:(\d*)?:)?(?:(\d*)?:)?(\d*).(\d{3})/;
 
 export class ImportTimesHelper {
-  private logHelper: LogHelper = new LogHelper(true);
+  private logHelper: LogHelper = new LogHelper(false);
   private timingHelper: TimingHelper = new TimingHelper();
 
   constructor() {

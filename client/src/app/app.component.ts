@@ -1,6 +1,6 @@
 // angular
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as lodash from 'lodash';
@@ -45,7 +45,7 @@ export class AppComponent implements OnInit {
       .pipe(map(connected => new UIActions.SetSocketConnected(connected)))
       .subscribe(this.store);
 
-    this.socket.join('11 11 11');
+    // this.socket.join('11 11 11');
 
     this.store.dispatch(new SelectRaceWeekend(1));
 

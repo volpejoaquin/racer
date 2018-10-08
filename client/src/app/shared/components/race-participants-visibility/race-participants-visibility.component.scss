@@ -1,3 +1,19 @@
+.race-participants_wrapper {
+  overflow-x: scroll;
+}
+
+.race-participants_search_input {
+  width: 40px;
+}
+
 .race-participant_wrapper {
   cursor: pointer;
+}
+
+.race-participant_invisible {
+  opacity: 0.1;
+}
+
+.race-participant_dimmed {
+  opacity: 0.5;
 }

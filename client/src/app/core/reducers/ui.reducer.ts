@@ -1,18 +1,20 @@
 import * as uiActions from '../actions/ui.actions';
 
+export interface RaceParticipantsState {
+  invisible: number[];
+  dimmed: number[];
+}
+
 export interface State {
   socketConnected: boolean;
-  raceParticipants: {
-    invisible: number[],
-    dimmed: number[]
-  };
+  raceParticipants: RaceParticipantsState;
 }
 
 export const INIT_STATE: State = {
   socketConnected: false,
   raceParticipants: {
     invisible: [],
-    dimmed: [91, 110]
+    dimmed: []
   }
 };
 
@@ -44,8 +46,9 @@ export function reducer(state = INIT_STATE, action: uiActions.All): State {
     }
 
     case uiActions.HIDE_RACE_PARTICIPANT : {
-      const newState = Object.assign({}, state),
-        numberIndex = newState.raceParticipants.dimmed.indexOf(action.payload);
+      const newState = Object.assign({}, state);
+
+      const numberIndex = newState.raceParticipants.dimmed.indexOf(action.payload);
       if (numberIndex >= 0) {
         newState.raceParticipants.dimmed.splice(numberIndex, 1);
       }
@@ -56,8 +59,9 @@ export function reducer(state = INIT_STATE, action: uiActions.All): State {
     }
 
     case uiActions.DIM_RACE_PARTICIPANT : {
-      const newState = Object.assign({}, state),
-        numberIndex = newState.raceParticipants.invisible.indexOf(action.payload);
+      const newState = Object.assign({}, state);
+
+      const numberIndex = newState.raceParticipants.invisible.indexOf(action.payload);
       if (numberIndex >= 0) {
         newState.raceParticipants.invisible.splice(numberIndex, 1);
       }
@@ -71,7 +75,6 @@ export function reducer(state = INIT_STATE, action: uiActions.All): State {
 
 }
 
-export const getSocketStatus = (state: State): boolean => state.socketConnected;
+export const getSocketStatusState = (state: State): boolean => state.socketConnected;
 
-export const getInvisibleRaceParticipants = (state: State) => state.raceParticipants.invisible;
-export const getDimmedRaceParticipants = (state: State) => state.raceParticipants.dimmed;
+export const getRaceParticipantsState = (state: State): RaceParticipantsState => state.raceParticipants;

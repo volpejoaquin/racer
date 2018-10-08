@@ -4,23 +4,36 @@ import { Component, Input, OnChanges } from '@angular/core';
 // libs
 import * as lodash from 'lodash';
 
+// libs
+import { Store } from '@ngrx/store';
+
+// actions
+import * as fromRoot from '../../../core/reducers/';
+
 // models
 import {
   RaceParticipantTrackActivity,
   TrackLap
 } from '../../../shared/model/';
 
+// components
+import { BaseTimingComponent } from './../base-timing/base-timing.component';
+
 @Component({
   selector: 'racer-best-per-partials',
   templateUrl: './best-per-partials.component.html',
   styleUrls: ['./best-per-partials.component.scss']
 })
-export class BestPerPartialsComponent implements OnChanges {
+export class BestPerPartialsComponent extends BaseTimingComponent implements OnChanges {
   @Input() trackActivities: RaceParticipantTrackActivity[];
   @Input() bestRaceParticipantTrackActivity: RaceParticipantTrackActivity;
   @Input() partialIndex = 1;
 
   private bestLap: TrackLap;
+
+  constructor(store: Store<fromRoot.State>) {
+    super(store);
+  }
 
   ngOnChanges() {
     if (this.trackActivities && this.trackActivities.length > 0) {

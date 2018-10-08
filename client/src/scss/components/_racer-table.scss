@@ -33,7 +33,7 @@ $colum-participant-name-width: 220px;
   .timing_table-column-participant_brand {
     @include table-column-fixed(60px);
   }
-  
+
   .timing_table-column-participant_name {
     @include table-column-fixed($colum-participant-name-width);
   }
@@ -54,7 +54,7 @@ $colum-participant-name-width: 220px;
       text-align: center;
     }
   }
-  
+
   tbody {
     .timing_table-column-lap-diff,
     .timing_table-column-lap-interval {
@@ -75,27 +75,25 @@ $colum-participant-name-width: 220px;
 
 .timing-partial-lap-time-gap,
 .timing-lap-time-gap {
-  font-size: 80%;   
+  font-size: 80%;
 }
 
 // race participants
-.racer_table {
-  .race-participant {
+.race-participant_row {
 
-    &.race-participant_invisible {
-      display: none;
-    }
+  &.race-participant_invisible {
+    display: none;
+  }
 
-    &.race-participant_dimmed {
-      opacity: 0.2;
-    }
+  &.race-participant_dimmed {
+    opacity: 0.2;
+  }
 
-    &.race-participant_invisible,
-    &.race-participant_dimmed {
-      .timing-lap-time-gap,
-      .timing-partial-lap-time-gap {
-        visibility: hidden;
-      }
+  &.race-participant_invisible,
+  &.race-participant_dimmed {
+    .timing-lap-time-gap,
+    .timing-partial-lap-time-gap {
+      visibility: hidden;
     }
   }
 }

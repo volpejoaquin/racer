@@ -7,6 +7,7 @@ import {
   createSelector
 } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
+import * as lodash from 'lodash';
 // import * as fromRouter from '@ngrx/router-store';
 
 // modules
@@ -23,9 +24,9 @@ export function logger(reducer: ActionReducer<State>): ActionReducer<State> {
   return (state: State, action: any): any => {
     const result = reducer(state, action);
     console.groupCollapsed(action.type);
-    console.log('prev state', state);
+    console.log('prev state', lodash.clone(state));
     console.log('action', action);
-    console.log('next state', result);
+    console.log('next state', lodash.clone(result));
     console.groupEnd();
 
     return result;
@@ -48,7 +49,5 @@ export const metaReducers: MetaReducer<State>[] =  !environment.production
 
 export const getUIState = createFeatureSelector<fromUI.State>('ui');
 
-export const getSocketStatus = createSelector(getUIState, fromUI.getSocketStatus);
-
-export const getInvisibleRaceParticipants = createSelector(getUIState, fromUI.getInvisibleRaceParticipants);
-export const getDimmedRaceParticipants = createSelector(getUIState, fromUI.getDimmedRaceParticipants);
+export const getSocketStatus = createSelector(getUIState, fromUI.getSocketStatusState);
+export const getRaceParticipants = createSelector(getUIState, fromUI.getRaceParticipantsState);

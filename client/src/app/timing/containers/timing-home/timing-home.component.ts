@@ -4,7 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 // modules
-import * as fromTiming from './../../reducers/';
+import * as fromRoot from './../../reducers/';
 import {
   LoadRaceParticipantTrackActivities
 } from './../../actions/race-participant-track-activity.actions';
@@ -49,15 +49,15 @@ export class TimingHomeComponent implements OnInit {
     localStorage.setItem('currentViewNumber', '' + this.currentViewNumber);
   }
 
-  constructor(store: Store<fromTiming.State>) {
+  constructor(store: Store<fromRoot.State>) {
 
-    this.raceWeekend$ = store.pipe(select(fromTiming.getSelectedRaceWeekend));
+    this.raceWeekend$ = store.pipe(select(fromRoot.getSelectedRaceWeekend));
 
-    this.trackActivity$ = store.pipe(select(fromTiming.getSelectedTrackActivity));
+    this.trackActivity$ = store.pipe(select(fromRoot.getSelectedTrackActivity));
 
-    this.raceParticipantsTrackActivities$ = store.pipe(select(fromTiming.getRaceParticipantsTrackActivitiesArray));
+    this.raceParticipantsTrackActivities$ = store.pipe(select(fromRoot.getRaceParticipantsTrackActivitiesArray));
 
-    this.bestRaceParticipantTrackActivity$ = store.pipe(select(fromTiming.getBestRaceParticipantTrackActivity));
+    this.bestRaceParticipantTrackActivity$ = store.pipe(select(fromRoot.getBestRaceParticipantTrackActivity));
 
     this.trackActivity$.subscribe((selectedTrackActivity: TrackActivity) => {
 

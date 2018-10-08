@@ -1,13 +1,13 @@
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { TrackActivityStateComponent } from './track-activity-state/track-activity-state.component';
-import { PartialPerLapComponent } from './partials-per-lap/partials-per-lap.component';
+import { PartialsPerLapComponent } from './partials-per-lap/partials-per-lap.component';
 import { BestPartialsLapsComponent } from './best-partials-laps/best-partials-laps.component';
 import { BestPerPartialsComponent } from './best-per-partials/best-per-partials.component';
 
 export const TIMING_COMPONENTS: any[] = [
   LeaderboardComponent,
   TrackActivityStateComponent,
-  PartialPerLapComponent,
+  PartialsPerLapComponent,
   BestPartialsLapsComponent,
   BestPerPartialsComponent
 ];
