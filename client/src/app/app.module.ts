@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 
 // libs
 import { StoreModule } from '@ngrx/store';
+import { DBModule } from '@ngrx/db';
 
 // modules
 import { CoreModule } from './core/core.module';
@@ -13,9 +14,13 @@ import { AdminModule } from './admin/admin.module';
 import { TimingModule } from './timing/timing.module';
 import { DataAcquisitionModule } from './data-acquisition/data-acquisition.module';
 import { SharedModule } from './shared/shared.module';
+import { DummyModule } from './dummy/dummy.module';
 
 // components
 import { AppComponent } from './app.component';
+
+// database
+import { schema } from './db';
 
 // recuders
 import { reducers, metaReducers } from './core/reducers';
@@ -34,6 +39,9 @@ import { reducers, metaReducers } from './core/reducers';
     DataAcquisitionModule,
 
     SharedModule,
+
+    DBModule.provideDB(schema),
+    DummyModule,
 
     StoreModule.forRoot(reducers, { metaReducers })
   ],

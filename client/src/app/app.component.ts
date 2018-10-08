@@ -1,8 +1,8 @@
 // angular
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map, toArray } from 'rxjs/operators';
 
 // services
 import { SocketService } from './core/service/socket.service';
@@ -14,12 +14,13 @@ import {
   LoadRaceParticipantTrackActivities,
   SetBestRaceParticipantTrackActivity
 } from './timing/actions/race-participant-track-activity.actions';
-// import { LoadInitialState } from './core/actions/app.actions';
-import { SelectTrackActivity } from './timing/actions/track-activitiy.actions';
 import { SelectRaceWeekend } from './timing/actions/race-weekend.actions';
 
 // models
-// import { RacerSocketEvent } from './shared/model';
+import { IRaceWeekend } from './shared/model';
+
+// dummy data
+import { RACE_WEEKENDS_SAMPLE } from './shared/dummy';
 
 @Component({
   selector: 'racer-root',
@@ -52,7 +53,7 @@ export class AppComponent implements OnInit {
     //   }
     // });
 
-    this.store.dispatch(new SelectRaceWeekend(1));
+    // this.store.dispatch(new SelectRaceWeekend(1));
 
     // this.store.dispatch(new SelectTrackActivity(1));
   }

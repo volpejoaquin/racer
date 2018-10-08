@@ -22,7 +22,7 @@ const PARTICIPANT_COLS_COUNT = CDA_HEADERS.length;
 const TIME_REGEX = /(?:(\d*)?:)?(?:(\d*)?:)?(\d*).(\d{3})/;
 
 export class ImportTimesHelper {
-  private logHelper: LogHelper = new LogHelper(false);
+  private logHelper: LogHelper = new LogHelper(true);
   private timingHelper: TimingHelper = new TimingHelper();
 
   constructor() {
@@ -79,7 +79,12 @@ export class ImportTimesHelper {
       row.id = index + 1;
     });
 
-    // this.logHelper.log(JSON.stringify(response));
+    this.logHelper.log(JSON.stringify(response));
+
+    // const copy = lodash.clone(response);
+    // this.logHelper.log(JSON.stringify(copy.slice(0, response.length / 2)));
+    // this.logHelper.log(JSON.stringify(copy.slice(response.length / 2, response.length)));
+
 
     this.logHelper.log('Finished !');
 
