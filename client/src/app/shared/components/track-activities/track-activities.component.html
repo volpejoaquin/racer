@@ -3,12 +3,12 @@
     <div class="d-flex justify-content-between align-items-center">
       <span class="text-uppercase" [class.text-success]="isSelectedTrackActivity(trackActivity)">{{ trackActivity.car_division.name }}</span>
       <span class="text-uppercase" [class.text-success]="isSelectedTrackActivity(trackActivity)">{{ trackActivity.name }}</span>
-      <span class="text-uppercase" [class.text-success]="isSelectedTrackActivity(trackActivity)" *ngIf="trackActivity.date">{{ trackActivity.date | date:'mm:ss' }} hs</span>
+      <span class="text-uppercase" [class.text-success]="isSelectedTrackActivity(trackActivity)" *ngIf="trackActivity.date">{{ trackActivity.date | date:'HH:mm' }} hs</span>
       <div>
-        <span class="badge badge-pill" [class.bg-success]="isSelectedTrackActivity(trackActivity)" [class.bg-secondary]="trackActivity.id !== selectedTrackActivity.id" *ngIf="trackActivity.duration > 0">
+        <span class="badge badge-pill" [class.bg-success]="isSelectedTrackActivity(trackActivity)" [class.bg-secondary]="!isSelectedTrackActivity(trackActivity)" *ngIf="trackActivity.duration > 0">
           {{ trackActivity.duration }} minutos
         </span>
-        <span class="badge badge-pill" [class.bg-success]="isSelectedTrackActivity(trackActivity)" [class.bg-secondary]="trackActivity.id !== selectedTrackActivity.id" *ngIf="trackActivity.laps > 0">{{ trackActivity.laps }} vueltas</span>
+        <span class="badge badge-pill" [class.bg-success]="isSelectedTrackActivity(trackActivity)" [class.bg-secondary]="!isSelectedTrackActivity(trackActivity)" *ngIf="trackActivity.laps > 0">{{ trackActivity.laps }} vueltas</span>
       </div>
     </div>
   </li>

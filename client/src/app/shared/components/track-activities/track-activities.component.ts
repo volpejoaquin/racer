@@ -22,29 +22,34 @@ export class TrackActivitiesComponent implements OnInit, OnChanges {
   @Input() trackActivities: TrackActivity[];
   selectedTrackActivity: TrackActivity;
 
-  private trackActivityId = 1;
+  private trackActivityIndex = 0;
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     const keyCode = event.which || event.keyCode;
 
+    let nextTrackActivityId: string;
     switch (keyCode) {
       // up key
       case 38:
-        if (this.trackActivityId > 1) {
-          this.trackActivityId--;
+        if (this.trackActivityIndex >= 1) {
+          this.trackActivityIndex--;
         }
         event.preventDefault();
-        this.selectTrackActivity(this.trackActivityId.toString());
+        nextTrackActivityId = this.trackActivities[this.trackActivityIndex].id;
         break;
       // down key
       case 40:
-        if (this.trackActivityId < this.trackActivities.length) {
-          this.trackActivityId++;
+        if (this.trackActivityIndex < this.trackActivities.length) {
+          this.trackActivityIndex++;
         }
         event.preventDefault();
-        this.selectTrackActivity(this.trackActivityId.toString());
+        nextTrackActivityId = this.trackActivities[this.trackActivityIndex].id;
         break;
+    }
+
+    if (nextTrackActivityId) {
+      this.selectTrackActivity(nextTrackActivityId);
     }
 
   }
@@ -56,8 +61,12 @@ export class TrackActivitiesComponent implements OnInit, OnChanges {
     this.store.select(fromTiming.getSelectedTrackActivity).subscribe((tActivity: TrackActivity) => {
       this.selectedTrackActivity = tActivity;
 
-      if (tActivity) {
-        this.trackActivityId = parseInt(tActivity.id, 10);
+      if (this.selectedTrackActivity) {
+        this.trackActivities.forEach((tAct: TrackActivity, tActIndex: number) => {
+          if (tAct.id === this.selectedTrackActivity.id) {
+            this.trackActivityIndex = tActIndex;
+          }
+        });
       }
     });
   }

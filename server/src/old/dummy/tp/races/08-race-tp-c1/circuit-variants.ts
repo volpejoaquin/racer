@@ -3,7 +3,7 @@ import {
   CircuitVariant
 } from './../../../../model/';
 
-export const F08_CIRCUIT_VARIANT: CircuitVariant = {
+export const F08_TP_C1_CIRCUIT_VARIANT: CircuitVariant = {
   name: 'Circuito Nº 5',
   length: 4200,
   circuit: {

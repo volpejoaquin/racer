@@ -47,14 +47,14 @@ export class DummyComponent implements OnInit {
       console.log('[DATABASE INFO] ', response);
 
       // TODO: REMOVE THIS
-      // this.raceWeekends = RACE_WEEKENDS_SAMPLE;
-      // this.db.insert('race_weekends', this.raceWeekends).subscribe();
+      this.raceWeekends = RACE_WEEKENDS_SAMPLE;
+      this.db.insert('race_weekends', this.raceWeekends).subscribe();
 
       this.db.query('race_weekends').pipe(
         toArray(),
         map(
           (raceWeekends: IRaceWeekend[]) => {
-            this.loadRaceWeekends(raceWeekends);
+            this.loadRaceWeekends(this.raceWeekends); // TODO: REVIEW THIS
           }
         ),
         catchError((res: any) => {
