@@ -41,7 +41,10 @@ export class TimingHomeComponent extends BaseTimingComponent {
     const keyCode = event.which || event.keyCode;
     const shiftKey = event.shiftKey;
     switch (keyCode) {
-      case 9:
+      case 37:
+        this.currentViewNumber = this.currentViewNumber === 0 ? (this.viewsCount - 1) : ((this.currentViewNumber - 1) % this.viewsCount);
+        break;
+      case 39:
         this.currentViewNumber = ((this.currentViewNumber + 1) % this.viewsCount);
         break;
     }

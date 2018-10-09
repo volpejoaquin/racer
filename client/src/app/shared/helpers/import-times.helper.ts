@@ -208,7 +208,7 @@ export class ImportTimesHelper {
 
   private findRaceParticipant(raceParticipantNumber: number, trackActivity: TrackActivity) {
     let raceParticipants: RaceParticipant[];
-
+    debugger;
     if (trackActivity.car_division && trackActivity.car_division.short_name === 'C1') {
       raceParticipants = TP_C1_RACE_PARTICIPANTS;
     } else if (trackActivity.car_division && trackActivity.car_division.short_name === 'C2') {
