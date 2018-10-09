@@ -106,19 +106,22 @@ export class TimingUiBarComponent implements OnInit, OnChanges {
   }
 
   onSearchKeydownEnter(_event: any) {
-    let raceParticipantFound: RaceParticipant = null;
+    const raceParticipantFounds: RaceParticipant[] = [];
 
     this.raceParticipants.forEach((rParticipant: RaceParticipant) => {
       if (this.checkRaceParticipant(rParticipant, this.searchText)) {
-        raceParticipantFound = rParticipant;
-      } else if (this.markedRaceParticipantNumbers.indexOf(rParticipant.number) < 0) {
+        raceParticipantFounds.push(rParticipant);
+      } else if (this.markedRaceParticipantNumbers.indexOf(rParticipant.number) < 0 &&
+        this.invisibleRaceParticipantNumbers.indexOf(rParticipant.number) < 0) {
         this.store.dispatch(new DimRaceParticipant(rParticipant.number));
       }
     });
 
-    if (raceParticipantFound) {
-      // mark raceParticipantFound
-      this.store.dispatch(new MarkRaceParticipant(raceParticipantFound.number));
+    if (raceParticipantFounds.length > 0) {
+      raceParticipantFounds.forEach((rParticipant: RaceParticipant) => {
+        // mark raceParticipantFound
+        this.store.dispatch(new MarkRaceParticipant(rParticipant.number));
+      });
 
       this.searchText = '';
     }

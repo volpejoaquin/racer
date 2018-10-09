@@ -15,7 +15,7 @@ export class HighlightColorDirective {
     this.el = el.nativeElement;
   }
 
-  @HostListener('mouseclick') onMouseEnter() {
+  @HostListener('click', ['$event.target']) onClick(_event: any) {
     let newColor = 'inherit';
 
     if (this.currentHighlightColor !== this.racerHighlightColor) {
