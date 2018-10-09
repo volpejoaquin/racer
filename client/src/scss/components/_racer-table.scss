@@ -102,6 +102,10 @@ $colum-participant-name-width: 220px;
     }
   }
 
+  &.race-participant_marked {
+    color: $primary !important;
+  }
+
   &.race-participant_invisible {
     display: none;
   }

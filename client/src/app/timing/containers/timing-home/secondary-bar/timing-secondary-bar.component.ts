@@ -22,18 +22,19 @@ export class TimingSecondaryBarComponent implements OnInit {
   @Input() trackActivity: TrackActivity;
   @Input() raceParticipants: RaceParticipant[];
 
-  isExpanded = false;
+  isExpanded = true;
   isUIExpanded = true;
 
-  constructor(private _store: Store<fromTiming.State>) {
+  constructor(private store: Store<fromTiming.State>) {
   }
 
   ngOnInit(): void {
-    // this.store.pipe(select(fromTiming.getRaceParticipantsTrackActivitiesArray)).subscribe(
-    //   (raceParticipantsTrackActivities: RaceParticipantTrackActivity[]) => {
-    //   if (raceParticipantsTrackActivities && raceParticipantsTrackActivities.length > 0) {
-    //     this.isExpanded = false;
-    //   }
-    // });
+    this.store.pipe(select(fromTiming.getRaceParticipantsTrackActivitiesArray)).subscribe(
+      (raceParticipantsTrackActivities: RaceParticipantTrackActivity[]) => {
+        if (raceParticipantsTrackActivities && raceParticipantsTrackActivities.length > 0) {
+          this.isExpanded = false;
+        }
+      }
+    );
   }
 }

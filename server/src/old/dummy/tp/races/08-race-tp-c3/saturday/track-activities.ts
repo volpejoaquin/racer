@@ -9,11 +9,6 @@ import {
 import { TP_C3_CAR_DIVISION } from './../../../car-divisions';
 import { F08_TP_C3_CIRCUIT_VARIANT } from './../circuit-variants';
 import {
-  TP_C3_RACE_PARTICIPANTS_GROUP_A_NUMBERS,
-  TP_C3_RACE_PARTICIPANTS_GROUP_B_NUMBERS,
-  TP_C3_RACE_PARTICIPANTS_NUMBERS
-} from './../../../../tp/race-participants-c3';
-import {
   F08_TP_C3_RACE_PARTICIPANTS_NUMBER_GROUP_A,
   F08_TP_C3_RACE_PARTICIPANTS_NUMBER_GROUP_B
 } from './../race-participants-groups';
@@ -31,7 +26,7 @@ export const F08_TP_C3_SATURDAY_TRACK_ACTIVITIES: TrackActivity[] = [
     race_participants_track_activities: [],
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: F08_TP_C3_CIRCUIT_VARIANT,
-    related_track_activity_ids: ['313'],
+    related_track_activity_ids: ['312', '313'],
     enabled_race_participant_numbers: F08_TP_C3_RACE_PARTICIPANTS_NUMBER_GROUP_B
   },
   {
@@ -46,7 +41,7 @@ export const F08_TP_C3_SATURDAY_TRACK_ACTIVITIES: TrackActivity[] = [
     race_participants_track_activities: [],
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: F08_TP_C3_CIRCUIT_VARIANT,
-    related_track_activity_ids: ['313'],
+    related_track_activity_ids: ['311', '313'],
     enabled_race_participant_numbers: F08_TP_C3_RACE_PARTICIPANTS_NUMBER_GROUP_A
   },
   {
@@ -75,7 +70,7 @@ export const F08_TP_C3_SATURDAY_TRACK_ACTIVITIES: TrackActivity[] = [
     race_participants_track_activities: [],
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: F08_TP_C3_CIRCUIT_VARIANT,
-    related_track_activity_ids: ['316'],
+    related_track_activity_ids: ['315', '316', '320'],
     enabled_race_participant_numbers: F08_TP_C3_RACE_PARTICIPANTS_NUMBER_GROUP_B
   },
   {
@@ -90,7 +85,7 @@ export const F08_TP_C3_SATURDAY_TRACK_ACTIVITIES: TrackActivity[] = [
     race_participants_track_activities: [],
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: F08_TP_C3_CIRCUIT_VARIANT,
-    related_track_activity_ids: ['316'],
+    related_track_activity_ids: ['314', '316', '320'],
     enabled_race_participant_numbers: F08_TP_C3_RACE_PARTICIPANTS_NUMBER_GROUP_A
   },
   {
@@ -105,7 +100,7 @@ export const F08_TP_C3_SATURDAY_TRACK_ACTIVITIES: TrackActivity[] = [
     race_participants_track_activities: [],
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: F08_TP_C3_CIRCUIT_VARIANT,
-    related_track_activity_ids: ['314', '315']
+    related_track_activity_ids: ['314', '315', '320']
   },
   {
     id: '317',
@@ -119,7 +114,7 @@ export const F08_TP_C3_SATURDAY_TRACK_ACTIVITIES: TrackActivity[] = [
     race_participants_track_activities: [],
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: F08_TP_C3_CIRCUIT_VARIANT,
-    related_track_activity_ids: ['319'],
+    related_track_activity_ids: ['318', '319', '320'],
     enabled_race_participant_numbers: F08_TP_C3_RACE_PARTICIPANTS_NUMBER_GROUP_B
   },
   {
@@ -134,7 +129,7 @@ export const F08_TP_C3_SATURDAY_TRACK_ACTIVITIES: TrackActivity[] = [
     race_participants_track_activities: [],
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: F08_TP_C3_CIRCUIT_VARIANT,
-    related_track_activity_ids: ['319'],
+    related_track_activity_ids: ['317', '319', '320'],
     enabled_race_participant_numbers: F08_TP_C3_RACE_PARTICIPANTS_NUMBER_GROUP_A
   },
   {
@@ -149,10 +144,24 @@ export const F08_TP_C3_SATURDAY_TRACK_ACTIVITIES: TrackActivity[] = [
     race_participants_track_activities: [],
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: F08_TP_C3_CIRCUIT_VARIANT,
-    related_track_activity_ids: ['317', '318']
+    related_track_activity_ids: ['317', '318', '320']
   },
   {
     id: '320',
+    name: 'Clasificacion general',
+    short_name: 'C GEN',
+    date: '2018-10-13T13:25:00.000-03:00',
+    duration: 10,
+    laps: 0,
+    state: TrackActivityState.waiting,
+    type: TrackActivityType.practice,
+    race_participants_track_activities: [],
+    car_division: TP_C3_CAR_DIVISION,
+    circuit_variant: F08_TP_C3_CIRCUIT_VARIANT,
+    related_track_activity_ids: ['317', '318']
+  },
+  {
+    id: '321',
     name: '1º Serie',
     short_name: 'SERIE1',
     date: '2018-10-13T15:20:00.000-03:00',
@@ -165,7 +174,7 @@ export const F08_TP_C3_SATURDAY_TRACK_ACTIVITIES: TrackActivity[] = [
     circuit_variant: F08_TP_C3_CIRCUIT_VARIANT
   },
   {
-    id: '321',
+    id: '322',
     name: '2º Serie',
     short_name: 'SERIE2',
     date: '2018-10-13T15:50:00.000-03:00',
