@@ -41,12 +41,12 @@ export class SocketSession {
 
     console.log('INFO - New socket session. CODE:', code);
 
-    this.getRaceWeekends();
+    // this.getRaceWeekends();
   }
   
   private start() {
     // emit init event
-    this.socket.emit(RacerSocketEvent.INIT, this.currentState);
+    // this.socket.emit(RacerSocketEvent.INIT, this.currentState);
     console.log('EMIT - [' + RacerSocketEvent.INIT + ']', this.currentState);
   }
 

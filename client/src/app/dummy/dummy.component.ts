@@ -111,7 +111,9 @@ export class DummyComponent implements OnInit {
   }
 
   private getTrackActivities(raceWeekend: IRaceWeekend) {
-    const rWeekend: IRaceWeekend = lodash.find(this.raceWeekends, (rW: IRaceWeekend) => rW.id = raceWeekend.id);
+    const rWeekend: IRaceWeekend = lodash.find(this.raceWeekends, (rW: IRaceWeekend) => {
+      return rW.id === raceWeekend.id;
+    });
     return rWeekend && rWeekend.track_activities ? rWeekend.track_activities : [];
   }
 }
