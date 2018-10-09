@@ -1,5 +1,5 @@
 // angular
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
@@ -8,7 +8,6 @@ import * as fromRoot from './../../reducers/';
 import {
   LoadRaceParticipantTrackActivities
 } from './../../actions/race-participant-track-activity.actions';
-import { LoadTrackActivities } from './../../actions/track-activitiy.actions';
 
 // models
 import {
@@ -18,12 +17,15 @@ import {
   RaceParticipant
 } from '../../../shared/model/';
 
+// components
+import { BaseTimingComponent } from '../../components/base-timing/base-timing.component';
+
 @Component({
   selector: 'racer-timing-home',
   templateUrl: './timing-home.component.html',
   styleUrls: ['./timing-home.component.scss']
 })
-export class TimingHomeComponent implements OnInit {
+export class TimingHomeComponent extends BaseTimingComponent {
   raceWeekend$: Observable<IRaceWeekend>;
   trackActivity$: Observable<TrackActivity>;
   raceParticipantsTrackActivities$: Observable<RaceParticipantTrackActivity[]>;
@@ -37,12 +39,9 @@ export class TimingHomeComponent implements OnInit {
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     const keyCode = event.which || event.keyCode;
-
+    const shiftKey = event.shiftKey;
     switch (keyCode) {
-      case 37:
-        this.currentViewNumber = this.currentViewNumber === 0 ? (this.viewsCount - 1) : ((this.currentViewNumber - 1) % this.viewsCount);
-        break;
-      case 39:
+      case 9:
         this.currentViewNumber = ((this.currentViewNumber + 1) % this.viewsCount);
         break;
     }
@@ -51,6 +50,7 @@ export class TimingHomeComponent implements OnInit {
   }
 
   constructor(store: Store<fromRoot.State>) {
+    super(store);
 
     this.raceWeekend$ = store.pipe(select(fromRoot.getSelectedRaceWeekend));
 
@@ -81,8 +81,5 @@ export class TimingHomeComponent implements OnInit {
         });
       }
     });
-  }
-
-  ngOnInit(): void {
   }
 }

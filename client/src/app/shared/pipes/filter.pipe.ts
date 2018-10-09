@@ -16,9 +16,10 @@ export class FilterPipe implements PipeTransform {
       return items;
     }
 
-    let value = '';
     searchText = lodash.toLower(searchText);
+    const searchTextArray = searchText ? searchText.split(' ') : [''];
 
+    let value = '';
     return lodash.filter(items, (item) => {
       if (!fieldName) {
         value = item;
@@ -27,8 +28,13 @@ export class FilterPipe implements PipeTransform {
       }
 
       value = lodash.toLower(value);
+      let response = false;
 
-      return value.indexOf(searchText) >= 0;
+      searchTextArray.forEach((sText: string) => {
+        response = response || value.indexOf(sText) >= 0;
+      });
+
+      return response;
     });
   }
 }

@@ -119,6 +119,13 @@ $colum-participant-name-width: 220px;
   }
 }
 
+.partials-per-laps-wrapper {
+  .race-participant_row.race-participant_dimmed {
+    display: none;
+    padding: 0;
+  }
+}
+
 .timing_table-column-lap-interval {
   display: none;
 }
@@ -126,11 +133,12 @@ $colum-participant-name-width: 220px;
 
 // TODO: REVIEW THIS
 .table-responsive,
-.partials-per-lap-wrapper {
+.partials-per-laps-wrapper {
   display: block;
   height: 800px;
   max-height: 800px;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   margin-bottom: 63px;
 }
 

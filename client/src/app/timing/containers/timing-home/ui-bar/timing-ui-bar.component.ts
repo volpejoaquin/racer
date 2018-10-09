@@ -1,5 +1,5 @@
 // angular
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, HostListener } from '@angular/core';
 import * as lodash from 'lodash';
 
 // libs
@@ -38,16 +38,25 @@ export class TimingUiBarComponent implements OnInit, OnChanges {
   currentMode = 0;
   searchText = '';
 
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    const keyCode = event.which || event.keyCode;
+    switch (keyCode) {
+      case 77:
+        this.nextUIMode();
+        break;
+    }
+  }
+
   constructor(private store: Store<fromRoot.State>) {
   }
 
   ngOnInit() {
-    this.store.pipe(select(fromRoot.getRaceParticipants)).subscribe((raceParticipants: fromUI.RaceParticipantsState) => {
+    const getRaceParticipants$ = this.store.pipe(select(fromRoot.getRaceParticipants));
+    getRaceParticipants$.subscribe((raceParticipants: fromUI.RaceParticipantsState) => {
       this.invisibleRaceParticipantNumbers = raceParticipants.invisible;
       this.dimmedRaceParticipantNumbers = raceParticipants.dimmed;
       this.markedRaceParticipantNumbers = raceParticipants.marked;
-
-      this.searchText = '';
     });
   }
 
@@ -100,14 +109,30 @@ export class TimingUiBarComponent implements OnInit, OnChanges {
     let raceParticipantFound: RaceParticipant = null;
 
     this.raceParticipants.forEach((rParticipant: RaceParticipant) => {
-      if (rParticipant.number.toString() === this.searchText) {
+      if (this.checkRaceParticipant(rParticipant, this.searchText)) {
         raceParticipantFound = rParticipant;
+      } else if (this.markedRaceParticipantNumbers.indexOf(rParticipant.number) < 0) {
+        this.store.dispatch(new DimRaceParticipant(rParticipant.number));
       }
     });
 
     if (raceParticipantFound) {
       // mark raceParticipantFound
       this.store.dispatch(new MarkRaceParticipant(raceParticipantFound.number));
+
+      this.searchText = '';
     }
+  }
+
+  private checkRaceParticipant(rParticipant: RaceParticipant, searchText: string): boolean {
+    let response = false;
+    const value = rParticipant.number.toString();
+    const searchTextArray = searchText ? searchText.split(' ') : [''];
+
+    searchTextArray.forEach((sText: string) => {
+      response = response || value === sText;
+    });
+
+    return response;
   }
 }

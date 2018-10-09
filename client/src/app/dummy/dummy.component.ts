@@ -85,29 +85,29 @@ export class DummyComponent implements OnInit {
   private loadRaceWeekends(raceWeekends: IRaceWeekend[]) {
     this.raceWeekends = raceWeekends;
 
-    const raceWeekendsCopy: IRaceWeekend[] = [];
-    let raceWeekend: IRaceWeekend;
+    // const raceWeekendsCopy: IRaceWeekend[] = [];
+    // let raceWeekend: IRaceWeekend;
 
-    raceWeekends.forEach((rWeekend: IRaceWeekend) => {
-      raceWeekend = lodash.clone(rWeekend);
+    // raceWeekends.forEach((rWeekend: IRaceWeekend) => {
+      // raceWeekend = lodash.clone(rWeekend);
       // delete raceWeekend.track_activities; TODO: REVIEW THIS
-      raceWeekendsCopy.push(raceWeekend);
-    });
-    this.store.dispatch(new LoadRaceWeekends(raceWeekendsCopy));
+      // raceWeekendsCopy.push(raceWeekend);
+    // });
+    this.store.dispatch(new LoadRaceWeekends(raceWeekends));
   }
 
   private loadTrackActivities(trackActivities: TrackActivity[]) {
     this.trackActivities = trackActivities;
 
-    const trackActivitiesCopy: TrackActivity[] = [];
-    let trackActivity: TrackActivity;
+    // const trackActivitiesCopy: TrackActivity[] = [];
+    // let trackActivity: TrackActivity;
 
-    trackActivities.forEach((tActivity: TrackActivity) => {
-      trackActivity = lodash.clone(tActivity);
+    // trackActivities.forEach((tActivity: TrackActivity) => {
+      // trackActivity = lodash.clone(tActivity);
       // trackActivity.race_participants_track_activities = []; TODO: REVIEW THIS
-      trackActivitiesCopy.push(trackActivity);
-    });
-    this.store.dispatch(new LoadTrackActivities(trackActivitiesCopy));
+      // trackActivitiesCopy.push(trackActivity);
+    // });
+    this.store.dispatch(new LoadTrackActivities(trackActivities));
   }
 
   private getTrackActivities(raceWeekend: IRaceWeekend) {

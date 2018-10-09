@@ -1,7 +1,7 @@
 <ng-template #loading>
   <div class="timing-content-loading p-5 text-center text-muted">
     <div class="d-block">
-      <fa-icon [icon]="['fas', 'spinner']"></fa-icon>
+      <fa-icon [icon]="['fas', 'spinner']" [spin]="true"></fa-icon>
     </div>
     <span class="d-block">Daleeeeeeeeee...</span>
   </div>
@@ -28,11 +28,17 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-12" *ngIf="currentViewNumber === 2">
-          <div class="partials-per-lap-wrapper mt-2 mb-2">
+          <div class="partials-per-laps-wrapper mt-2 mb-2">
             <div class="row">
-              <div class="col-6 mb-4" *ngFor="let trackActivity of (raceParticipantsTrackActivities | orderByTrackActivity:trackActivity); let trackActivityIndex = index;">
-                <racer-partials-per-lap [trackActivity]="trackActivity" [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async" [title]="(trackActivityIndex + 1)"></racer-partials-per-lap>
-              </div>
+              <racer-partials-per-lap
+                class="race-participant_row col-6"
+                *ngFor="let trackActivity of (raceParticipantsTrackActivities | orderByTrackActivity:trackActivity); let trackActivityIndex = index;"
+                [class.race-participant_invisible]="isRaceParticipantInvisible(trackActivity.race_participant)"
+                [class.race-participant_dimmed]="isRaceParticipantDimmed(trackActivity.race_participant)"
+                [class.race-participant_marked]="isRaceParticipantMarked(trackActivity.race_participant)"
+                [trackActivity]="trackActivity"
+                [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async"
+                [title]="(trackActivityIndex + 1)"></racer-partials-per-lap>
             </div>
           </div>
         </div>
