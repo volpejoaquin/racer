@@ -4,7 +4,7 @@
       <div class="col-auto">
         <div class="text-center">
           <fa-icon class="text-primary timing-secondary-bar_toggle-icon"
-            [icon]="['fas', 'chevron-up']"
+            [icon]="['fas', isExpanded ? 'chevron-down' : 'chevron-up']"
             size="lg"
             (click)="isExpanded = !isExpanded"></fa-icon>
         </div>
