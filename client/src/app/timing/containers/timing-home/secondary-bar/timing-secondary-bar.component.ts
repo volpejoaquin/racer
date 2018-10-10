@@ -22,7 +22,7 @@ export class TimingSecondaryBarComponent implements OnInit {
   @Input() raceParticipants: RaceParticipant[];
 
   isExpanded = false;
-  isUIExpanded = true;
+  isUIExpanded = false;
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
