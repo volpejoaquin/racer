@@ -1,7 +1,7 @@
 @import '../../../../../scss/vars/variables';
 
 $timing-secondary-bar-border-size: 3px;
-$timing-ui-bar-width: 300px;
+$timing-ui-bar-width: 900px;
 
 .timing-secondary-bar_wrapper,
 .timing-secondary-bar_wrapper-extra {
@@ -73,7 +73,7 @@ $timing-ui-bar-width: 300px;
 
   border-left: 2px solid $gray-600;
   border-top: 2px solid $gray-600;
-  
+
   &.timing-ui-bar_wrapper_expanded {
     width: $timing-ui-bar-width;
   }

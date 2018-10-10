@@ -123,7 +123,7 @@ export class RaceParticipantsVisibilityComponent implements OnInit, OnChanges {
         if (this.teamRaceParticipantNumbers.indexOf(raceParticipantNumber) >= 0) {
           this.markRaceParticipant(raceParticipantNumber);
         } else {
-          this.dimRaceParticipant(raceParticipantNumber);
+          this.hideRaceParticipant(raceParticipantNumber);
         }
       } else if (this.currentMode === 2 && !modeChanged) {
         this.changeRaceParticipantVisibility(raceParticipantNumber);

@@ -1,57 +1,64 @@
-<div class="p-3">
-  <div class="linear-box-wrapper">
-    <small class="linear-box-top-text d-block text-muted text-uppercase">
-      <fa-icon [icon]="['fas', 'tv']"></fa-icon> Vista
-    </small>
+<div class="row">
+  <div class="col-6">
+    <racer-circuit-variant-draw></racer-circuit-variant-draw>
+  </div>
+  <div class="col-6">
+    <div class="p-3">
+      <div class="linear-box-wrapper">
+        <small class="linear-box-top-text d-block text-muted text-uppercase">
+          <fa-icon [icon]="['fas', 'tv']"></fa-icon> Vista
+        </small>
 
-    <div class="linear-box-content">
-      <div class="row">
-        <div class="col-12">
-          <div class="btn-group btn-group-toggle mb-1" data-toggle="buttons">
-            <label class="btn btn-sm btn-outline-secondary text-uppercase" [class.active]="currentMode === 0">
-              <input type="radio" name="options" id="option1" autocomplete="off" [attr.checked]="currentMode === 0" (click)="onChangeMode(0)"> Normal
-            </label>
-            <label class="btn btn-sm btn-outline-secondary text-uppercase" [class.active]="currentMode === 1">
-              <input type="radio" name="options" id="option1" autocomplete="off" [attr.checked]="currentMode === 1" (click)="onChangeMode(1)"> Equipo
-            </label>
-            <label class="btn btn-sm btn-outline-secondary text-uppercase" [class.active]="currentMode === 2">
-              <input type="radio" name="options" id="option1" autocomplete="off" [attr.checked]="currentMode === 2" (click)="onChangeMode(2)"> Custom
-            </label>
+        <div class="linear-box-content">
+          <div class="row">
+            <div class="col-12">
+              <div class="btn-group btn-group-toggle mb-1" data-toggle="buttons">
+                <label class="btn btn-sm btn-outline-secondary text-uppercase" [class.active]="currentMode === 0">
+                  <input type="radio" name="options" id="option1" autocomplete="off" [attr.checked]="currentMode === 0" (click)="onChangeMode(0)"> Normal
+                </label>
+                <label class="btn btn-sm btn-outline-secondary text-uppercase" [class.active]="currentMode === 1">
+                  <input type="radio" name="options" id="option1" autocomplete="off" [attr.checked]="currentMode === 1" (click)="onChangeMode(1)"> Equipo
+                </label>
+                <label class="btn btn-sm btn-outline-secondary text-uppercase" [class.active]="currentMode === 2">
+                  <input type="radio" name="options" id="option1" autocomplete="off" [attr.checked]="currentMode === 2" (click)="onChangeMode(2)"> Custom
+                </label>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <div class="linear-box-wrapper">
+        <small class="linear-box-top-text d-block text-muted text-uppercase">
+          <fa-icon [icon]="['fas', 'eye']"></fa-icon> Visibilidad
+        </small>
+
+        <div class="linear-box-content">
+          <racer-race-participants-visibility
+            [raceParticipants]="raceParticipants"
+            [currentMode]="currentMode"
+            [searchText]="searchText"
+            [invisibleRaceParticipantNumbers]="invisibleRaceParticipantNumbers"
+            [dimmedRaceParticipantNumbers]="dimmedRaceParticipantNumbers"
+            [markedRaceParticipantNumbers]="markedRaceParticipantNumbers"></racer-race-participants-visibility>
+        </div>
+
+        <div class="linear-box-content">
+          <racer-car-brands-visibility
+            [carBrands]="carBrands"
+            [currentMode]="currentMode"
+            [searchText]="searchText"
+            (visibility)="onCarBrandsVisibilityChange($event)"></racer-car-brands-visibility>
+        </div>
+      </div>
+    </div>
+
+    <div class="m-4">
+      <input type="text"
+        class="form-control form-control-sm bg-transparent text-uppercase"
+        placeholder="Buscar..."
+        [(ngModel)]="searchText"
+        (keydown.enter)="onSearchKeydownEnter($event)">
     </div>
   </div>
-
-  <div class="linear-box-wrapper">
-    <small class="linear-box-top-text d-block text-muted text-uppercase">
-      <fa-icon [icon]="['fas', 'eye']"></fa-icon> Visibilidad
-    </small>
-
-    <div class="linear-box-content">
-      <racer-race-participants-visibility
-        [raceParticipants]="raceParticipants"
-        [currentMode]="currentMode"
-        [searchText]="searchText"
-        [invisibleRaceParticipantNumbers]="invisibleRaceParticipantNumbers"
-        [dimmedRaceParticipantNumbers]="dimmedRaceParticipantNumbers"
-        [markedRaceParticipantNumbers]="markedRaceParticipantNumbers"></racer-race-participants-visibility>
-    </div>
-
-    <div class="linear-box-content">
-      <racer-car-brands-visibility
-        [carBrands]="carBrands"
-        [currentMode]="currentMode"
-        [searchText]="searchText"
-        (visibility)="onCarBrandsVisibilityChange($event)"></racer-car-brands-visibility>
-    </div>
-  </div>
-</div>
-
-<div class="m-4">
-  <input type="text"
-    class="form-control form-control-sm bg-transparent text-uppercase"
-    placeholder="Buscar..."
-    [(ngModel)]="searchText"
-    (keydown.enter)="onSearchKeydownEnter($event)">
 </div>

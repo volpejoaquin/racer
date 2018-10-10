@@ -8,6 +8,7 @@ import { RaceParticipantsVisibilityComponent } from './race-participants-visibil
 import { CarBrandComponent } from './car-brand/car-brand.component';
 import { RaceWeekendsComponent } from './race-weekends/race-weekends.component';
 import { CarBrandsVisibilityComponent } from './car-brands-visibility/car-brands-visibility.component';
+import { CircuitVariantDrawComponent } from './circuit-variant-draw/circuit-varitant-draw.component';
 
 export const SHARED_COMPONENTS: any[] = [
   PartialLapTimeComponent,
@@ -19,7 +20,8 @@ export const SHARED_COMPONENTS: any[] = [
   RaceParticipantsVisibilityComponent,
   CarBrandComponent,
   RaceWeekendsComponent,
-  CarBrandsVisibilityComponent
+  CarBrandsVisibilityComponent,
+  CircuitVariantDrawComponent
 ];
 
 export * from './partial-lap-time/partial-lap-time.component';
@@ -32,3 +34,4 @@ export * from './race-participants-visibility/race-participants-visibility.compo
 export * from './car-brand/car-brand.component';
 export * from './race-weekends/race-weekends.component';
 export * from './car-brands-visibility/car-brands-visibility.component';
+export * from './circuit-variant-draw/circuit-varitant-draw.component';

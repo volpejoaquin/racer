@@ -42,7 +42,7 @@ export class TimingUiBarComponent implements OnInit, OnChanges {
   handleKeyboardEvent(event: KeyboardEvent) {
     const keyCode = event.which || event.keyCode;
     switch (keyCode) {
-      case 77:
+      case 189:
         this.nextUIMode();
         break;
     }

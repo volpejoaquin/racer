@@ -1,5 +1,5 @@
 // angular
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 
 // models
@@ -22,7 +22,17 @@ export class TimingSecondaryBarComponent implements OnInit {
   @Input() raceParticipants: RaceParticipant[];
 
   isExpanded = false;
-  isUIExpanded = false;
+  isUIExpanded = true;
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    const keyCode = event.which || event.keyCode;
+    switch (keyCode) {
+      case 187:
+        this.isUIExpanded = !this.isUIExpanded;
+        break;
+    }
+  }
 
   constructor(private store: Store<fromTiming.State>) {
   }
