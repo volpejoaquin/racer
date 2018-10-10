@@ -1,5 +1,15 @@
 // angular
-import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
+import {
+  ElementRef,
+  Component,
+  OnInit,
+  OnChanges,
+  Input,
+  Output,
+  EventEmitter,
+  HostListener,
+  ViewChild
+} from '@angular/core';
 
 // libs
 
@@ -23,11 +33,26 @@ import {
 })
 export class TrackActivityTimingComponent implements OnInit, OnChanges {
   @Input() trackActivity: TrackActivity;
+  @ViewChild('selectFileInput') selectFileInput: ElementRef;
   @Output() raceParticipantsTrackActivities = new EventEmitter<RaceParticipantTrackActivity[]>();
 
   private readerHelper = new FileReaderHelper();
   private importHelper = new ImportTimesHelper();
   private logHelper = new LogHelper(false);
+
+  @HostListener('document:keydown', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) {
+    const keyCode = event.which || event.keyCode;
+    const shiftKey = event.shiftKey;
+
+    switch (keyCode) {
+      case 73:
+        if (shiftKey && this.selectFileInput) {
+          this.selectFileInput.nativeElement.click();
+        }
+        break;
+    }
+  }
 
   ngOnInit() {
     // TODO: Completar esta pantalla con tiempos importados anteriormente

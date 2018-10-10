@@ -2,8 +2,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
-import { catchError, map, toArray } from 'rxjs/operators';
-import { Database } from '@ngrx/db';
 import * as lodash from 'lodash';
 
 // store
@@ -37,47 +35,20 @@ export class DummyComponent implements OnInit {
 
   private raceWeekend$: Observable<IRaceWeekend>;
 
-  constructor(
-    private store: Store<fromRoot.State>,
-    private db: Database) {
+  constructor(private store: Store<fromRoot.State>) {
   }
 
   ngOnInit() {
-    this.db.open('racer_app').subscribe((response: any) => {
-      console.log('[DATABASE INFO] ', response);
+    // TODO: REMOVE THIS
+    const reload = false;
 
-      // TODO: REMOVE THIS
-      const reload = true;
-
-      if (reload) {
-        this.raceWeekends = RACE_WEEKENDS_SAMPLE;
-        this.db.insert('race_weekends', this.raceWeekends).pipe(
-          toArray(),
-          map(
-            (raceWeekends: IRaceWeekend[]) => {
-              this.loadRaceWeekends(raceWeekends);
-            }
-          ),
-          catchError((res: any) => {
-            console.log('ERROR', res);
-            return of(false);
-          })
-        ).subscribe();
-      } else {
-        this.db.query('race_weekends').pipe(
-          toArray(),
-          map(
-            (raceWeekends: IRaceWeekend[]) => {
-              this.loadRaceWeekends(raceWeekends);
-            }
-          ),
-          catchError((res: any) => {
-            console.log('ERROR', res);
-            return of(false);
-          })
-        ).subscribe();
-        }
-    });
+    if (reload) {
+      this.raceWeekends = RACE_WEEKENDS_SAMPLE;
+      localStorage.setItem('race_weekends', JSON.stringify(this.raceWeekends));
+    } else {
+      this.raceWeekends = JSON.parse(localStorage.getItem('race_weekends'));
+    }
+    this.loadRaceWeekends(this.raceWeekends);
 
     this.raceWeekend$ = this.store.pipe(select(fromTiming.getSelectedRaceWeekend));
     this.raceWeekend$.subscribe((selectedRaceWeekend: IRaceWeekend) => {
@@ -92,7 +63,7 @@ export class DummyComponent implements OnInit {
     raceParticipantsTrackActivities$.subscribe((_raceParticipantsTrackActivities: RaceParticipantTrackActivity[]) => {
 
       if (this.raceWeekends) {
-        this.db.insert('race_weekends', this.raceWeekends).subscribe();
+        localStorage.setItem('race_weekends', JSON.stringify(this.raceWeekends));
       }
     });
   }

@@ -5,7 +5,6 @@ import { Store, select } from '@ngrx/store';
 // models
 import {
   TrackActivity,
-  IRaceWeekend,
   RaceParticipant,
   RaceParticipantTrackActivity
 } from '../../../../shared/model';
@@ -22,8 +21,8 @@ export class TimingSecondaryBarComponent implements OnInit {
   @Input() trackActivity: TrackActivity;
   @Input() raceParticipants: RaceParticipant[];
 
-  isExpanded = true;
-  isUIExpanded = true;
+  isExpanded = false;
+  isUIExpanded = false;
 
   constructor(private store: Store<fromTiming.State>) {
   }
