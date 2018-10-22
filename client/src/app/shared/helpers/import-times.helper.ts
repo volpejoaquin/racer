@@ -42,7 +42,9 @@ export class ImportTimesHelper {
       // check if row is not empty
       if (!lodash.isEmpty(row)) {
         firstColValue = this.getRowValue(row, 0);
-        this.logHelper.log('Parsing row:' + row);
+        this.logHelper.log('Parsing row');
+        this.logHelper.log(row);
+
         // check first column
         if (!insideTimes && firstColValue && firstColValue === HEADERS[0]) { // TODO: compare all headers values
           insideTimes = true;
@@ -54,7 +56,7 @@ export class ImportTimesHelper {
             this.logHelper.log('Parsing row...');
 
             // parse left row
-            leftRow = row.slice(0, PARTICIPANT_COLS_COUNT);
+            leftRow = row.slice(0, PARTICIPANT_COLS_COUNT + 1);
             this.logHelper.log('Left row: ' + JSON.stringify(leftRow));
 
             if (leftRow && leftRow.length > 0 && !this.isEmptyRow(leftRow)) {
@@ -62,7 +64,7 @@ export class ImportTimesHelper {
             }
 
             // parse right row
-            rightRow = row.slice(PARTICIPANT_COLS_COUNT + 1, row.length);
+            rightRow = row.slice(PARTICIPANT_COLS_COUNT + 2, row.length);
             this.logHelper.log('Right row: ' + JSON.stringify(rightRow));
 
             if (rightRow && rightRow.length > 0 && !this.isEmptyRow(rightRow)) {
@@ -79,7 +81,7 @@ export class ImportTimesHelper {
       row.id = index + 1;
     });
 
-    this.logHelper.log(JSON.stringify(response));
+    // this.logHelper.log(JSON.stringify(response));
 
     // const copy = lodash.clone(response);
     // this.logHelper.log(JSON.stringify(copy.slice(0, response.length / 2)));
@@ -170,11 +172,13 @@ export class ImportTimesHelper {
 
     this.logHelper.log('New track lap... ' + JSON.stringify(trackLap));
 
-    let raceParticipantNumber = lodash.toNumber(row[0]);
+
+    // let raceParticipantNumber = lodash.toNumber(row[0]);
+    const raceParticipantNumber = row[0];
 
     // check number is not set
     if (!lodash.isNumber(raceParticipantNumber)) {
-      raceParticipantNumber = 0;
+      // raceParticipantNumber = 0;
       this.logHelper.log('WARNING ! Invalid race participant number: ' + JSON.stringify(row));
     }
 
@@ -255,6 +259,10 @@ export class ImportTimesHelper {
   }
 
   private calculateTime(colString: string) {
+    if (lodash.isNumber(colString)) {
+      return colString;
+    }
+
     let time;
 
     this.logHelper.log('Parsing time... ' + colString);

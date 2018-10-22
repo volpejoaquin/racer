@@ -616,5 +616,61 @@ export const TP_C2_RACE_PARTICIPANTS: RaceParticipant[] = [
       last_name: "Dattilo"
     },
     number: 47
+  },
+  {
+    team: {
+      name: "DUMMY"
+    },
+    car: {
+      name: "CELTA",
+      brand: CarBrand.chevroletCelta
+    },
+    driver: {
+      name: "Santiago",
+      last_name: "Tambuccci"
+    },
+    number: 88
+  },
+  {
+    team: {
+      name: "DUMMY"
+    },
+    car: {
+      name: "CORSA",
+      brand: CarBrand.chevroletCorsa
+    },
+    driver: {
+      name: "Franco",
+      last_name: "Fauret"
+    },
+    number: 61
+  },
+  {
+    team: {
+      name: "DUMMY"
+    },
+    car: {
+      name: "CELTA", // TODO: Agregar SUZIKI FUN
+      brand: CarBrand.chevroletCelta
+    },
+    driver: {
+      name: "Diego",
+      last_name: "Vaño"
+    },
+    number: 42
+  },
+  {
+    team: {
+      name: "DUMMY"
+    },
+    car: {
+      name: "KA",
+      brand: CarBrand.fordKa
+    },
+    driver: {
+      name: "Gabriel",
+      last_name: "KUHN"
+    },
+    number: 72
   }
 ];

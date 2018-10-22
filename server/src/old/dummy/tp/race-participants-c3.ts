@@ -579,7 +579,49 @@ export const TP_C3_RACE_PARTICIPANTS_GROUP_B: RaceParticipant[] = [{
     name: "Rodrigo",
     last_name: "Avale"
   },
-  number: 86}];
+  number: 86},
+  {
+    team: {
+      name: "DUMMY"
+    },
+    car: {
+      name: "CLIO",
+      brand: CarBrand.renaultClio
+    },
+    driver: {
+      name: "Fernando",
+      last_name: "Moni"
+    },
+    number: 46
+  },
+  {
+    team: {
+      name: "DUMMY"
+    },
+    car: {
+      name: "CLIO",
+      brand: CarBrand.renaultClio
+    },
+    driver: {
+      name: "Leonardo",
+      last_name: "Rama"
+    },
+    number: 36
+  },
+  {
+    team: {
+      name: "DUMMY"
+    },
+    car: {
+      name: "CLIO",
+      brand: CarBrand.renaultClio
+    },
+    driver: {
+      name: "Alberto",
+      last_name: "Jaime"
+    },
+    number: 33
+  }];
 
 export const TP_C3_RACE_PARTICIPANTS_GROUP_B_NUMBERS: number[] = 
   lodash.map(TP_C3_RACE_PARTICIPANTS_GROUP_B, (data: RaceParticipant) => data.number);

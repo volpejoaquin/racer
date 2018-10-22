@@ -18,7 +18,7 @@
 
   <racer-timing-primary-bar
   [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async"
-  [title]="currentViewNumber === 0 ? 'Tiempos' : currentViewNumber === 1 ? 'PARCIALES' : currentViewNumber === 2 ? 'VUELTAS' : 'MEJORES POR PARCIAL'"></racer-timing-primary-bar>
+  [title]="currentViewNumber === 0 ? 'Tiempos' : currentViewNumber === 1 ? 'PARCIALES' : currentViewNumber === 2 ? 'MEJORES POR PARCIAL' : 'VUELTAS'"></racer-timing-primary-bar>
 
   <div *ngIf="raceParticipantsTrackActivities$ | async as raceParticipantsTrackActivities; else empty">
     <racer-leaderboard [trackActivities]="raceParticipantsTrackActivities" [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async" [trackActivity]="trackActivity" *ngIf="currentViewNumber === 0"></racer-leaderboard>

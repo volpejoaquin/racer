@@ -15,50 +15,6 @@ import {
 
 export const F08_TP_C2_FRIDAY_TRACK_ACTIVITIES: TrackActivity[] = [
   {
-    id: '201',
-    name: 'Comunitarias 1 grupo "B"',
-    short_name: 'COM1 "B"',
-    date: '2018-10-12T09:55:00.000-03:00',
-    duration: 20,
-    laps: 0,
-    state: TrackActivityState.waiting,
-    type: TrackActivityType.practice,
-    race_participants_track_activities: [],
-    car_division: TP_C2_CAR_DIVISION,
-    circuit_variant: F08_TP_C2_CIRCUIT_VARIANT,
-    related_track_activity_ids: ['202', '203', '210'],
-    enabled_race_participant_numbers: F08_TP_C2_RACE_PARTICIPANTS_NUMBER_GROUP_B
-  },
-  {
-    id: '202',
-    name: 'Comunitarias 1 grupo "A"',
-    short_name: 'COM1 "A"',
-    date: '2018-10-12T10:20:00.000-03:00',
-    duration: 20,
-    laps: 0,
-    state: TrackActivityState.waiting,
-    type: TrackActivityType.practice,
-    race_participants_track_activities: [],
-    car_division: TP_C2_CAR_DIVISION,
-    circuit_variant: F08_TP_C2_CIRCUIT_VARIANT,
-    related_track_activity_ids: ['201', '203', '210'],
-    enabled_race_participant_numbers: F08_TP_C2_RACE_PARTICIPANTS_NUMBER_GROUP_A
-  },
-  {
-    id: '203',
-    name: 'Comunitarias 1',
-    short_name: 'COM1',
-    date: '2018-10-12T10:40:00.000-03:00',
-    duration: 20,
-    laps: 0,
-    state: TrackActivityState.waiting,
-    type: TrackActivityType.practice,
-    race_participants_track_activities: [],
-    car_division: TP_C2_CAR_DIVISION,
-    circuit_variant: F08_TP_C2_CIRCUIT_VARIANT,
-    related_track_activity_ids: ['201', '202', '210']
-  },
-  {
     id: '204',
     name: 'Comunitarias 2 grupo "B"',
     short_name: 'COM2 "B"',
