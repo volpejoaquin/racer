@@ -1,1 +1,1 @@
-export * from '../../../../../server/src/old/dummy/';
+export * from '../../../../../socket-server/src/old/dummy/';

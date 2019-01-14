@@ -1,2 +1,2 @@
-export * from '../../../../../server/src/old/model';
-export * from '../../../../../server/src/interfaces';
+export * from '../../../../../socket-server/src/old/model';
+export * from '../../../../../socket-server/src/interfaces';

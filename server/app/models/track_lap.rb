@@ -1,0 +1,2 @@
+class TrackLap < ApplicationRecord
+end
