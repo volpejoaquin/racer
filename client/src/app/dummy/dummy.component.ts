@@ -83,15 +83,11 @@ export class DummyComponent implements OnInit {
         }
       });
     });
-
-    store.pipe(select(fromTiming.getBestRaceParticipantTrackActivity)).subscribe((all: any) => {
-      console.log(all);
-    });
   }
 
   ngOnInit() {
     // TODO: REMOVE THIS
-    const reload = false;
+    const reload = true;
 
     if (reload) {
       this.raceWeekends = RACE_WEEKENDS_SAMPLE;
