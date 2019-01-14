@@ -1,5 +1,5 @@
 // libs
-import * as lodash from 'lodash';
+// import * as lodash from 'lodash';
 
 // models
 import { RaceParticipant, CarBrand } from './../../model/race-participant.model';
@@ -279,7 +279,8 @@ export const TP_C3_RACE_PARTICIPANTS_GROUP_A: RaceParticipant[] = [{
   number: 137
 }];
 
-export const TP_C3_RACE_PARTICIPANTS_GROUP_A_NUMBERS: number[] = lodash.map(TP_C3_RACE_PARTICIPANTS_GROUP_A, (data: RaceParticipant) => data.number);
+export const TP_C3_RACE_PARTICIPANTS_GROUP_A_NUMBERS: number[] = [];
+// lodash.map(TP_C3_RACE_PARTICIPANTS_GROUP_A, (data: RaceParticipant) => data.number);
 
 export const TP_C3_RACE_PARTICIPANTS_GROUP_B: RaceParticipant[] = [{
   team: {
@@ -623,8 +624,8 @@ export const TP_C3_RACE_PARTICIPANTS_GROUP_B: RaceParticipant[] = [{
     number: 33
   }];
 
-export const TP_C3_RACE_PARTICIPANTS_GROUP_B_NUMBERS: number[] = 
-  lodash.map(TP_C3_RACE_PARTICIPANTS_GROUP_B, (data: RaceParticipant) => data.number);
+export const TP_C3_RACE_PARTICIPANTS_GROUP_B_NUMBERS: number[] = [];
+  // lodash.map(TP_C3_RACE_PARTICIPANTS_GROUP_B, (data: RaceParticipant) => data.number);
 
 export const TP_C3_RACE_PARTICIPANTS: RaceParticipant[] = TP_C3_RACE_PARTICIPANTS_GROUP_A.concat(TP_C3_RACE_PARTICIPANTS_GROUP_B);
 export const TP_C3_RACE_PARTICIPANTS_NUMBERS: number[] = TP_C3_RACE_PARTICIPANTS_GROUP_A_NUMBERS.concat(TP_C3_RACE_PARTICIPANTS_GROUP_B_NUMBERS);
