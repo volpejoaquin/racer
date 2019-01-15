@@ -10,7 +10,7 @@ import { RaceWeekendActions } from '../../../timing/actions';
 
 // models
 import {
-  IRaceWeekend
+  RaceWeekend
 } from '../../../shared/model';
 
 // dummy data
@@ -21,14 +21,14 @@ import {
   styleUrls: ['./race-weekends.component.scss']
 })
 export class RaceWeekendsComponent implements OnInit, OnChanges {
-  @Input() raceWeekends: IRaceWeekend[];
-  selectedRaceWeekend: IRaceWeekend;
+  @Input() raceWeekends: RaceWeekend[];
+  selectedRaceWeekend: RaceWeekend;
 
   constructor(private store: Store<fromTiming.State>) {
   }
 
   ngOnInit() {
-    this.store.select(fromTiming.getSelectedRaceWeekend).subscribe((rWeekend: IRaceWeekend) => {
+    this.store.select(fromTiming.getSelectedRaceWeekend).subscribe((rWeekend: RaceWeekend) => {
       this.selectedRaceWeekend = rWeekend;
     });
   }
@@ -37,11 +37,11 @@ export class RaceWeekendsComponent implements OnInit, OnChanges {
     // TODO: Scroll to selectedRaceWeekend
   }
 
-  onSelectRaceWeekend(raceWeekend: IRaceWeekend) {
+  onSelectRaceWeekend(raceWeekend: RaceWeekend) {
     this.selectRaceWeekend(raceWeekend.id);
   }
 
-  isSelectedRaceWeekend(raceWeekend: IRaceWeekend) {
+  isSelectedRaceWeekend(raceWeekend: RaceWeekend) {
     return this.selectedRaceWeekend && this.selectedRaceWeekend.id === raceWeekend.id;
   }
 

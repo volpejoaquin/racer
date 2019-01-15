@@ -1,6 +1,6 @@
-import { IRaceWeekend } from './../../interfaces/';
+import { RaceWeekend } from './../../interfaces/';
 
-const raceweekends: IRaceWeekend[] = [
+const raceweekends: RaceWeekend[] = [
   {
     id: '1',
     name: 'Fecha Nº 7',

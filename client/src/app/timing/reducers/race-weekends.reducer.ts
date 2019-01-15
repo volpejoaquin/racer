@@ -3,20 +3,20 @@ import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import * as lodash from 'lodash';
 
 // models
-import { IRaceWeekend } from '../../shared/model';
+import { RaceWeekend } from '../../shared/model';
 
 // actions
 import {
   RaceWeekendActions
 } from './../actions/';
-import { RACE_WEEKENDS_SAMPLE } from '../../shared/dummy';
+import { RACE_WEEKENDS_SAMPLE } from '../../dummy';
 
-export interface State extends EntityState<IRaceWeekend> {
+export interface State extends EntityState<RaceWeekend> {
   selectedRaceWeekendId: string | null;
 }
 
-export const adapter: EntityAdapter<IRaceWeekend> = createEntityAdapter<IRaceWeekend>({
-  selectId: (raceWeekend: IRaceWeekend) => raceWeekend.id,
+export const adapter: EntityAdapter<RaceWeekend> = createEntityAdapter<RaceWeekend>({
+  selectId: (raceWeekend: RaceWeekend) => raceWeekend.id,
   sortComparer: false
 });
 
@@ -43,7 +43,7 @@ export function reducer(
     case RaceWeekendActions.RaceWeekendActionTypes.LoadRaceWeekends: {
 
       const newState = adapter.addAll(action.payload, state);
-      const list: IRaceWeekend[] = Object.values(newState.entities);
+      const list: RaceWeekend[] = Object.values(newState.entities);
       const selectedRaceWeekendId =  list && list.length > 0 ? list[0].id : null;
 
       return {

@@ -9,7 +9,7 @@ import * as fromTiming from './../../../timing/reducers/';
 
 // models
 import {
-  IRaceWeekend
+  RaceWeekend
 } from '../../../shared/model';
 
 @Component({
@@ -18,13 +18,13 @@ import {
   styleUrls: ['./admin-home.component.scss']
 })
 export class AdminHomeComponent implements OnInit, OnChanges {
-  raceWeekend: IRaceWeekend;
+  raceWeekend: RaceWeekend;
 
   constructor(private store: Store<fromTiming.State>) {
   }
 
   ngOnInit() {
-    this.store.select(fromTiming.getSelectedRaceWeekend).subscribe((rWeekend: IRaceWeekend) => {
+    this.store.select(fromTiming.getSelectedRaceWeekend).subscribe((rWeekend: RaceWeekend) => {
       this.raceWeekend = rWeekend;
     });
   }

@@ -2,7 +2,7 @@ import * as socketIo from 'socket.io';
 import * as lodash from 'lodash';
 
 // models
-import { RacerSocketEvent, IRaceWeekend } from './../interfaces/';
+import { RacerSocketEvent, RaceWeekend } from './../interfaces/';
 import { RaceWeekend } from './../models/';
 
 export class SocketSession {
@@ -58,9 +58,9 @@ export class SocketSession {
       }
 
       let ids: string[] = [],
-        entities: {[key: string]: IRaceWeekend} = {};
+        entities: {[key: string]: RaceWeekend} = {};
 
-      raceWeekends.forEach((raceWeekend: IRaceWeekend) => {
+      raceWeekends.forEach((raceWeekend: RaceWeekend) => {
         ids.push(raceWeekend.id);
         entities[raceWeekend.id] = raceWeekend;
       });

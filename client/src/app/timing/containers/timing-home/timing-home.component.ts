@@ -13,7 +13,7 @@ import {
 import {
   TrackActivity,
   RaceParticipantTrackActivity,
-  IRaceWeekend,
+  RaceWeekend,
   RaceParticipant
 } from '../../../shared/model/';
 
@@ -26,7 +26,7 @@ import { BaseTimingComponent } from '../../components/base-timing/base-timing.co
   styleUrls: ['./timing-home.component.scss']
 })
 export class TimingHomeComponent extends BaseTimingComponent {
-  raceWeekend$: Observable<IRaceWeekend>;
+  raceWeekend$: Observable<RaceWeekend>;
   trackActivity$: Observable<TrackActivity>;
   raceParticipantsTrackActivities$: Observable<RaceParticipantTrackActivity[]>;
   bestRaceParticipantTrackActivity$: Observable<RaceParticipantTrackActivity>;

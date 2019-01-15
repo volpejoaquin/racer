@@ -12,7 +12,7 @@ import { RaceParticipantTrackActivityActions } from './../../../../../timing/act
 
 // models
 import {
-  IRaceWeekend,
+  RaceWeekend,
   TrackActivity,
   RaceParticipantTrackActivity
 } from './../../../../../shared/model';
@@ -26,17 +26,17 @@ import { Observable } from 'rxjs';
   styleUrls: ['./timing-secondary-bar-extra.component.scss']
 })
 export class TimingSecondaryBarExtraComponent implements OnInit, OnChanges {
-  raceWeekends$: Observable<IRaceWeekend[]>;
+  raceWeekends$: Observable<RaceWeekend[]>;
   trackActivities$: Observable<TrackActivity>;
 
-  selectedRaceWeekend: IRaceWeekend;
+  selectedRaceWeekend: RaceWeekend;
   selectedTrackActivity: TrackActivity;
 
   constructor(private store: Store<fromTiming.State>) {
   }
 
   ngOnInit() {
-    this.store.select(fromTiming.getSelectedRaceWeekend).subscribe((rWeekend: IRaceWeekend) => {
+    this.store.select(fromTiming.getSelectedRaceWeekend).subscribe((rWeekend: RaceWeekend) => {
       this.selectedRaceWeekend = rWeekend;
     });
     this.store.select(fromTiming.getSelectedTrackActivity).subscribe((tActivity: TrackActivity) => {

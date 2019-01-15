@@ -8,19 +8,11 @@ import { catchError, map, toArray } from 'rxjs/operators';
 import { SocketService } from './core/service/socket.service';
 
 // store
-import * as fromRoot from './core/reducers/';
 import * as fromTiming from './timing/reducers/';
 import {
   LoadRaceParticipantTrackActivities,
   SetBestRaceParticipantTrackActivity
 } from './timing/actions/race-participant-track-activity.actions';
-import { SelectRaceWeekend } from './timing/actions/race-weekend.actions';
-
-// models
-import { IRaceWeekend } from './shared/model';
-
-// dummy data
-import { RACE_WEEKENDS_SAMPLE } from './shared/dummy';
 
 @Component({
   selector: 'racer-root',
@@ -30,8 +22,10 @@ import { RACE_WEEKENDS_SAMPLE } from './shared/dummy';
 export class AppComponent implements OnInit {
   socketStatus$: Observable<string>;
 
-  constructor(private socket: SocketService,
-    private store: Store<fromTiming.State>) {
+  constructor(
+    private socket: SocketService,
+    private store: Store<fromTiming.State>
+  ) {
   }
 
   ngOnInit() {

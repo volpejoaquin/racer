@@ -14,7 +14,7 @@ import {
 // helpers
 import { LogHelper } from './log.helper';
 import { TimingHelper } from './timing.helper';
-import { TP_C1_RACE_PARTICIPANTS, TP_C2_RACE_PARTICIPANTS, TP_C3_RACE_PARTICIPANTS } from '../dummy';
+import { TP_C1_RACE_PARTICIPANTS, TP_C2_RACE_PARTICIPANTS, TP_C3_RACE_PARTICIPANTS } from './../../dummy';
 
 const CDA_HEADERS = ['Auto', 'Sector 1', 'Sector 2', 'Sector 3', 'Sector 4', 'Tie.Vta.'];
 const HEADERS = CDA_HEADERS;

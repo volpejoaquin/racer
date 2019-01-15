@@ -18,7 +18,7 @@ import { MarkRaceParticipant } from '../core/actions/ui.actions';
 
 // models
 import {
-  IRaceWeekend,
+  RaceWeekend,
   TrackActivity,
   RaceParticipantTrackActivity,
   TrackLap,
@@ -26,7 +26,7 @@ import {
 } from './../shared/model';
 
 // dummy data
-import { RACE_WEEKENDS_SAMPLE } from '../shared/dummy';
+import { RACE_WEEKENDS_SAMPLE } from './../dummy';
 import { LiveTiming } from './live-timing';
 
 const LIVE_TIMING_KEY_CODES = [76, 73, 86, 69];
@@ -39,12 +39,12 @@ let CURRENT_CODES = [];
 })
 export class DummyComponent implements OnInit {
 
-  private raceWeekends: IRaceWeekend[];
+  private raceWeekends: RaceWeekend[];
   private trackActivities: TrackActivity[];
   private raceParticipants: RaceParticipant[] = [];
   private bestRaceParticipantTrackActivity: RaceParticipantTrackActivity;
 
-  private raceWeekend$: Observable<IRaceWeekend>;
+  private raceWeekend$: Observable<RaceWeekend>;
   private bestRaceParticipantTrackActivity$: Observable<RaceParticipantTrackActivity>;
   private raceParticipantsTrackActivities$: Observable<RaceParticipantTrackActivity[]>;
 
@@ -98,7 +98,7 @@ export class DummyComponent implements OnInit {
     this.loadRaceWeekends(this.raceWeekends);
 
     this.raceWeekend$ = this.store.pipe(select(fromTiming.getSelectedRaceWeekend));
-    this.raceWeekend$.subscribe((selectedRaceWeekend: IRaceWeekend) => {
+    this.raceWeekend$.subscribe((selectedRaceWeekend: RaceWeekend) => {
 
       if (selectedRaceWeekend) {
         const trackActivities: TrackActivity[] = this.getTrackActivities(selectedRaceWeekend);
@@ -116,13 +116,13 @@ export class DummyComponent implements OnInit {
     });
   }
 
-  private loadRaceWeekends(raceWeekends: IRaceWeekend[]) {
+  private loadRaceWeekends(raceWeekends: RaceWeekend[]) {
     this.raceWeekends = raceWeekends;
 
-    // const raceWeekendsCopy: IRaceWeekend[] = [];
-    // let raceWeekend: IRaceWeekend;
+    // const raceWeekendsCopy: RaceWeekend[] = [];
+    // let raceWeekend: RaceWeekend;
 
-    // raceWeekends.forEach((rWeekend: IRaceWeekend) => {
+    // raceWeekends.forEach((rWeekend: RaceWeekend) => {
       // raceWeekend = lodash.clone(rWeekend);
       // delete raceWeekend.track_activities; TODO: REVIEW THIS
       // raceWeekendsCopy.push(raceWeekend);
@@ -152,8 +152,8 @@ export class DummyComponent implements OnInit {
     this.store.dispatch(new ImportRaceParticipantTrackActivities(raceParticipantstrackActivities));
   }
 
-  private getTrackActivities(raceWeekend: IRaceWeekend) {
-    const rWeekend: IRaceWeekend = lodash.find(this.raceWeekends, (rW: IRaceWeekend) => {
+  private getTrackActivities(raceWeekend: RaceWeekend) {
+    const rWeekend: RaceWeekend = lodash.find(this.raceWeekends, (rW: RaceWeekend) => {
       return rW.id === raceWeekend.id;
     });
     return rWeekend && rWeekend.track_activities ? rWeekend.track_activities : [];

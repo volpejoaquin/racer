@@ -2,7 +2,7 @@
 import { Action } from '@ngrx/store';
 
 // models
-import { IRaceWeekend } from '../../shared/model';
+import { RaceWeekend } from '../../shared/model';
 
 export enum RaceWeekendActionTypes {
   SelectRaceWeekend = '[APP] Select Race Weekend',
@@ -18,7 +18,7 @@ export class SelectRaceWeekend implements Action {
 export class LoadRaceWeekends implements Action {
   readonly type = RaceWeekendActionTypes.LoadRaceWeekends;
 
-  constructor(public payload: IRaceWeekend[]) {}
+  constructor(public payload: RaceWeekend[]) {}
 }
 
 export type RaceWeekendActionsUnion = SelectRaceWeekend;

@@ -14,7 +14,6 @@ import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AdminModule } from './admin/admin.module';
 import { TimingModule } from './timing/timing.module';
-import { DataAcquisitionModule } from './data-acquisition/data-acquisition.module';
 import { SharedModule } from './shared/shared.module';
 import { DummyModule } from './dummy/dummy.module';
 
@@ -43,7 +42,6 @@ registerLocaleData(localeESAR, language);
     CoreModule,
     AdminModule,
     TimingModule,
-    DataAcquisitionModule,
 
     SharedModule,
 
