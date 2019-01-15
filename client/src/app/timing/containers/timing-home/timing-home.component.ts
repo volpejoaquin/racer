@@ -1,7 +1,9 @@
 // angular
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, OnDestroy } from '@angular/core';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
 // modules
 import * as fromRoot from './../../reducers/';
@@ -17,58 +19,82 @@ import {
   RaceParticipant
 } from '../../../shared/model/';
 
-// components
-import { BaseTimingComponent } from '../../components/base-timing/base-timing.component';
-
 @Component({
   selector: 'racer-timing-home',
   templateUrl: './timing-home.component.html',
   styleUrls: ['./timing-home.component.scss']
 })
-export class TimingHomeComponent extends BaseTimingComponent {
+export class TimingHomeComponent implements OnDestroy {
   raceWeekend$: Observable<RaceWeekend>;
   trackActivity$: Observable<TrackActivity>;
   raceParticipantsTrackActivities$: Observable<RaceParticipantTrackActivity[]>;
   bestRaceParticipantTrackActivity$: Observable<RaceParticipantTrackActivity>;
 
   raceParticipants: RaceParticipant[];
+  title = 'Loading...'
 
-  currentViewNumber = parseInt(localStorage.getItem('currentViewNumber'), 10) || 0;
-  viewsCount = 4;
+  // private properties
+  private currentViewNumber = parseInt(localStorage.getItem('currentViewNumber'), 10) || 0;
+  private views = ['leaderboard', 'partials', 'best-per-partials', 'laps', 'analysis'];
+  private viewsCount = this.views.length;
+  private subscription: any;
 
   @HostListener('document:keydown', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     const keyCode = event.which || event.keyCode;
-    const shiftKey = event.shiftKey;
     switch (keyCode) {
       case 37:
-        this.currentViewNumber = this.currentViewNumber === 0 ? (this.viewsCount - 1) : ((this.currentViewNumber - 1) % this.viewsCount);
+        this.moveNext()
         break;
       case 39:
-        this.currentViewNumber = ((this.currentViewNumber + 1) % this.viewsCount);
+        this.movePrev();
         break;
     }
-
-    localStorage.setItem('currentViewNumber', '' + this.currentViewNumber);
   }
 
-  constructor(store: Store<fromRoot.State>) {
-    super(store);
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private store: Store<fromRoot.State>,
+  ) {
+    this.bindStore();
+    this.navigateToView();
 
-    this.raceWeekend$ = store.pipe(select(fromRoot.getSelectedRaceWeekend));
+    this.subscription = this.router.events.pipe(
+        filter(event => event instanceof NavigationEnd),
+        map(() => {
+          let child = this.activatedRoute.firstChild;
+          while (child) {
+            if (child.firstChild) {
+              child = child.firstChild;
+            } else if (child.snapshot.data && child.snapshot.data) {
+              return child.snapshot.data;
+            } else {
+              return null;
+            }
+          }
+          return null;
+        })
+      ).subscribe((data: any) => {
+        this.title = data.title;
+      });
+  }
 
-    this.trackActivity$ = store.pipe(select(fromRoot.getSelectedTrackActivity));
+  ngOnDestroy() {
+    if (this.subscription) {
+      this.subscription.destroy();
+    }
+  }
 
-    this.raceParticipantsTrackActivities$ = store.pipe(select(fromRoot.getRaceParticipantsTrackActivitiesArray));
+  // private methods
+  private bindStore() {
+    this.raceWeekend$ = this.store.pipe(select(fromRoot.getSelectedRaceWeekend));
 
-    this.bestRaceParticipantTrackActivity$ = store.pipe(select(fromRoot.getBestRaceParticipantTrackActivity));
+    this.trackActivity$ = this.store.pipe(select(fromRoot.getSelectedTrackActivity));
 
-    this.trackActivity$.subscribe((selectedTrackActivity: TrackActivity) => {
+    this.raceParticipantsTrackActivities$ = this.store.pipe(select(fromRoot.getRaceParticipantsTrackActivitiesArray));
 
-      if (selectedTrackActivity && selectedTrackActivity.race_participants_track_activities) {
-        store.dispatch(new LoadRaceParticipantTrackActivities(selectedTrackActivity.race_participants_track_activities));
-      }
-    });
+    this.bestRaceParticipantTrackActivity$ = this.store.pipe(select(fromRoot.getBestRaceParticipantTrackActivity));
 
     this.raceParticipantsTrackActivities$.subscribe((raceParticipantsTrackActivities: RaceParticipantTrackActivity[]) => {
       if (raceParticipantsTrackActivities) {
@@ -84,5 +110,24 @@ export class TimingHomeComponent extends BaseTimingComponent {
         });
       }
     });
+  }
+
+  private moveNext() {
+    this.currentViewNumber = this.currentViewNumber === 0 ? (this.viewsCount - 1) : ((this.currentViewNumber - 1) % this.viewsCount);
+
+    localStorage.setItem('currentViewNumber', '' + this.currentViewNumber);
+    this.navigateToView();
+  }
+
+  private movePrev() {
+    this.currentViewNumber = ((this.currentViewNumber + 1) % this.viewsCount);
+
+    localStorage.setItem('currentViewNumber', '' + this.currentViewNumber);
+    this.navigateToView();
+  }
+
+  private navigateToView() {
+    const viewPath = this.views[this.currentViewNumber];
+    this.router.navigate([viewPath], { relativeTo: this.activatedRoute});
   }
 }

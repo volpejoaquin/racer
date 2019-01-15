@@ -48,15 +48,7 @@ export function reducer(
     }
 
     case TrackActivityActions.TrackActivityActionTypes.LoadTrackActivities: {
-
-      const newState = adapter.addAll(action.payload, state);
-      const list: TrackActivity[] = Object.values(newState.entities);
-      const selectedTrackActivityId =  list && list.length > 0 ? list[0].id : null;
-
-      return {
-        ...newState,
-        selectedTrackActivityId: selectedTrackActivityId
-      };
+      return adapter.addAll(action.payload, state);
     }
 
     case RaceParticipantTrackActivityActions.RaceParticipantTrackActivityActionTypes.ImportRaceParticipantTrackActivities: {

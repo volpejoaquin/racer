@@ -9,7 +9,6 @@ import { RaceWeekend } from '../../shared/model';
 import {
   RaceWeekendActions
 } from './../actions/';
-import { RACE_WEEKENDS_SAMPLE } from '../../dummy';
 
 export interface State extends EntityState<RaceWeekend> {
   selectedRaceWeekendId: string | null;
@@ -20,11 +19,9 @@ export const adapter: EntityAdapter<RaceWeekend> = createEntityAdapter<RaceWeeke
   sortComparer: false
 });
 
-export let initialState: State = adapter.getInitialState({
+export const initialState: State = adapter.getInitialState({
   selectedRaceWeekendId: null
 });
-
-initialState = adapter.addAll(RACE_WEEKENDS_SAMPLE, initialState); // TODO: REVIEW THIS
 
 export function reducer(
   state = initialState,
@@ -41,15 +38,7 @@ export function reducer(
     }
 
     case RaceWeekendActions.RaceWeekendActionTypes.LoadRaceWeekends: {
-
-      const newState = adapter.addAll(action.payload, state);
-      const list: RaceWeekend[] = Object.values(newState.entities);
-      const selectedRaceWeekendId =  list && list.length > 0 ? list[0].id : null;
-
-      return {
-        ...newState,
-        selectedRaceWeekendId: selectedRaceWeekendId
-      };
+      return adapter.addAll(action.payload, state);
     }
 
     default: {

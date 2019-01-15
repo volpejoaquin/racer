@@ -21,16 +21,6 @@ const TRACK_ACTIVITY_DELAY = 5000; // time to track
 const LAP_PARTIALS_ESTIMATED_ERROR_MIN = [-200, -400, -500, -450];
 const LAP_PARTIALS_ESTIMATED_ERROR_MAX = [200, 400, 500, 450];
 
-const EMPTY_RACE_PARTICIPANT_TRACK_ACTIVITY: RaceParticipantTrackActivity = {
-  state: RaceParticipantTrackActivityState.on_pit,
-  race_participant: null,
-  laps: [],
-  laps_count: 0,
-  best_lap: null,
-  last_lap: null,
-  total_time: 0
-};
-
 export class LiveTiming {
   private trackActivity: TrackActivity;
   private participants: RaceParticipant[] = [];
@@ -91,6 +81,7 @@ export class LiveTiming {
       laps: [],
       laps_count: 0,
       best_lap: null,
+      best_lap_index: 0,
       last_lap: null,
       total_time: 0
     };

@@ -193,6 +193,7 @@ export class ImportTimesHelper {
         ],
         laps_count: 0,
         best_lap: null,
+        best_lap_index: 0,
         last_lap: null,
         total_time: trackLap.partial_lap ? 0 : trackLap.time
       };

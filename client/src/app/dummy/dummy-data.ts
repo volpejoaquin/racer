@@ -187,6 +187,7 @@ export const EMPTY_RACE_PARTICIPANT_TRACK_ACTIVITY: RaceParticipantTrackActivity
   laps: [],
   laps_count: 0,
   best_lap: null,
+  best_lap_index: 0,
   last_lap: null,
   total_time: 0
 };

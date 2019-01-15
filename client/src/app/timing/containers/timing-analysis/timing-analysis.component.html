@@ -5,9 +5,17 @@
       <iframe class="d-block" width="100%" height="50%" src="https://www.youtube.com/embed/W__sg9WnT0c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     <div class="col-6">
-      <div class="d-flex align-items-center p-4">
-        <racer-track-activity-analysis [theme]="'blue'" [hasContainerRightBorder]="true"></racer-track-activity-analysis>
-        <racer-track-activity-analysis [theme]="'yellow'"></racer-track-activity-analysis>
+      <div class="d-flex align-items-center p-3">
+        <racer-track-activity-analysis
+          [theme]="'blue'"
+          [hasContainerRightBorder]="true"
+          [raceParticipantTrackActivity]="raceParticipantTrackActivity1"
+          [raceParticipantTrackActivityRef]="raceParticipantTrackActivityRef"></racer-track-activity-analysis>
+        <racer-track-activity-analysis
+          [theme]="'yellow'"
+          [hasContainerRightBorder]="false"
+          [raceParticipantTrackActivity]="raceParticipantTrackActivity2"
+          [raceParticipantTrackActivityRef]="raceParticipantTrackActivityRef"></racer-track-activity-analysis>
       </div>
     </div>
   </div>

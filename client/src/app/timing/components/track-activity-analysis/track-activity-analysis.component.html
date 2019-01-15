@@ -1,4 +1,7 @@
-<div class="stats-container stats-container--theme-{{theme}}" [class.stats-container--right-bordered]="hasContainerRightBorder">
+<div
+	class="stats-container stats-container--theme-{{theme}}"
+	[class.stats-container--right-bordered]="hasContainerRightBorder"
+	*ngIf="raceParticipantTrackActivity">
 	<div class="container-fluid p-0">
 		<div class="row no-gutters">
 			<div class="col-12">
@@ -20,8 +23,9 @@
 				<div class="stat-box">
 					<span class="d-block text-uppercase stat-box__title">Tiempo</span>
 					<div class="d-block">
-						<span class="stat-box__big-title-number stat--highlighted">1:43.781</span>
-						<span class="ml-2 stat-box__indication-number">+0.123</span>
+						<span class="mr-3 stat-box__big-title-number stat--highlighted">1:43.781</span>
+						<fa-icon class="text-danger mr-1" [icon]="['fas', 'chevron-circle-up']"></fa-icon>
+						<span class="text-danger stat-box__indication-number">0.123</span>
 					</div>
 					<span class="d-block stat-box__subtitle">mejor tiempo de vuelta.</span>
 				</div>
@@ -35,8 +39,9 @@
 				<div class="stat-box">
 					<span class="d-block text-uppercase stat-box__title">Sector 1</span>
 					<div class="d-block">
-						<span class="stat-box__big-title-number stat--highlighted">32,827</span>
-						<span class="ml-2 stat-box__indication-number">+0.123</span>
+						<span class="mr-3 stat-box__big-title-number stat--highlighted">32,827</span>
+						<fa-icon class="text-danger mr-1" [icon]="['fas', 'chevron-circle-up']"></fa-icon>
+						<span class="text-danger stat-box__indication-number">0.123</span>
 					</div>
 					<span class="d-block invisible stat-box__subtitle">tiempo parcial.</span>
 					<div class="progress stat-progress bg-white">
@@ -48,8 +53,9 @@
 				<div class="stat-box">
 					<span class="d-block text-uppercase stat-box__title">Sector 2</span>
 					<div class="d-block">
-						<span class="stat-box__big-title-number stat--highlighted">31,411</span>
-						<span class="ml-2 stat-box__indication-number">+0.123</span>
+						<span class="mr-3 stat-box__big-title-number stat--highlighted">31,411</span>
+						<fa-icon class="text-danger mr-1" [icon]="['fas', 'chevron-circle-up']"></fa-icon>
+						<span class="text-danger stat-box__indication-number">0.123</span>
 					</div>
 					<span class="d-block invisible stat-box__subtitle">.</span>
 					<div class="progress stat-progress bg-white">
@@ -61,8 +67,9 @@
 				<div class="stat-box">
 					<span class="d-block text-uppercase stat-box__title">Sector 3</span>
 					<div class="d-block">
-						<span class="stat-box__big-title-number stat--highlighted">20,510</span>
-						<span class="ml-2 stat-box__indication-number">+0.123</span>
+						<span class="mr-3 stat-box__big-title-number stat--highlighted">20,510</span>
+						<fa-icon class="text-danger mr-1" [icon]="['fas', 'chevron-circle-up']"></fa-icon>
+						<span class="text-danger stat-box__indication-number">0.123</span>
 					</div>
 					<span class="d-block invisible stat-box__subtitle">mejor tiempo de vuelta.</span>
 					<div class="progress stat-progress bg-white">
@@ -74,8 +81,9 @@
 				<div class="stat-box">
 					<span class="d-block text-uppercase stat-box__title">Sector 4</span>
 					<div class="d-block">
-						<span class="stat-box__big-title-number stat--highlighted">19,033</span>
-						<span class="ml-2 stat-box__indication-number">+0.123</span>
+						<span class="mr-3 stat-box__big-title-number stat--highlighted">19,033</span>
+						<fa-icon class="text-danger mr-1" [icon]="['fas', 'chevron-circle-up']"></fa-icon>
+						<span class="text-danger stat-box__indication-number">0.123</span>
 					</div>
 					<span class="d-block invisible stat-box__subtitle">mejor tiempo de vuelta.</span>
 					<div class="progress stat-progress bg-white">
@@ -90,8 +98,9 @@
 				<div class="stat-box">
 					<span class="d-block text-uppercase stat-box__title">Velocidad maxima (km/h)</span>
 					<div class="d-block">
-						<span class="stat-box__big-title-number stat--highlighted">255</span>
-						<span class="ml-2 stat-box__indication-number">+2</span>
+						<span class="mr-3 stat-box__big-title-number stat--highlighted">255</span>
+						<fa-icon class="text-danger mr-1" [icon]="['fas', 'chevron-circle-up']"></fa-icon>
+						<span class="text-danger stat-box__indication-number">2</span>
 					</div>
 					<span class="d-block invisible stat-box__subtitle">.</span>
 				</div>
@@ -101,8 +110,9 @@
 				<div class="stat-box">
 					<span class="d-block text-uppercase stat-box__title">Distancia (m)</span>
 					<div class="d-block">
-						<span class="stat-box__big-title-number stat--highlighted">2,034</span>
-						<span class="ml-2 stat-box__indication-number">+200</span>
+						<span class="mr-3 stat-box__big-title-number stat--highlighted">2,034</span>
+						<fa-icon class="text-danger mr-1" [icon]="['fas', 'chevron-circle-up']"></fa-icon>
+						<span class="text-danger stat-box__indication-number">200</span>
 					</div>
 					<span class="d-block invisible stat-box__subtitle">.</span>
 				</div>

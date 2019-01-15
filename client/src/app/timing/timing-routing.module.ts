@@ -3,19 +3,61 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // components
-import { TimingHomeComponent } from './containers/timing-home/timing-home.component';
-import { TimingAnalysisComponent } from './containers/timing-analysis/timing-analysis.component';
+import {
+  TimingHomeComponent,
+  TimingAnalysisComponent,
+  TimingLeaderboardComponent,
+  TimingBestPartialsLapsComponent,
+  TimingBestPerPartialsComponent,
+  TimingPartialsPerLapComponent
+} from './containers';
 
 const routes: Routes = [
   {
     path: 'timing',
-    pathMatch: 'full',
-    component: TimingHomeComponent
-  },
-  {
-    path: 'timing-analysis',
-    pathMatch: 'full',
-    component: TimingAnalysisComponent
+    component: TimingHomeComponent,
+    children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'leaderboard'
+      },
+      {
+        path: 'leaderboard',
+        component: TimingLeaderboardComponent,
+        data: {
+          title: 'Tiempos'
+        }
+      },
+      {
+        path: 'partials',
+        component: TimingBestPartialsLapsComponent,
+        data: {
+          title: 'Parciales'
+        }
+      },
+      {
+        path: 'best-per-partials',
+        component: TimingBestPerPartialsComponent,
+        data: {
+          title: 'Mejor por parcial'
+        }
+      },
+      {
+        path: 'laps',
+        component: TimingPartialsPerLapComponent,
+        data: {
+          title: 'Vueltas'
+        }
+      },
+      {
+        path: 'analysis',
+        component: TimingAnalysisComponent,
+        data: {
+          title: 'Análisis'
+        }
+      }   
+    ]
   }
 ];
 

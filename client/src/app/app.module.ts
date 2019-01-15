@@ -6,6 +6,7 @@ import { registerLocaleData } from '@angular/common';
 import localeESAR from '@angular/common/locales/es-AR';
 
 // libs
+import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { DBModule } from '@ngrx/db';
 
@@ -25,6 +26,7 @@ import { schema } from './db';
 
 // recuders
 import { reducers, metaReducers } from './core/reducers';
+import { effects } from './core/effects';
 
 const language = 'es-AR';
 
@@ -48,7 +50,9 @@ registerLocaleData(localeESAR, language);
     DBModule.provideDB(schema),
     DummyModule,
 
-    StoreModule.forRoot(reducers, { metaReducers })
+    StoreModule.forRoot(reducers, { metaReducers }),
+
+    EffectsModule.forRoot(effects)
   ],
   providers: [
     { provide: LOCALE_ID, useValue: language }

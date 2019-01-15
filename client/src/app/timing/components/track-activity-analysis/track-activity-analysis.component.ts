@@ -14,4 +14,7 @@ import {
 export class TrackActivityAnalysisComponent {
   @Input() theme = 'blue';
   @Input() hasContainerRightBorder = false;
+  @Input() raceParticipantTrackActivity: RaceParticipantTrackActivity;
+  @Input() raceParticipantTrackActivityRef: RaceParticipantTrackActivity;
+
 }

@@ -29,8 +29,8 @@ import {
 import { RACE_WEEKENDS_SAMPLE } from './../dummy';
 import { LiveTiming } from './live-timing';
 
-const LIVE_TIMING_KEY_CODES = [76, 73, 86, 69];
-// const LIVE_TIMING_KEY_CODES = [76];
+// const LIVE_TIMING_KEY_CODES = [76, 73, 86, 69];
+const LIVE_TIMING_KEY_CODES = [76];
 let CURRENT_CODES = [];
 
 @Component({
@@ -86,62 +86,22 @@ export class DummyComponent implements OnInit {
   }
 
   ngOnInit() {
-    // TODO: REMOVE THIS
-    const reload = true;
-
-    if (reload) {
-      this.raceWeekends = RACE_WEEKENDS_SAMPLE;
-      localStorage.setItem('race_weekends', JSON.stringify(this.raceWeekends));
-    } else {
-      this.raceWeekends = JSON.parse(localStorage.getItem('race_weekends'));
-    }
-    this.loadRaceWeekends(this.raceWeekends);
-
-    this.raceWeekend$ = this.store.pipe(select(fromTiming.getSelectedRaceWeekend));
-    this.raceWeekend$.subscribe((selectedRaceWeekend: RaceWeekend) => {
-
-      if (selectedRaceWeekend) {
-        const trackActivities: TrackActivity[] = this.getTrackActivities(selectedRaceWeekend);
-        this.loadTrackActivities(trackActivities);
-      }
-    });
-
-    const raceParticipantsTrackActivities$ = this.store.pipe(select(fromTiming.getRaceParticipantsTrackActivitiesArray));
-    raceParticipantsTrackActivities$.subscribe((_raceParticipantsTrackActivities: RaceParticipantTrackActivity[]) => {
-
-      if (this.raceWeekends) {
-        localStorage.setItem('race_weekends_back', localStorage.getItem('race_weekends'));
-        localStorage.setItem('race_weekends', JSON.stringify(this.raceWeekends));
-      }
-    });
+    const raceWeekends = lodash.cloneDeep(RACE_WEEKENDS_SAMPLE);
+    this.loadRaceWeekends(raceWeekends);
   }
 
   private loadRaceWeekends(raceWeekends: RaceWeekend[]) {
     this.raceWeekends = raceWeekends;
 
-    // const raceWeekendsCopy: RaceWeekend[] = [];
-    // let raceWeekend: RaceWeekend;
+    const raceWeekendsCopy: RaceWeekend[] = [];
+    let raceWeekend: RaceWeekend;
 
-    // raceWeekends.forEach((rWeekend: RaceWeekend) => {
-      // raceWeekend = lodash.clone(rWeekend);
-      // delete raceWeekend.track_activities; TODO: REVIEW THIS
-      // raceWeekendsCopy.push(raceWeekend);
-    // });
-    this.store.dispatch(new LoadRaceWeekends(raceWeekends));
-  }
-
-  private loadTrackActivities(trackActivities: TrackActivity[]) {
-    this.trackActivities = trackActivities;
-
-    // const trackActivitiesCopy: TrackActivity[] = [];
-    // let trackActivity: TrackActivity;
-
-    // trackActivities.forEach((tActivity: TrackActivity) => {
-      // trackActivity = lodash.clone(tActivity);
-      // trackActivity.race_participants_track_activities = []; TODO: REVIEW THIS
-      // trackActivitiesCopy.push(trackActivity);
-    // });
-    this.store.dispatch(new LoadTrackActivities(trackActivities));
+    raceWeekends.forEach((rWeekend: RaceWeekend) => {
+      raceWeekend = lodash.cloneDeep(rWeekend);
+      delete raceWeekend.track_activities;
+      raceWeekendsCopy.push(raceWeekend);
+    });
+    this.store.dispatch(new LoadRaceWeekends(raceWeekendsCopy));
   }
 
   private loadRaceParticipantsTrackActivities(raceParticipantstrackActivities: RaceParticipantTrackActivity[]) {

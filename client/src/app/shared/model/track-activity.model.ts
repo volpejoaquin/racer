@@ -52,9 +52,10 @@ export interface RaceParticipantTrackActivity extends BaseModel {
   state: RaceParticipantTrackActivityState,
   race_participant: RaceParticipant;
   laps: TrackLap[];
-  laps_count: number;
   best_lap: TrackLap;
+  best_lap_index: number;
   last_lap: TrackLap;
+  laps_count: number;
   total_time: number;
 }
 

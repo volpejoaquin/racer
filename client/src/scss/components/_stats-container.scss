@@ -1,4 +1,4 @@
-$separation: 1.05rem;
+$separation: 0.7rem;
 
 .stats-container {
   font-size: 0.8rem;
@@ -33,11 +33,6 @@ $separation: 1.05rem;
   }
 
   .stat-box__indication-number {
-    font-size: 1.8rem;
-    line-height: 1.8rem;
-  }
-
-  .stat-box__indication-number--small {
     font-size: 1.2rem;
     line-height: 1.2rem;
   }

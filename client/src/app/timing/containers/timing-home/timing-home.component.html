@@ -14,55 +14,16 @@
   </div>
 </ng-template>
 
-<div class="timing-content" *ngIf="trackActivity$ | async as trackActivity; else loading">
+<div class="timing-content">
 
   <racer-timing-primary-bar
-  [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async"
-  [title]="currentViewNumber === 0 ? 'Tiempos' : currentViewNumber === 1 ? 'PARCIALES' : currentViewNumber === 2 ? 'MEJORES POR PARCIAL' : 'VUELTAS'"></racer-timing-primary-bar>
+    [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async"
+    [title]="title"></racer-timing-primary-bar>
 
-  <div *ngIf="raceParticipantsTrackActivities$ | async as raceParticipantsTrackActivities; else empty">
-    <racer-leaderboard [trackActivities]="raceParticipantsTrackActivities" [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async" [trackActivity]="trackActivity" *ngIf="currentViewNumber === 0"></racer-leaderboard>
-
-    <racer-best-partials-laps [trackActivities]="raceParticipantsTrackActivities" [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async" [trackActivity]="trackActivity" *ngIf="currentViewNumber === 1"></racer-best-partials-laps>
-
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-12" *ngIf="currentViewNumber === 2">
-          <div class="row">
-            <div class="col pl-0">
-              <racer-best-per-partials [trackActivities]="raceParticipantsTrackActivities" [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async" [partialIndex]="0"></racer-best-per-partials>
-            </div>
-            <div class="col">
-              <racer-best-per-partials [trackActivities]="raceParticipantsTrackActivities" [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async" [partialIndex]="1"></racer-best-per-partials>
-            </div>
-            <div class="col">
-              <racer-best-per-partials [trackActivities]="raceParticipantsTrackActivities" [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async" [partialIndex]="2"></racer-best-per-partials>
-            </div>
-            <div class="col pr-0">
-              <racer-best-per-partials [trackActivities]="raceParticipantsTrackActivities" [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async" [partialIndex]="3"></racer-best-per-partials>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-12" *ngIf="currentViewNumber === 3">
-          <div class="partials-per-laps-wrapper mt-2 mb-2">
-            <div class="row">
-              <racer-partials-per-lap
-                class="race-participant_row col-6"
-                *ngFor="let trackActivity of (raceParticipantsTrackActivities | orderByTrackActivity:trackActivity); let trackActivityIndex = index;"
-                [class.race-participant_invisible]="isRaceParticipantInvisible(trackActivity.race_participant)"
-                [class.race-participant_dimmed]="isRaceParticipantDimmed(trackActivity.race_participant)"
-                [class.race-participant_marked]="isRaceParticipantMarked(trackActivity.race_participant)"
-                [trackActivity]="trackActivity"
-                [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async"
-                [title]="(trackActivityIndex + 1)"></racer-partials-per-lap>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <router-outlet></router-outlet>
 
 </div>
 
-<racer-timing-secondary-bar [trackActivity]="trackActivity$ | async" [raceParticipants]="raceParticipants"></racer-timing-secondary-bar>
+<racer-timing-secondary-bar
+  [trackActivity]="trackActivity$ | async"
+  [raceParticipants]="raceParticipants"></racer-timing-secondary-bar>
