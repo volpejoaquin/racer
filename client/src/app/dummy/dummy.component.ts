@@ -26,11 +26,13 @@ import {
 } from './../shared/model';
 
 // dummy data
-import { RACE_WEEKENDS_SAMPLE } from './../dummy';
+import { RACE_WEEKENDS_SAMPLE, TP_C3_RACE_PARTICIPANTS } from './../dummy';
 import { LiveTiming } from './live-timing';
+import { BEST_TRACK_LAP } from './best-track-lap';
 
 // const LIVE_TIMING_KEY_CODES = [76, 73, 86, 69];
 const LIVE_TIMING_KEY_CODES = [76];
+const RACE_PARTICIPANTS_COUNT = 1;
 let CURRENT_CODES = [];
 
 @Component({
@@ -60,9 +62,7 @@ export class DummyComponent implements OnInit {
     if (lodash.isEqual(CURRENT_CODES, LIVE_TIMING_KEY_CODES)) {
       CURRENT_CODES = [];
 
-      if (this.bestRaceParticipantTrackActivity && this.bestRaceParticipantTrackActivity.best_lap) {
-        this.startLiveTiming(this.bestRaceParticipantTrackActivity.best_lap, this.raceParticipants);
-      }
+      this.startLiveTiming(BEST_TRACK_LAP, TP_C3_RACE_PARTICIPANTS);
     }
   }
 
@@ -83,6 +83,10 @@ export class DummyComponent implements OnInit {
         }
       });
     });
+
+    setTimeout(() => {
+      this.startLiveTiming(BEST_TRACK_LAP, TP_C3_RACE_PARTICIPANTS);
+    }, 2000);
   }
 
   ngOnInit() {
@@ -92,16 +96,7 @@ export class DummyComponent implements OnInit {
 
   private loadRaceWeekends(raceWeekends: RaceWeekend[]) {
     this.raceWeekends = raceWeekends;
-
-    const raceWeekendsCopy: RaceWeekend[] = [];
-    let raceWeekend: RaceWeekend;
-
-    raceWeekends.forEach((rWeekend: RaceWeekend) => {
-      raceWeekend = lodash.cloneDeep(rWeekend);
-      delete raceWeekend.track_activities;
-      raceWeekendsCopy.push(raceWeekend);
-    });
-    this.store.dispatch(new LoadRaceWeekends(raceWeekendsCopy));
+    this.store.dispatch(new LoadRaceWeekends(raceWeekends));
   }
 
   private loadRaceParticipantsTrackActivities(raceParticipantstrackActivities: RaceParticipantTrackActivity[]) {
@@ -120,12 +115,10 @@ export class DummyComponent implements OnInit {
   }
 
   private startLiveTiming(bestTrackLap: TrackLap, raceParticipants: RaceParticipant[]) {
-    const rParticipants = lodash.clone(raceParticipants).slice(0, 3);
+    const rParticipants = lodash.clone(raceParticipants).slice(0, RACE_PARTICIPANTS_COUNT);
 
     const allData = [];
     const output = (event: any, data: any) => {
-        console.log('EVENT', event, data);
-
         if (data) {
           allData.push(data);
 
@@ -133,9 +126,7 @@ export class DummyComponent implements OnInit {
         }
       };
     const liveTiming = new LiveTiming(output);
-    liveTiming.start(bestTrackLap, rParticipants);
-
-    this.importRaceParticipantsTrackActivities([]);
+    liveTiming.start(bestTrackLap, rParticipants, 6, 10);
 
     rParticipants.forEach((raceParticipant: RaceParticipant) => {
       this.store.dispatch(new MarkRaceParticipant(raceParticipant.number));

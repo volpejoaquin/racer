@@ -12,6 +12,7 @@ import {
   F08_TP_C3_RACE_PARTICIPANTS_NUMBER_GROUP_A,
   F08_TP_C3_RACE_PARTICIPANTS_NUMBER_GROUP_B
 } from './../race-participants-groups';
+import { RACE_PARTICIPANTS_TRACK_ACTIVITIES } from './race-participants-track-activities';
 
 export const F08_TP_C3_FRIDAY_TRACK_ACTIVITIES: TrackActivity[] = [
   {
@@ -23,7 +24,7 @@ export const F08_TP_C3_FRIDAY_TRACK_ACTIVITIES: TrackActivity[] = [
     laps: 0,
     state: TrackActivityState.waiting,
     type: TrackActivityType.practice,
-    race_participants_track_activities: [],
+    race_participants_track_activities: RACE_PARTICIPANTS_TRACK_ACTIVITIES,
     car_division: TP_C3_CAR_DIVISION,
     circuit_variant: F08_TP_C3_CIRCUIT_VARIANT,
     related_track_activity_ids: ['302', '303', '310'],

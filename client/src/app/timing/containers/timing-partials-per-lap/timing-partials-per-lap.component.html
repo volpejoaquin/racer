@@ -1,13 +1,17 @@
-<div class="partials-per-laps-wrapper mt-2 mb-2">
-  <div class="row">
+<div class="partials-per-laps-wrapper mt-2 mb-2" *ngIf="trackActivity$ | async as trackActivity">
+  <div class="row" *ngIf="raceParticipantsTrackActivities$ | async as raceParticipantsTrackActivities">
     <racer-partials-per-lap
+      *ngFor="let trackActivity of (raceParticipantsTrackActivities | orderByTrackActivity:trackActivity); let trackActivityIndex = index; let odd = odd;"
       class="race-participant_row col-6"
-      *ngFor="let trackActivity of (raceParticipantsTrackActivities | orderByTrackActivity:trackActivity); let trackActivityIndex = index;"
-      [class.race-participant_invisible]="isRaceParticipantInvisible(trackActivity.race_participant)"
-      [class.race-participant_dimmed]="isRaceParticipantDimmed(trackActivity.race_participant)"
-      [class.race-participant_marked]="isRaceParticipantMarked(trackActivity.race_participant)"
+      [class.pl-0]="odd"
+      [class.race-participant_marked]="true"
       [trackActivity]="trackActivity"
       [bestRaceParticipantTrackActivity]="bestRaceParticipantTrackActivity$ | async"
       [title]="(trackActivityIndex + 1)"></racer-partials-per-lap>
+      <!-- TODO: REVIEW THIS
+        [class.race-participant_invisible]="isRaceParticipantInvisible(trackActivity.race_participant)"
+        [class.race-participant_dimmed]="isRaceParticipantDimmed(trackActivity.race_participant)"
+        [class.race-participant_marked]="isRaceParticipantMarked(trackActivity.race_participant)"
+      -->
   </div>
 </div>

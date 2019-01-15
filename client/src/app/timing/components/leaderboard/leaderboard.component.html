@@ -57,6 +57,7 @@
         <td class="timing_table-row-column timing_table-column-participant_name">
           <span class="align-middle text-uppercase">{{ trackActivity.race_participant?.driver.last_name }}</span>
           <span class="align-middle"> {{ trackActivity.race_participant?.driver.name }}</span>
+          <span class="badge badge-primary ml-4" *ngIf="isTrackActivityOnPit(trackActivity)">PIT</span>
         </td>
         <td class="timing_table-row-column timing_table-column-participant_car-brand">
           <racer-car-brand [car]="trackActivity.race_participant.car" *ngIf="trackActivity.race_participant && trackActivity.race_participant.car"></racer-car-brand>

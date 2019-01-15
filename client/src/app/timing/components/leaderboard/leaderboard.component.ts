@@ -15,7 +15,8 @@ import {
   RaceParticipantTrackActivity,
   TrackLap,
   TrackActivity,
-  TrackActivityType
+  TrackActivityType,
+  RaceParticipantTrackActivityState
 } from '../../../shared/model/';
 
 @Component({
@@ -81,5 +82,9 @@ export class LeaderboardComponent extends BaseTimingComponent implements OnChang
     }
 
     return response;
+  }
+
+  isTrackActivityOnPit(trackActivity: RaceParticipantTrackActivity) {
+    return trackActivity.state=== RaceParticipantTrackActivityState.on_pit;
   }
 }

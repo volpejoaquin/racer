@@ -27,11 +27,13 @@ export class LiveTiming {
   private timeouts: any[] = [];
   private refLap: TrackLap;
   private refLapSectorsCount = 4;
+  private maxLapsCount = 6;
+  private speed = 1;
 
   constructor(private output: any) {
   }
 
-  start(rLap: TrackLap, rParticipants: RaceParticipant[]) {
+  start(rLap: TrackLap, rParticipants: RaceParticipant[], maxLapsCount: number, speed: number) {
     if (!rLap || !rParticipants || rParticipants.length === 0) {
       return;
     }
@@ -39,6 +41,8 @@ export class LiveTiming {
     this.refLap = rLap;
     this.refLapSectorsCount = rLap.partials.length;
     this.participants = rParticipants;
+    this.maxLapsCount = maxLapsCount;
+    this.speed = speed;
     this.setTimeout(
       () => {
         this.simulateTimes();
@@ -90,15 +94,44 @@ export class LiveTiming {
   }
 
   private simulateTrackActivity(data: RaceParticipantTrackActivity): void {
+    if (data.laps_count === this.maxLapsCount) {
+      return;
+    }
+
     // Pit -> Track
     if (data.state === RaceParticipantTrackActivityState.on_pit) {
-      this.emitGoToTrack(data);
+      this.setTimeout(
+        () => {
+          // Add new lap
+          const lap: TrackLap = {
+            time: null,
+            ref_lap: false,
+            partial_lap: true,
+            partials: []
+          };
+    
+          data.laps.push(lap);
+          data.last_lap = lap;
+
+          if (!data.best_lap) {
+            data.best_lap = lap;
+          }
+
+          this.emitGoToTrack(data);
+        },
+        lodash.random(0, TRACK_ACTIVITY_DELAY)
+      );
     } else {
       const canGoToPit = data.last_lap && data.last_lap.time;
 
       // Track -> Pit after 3 laps
       if (canGoToPit && data.laps_count > 0 && ((data.laps_count % 3) === 0)) {
-        this.emitGoToPit(data);
+        this.setTimeout(
+          () => {
+            this.emitGoToPit(data);
+          },
+          lodash.random(0, TRACK_ACTIVITY_DELAY)
+        );
       } else {
         // Partial lap
         this.emitPartialLapTime(data);
@@ -109,22 +142,6 @@ export class LiveTiming {
   private emitGoToTrack(data: RaceParticipantTrackActivity): void {
     // Logic
     data.state = RaceParticipantTrackActivityState.on_track;
-
-    // Add new lap
-    const lap: TrackLap = {
-      time: null,
-      ref_lap: false,
-      partial_lap: true,
-      partials: []
-    };
-
-    data.laps.push(lap);
-    data.last_lap = lap;
-
-    // Set best lap
-    if (!data.best_lap) {
-      data.best_lap = lap;
-    }
 
     this.output(TimingSocketEvent.GO_TO_TRACK, data);
     this.log('Event: ' + TimingSocketEvent.GO_TO_TRACK);
@@ -150,22 +167,11 @@ export class LiveTiming {
   }
 
   private emitPartialLapTime(data: RaceParticipantTrackActivity): void {
-    const lastSector = data.last_lap.partials.length;
+    const lastLap: TrackLap = data.last_lap;
+    const lastSector = lastLap ? lastLap.partials.length : 0;
     let currentSector = lastSector + 1;
-    const lapFinished = lastSector === this.refLapSectorsCount;
 
-    if (lapFinished) {
-      // Add new lap
-      const lap: TrackLap = {
-        time: null,
-        ref_lap: false,
-        partial_lap: true,
-        partials: []
-      };
-
-      data.laps.push(lap);
-      data.last_lap = lap;
-
+    if (!lastLap || !lastLap.partial_lap) {
       currentSector = 1;
     }
 
@@ -176,24 +182,41 @@ export class LiveTiming {
       max = LAP_PARTIALS_ESTIMATED_ERROR_MAX[currentSector > 0 ? currentSector - 1 : 0];
     partialLapTime += lodash.random(min, max);
 
-    const partialLap: TrackPartialLap = {
-      time: partialLapTime,
-      sector: currentSector
-    };
-    data.last_lap.partials.push(partialLap);
-
-    const lastPartial = currentSector === this.refLapSectorsCount;
-
     this.setTimeout(
       () => {
-        this.output(TimingSocketEvent.PARTIAL_LAP_TIME, data);
-        this.log('Event: ' + TimingSocketEvent.PARTIAL_LAP_TIME);
-        this.log(
-          '-> Sector: ' + partialLap.sector + ' | Time: ' + partialLap.time
-        );
+        if (!lastLap || !lastLap.partial_lap) {
+          // Add new lap
+          const lap: TrackLap = {
+            time: null,
+            ref_lap: false,
+            partial_lap: true,
+            partials: []
+          };
+    
+          data.laps.push(lap);
+          data.last_lap = lap;
+    
+          if (!data.best_lap) {
+            data.best_lap = lap;
+          }
+        }
+
+        const partialLap: TrackPartialLap = {
+          time: partialLapTime,
+          sector: currentSector
+        };
+        data.last_lap.partials.push(partialLap);
+    
+        const lastPartial = currentSector === this.refLapSectorsCount;
 
         if (lastPartial) {
           this.emitLapTime(data);
+        } else {
+          this.output(TimingSocketEvent.PARTIAL_LAP_TIME, data);
+          this.log('Event: ' + TimingSocketEvent.PARTIAL_LAP_TIME);
+          this.log(
+            '-> Sector: ' + partialLap.sector + ' | Time: ' + partialLap.time
+          );
         }
 
         this.simulateTrackActivity(data);
@@ -206,6 +229,7 @@ export class LiveTiming {
     // Logic
     data.laps_count++;
     data.last_lap.time = this.extractLapTime(data.last_lap.partials);
+    data.last_lap.partial_lap = false;
     data.best_lap = !data.best_lap.time || data.last_lap.time < data.best_lap.time ? data.last_lap : data.best_lap;
 
     this.output(TimingSocketEvent.LAP_TIME, data);
@@ -227,9 +251,10 @@ export class LiveTiming {
   }
 
   private setTimeout(handler: (...args: any[]) => void, timeout: number) {
+    const speed = Math.floor(timeout / this.speed);
     const timeoutId = setTimeout(
       handler,
-      timeout
+      speed
     );
     this.timeouts.push(timeoutId);
   }

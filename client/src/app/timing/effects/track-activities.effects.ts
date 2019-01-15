@@ -44,7 +44,7 @@ export class TrackActivitiesEffects {
       let raceParticipantTrackActivities: RaceParticipantTrackActivity[] = [];
 
       if (selectedTrackActivityId) {
-        const selectedTrackActivity: TrackActivity = lodash.find(TRACK_ACTIVITIES_SAMPLE, { id: selectedTrackActivityId});
+        const selectedTrackActivity: TrackActivity = lodash.find(TRACK_ACTIVITIES_SAMPLE, { id: selectedTrackActivityId });
 
         if (selectedTrackActivity) {
           raceParticipantTrackActivities = selectedTrackActivity.race_participants_track_activities;

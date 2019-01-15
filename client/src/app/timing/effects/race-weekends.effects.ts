@@ -44,7 +44,7 @@ export class RaceWeekendsEffects {
       let trackActivities: TrackActivity[] = [];
 
       if (selectedRaceWeekendId) {
-        const selectedRaceWeekend: RaceWeekend = lodash.find(RACE_WEEKENDS_SAMPLE, { id: selectedRaceWeekendId});
+        const selectedRaceWeekend: RaceWeekend = lodash.find(RACE_WEEKENDS_SAMPLE, { id: selectedRaceWeekendId });
 
         if (selectedRaceWeekend) {
           trackActivities = selectedRaceWeekend.track_activities;
