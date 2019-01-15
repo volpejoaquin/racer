@@ -1,0 +1,69 @@
+$separation: 1.05rem;
+
+.stats-container {
+  font-size: 0.8rem;
+
+  .stat-separator {
+    border-bottom: 1px solid $white;
+    padding-bottom: $separation;
+    margin-bottom: $separation;
+  }
+
+  &.stats-container--right-bordered,
+  .stat-box--right-bordered {
+    border-right: 1px solid $white;
+    padding-right: $separation;
+    margin-right: $separation;
+  }
+
+  .stat-box__big-title {
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+  }
+
+  .stat-box__big-title-number {
+    font-size: 3rem;
+    line-height: 3rem;
+  }
+
+  .stat-box__subtitle {
+    font-size: 0.7rem;
+    line-height: 0.7rem;
+  }
+
+  .stat-box__indication-number {
+    font-size: 1.8rem;
+    line-height: 1.8rem;
+  }
+
+  .stat-box__indication-number--small {
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+  }
+
+  // Theming
+
+  &.stats-container--theme-blue {
+    .stat--highlighted {
+      color: $primary;
+    }
+
+    .stat--bordered-highlighted {
+      border-bottom-color: $primary;
+    }
+  }
+
+  &.stats-container--theme-yellow {
+    .stat--highlighted {
+      color: $yellow;
+    }
+
+    .stat--bordered-highlighted {
+      border-bottom-color: $yellow;
+    }
+  }
+
+  .stat-progress {
+    height: 0.5rem;
+  }
+}
