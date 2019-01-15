@@ -37,6 +37,7 @@ export function reducer(
   action:
     | TrackActivityActions.SelectTrackActivity
     | TrackActivityActions.LoadTrackActivities
+    | TrackActivityActions.ChangeStateSelectedTrackActivity
     | RaceParticipantTrackActivityActions.ImportRaceParticipantTrackActivities
 ): State {
   switch (action.type) {
@@ -49,6 +50,13 @@ export function reducer(
 
     case TrackActivityActions.TrackActivityActionTypes.LoadTrackActivities: {
       return adapter.addAll(action.payload, state);
+    }
+
+    case TrackActivityActions.TrackActivityActionTypes.ChangeStateSelectedTrackActivity: {
+      const changes = {
+        state: action.payload
+      };
+      return adapter.updateOne({ id: state.selectedTrackActivityId , changes }, state);
     }
 
     case RaceParticipantTrackActivityActions.RaceParticipantTrackActivityActionTypes.ImportRaceParticipantTrackActivities: {

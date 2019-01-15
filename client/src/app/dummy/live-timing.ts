@@ -8,20 +8,24 @@ import {
   TrackPartialLap,
   RaceParticipant,
   RaceParticipantTrackActivity,
-  RaceParticipantTrackActivityState,
-  TrackActivitySocketEvent,
-  TimingSocketEvent,
-  TrackActivityState
+  RaceParticipantTrackActivityState
 } from './../shared/model/';
 
 const LOG = true;
 const DISABLE_TRACK_STATE_CHANGES = true;
 
-const TRACK_ACTIVITY_DELAY = 5000; // time to track
+const TRACK_ACTIVITY_DELAY = 10000; // time to track
 const LAP_PARTIALS_ESTIMATED_ERROR_MIN = [-200, -400, -500, -450];
 const LAP_PARTIALS_ESTIMATED_ERROR_MAX = [200, 400, 500, 450];
 
 export class LiveTiming {
+  public static readonly TRACK_ACTIVITY_STARTED = 'track activity started';
+  public static readonly TRACK_ACTIVITY_FINISHED = 'track activity finished';
+  public static readonly GO_TO_TRACK = 'go to track';
+  public static readonly GO_TO_PIT = 'go to pit';
+  public static readonly PARTIAL_LAP_TIME = 'partial lap time';
+  public static readonly LAP_TIME = 'lap time';
+
   private trackActivity: TrackActivity;
   private participants: RaceParticipant[] = [];
   private timeouts: any[] = [];
@@ -29,6 +33,7 @@ export class LiveTiming {
   private refLapSectorsCount = 4;
   private maxLapsCount = 6;
   private speed = 1;
+  private startedCount = 0;
 
   constructor(private output: any) {
   }
@@ -43,12 +48,7 @@ export class LiveTiming {
     this.participants = rParticipants;
     this.maxLapsCount = maxLapsCount;
     this.speed = speed;
-    this.setTimeout(
-      () => {
-        this.simulateTimes();
-      },
-      1000
-    );
+    this.simulateTimes();
   }
 
   stop() {
@@ -65,6 +65,10 @@ export class LiveTiming {
   }
 
   private simulateTimes() {
+    this.output(LiveTiming.TRACK_ACTIVITY_STARTED, null);
+    this.log('Event: ' + LiveTiming.TRACK_ACTIVITY_STARTED);
+
+    this.startedCount = this.participants.length;
     for (let participantIndex = 0; participantIndex < this.participants.length; participantIndex++) {
       this.setTimeout(
         () => {
@@ -95,6 +99,9 @@ export class LiveTiming {
 
   private simulateTrackActivity(data: RaceParticipantTrackActivity): void {
     if (data.laps_count === this.maxLapsCount) {
+      this.startedCount--;
+
+      this.checkFinished();
       return;
     }
 
@@ -119,7 +126,7 @@ export class LiveTiming {
 
           this.emitGoToTrack(data);
         },
-        lodash.random(0, TRACK_ACTIVITY_DELAY)
+        lodash.random(0, TRACK_ACTIVITY_DELAY * 10)
       );
     } else {
       const canGoToPit = data.last_lap && data.last_lap.time;
@@ -143,8 +150,8 @@ export class LiveTiming {
     // Logic
     data.state = RaceParticipantTrackActivityState.on_track;
 
-    this.output(TimingSocketEvent.GO_TO_TRACK, data);
-    this.log('Event: ' + TimingSocketEvent.GO_TO_TRACK);
+    this.output(LiveTiming.GO_TO_TRACK, data);
+    this.log('Event: ' + LiveTiming.GO_TO_TRACK);
     this.log(
       '-> #' + data.race_participant.number + ' - ' + data.race_participant.driver.name
     );
@@ -157,8 +164,8 @@ export class LiveTiming {
     // Logic
     data.state = RaceParticipantTrackActivityState.on_pit;
 
-    this.output(TimingSocketEvent.GO_TO_PIT, data);
-    this.log('Event: ' + TimingSocketEvent.GO_TO_PIT);
+    this.output(LiveTiming.GO_TO_PIT, data);
+    this.log('Event: ' + LiveTiming.GO_TO_PIT);
     this.log(
       '-> #' + data.race_participant.number + ' - ' + data.race_participant.driver.name
     );
@@ -212,8 +219,8 @@ export class LiveTiming {
         if (lastPartial) {
           this.emitLapTime(data);
         } else {
-          this.output(TimingSocketEvent.PARTIAL_LAP_TIME, data);
-          this.log('Event: ' + TimingSocketEvent.PARTIAL_LAP_TIME);
+          this.output(LiveTiming.PARTIAL_LAP_TIME, data);
+          this.log('Event: ' + LiveTiming.PARTIAL_LAP_TIME);
           this.log(
             '-> Sector: ' + partialLap.sector + ' | Time: ' + partialLap.time
           );
@@ -232,11 +239,18 @@ export class LiveTiming {
     data.last_lap.partial_lap = false;
     data.best_lap = !data.best_lap.time || data.last_lap.time < data.best_lap.time ? data.last_lap : data.best_lap;
 
-    this.output(TimingSocketEvent.LAP_TIME, data);
-    this.log('Event: ' + TimingSocketEvent.LAP_TIME);
+    this.output(LiveTiming.LAP_TIME, data);
+    this.log('Event: ' + LiveTiming.LAP_TIME);
     this.log(
       '-> Lap count: ' + data.laps_count + ' | Time: ' + data.last_lap.time
     );
+  }
+
+  private checkFinished() {
+    if (this.startedCount === 0) {
+      this.output(LiveTiming.TRACK_ACTIVITY_FINISHED, null);
+      this.log('Event: ' + LiveTiming.TRACK_ACTIVITY_FINISHED);
+    }
   }
 
   // helpers

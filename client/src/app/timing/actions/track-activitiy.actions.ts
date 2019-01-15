@@ -2,11 +2,12 @@
 import { Action } from '@ngrx/store';
 
 // models
-import { TrackActivity } from '../../shared/model';
+import { TrackActivity, TrackActivityState } from '../../shared/model';
 
 export enum TrackActivityActionTypes {
   SelectTrackActivity = '[APP] Select Track Activity',
-  LoadTrackActivities = '[APP] Load Track Activities'
+  LoadTrackActivities = '[APP] Load Track Activities',
+  ChangeStateSelectedTrackActivity = '[APP] Change State Selected Track Activity'
 }
 
 export class SelectTrackActivity implements Action {
@@ -21,7 +22,15 @@ export class LoadTrackActivities implements Action {
   constructor(public payload: TrackActivity[]) {}
 }
 
+export class ChangeStateSelectedTrackActivity implements Action {
+  readonly type = TrackActivityActionTypes.ChangeStateSelectedTrackActivity;
+
+  constructor(public payload: TrackActivityState) {}
+}
+
 export type TrackActivityActionsUnion =
   SelectTrackActivity |
-  LoadTrackActivities;
+  LoadTrackActivities |
+  ChangeStateSelectedTrackActivity
+;
 

@@ -6,7 +6,8 @@ import { Store, select } from '@ngrx/store';
 import {
   TrackActivity,
   RaceParticipant,
-  RaceParticipantTrackActivity
+  RaceParticipantTrackActivity,
+  TrackActivityState
 } from '../../../../shared/model';
 
 // actions
@@ -45,5 +46,13 @@ export class TimingSecondaryBarComponent implements OnInit {
         }
       }
     );
+  }
+
+  isTrackActivityStarted(): boolean {
+    return this.trackActivity && this.trackActivity.state === TrackActivityState.started;
+  }
+
+  isTrackActivityFinished(): boolean {
+    return this.trackActivity && this.trackActivity.state === TrackActivityState.finished;
   }
 }

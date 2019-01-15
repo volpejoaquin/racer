@@ -13,8 +13,25 @@ $timing-ui-bar-width: 900px;
   margin: 0 10px;
 }
 
+.timing-secondary-bar_box-live {
+  display: none;
+}
+
 .timing-secondary-bar_wrapper {
-  border-top: $timing-secondary-bar-border-size solid $success;
+
+  &.track-activity--started {
+    border-top: $timing-secondary-bar-border-size solid $success;
+
+    .timing-secondary-bar_box-live {
+      display: inherit;
+      background-color: $success;
+      color: $white;
+    }
+  }
+
+  &.track-activity--finished {
+    border-top: $timing-secondary-bar-border-size solid $primary;
+  }
 }
 
 .timing-secondary-bar_box-wrapper {

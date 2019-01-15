@@ -4,7 +4,22 @@
 // models
 import { RaceParticipant, CarBrand } from './../../shared/model/';
 
-export const TP_C3_RACE_PARTICIPANTS_GROUP_A: RaceParticipant[] = [{
+export const TP_C3_RACE_PARTICIPANTS_GROUP_A: RaceParticipant[] = [
+  {
+    team: {
+      name: "DUMMY"
+    },
+    car: {
+      name: "CLIO",
+      brand: CarBrand.renaultClio
+    },
+    driver: {
+      name: "Joaquin",
+      last_name: "Volpe"
+    },
+    number: 80
+  },
+  {
   team: {
     name: "DUMMY"
   },

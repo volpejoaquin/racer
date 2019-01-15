@@ -1,5 +1,8 @@
 <div class="fixed-bottom" [class.timing-secondary-bar_wrapper-extra_expanded]="isExpanded">
-  <nav class="timing-secondary-bar_wrapper p-3">
+  <nav
+    class="timing-secondary-bar_wrapper p-3"
+    [class.track-activity--started]="isTrackActivityStarted()"
+    [class.track-activity--finished]="isTrackActivityFinished()">
     <div class="row justify-content-center align-items-center">
       <div class="col-auto">
         <div class="text-center">
@@ -15,7 +18,8 @@
             <div class="d-inline-block bg-white text-dark pt-2 pb-2 pl-3 pr-3 mr-4 timing-secondary-bar_box-wrapper">
               <span class="font-weight-normal text-uppercase align-middle mr-3">{{ trackActivity.car_division.short_name }}</span>
               <span class="font-weight-normal text-uppercase align-middle">{{ trackActivity.name }}</span>
-              <small class="bg-success text-uppercase text-white pt-2 pb-2 pl-3 pr-3 ml-3 align-middle">VIVO</small>
+              
+              <small class="text-uppercase pt-2 pb-2 pl-3 pr-3 ml-3 align-middle timing-secondary-bar_box-live">VIVO</small>
             </div>
             <span class="font-weight-normal ml-4 mr-2 text-uppercase" *ngIf="trackActivity.date">{{ trackActivity.date | date:'EEE HH:mm' }} hs</span>
             <span class="font-weight-normal text-normal ml-2 mr-2" *ngIf="trackActivity.duration > 0">{{ trackActivity.duration }} minutos</span>

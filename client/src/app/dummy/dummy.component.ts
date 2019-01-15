@@ -13,7 +13,7 @@ import {
   SetBestRaceParticipantTrackActivity
 } from './../timing/actions/race-participant-track-activity.actions';
 import { LoadRaceWeekends } from './../timing/actions/race-weekend.actions';
-import { LoadTrackActivities } from './../timing/actions/track-activitiy.actions';
+import { LoadTrackActivities, ChangeStateSelectedTrackActivity } from './../timing/actions/track-activitiy.actions';
 import { MarkRaceParticipant } from '../core/actions/ui.actions';
 
 // models
@@ -22,7 +22,8 @@ import {
   TrackActivity,
   RaceParticipantTrackActivity,
   TrackLap,
-  RaceParticipant
+  RaceParticipant,
+  TrackActivityState
 } from './../shared/model';
 
 // dummy data
@@ -32,7 +33,9 @@ import { BEST_TRACK_LAP } from './best-track-lap';
 
 // const LIVE_TIMING_KEY_CODES = [76, 73, 86, 69];
 const LIVE_TIMING_KEY_CODES = [76];
-const RACE_PARTICIPANTS_COUNT = 1;
+const RACE_PARTICIPANTS_COUNT = 8;
+const MAX_TOTAL_LAPS = 6;
+const SPEED = 10;
 let CURRENT_CODES = [];
 
 @Component({
@@ -107,6 +110,14 @@ export class DummyComponent implements OnInit {
     this.store.dispatch(new ImportRaceParticipantTrackActivities(raceParticipantstrackActivities));
   }
 
+  private startTrackActivity() {
+    this.store.dispatch(new ChangeStateSelectedTrackActivity(TrackActivityState.started));
+  }
+
+  private finishTrackActivity() {
+    this.store.dispatch(new ChangeStateSelectedTrackActivity(TrackActivityState.finished));
+  }
+
   private getTrackActivities(raceWeekend: RaceWeekend) {
     const rWeekend: RaceWeekend = lodash.find(this.raceWeekends, (rW: RaceWeekend) => {
       return rW.id === raceWeekend.id;
@@ -119,14 +130,23 @@ export class DummyComponent implements OnInit {
 
     const allData = [];
     const output = (event: any, data: any) => {
-        if (data) {
-          allData.push(data);
-
-          this.loadRaceParticipantsTrackActivities(allData);
+        switch(event) {
+          case LiveTiming.TRACK_ACTIVITY_STARTED:
+            this.startTrackActivity();
+            break;
+            case LiveTiming.TRACK_ACTIVITY_FINISHED:
+            this.finishTrackActivity();
+            break;
+          default:
+            if (data) {
+              allData.push(data);
+              this.loadRaceParticipantsTrackActivities(allData);
+            }
+            break;
         }
       };
     const liveTiming = new LiveTiming(output);
-    liveTiming.start(bestTrackLap, rParticipants, 6, 10);
+    liveTiming.start(bestTrackLap, rParticipants, MAX_TOTAL_LAPS, SPEED);
 
     rParticipants.forEach((raceParticipant: RaceParticipant) => {
       this.store.dispatch(new MarkRaceParticipant(raceParticipant.number));
